@@ -1,0 +1,17 @@
+# Triggers when the game starts
+on_game_start = {
+	events = {
+		# f93_galaxy.4
+	}
+}
+on_game_start_country = {
+	events = {
+		f93_galaxy.2
+	}
+}
+
+on_monthly_pulse_country = {
+	events = {
+		f93_galaxy.2
+	}
+}

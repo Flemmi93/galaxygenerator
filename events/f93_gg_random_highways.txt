@@ -1,0 +1,159 @@
+namespace = f93_galaxy_random
+
+system_event = {
+	id = f93_galaxy_random.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:system_highway_start
+		exists = event_target:system_highway_end
+		event_target:system_highway_end = {
+			is_same_value = ROOT
+		}
+	}
+
+	immediate = {
+		event_target:system_highway_start = {
+			highway_create_system = yes
+		}
+		clear_global_event_target = system_highway_end
+	}
+}
+
+country_event = {
+	id = f93_galaxy_random.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = {
+				safe_highway_start_end = yes
+				distance_to_core_percent < 0.3
+				NOR = {
+					any_fleet_in_system = { exists = this }
+				}
+			}
+			set_name = START
+			save_global_event_target_as = system_highway_start
+			highway_connect_relay_only = yes
+			set_star_flag = dd_highway_system_flag_start
+		}
+		if = {
+			limit = {
+				not = { exists = event_target:system_highway_start }
+			}
+			random_system = {
+				limit = {
+					distance_to_core_percent < 0.4
+					NOR = {
+						any_fleet_in_system = { exists = this }
+					}
+				}
+				set_name = START
+				save_global_event_target_as = system_highway_start
+				highway_connect_relay_only = yes
+				set_star_flag = dd_highway_system_flag_start
+			}
+		}
+	}
+}
+
+country_event = {
+	id = f93_galaxy_random.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				OR = { galaxy_size = huge galaxy_size = dandelion }
+			}
+			random_system = {
+				limit = {
+					safe_highway_start_end = yes
+					NOR = {
+						any_fleet_in_system = { exists = this }
+						has_star_flag = dd_highway_system_flag
+					}
+					distance_to_core_percent > 0.5
+					distance = {
+						source = event_target:system_highway_start
+						min_distance >= 240
+						# max_distance <= 250
+						type = euclidean
+					}
+					if = {
+						limit = { exists = event_target:system_highway_end }
+						distance = {
+							source = event_target:system_highway_end
+							min_distance >= 200
+							type = euclidean
+						}
+					}
+				}
+				set_name = ENDE
+				save_global_event_target_as = system_highway_end
+				highway_connect_relay_only = yes
+				set_star_flag = dd_highway_system_flag_end
+				system_event = { id = f93_galaxy_random.1 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = f93_galaxy_random.4
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		every_system = {
+			system_event = { id = f93_galaxy_random.5 }
+		}
+	}
+}
+
+system_event = { #removed triangle bits
+	id = f93_galaxy_random.5
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_megastructure = dandelion_relay #system a
+		any_neighbor_system = { 
+		has_megastructure = dandelion_relay #system b
+		any_neighbor_system = {
+			has_megastructure = dandelion_relay #system c
+			NOT = { is_same_value = root }
+			any_neighbor_system = {
+				is_same_value = root #system a
+			}
+		}
+	}
+	}
+	
+	immediate = {
+		random_neighbor_system = {
+			limit = { has_megastructure = dandelion_relay }
+			save_global_event_target_as = system_1 #system b
+		}
+		random_neighbor_system = {
+			limit = { has_megastructure = dandelion_relay NOT = { is_same_value = event_target:system_1 } }
+			save_global_event_target_as = system_2 #system c
+		}
+		if = {
+			limit = {
+				event_target:system_1 = {
+					any_neighbor_system = { is_same_value = event_target:system_2 }
+				}
+				count_neighbor_system = {
+					count = 2
+					limit = { has_megastructure = dandelion_relay }
+				}
+			}
+			random_megastructure = { limit = { is_megastructure_type = dandelion_relay } delete_megastructure = this }
+		}
+		clear_global_event_target = system_1
+		clear_global_event_target = system_2
+	}
+}

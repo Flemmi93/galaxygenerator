@@ -1,0 +1,27 @@
+dandelion_galaxy = {
+	core_radius_perc = 0.2				# Core radius is 30% of the galaxy radius
+	num_stars_core_perc = 0				# Number of stars in core
+	stars_min_dist = 20					# Min distance between stars
+
+	countries = {
+		ideal_sq_dist_between = 5625	# 75*75 Ideal square distance between countries
+		min_sq_dist_between = 2500		# 50*50 Min square distance between countries
+	}
+
+	fallen_empires = {
+		ideal_sq_dist_between = 15625  	# 125*125 Ideal square distance between countries
+		min_sq_dist_between = 5625		# 75*75 Min square distance between countries
+	}
+
+	num_arms = 1
+	arms = {
+		tightness_winding = 0.1			# Tightness of winding
+		width = 50.0					# Arm width in degrees
+		fuzz = 10.0						# Maximum outliers distance from arms
+		seperation = 20.0				# Separation (in degrees) between each arm
+	}
+
+	preview_icon = "GFX_galaxy_preview_ring"
+	button_icon = "GFX_galaxy_button_ring"
+	desc = "GALAXY_SHAPE_RING_DESC"
+}

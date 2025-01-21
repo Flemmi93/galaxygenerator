@@ -1,0 +1,213 @@
+namespace = union_state_politics
+
+#recalculate Political impact of regular Empires
+country_event = {
+	id = union_state_politics.1
+	hide_window = yes
+	is_triggered_only = yes
+	# mean_time_to_happen = { days = @Union_state_politics_cooldown }
+	trigger = { is_union_state = yes }
+
+	immediate = {
+		country_event = { id = union_state_politics.1 days = @Union_state_politics_cooldown }
+		#Figuring out number of impacting pops
+		# Fanatics and non fanatics of the same Ethic are lumped together for now.
+		set_variable = { which = ethic_authoritarian_pops value = 0 }
+		set_variable = { which = ethic_egalitarian_pops value = 0 }
+		set_variable = { which = ethic_materialist_pops value = 0 }
+		set_variable = { which = ethic_militarist_pops value = 0 }
+		set_variable = { which = ethic_pacifist_pops value = 0 }
+		set_variable = { which = ethic_spiritualist_pops value = 0 }
+		set_variable = { which = ethic_xenophile_pops value = 0 }
+		set_variable = { which = ethic_xenophobe_pops value = 0 }
+		set_variable = { which = all_valid_ethic_pops value = 0 }
+		#reading out ethic_ETHIC_pops from each country neighboring the hyperlanes.
+		every_system = {
+			limit = { has_megastructure = dandelion_relay NOT = { has_star_flag = highway_disconnected } }
+			every_neighbor_system = {
+				limit = { exists = owner owner = { is_country_type = default NOT = { owner = { is_at_war_with = root } } is_gestalt = no } }
+				owner = {
+					set_variable = { which = ethic_authoritarian_pops value = 0 }
+					set_variable = { which = ethic_egalitarian_pops value = 0 }
+					set_variable = { which = ethic_materialist_pops value = 0 }
+					set_variable = { which = ethic_militarist_pops value = 0 }
+					set_variable = { which = ethic_pacifist_pops value = 0 }
+					set_variable = { which = ethic_spiritualist_pops value = 0 }
+					set_variable = { which = ethic_xenophile_pops value = 0 }
+					set_variable = { which = ethic_xenophobe_pops value = 0 }
+					set_variable = { which = all_valid_ethic_pops value = 0 }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_authoritarian } }
+						variable = ethic_authoritarian_pops
+					}
+					root = { change_variable = { which = ethic_authoritarian_pops value = prev.ethic_authoritarian_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_egalitarian } }
+						variable = ethic_egalitarian_pops
+					}
+					root = { change_variable = { which = ethic_egalitarian_pops value = prev.ethic_egalitarian_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_materialist } }
+						variable = ethic_materialist_pops
+					}
+					root = { change_variable = { which = ethic_materialist_pops value = prev.ethic_materialist_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_militarist } }
+						variable = ethic_militarist_pops
+					}
+					root = { change_variable = { which = ethic_militarist_pops value = prev.ethic_militarist_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_pacifist } }
+						variable = ethic_pacifist_pops
+					}
+					root = { change_variable = { which = ethic_pacifist_pops value = prev.ethic_pacifist_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_spiritualist } }
+						variable = ethic_spiritualist_pops
+					}
+					root = { change_variable = { which = ethic_spiritualist_pops value = prev.ethic_spiritualist_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_xenophile } }
+						variable = ethic_xenophile_pops
+					}
+					root = { change_variable = { which = ethic_xenophile_pops value = prev.ethic_xenophile_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_xenophobe } }
+						variable = ethic_xenophobe_pops
+					}
+					root = { change_variable = { which = ethic_xenophobe_pops value = prev.ethic_xenophobe_pops } }
+				}
+				every_system_planet = {
+					limit = { has_owner = yes num_pops > 0 any_owned_pop = { is_enslaved = no } }
+					
+					set_variable = { which = ethic_authoritarian_pops value = 0 }
+					set_variable = { which = ethic_egalitarian_pops value = 0 }
+					set_variable = { which = ethic_materialist_pops value = 0 }
+					set_variable = { which = ethic_militarist_pops value = 0 }
+					set_variable = { which = ethic_pacifist_pops value = 0 }
+					set_variable = { which = ethic_spiritualist_pops value = 0 }
+					set_variable = { which = ethic_xenophile_pops value = 0 }
+					set_variable = { which = ethic_xenophobe_pops value = 0 }
+					set_variable = { which = all_valid_ethic_pops value = 0 }
+	
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_authoritarian } }
+						variable = ethic_authoritarian_pops
+					}
+					root = { change_variable = { which = ethic_authoritarian_pops value = prev.ethic_authoritarian_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_egalitarian } }
+						variable = ethic_egalitarian_pops
+					}
+					root = { change_variable = { which = ethic_egalitarian_pops value = prev.ethic_egalitarian_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_materialist } }
+						variable = ethic_materialist_pops
+					}
+					root = { change_variable = { which = ethic_materialist_pops value = prev.ethic_materialist_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_militarist } }
+						variable = ethic_militarist_pops
+					}
+					root = { change_variable = { which = ethic_militarist_pops value = prev.ethic_militarist_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_pacifist } }
+						variable = ethic_pacifist_pops
+					}
+					root = { change_variable = { which = ethic_pacifist_pops value = prev.ethic_pacifist_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_spiritualist } }
+						variable = ethic_spiritualist_pops
+					}
+					root = { change_variable = { which = ethic_spiritualist_pops value = prev.ethic_spiritualist_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_xenophile } }
+						variable = ethic_xenophile_pops
+					}
+					root = { change_variable = { which = ethic_xenophile_pops value = prev.ethic_xenophile_pops } }
+					export_trigger_value_to_variable = {
+						trigger = count_owned_pop
+						parameters = { limit = { is_sapient = yes pop_has_ethic = ethic_xenophobe } }
+						variable = ethic_xenophobe_pops
+					}
+					root = { change_variable = { which = ethic_xenophobe_pops value = prev.ethic_xenophobe_pops } }
+				}
+			}
+		}
+		#adding all ethic_ETHIC_pops variables into all_valid_ethic_pops
+		change_variable = { which = all_valid_ethic_pops value = ethic_authoritarian_pops }
+		change_variable = { which = all_valid_ethic_pops value = ethic_egalitarian_pops }
+		change_variable = { which = all_valid_ethic_pops value = ethic_materialist_pops }
+		change_variable = { which = all_valid_ethic_pops value = ethic_militarist_pops }
+		change_variable = { which = all_valid_ethic_pops value = ethic_pacifist_pops }
+		change_variable = { which = all_valid_ethic_pops value = ethic_spiritualist_pops }
+		change_variable = { which = all_valid_ethic_pops value = ethic_xenophile_pops }
+		change_variable = { which = all_valid_ethic_pops value = ethic_xenophobe_pops }
+		#Turning ethic_ETHIC_pops into ethic_ETHIC_pops but in percent of all_valid_ethic_pops
+		divide_variable = { which = ethic_authoritarian_pops value = all_valid_ethic_pops }
+		divide_variable = { which = ethic_egalitarian_pops value = all_valid_ethic_pops }
+		divide_variable = { which = ethic_materialist_pops value = all_valid_ethic_pops }
+		divide_variable = { which = ethic_militarist_pops value = all_valid_ethic_pops }
+		divide_variable = { which = ethic_pacifist_pops value = all_valid_ethic_pops }
+		divide_variable = { which = ethic_spiritualist_pops value = all_valid_ethic_pops }
+		divide_variable = { which = ethic_xenophile_pops value = all_valid_ethic_pops }
+		divide_variable = { which = ethic_xenophobe_pops value = all_valid_ethic_pops }
+		#adding the acctual modifiers, all of this should have quite the beefy impact on the union state.
+		add_modifier = {
+			modifier = promoted_authoritarian
+			days = @Union_state_politics_cooldown
+			multiplier = ethic_authoritarian_pops
+		}
+		add_modifier = {
+			modifier = promoted_egalitarian
+			days = @Union_state_politics_cooldown
+			multiplier = ethic_egalitarian_pops
+		}
+		add_modifier = {
+			modifier = promoted_materialist
+			days = @Union_state_politics_cooldown
+			multiplier = ethic_materialist_pops
+		}
+		add_modifier = {
+			modifier = promoted_militarist
+			days = @Union_state_politics_cooldown
+			multiplier = ethic_militarist_pops
+		}
+		add_modifier = {
+			modifier = promoted_pacifist
+			days = @Union_state_politics_cooldown
+			multiplier = ethic_pacifist_pops
+		}
+		add_modifier = {
+			modifier = promoted_spiritualist
+			days = @Union_state_politics_cooldown
+			multiplier = ethic_spiritualist_pops
+		}
+		add_modifier = {
+			modifier = promoted_xenophile
+			days = @Union_state_politics_cooldown
+			multiplier = ethic_xenophile_pops
+		}
+		add_modifier = {
+			modifier = promoted_xenophobe
+			days = @Union_state_politics_cooldown
+			multiplier = ethic_xenophobe_pops
+		}
+		
+	}
+}

@@ -1,0 +1,3 @@
+@step_size = 31 
+@steps = 30 #limit on how long a trade route can be
+@Union_state_politics_cooldown = 30

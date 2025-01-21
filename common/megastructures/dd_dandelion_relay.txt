@@ -1,0 +1,21 @@
+dandelion_relay = {
+	entity = "humanoid_01_hyper_relay_entity"
+	construction_entity = "humanoid_01_hyper_relay_entity"
+	portrait = "GFX_megastructure_hyper_relay_background"
+	place_entity_on_planet_plane = no
+	build_outside_gravity_well = yes
+	show_galactic_map_icon = no
+	show_in_outliner = no
+	build_time = 0
+	resources = {}
+
+	construction_blocks_and_blocked_by = none
+	dismantle_potential = {
+		always = no
+	}
+	potential = {
+		always = no
+	}
+	
+	bypass_type = relay_bypass
+}

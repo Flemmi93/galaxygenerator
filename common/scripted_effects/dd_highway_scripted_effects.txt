@@ -1,0 +1,102 @@
+highway_connect_relay_only = {
+	set_star_flag = dd_highway_system_flag@this
+	if = {
+		limit = { NOT = { has_megastructure = dandelion_relay } }
+		spawn_megastructure = {
+			type = dandelion_relay
+			random_pos = yes
+			orbit_angle = 360		# range of the randomization
+		}
+	}
+}
+highway_connect = {
+	if = {
+		limit = { NOT = { has_megastructure = dandelion_relay } }
+		spawn_megastructure = {
+			type = dandelion_relay
+			random_pos = yes
+			orbit_angle = 360		# range of the randomization
+		}
+	}
+	if = {
+		limit = { exists = event_target:new_highway_system exists = event_target:old_highway_system }
+		event_target:new_highway_system = {
+			if = {
+				limit = { NOT = { any_neighbor_system = { is_same_value = event_target:old_highway_system } } }
+				add_hyperlane = { from = event_target:old_highway_system to = event_target:new_highway_system }
+			}
+		}
+	}
+	save_global_event_target_as = old_highway_system
+}
+
+spawn_highway_system = {	
+	set_spawn_system_batch = begin
+	spawn_system = {
+		min_distance = 20
+		max_distance = 25
+		initializer = random
+		hyperlane = yes
+		is_discovered = no
+		direction = rimwards
+		effect = { save_global_event_target_as = new_highway_system highway_connect = yes }
+	}
+	set_spawn_system_batch = end
+}
+
+highway_create_system = {
+	if = {
+		limit = {
+			exists = event_target:system_highway_start
+			exists = event_target:system_highway_end
+		}
+		save_global_event_target_as = old_highway_system
+		while = {
+			# count = @steps
+			limit = {
+				NOT = { event_target:system_highway_end = { any_neighbor_system = { is_same_value = event_target:old_highway_system } } } 
+			}
+			event_target:system_highway_end = {
+				closest_system = {
+					limit = {
+						NOT = { has_star_flag = dd_highway_system_flag }
+						or = {
+							distance = {
+								source = event_target:old_highway_system
+								max_jumps = 1
+								type = hyperlane
+							}
+						}
+					}
+					save_global_event_target_as = new_highway_system
+					highway_connect = yes
+				}
+			}
+			if = {
+				limit = { NOT = { exists = event_target:new_highway_system } }
+				spawn_highway_system = yes
+			}
+			clear_global_event_target = new_highway_system
+			if = {
+				limit = { exists = event_target:system_highway_end exists = event_target:old_highway_system }
+				event_target:system_highway_end = {
+					if = {
+						limit = {
+							NOT = { any_neighbor_system = { is_same_value = event_target:old_highway_system } }
+							distance = {
+								source = event_target:old_highway_system
+								max_distance < 30
+								type = euclidean
+							}
+						}
+						add_hyperlane = { from = event_target:old_highway_system to = event_target:system_highway_end }
+					}
+				}
+			}
+		}
+		if = {
+			limit = { event_target:system_highway_end = { any_neighbor_system = { is_same_value = event_target:old_highway_system } } }
+			event_target:system_highway_end = { highway_connect_relay_only = yes }
+		}
+	}
+}
