@@ -220,7 +220,7 @@ country_event = {
 			event_target:galactic_union_state_spawner = {
 				if = {
 					limit = { has_owner = no }
-					set_name = Customs
+					# set_name = Customs
 					if = {
 						limit = { any_system_planet = { is_colonizable = yes } }
 						every_system_planet = {
@@ -358,6 +358,38 @@ country_event = {
 		every_owned_megastructure = {
 			limit = { is_megastructure_type = dandelion_relay }
 			remove_megastructure = this
+		}
+	}
+}
+
+country_event = {
+	id = f93_galaxy.6
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_system = {
+			limit = {
+				NOT = {
+					exists = owner
+					any_system = {
+						has_megastructure = dandelion_relay
+						distance = {
+							source = prev
+							max_jumps = 10
+							type = hyperlane
+						}
+					}
+				}
+			}
+			set_name = disconnected
+			every_system = {
+				limit = { has_hyperlane_to = prev }
+				remove_hyperlane = { from = this to = prev }
+			}
+		}
+		every_country = {
+			country_event = { id = game_start.33 }
 		}
 	}
 }

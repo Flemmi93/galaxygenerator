@@ -2,11 +2,9 @@ safe_highway_start_end = {
 	NOR = {
 		exists = owner
 		any_fleet_in_system = { exists = this }
-		any_neighbor_system = { exists = owner }
-		has_star_flag = dd_highway_system_flag
 		has_star_flag = chosen_cluster
 		has_star_flag = empire_cluster
-		any_neighbor_system = { any_neighbor_system = { exists = owner } }
+		any_system = { distance = { source = this type = hyperlane max_jumps = 2 }  exists = owner }
 	}
 }
 

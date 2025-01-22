@@ -273,6 +273,16 @@ set_galactic_union_spawner = {
 			set_name = spawner12
 		}
 	}
+	else = {
+		random_system = {
+			limit = {
+				has_megastructure = dandelion_relay
+				safe_highway_start_end = yes
+			}
+			save_global_event_target_as = galactic_union_state_spawner
+			set_name = spawner13
+		}
+	}
 }
 
 create_union_state = {
