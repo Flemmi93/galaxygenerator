@@ -1,7 +1,5 @@
 random_list = {
 	name = dd_random_highway_system
-	
-	dd_highway_system_init_01 = 10
 	basic_init_01_dd_highway = 20
 	basic_init_02_dd_highway = 20
 	basic_init_03_dd_highway = 10

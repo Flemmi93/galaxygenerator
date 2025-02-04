@@ -35,72 +35,12 @@ country_event = {
 	}
 	immediate = {
 		hidden_effect = {
-			# set_galactic_union_spawner = yes
-			# event_target:galactic_union_state_spawner = {
-			# 	set_spawn_system_batch = begin
-			# 	spawn_system = {
-			# 		initializer = dd_highway_system_init_01
-			# 		hyperlane = yes
-			# 		min_distance = 40
-			# 		max_distance = 45
-			# 		direction = corewards
-			# 	}
-			# 	set_spawn_system_batch = end
-			# 	event_target:system_highway_start = {
-					
-			# 		random_neighbor_system_euclidean = {
-			# 			limit = {
-			# 				NOT = { has_hyperlane_to = prev }
-			# 				safe_highway_start_end = yes
-			# 			}
-			# 			add_hyperlane = {
-			# 				from = this
-			# 				to = prev
-			# 			}
-			# 		}
-			# 		random_neighbor_system_euclidean = {
-			# 			limit = {
-			# 				NOT = { has_hyperlane_to = prev }
-			# 				safe_highway_start_end = yes
-			# 				distance = {
-			# 					source = event_target:galactic_union_state_capitol
-			# 					type = euclidean
-			# 					min_distance > 50
-			# 				}
-			# 			}
-			# 			add_hyperlane = {
-			# 				from = this
-			# 				to = prev
-			# 			}
-			# 		}
-			# 		random_neighbor_system_euclidean = {
-			# 			limit = {
-			# 				NOT = { has_hyperlane_to = prev }
-			# 				safe_highway_start_end = yes
-			# 				distance = {
-			# 					source = event_target:galactic_union_state_capitol
-			# 					type = euclidean
-			# 					min_distance > 70
-			# 				}
-			# 				distance_to_core_percent < 0.32
-			# 			}
-			# 			add_hyperlane = {
-			# 				from = this
-			# 				to = prev
-			# 			}
-			# 		}
-			# 		random_neighbor_system_euclidean = {
-			# 			limit = {
-			# 				NOT = { has_hyperlane_to = prev }
-			# 			}
-			# 			add_hyperlane = {
-			# 				from = this
-			# 				to = prev
-			# 			}
-			# 		}
-			# 	}
-			# }
-			# clear_global_event_target = galactic_union_state_spawner
+			if = {
+				limit = {
+					NOT = {
+						any_system = { has_megastructure = dandelion_relay }
+					}
+				}
 				random_system = {
 					limit = {
 							exists = owner
@@ -110,6 +50,7 @@ country_event = {
 					highway_connect_relay_only = yes
 					save_global_event_target_as = system_highway_start
 				}
+			}
 			
 			while = {
 				count = 10
@@ -178,37 +119,95 @@ country_event = {
 					clear_global_event_target = system_highway_end
 				}
 			}
-			
-			set_galactic_union_spawner = yes
-			event_target:galactic_union_state_spawner = {
-				set_spawn_system_batch = begin
-				spawn_system = {
-					initializer = dd_highway_system_init_01
-					hyperlane = no
-					min_distance = 10
-					max_distance = 15
-				}
-				set_spawn_system_batch = end
-				event_target:system_highway_start = {
-					while = {
-						count = 4
-						random_neighbor_system_euclidean = {
-							limit = {
-								NOT = { has_hyperlane_to = prev }
-							}
-							add_hyperlane = {
-								from = this
-								to = prev
+			if = {
+				limit = { NOT = { exists = event_target:galactic_union_state_capitol_system } }
+				set_galactic_union_spawner = yes
+				event_target:galactic_union_state_spawner = {
+					set_spawn_system_batch = begin
+					spawn_system = {
+						initializer = dd_highway_system_init_01
+						hyperlane = no
+						min_distance = 10
+						max_distance = 15
+					}
+					set_spawn_system_batch = end
+					event_target:system_highway_start = {
+						while = {
+							count = 4
+							random_neighbor_system_euclidean = {
+								limit = {
+									NOT = { has_hyperlane_to = prev }
+								}
+								add_hyperlane = {
+									from = this
+									to = prev
+								}
 							}
 						}
 					}
 				}
-			}
-
-			event_target:galactic_union_state_capitol = {
-				create_union_state = yes
-				owner = {
-					capital_star = {
+				event_target:galactic_union_state_capitol = {
+					create_union_state = yes
+					owner = {
+						capital_star = {
+							create_starbase = {
+								owner = last_created_country
+								size = starbase_citadel
+								module = trading_hub
+							}
+						}
+					}
+				}
+				event_target:galactic_union_state_spawner = {
+					if = {
+						limit = { has_owner = no }
+						set_name = "Customs"
+						if = {
+							limit = { any_system_planet = { is_colonizable = yes } }
+							every_system_planet = {
+								limit = { is_colonizable = yes }
+								create_colony = {
+									owner = last_created_country
+									species = event_target:Galmeda_species
+								}
+								while = {
+									count = 10
+									create_pop = {
+										species = event_target:Galmeda_species
+										ethos = random
+									}
+								}
+								add_district = district_city
+								add_district = district_mining
+								add_district = district_mining
+							}
+						}
+						else_if = {
+							limit = { NOT = { has_owner = yes } }
+							random_system_planet = {
+								limit = { 
+									NOR = {
+										is_planet_class = pc_gas_giant
+										is_planet_class = star
+										is_planet_class = pc_asteroid
+									}
+								}
+								change_pc = rl_habitable_normal
+								reroll_deposits = yes
+								reroll_planet_modifiers = yes
+								create_colony = {
+									owner = last_created_country
+									species = event_target:Galmeda_species
+								}
+								while = {
+									count = 10
+									create_pop = {
+										species = event_target:Galmeda_species
+										ethos = random
+									}
+								}
+							}
+						}
 						create_starbase = {
 							owner = last_created_country
 							size = starbase_citadel
@@ -216,67 +215,21 @@ country_event = {
 						}
 					}
 				}
+				clear_global_event_target = galactic_union_state_spawner
 			}
-			event_target:galactic_union_state_spawner = {
-				if = {
-					limit = { has_owner = no }
-					# set_name = Customs
-					if = {
-						limit = { any_system_planet = { is_colonizable = yes } }
-						every_system_planet = {
-							limit = { is_colonizable = yes }
-							create_colony = {
-								owner = last_created_country
-								species = event_target:Galmeda_species
-							}
-							while = {
-								count = 10
-								create_pop = {
-									species = event_target:Galmeda_species
-									ethos = random
-								}
-							}
-							add_district = district_city
-							add_district = district_mining
-							add_district = district_mining
-						}
-					}
-					else_if = {
-						limit = { NOT = { has_owner = yes } }
-						random_system_planet = {
-							limit = { 
-								NOR = {
-									is_planet_class = pc_gas_giant
-									is_planet_class = star
-									is_planet_class = pc_asteroid
-								}
-							}
-							change_pc = rl_habitable_normal
-							reroll_deposits = yes
-							reroll_planet_modifiers = yes
-							create_colony = {
-								owner = last_created_country
-								species = event_target:Galmeda_species
-							}
-							while = {
-								count = 10
-								create_pop = {
-									species = event_target:Galmeda_species
-									ethos = random
-								}
-							}
-						}
-					}
-					create_starbase = {
-						owner = last_created_country
-						size = starbase_citadel
-						module = trading_hub
-					}
+			if = {
+				limit = {
+					exists = event_target:galactic_union_state_capitol_system
+					NOT = { exists = event_target:galactic_union_state }
+				}
+				event_target:galactic_union_state_capitol_system = {
+					create_union_state = yes
 				}
 			}
 			clear_global_event_target = system_highway_start
-			clear_global_event_target = galactic_union_state_spawner
 		}
+		country_event = { id = f93_galaxy.6 }
+		country_event = { id = f93_galaxy.7 days = 1 }
 	}
 }
 
@@ -300,7 +253,11 @@ country_event = {
 				}
 			}
 		}
-		make_fallen_empire = yes
+		create_fe_servant_robots = yes
+		if = {
+			limit = { NOT = { is_country_type = fallen_empire } }
+			make_fallen_empire = yes
+		}
 		capital_star = { create_fe_home_citadel = yes }
 		every_system_within_border = {
 			limit = { is_capital_system = no }
@@ -372,6 +329,7 @@ country_event = {
 			limit = {
 				NOT = {
 					exists = owner
+					has_star_flag = empire_cluster
 					any_system = {
 						has_megastructure = dandelion_relay
 						distance = {
@@ -382,14 +340,69 @@ country_event = {
 					}
 				}
 			}
-			set_name = disconnected
+			set_star_flag = f93_shroud_region_flag
 			every_system = {
 				limit = { has_hyperlane_to = prev }
 				remove_hyperlane = { from = this to = prev }
 			}
+			system_event = { id = f93_shroud.1 }
+		}
+	}
+}
+country_event = {
+	id = f93_galaxy.7
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_system = {
+			limit = {
+				has_megastructure = dandelion_relay
+				NOR = {
+					exists = owner
+					has_star_flag = empire_cluster
+					has_star_flag = unique_system
+					AND = {
+						NOT = { has_megastructure = dandelion_relay }
+						has_any_megastructure = yes
+					}
+					any_fleet_in_system = { exists = this }
+				}
+			}
+			set_star_class = sc_no_star
+			# set_name = BLANK_STRING
+			every_system_planet = { remove_planet = yes }
+			destroy_ambient_object = this
+			every_ambient_object = { destroy_ambient_object = this }
 		}
 		every_country = {
-			country_event = { id = game_start.33 }
+			limit = {
+				OR = {
+					is_shrouded_ai = yes
+					is_shrouded_player = yes
+				}	
+			}
+			capital_star = {
+				closest_system = {
+					min_steps = 2
+					random_system = {
+						limit = { NOT = { exists = owner } has_megastructure = dandelion_relay has_natural_wormhole = no }
+						prev = {
+							spawn_natural_wormhole = {
+								bypass_type = wormhole
+								random_pos = yes
+								orbit_angle = 360
+							}
+						}
+						spawn_natural_wormhole = {
+							bypass_type = wormhole
+							random_pos = yes
+							orbit_angle = 360
+						}
+						link_wormholes = prev
+					}
+				}
+			}
 		}
 	}
 }

@@ -4,7 +4,11 @@ safe_highway_start_end = {
 		any_fleet_in_system = { exists = this }
 		has_star_flag = chosen_cluster
 		has_star_flag = empire_cluster
-		any_system = { distance = { source = this type = hyperlane max_jumps = 2 }  exists = owner }
+		# any_neighbor_system = { exists = owner }
+		closest_system = {
+			limit = { exists = owner  }
+			max_steps = 3
+		}
 	}
 }
 
@@ -14,4 +18,28 @@ is_union_state = {
 	# 	is_country_type = awakened_fallen_empire
 	# }
 	is_same_value = event_target:galactic_union_state
+}
+
+is_shrouded_ai = {
+	is_ai = yes
+	is_country_type = default
+	capital_scope = {
+		NOT = {
+			closest_system = {
+				limit = { has_megastructure = dandelion_relay }
+				max_steps = 20
+			}
+		}
+	}
+}
+is_shrouded_player = {
+	is_ai = no
+	capital_scope = {
+		NOT = {
+			closest_system = {
+				limit = { has_megastructure = dandelion_relay }
+				max_steps = 20
+			}
+		}
+	}
 }

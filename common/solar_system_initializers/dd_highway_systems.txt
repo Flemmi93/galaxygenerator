@@ -8,6 +8,7 @@ dd_highway_system_init_01 = {
 
 	init_effect = {
 		save_global_event_target_as = system_highway_start
+		save_global_event_target_as = galactic_union_state_capitol_system
 	}
 
 	asteroid_belt = {

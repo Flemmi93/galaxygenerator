@@ -10,7 +10,7 @@ dandelion_galaxy = {
 
 	fallen_empires = {
 		ideal_sq_dist_between = 15625  	# 125*125 Ideal square distance between countries
-		min_sq_dist_between = 5625		# 75*75 Min square distance between countries
+		min_sq_dist_between = 8000		# 75*75 Min square distance between countries
 	}
 
 	num_arms = 1

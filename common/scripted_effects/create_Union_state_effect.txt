@@ -151,126 +151,18 @@ set_galactic_union_spawner = {
 		limit = {
 			any_system = {
 				safe_highway_start_end = yes
-				distance_to_core_percent < 0.32
+				distance_to_core_percent < 0.4
 				has_megastructure = dandelion_relay
 			}
 		}
 		random_system = {
 			limit = {
 				safe_highway_start_end = yes
-				distance_to_core_percent < 0.32
+				distance_to_core_percent < 0.4
 				has_megastructure = dandelion_relay
 			}
 			save_global_event_target_as = galactic_union_state_spawner
 			set_name = spawner5
-		}
-	}
-	else_if = {
-		limit = {
-			any_system = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.3
-			}
-		}
-		random_system = {
-			limit = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.3
-			}
-			save_global_event_target_as = galactic_union_state_spawner
-			set_name = spawner6
-		}
-	}
-	else_if = {
-		limit = {
-			any_system = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.31
-			}
-		}
-		random_system = {
-			limit = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.31
-			}
-			save_global_event_target_as = galactic_union_state_spawner
-			set_name = spawner7
-		}
-	}
-	else_if = {
-		limit = {
-			any_system = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.32
-			}
-		}
-		random_system = {
-			limit = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.32
-			}
-			save_global_event_target_as = galactic_union_state_spawner
-			set_name = spawner8
-		}
-	}
-	else_if = {
-		limit = {
-			any_system = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.33
-			}
-		}
-		random_system = {
-			limit = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.33
-			}
-			save_global_event_target_as = galactic_union_state_spawner
-			set_name = spawner9
-		}
-	}
-	else_if = {
-		limit = {
-			any_system = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.34
-			}
-		}
-		random_system = {
-			limit = {
-				safe_highway_start_end = yes
-				distance_to_core_percent < 0.34
-			}
-			save_global_event_target_as = galactic_union_state_spawner
-			set_name = spawner10
-		}
-	}
-	else_if = {
-		limit = {
-			any_system = {
-				distance_to_core_percent < 0.31
-			}
-		}
-		random_system = {
-			limit = {
-				distance_to_core_percent < 0.31
-			}
-			save_global_event_target_as = galactic_union_state_spawner
-			set_name = spawner11
-		}
-	}
-	else_if = {
-		limit = {
-			any_system = {
-				distance_to_core_percent < 0.35
-			}
-		}
-		random_system = {
-			limit = {
-				distance_to_core_percent < 0.35
-			}
-			save_global_event_target_as = galactic_union_state_spawner
-			set_name = spawner12
 		}
 	}
 	else = {
@@ -280,7 +172,7 @@ set_galactic_union_spawner = {
 				safe_highway_start_end = yes
 			}
 			save_global_event_target_as = galactic_union_state_spawner
-			set_name = spawner13
+			set_name = spawner6
 		}
 	}
 }
@@ -332,6 +224,61 @@ create_union_state = {
 					give_technology = { tech = tech_starbase_3 }
 					give_technology = { tech = tech_starbase_4 }
 					give_technology = { tech = tech_starbase_5 }
+					country_event = { id = f93_galaxy.3 }
+				}
+			}
+			while = {
+				count = 4
+				create_pop = {
+					species = event_target:Galmeda_species
+					ethos = { ethic = ethic_fanatic_xenophile ethic = ethic_pacifist }
+				}
+			}
+			if = { limit = { has_building = building_colony_shelter } remove_building = building_colony_shelter }
+			if = { limit = { NOT = { has_building = building_capital } } add_building = building_capital }
+		}
+	}
+}
+
+create_union_state_fe = {
+	if = {
+		limit = { exists = event_target:galactic_union_state_capitol }
+		event_target:galactic_union_state_capitol = {
+			create_species = {
+				name = "Galmeda"
+				plural = "Galmedas"
+				class = "MACHINE"
+				portrait = "synth_machine_01"
+				homeworld = event_target:galactic_union_state_capitol
+				traits = {
+					trait = "trait_machine_unit"
+					trait = "trait_robot_loyalty_circuits"
+					trait = "trait_robot_custom_made"
+				}
+				immortal = yes
+				gender = indeterminate
+				namelist = MACHINE_AGE2
+				effect = {
+					save_global_event_target_as = Galmeda_species
+				}
+			}
+			create_country = {
+				name = "Galactic Union State"
+				adjective = "%ADJ%"
+				type = fallen_empire
+				name_list = "MACHINE_AGE2"
+				ship_prefix = "GalUS"
+				authority = "auth_democratic"
+				origin = origin_fallen_empire
+				civics = {
+					civic = civic_lethargic_leadership
+					civic = civic_empire_in_decline
+				}
+				species = event_target:Galmeda_species
+				flag = random
+				ethos = { ethic = ethic_fanatic_xenophile ethic = ethic_pacifist }
+				effect = {
+					save_global_event_target_as = galactic_union_state
 					country_event = { id = f93_galaxy.3 }
 				}
 			}

@@ -1,0 +1,66 @@
+namespace = f93_shroud
+#Finding the most isolated systems
+system_event = {
+	id = f93_shroud.1
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOR = {
+			has_star_flag = chosen_system
+			has_star_flag = f93_shroud_periphery_flag
+		}
+		has_star_flag = f93_shroud_region_flag
+	}
+
+	immediate = {
+		# set_name = BLANK_STRING
+		set_star_flag = f93_shroud_periphery_flag
+		system_event = { id = f93_shroud.2 }
+		system_event = { id = f93_shroud.2 days = 1 }
+	}
+
+}
+system_event = {
+	id = f93_shroud.2
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_star_flag = f93_shroud_core_flag }
+		count_neighbor_system_euclidean = {
+			count = all
+			limit = { OR = { has_star_flag = f93_shroud_periphery_flag has_star_flag = f93_shroud_core_flag } }
+		}
+	}
+
+	immediate = {
+		# set_name = "core"
+		remove_star_flag = f93_shroud_periphery_flag
+		set_star_flag = f93_shroud_core_flag
+		system_event = { id = f93_shroud.3 }
+		system_event = { id = f93_shroud.3 days = 1}
+	}
+
+}
+system_event = {
+	id = f93_shroud.3
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		NOT = { has_star_flag = f93_shroud_core_core_flag }
+		count_neighbor_system_euclidean = {
+			count = all
+			limit = { OR = { has_star_flag = f93_shroud_core_core_flag has_star_flag = f93_shroud_core_flag } }
+		}
+	}
+
+	immediate = {
+		# set_name = "CORE"
+		remove_star_flag = f93_shroud_core_flag
+		set_star_flag = f93_shroud_core_core_flag
+		system_event = { id = f93_shroud.3 }
+	}
+
+}
