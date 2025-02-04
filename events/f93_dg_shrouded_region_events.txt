@@ -60,7 +60,49 @@ system_event = {
 		# set_name = "CORE"
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
-		system_event = { id = f93_shroud.3 }
+		system_event = { id = f93_shroud.4 }
 	}
 
+}
+
+system_event = {
+	id = f93_shroud.4
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_name = changed
+		spawn_megastructure = {
+			type = dandelion_sphere_ruined
+			planet = star
+		}
+		while = {
+			count = 3
+			random_neighbor_system_euclidean = {
+				limit = { NOT = { has_star_flag = star_cracked } }
+				destroy_star_system = yes
+			}
+		}
+	}
+}
+country_event = {
+	id = f93_shroud.5
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_name = changed
+		random_system = {
+			limit = { has_megastructure = dandelion_sphere_ruined }
+			while = {
+				count = 3
+				random_neighbor_system_euclidean = {
+					limit = { NOT = { has_star_flag = star_cracked } }
+					destroy_star_system = yes
+				}
+			}
+		}
+	}
 }

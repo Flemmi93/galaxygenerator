@@ -239,20 +239,6 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		every_planet_within_border = {
-			limit = { is_colonizable = yes }
-			create_colony = {
-				owner = last_created_country
-				species = event_target:Galmeda_species
-			}
-			while = {
-				count = 10
-				create_pop = {
-					species = event_target:Galmeda_species
-					ethos = random
-				}
-			}
-		}
 		create_fe_servant_robots = yes
 		if = {
 			limit = { NOT = { is_country_type = fallen_empire } }
@@ -264,7 +250,11 @@ country_event = {
 			create_fe_citadel = yes
 		}
 		every_planet_within_border = {
-			limit = { is_capital = no }
+			limit = { is_capital = no is_colonizable = yes }
+			create_colony = {
+				owner = root
+				species = event_target:Galmeda_species
+			}
 			create_fe_fringe_colony = yes
 			planet_event = { id = game_start.22 }
 			planet_event = { id = game_start.23 }
@@ -362,17 +352,20 @@ country_event = {
 					exists = owner
 					has_star_flag = empire_cluster
 					has_star_flag = unique_system
-					AND = {
-						NOT = { has_megastructure = dandelion_relay }
-						has_any_megastructure = yes
-					}
 					any_fleet_in_system = { exists = this }
+					any_system_megastructure = {
+						limit = {
+							NOT = {
+								is_megastructure_type = dandelion_relay
+							}
+						}
+						exists = this
+					}
 				}
 			}
 			set_star_class = sc_no_star
 			# set_name = BLANK_STRING
 			every_system_planet = { remove_planet = yes }
-			destroy_ambient_object = this
 			every_ambient_object = { destroy_ambient_object = this }
 		}
 		every_country = {

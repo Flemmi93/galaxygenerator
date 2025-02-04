@@ -1,0 +1,13 @@
+dandelion_sphere_ruined = {
+	entity = "dyson_sphere_destroyed_entity"
+	portrait = "GFX_megastructure_construction_background"
+	resources = {
+		category = megastructures
+		produces = {
+			alloys = 15
+		}
+	}
+	potential = {
+		always = no
+	}
+}

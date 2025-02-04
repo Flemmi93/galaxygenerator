@@ -7,3 +7,8 @@
  dandelion_relay_plural:0 "Ancient Relays"
  dandelion_relay_DESC: "This relay looks as good as new, automated repair systems keep it going, its tiny gravitational impact in [Solar_system.GetName] lets us estimate its age as: really old. \n$hyper_relay_DESC$"
  dandelion_relay_MEGASTRUCTURE_DETAILS:"$hyper_relay_MEGASTRUCTURE_DETAILS$"
+
+ dandelion_sphere_ruined: "$crisis_sphere_ruined$"
+ dandelion_sphere_ruined_DESC: "$crisis_sphere_ruined_DESC$"
+ dandelion_sphere_ruined_plural: "$crisis_sphere_ruined_plural$"
+ dandelion_sphere_ruined_MEGASTRUCTURE_DETAILS: "$crisis_sphere_ruined_MEGASTRUCTURE_DETAILS$"

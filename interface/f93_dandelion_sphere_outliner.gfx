@@ -1,0 +1,7 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_dandelion_sphere_ruined_outliner_icon"
+		textureFile = "gfx/interface/icons/megastructures/crisis_sphere_ruined.dds"
+	}
+}
