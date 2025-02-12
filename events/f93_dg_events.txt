@@ -354,11 +354,7 @@ country_event = {
 					has_star_flag = unique_system
 					any_fleet_in_system = { exists = this }
 					any_system_megastructure = {
-						limit = {
-							NOT = {
-								is_megastructure_type = dandelion_relay
-							}
-						}
+						NOT = { is_megastructure_type = dandelion_relay }
 						exists = this
 					}
 				}
