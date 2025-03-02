@@ -200,7 +200,7 @@ create_union_state = {
 				}
 			}
 			create_country = {
-				name = "Galactic Union State"
+				name = "Galactic Unionstate"
 				adjective = "%ADJ%"
 				type = default
 				name_list = "MACHINE_AGE2"
@@ -214,7 +214,11 @@ create_union_state = {
 					civic = random
 				}
 				species = event_target:Galmeda_species
-				flag = random
+				flag = {
+					icon = { category = "union_state" file = union_state.dds }
+					background = { category = "backgrounds" file = "00_solid.dds" }
+					colors = {"blue" "dark_blue" "null" "null" }
+				}
 				ethos = { ethic = ethic_fanatic_xenophile ethic = ethic_pacifist }
 				effect = {
 					save_global_event_target_as = galactic_union_state
@@ -263,7 +267,7 @@ create_union_state_fe = {
 				}
 			}
 			create_country = {
-				name = "Galactic Union State"
+				name = "Galactic Unionstate"
 				adjective = "%ADJ%"
 				type = fallen_empire
 				name_list = "MACHINE_AGE2"
@@ -275,7 +279,11 @@ create_union_state_fe = {
 					civic = civic_empire_in_decline
 				}
 				species = event_target:Galmeda_species
-				flag = random
+				flag = {
+					icon = { category = "union_state" file = union_state.dds }
+					background = { category = "backgrounds" file = "00_solid.dds" }
+					colors = {"blue" "dark_blue" "null" "null" }
+				}
 				ethos = { ethic = ethic_fanatic_xenophile ethic = ethic_pacifist }
 				effect = {
 					save_global_event_target_as = galactic_union_state

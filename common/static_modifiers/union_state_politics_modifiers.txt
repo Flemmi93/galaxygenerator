@@ -2,19 +2,19 @@
 ##########################################################################################################
 # Faction Modifiers ### listed here to look up the values, but the system will use the vanilla modifiers #
 ##########################################################################################################
-# suppressed_xenophobe = { pop_ethic_xenophobe_attraction_mult = -0.75  }
-# promoted_xenophobe = { pop_ethic_xenophobe_attraction_mult = 1  }
-# suppressed_xenophile = { pop_ethic_xenophile_attraction_mult = -0.75  }
-# promoted_xenophile = { pop_ethic_xenophile_attraction_mult = 1  }
-# suppressed_spiritualist = { pop_ethic_spiritualist_attraction_mult = -0.75  }
-# promoted_spiritualist = { pop_ethic_spiritualist_attraction_mult = 1  }
-# suppressed_materialist = { pop_ethic_materialist_attraction_mult = -0.75  }
-# promoted_materialist = { pop_ethic_materialist_attraction_mult = 1  }
-# suppressed_pacifist = { pop_ethic_pacifist_attraction_mult = -0.75  }
-# promoted_pacifist = { pop_ethic_pacifist_attraction_mult = 1  }
-# suppressed_militarist = { pop_ethic_militarist_attraction_mult = -0.75  }
-# promoted_militarist = { pop_ethic_militarist_attraction_mult = 1  }
-# suppressed_egalitarian = { pop_ethic_egalitarian_attraction_mult = -0.75  }
-# promoted_egalitarian = { pop_ethic_egalitarian_attraction_mult = 1  }
-# suppressed_authoritarian = { pop_ethic_authoritarian_attraction_mult = -0.75  }
-# promoted_authoritarian = { pop_ethic_authoritarian_attraction_mult = 1  }
+# suppressed_xenophobe = { pop_ethic_xenophobe_attraction_mult = -0.75 }
+# promoted_xenophobe = { pop_ethic_xenophobe_attraction_mult = 1 }
+# suppressed_xenophile = { pop_ethic_xenophile_attraction_mult = -0.75 }
+# promoted_xenophile = { pop_ethic_xenophile_attraction_mult = 1 }
+# suppressed_spiritualist = { pop_ethic_spiritualist_attraction_mult = -0.75 }
+# promoted_spiritualist = { pop_ethic_spiritualist_attraction_mult = 1 }
+# suppressed_materialist = { pop_ethic_materialist_attraction_mult = -0.75 }
+# promoted_materialist = { pop_ethic_materialist_attraction_mult = 1 }
+# suppressed_pacifist = { pop_ethic_pacifist_attraction_mult = -0.75 }
+# promoted_pacifist = { pop_ethic_pacifist_attraction_mult = 1 }
+# suppressed_militarist = { pop_ethic_militarist_attraction_mult = -0.75 }
+# promoted_militarist = { pop_ethic_militarist_attraction_mult = 1 }
+# suppressed_egalitarian = { pop_ethic_egalitarian_attraction_mult = -0.75 }
+# promoted_egalitarian = { pop_ethic_egalitarian_attraction_mult = 1 }
+# suppressed_authoritarian = { pop_ethic_authoritarian_attraction_mult = -0.75 }
+# promoted_authoritarian = { pop_ethic_authoritarian_attraction_mult = 1 }

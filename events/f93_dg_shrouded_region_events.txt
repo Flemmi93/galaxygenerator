@@ -15,9 +15,11 @@ system_event = {
 
 	immediate = {
 		if = {
-			limit = { is_inside_nebula  = no }
+			limit = { is_inside_nebula = no }
 			create_nebula = {
-				radius = 60
+				name = Shrouded_Region_NAME
+				radius = 150
+				effect = { add_modifier = { modifier = f93_shrouded_region_star multiplier = 1 } }
 			}
 		}
 		
@@ -46,9 +48,10 @@ system_event = {
 		remove_star_flag = f93_shroud_periphery_flag
 		set_star_flag = f93_shroud_core_flag
 		system_event = { id = f93_shroud.3 }
-		system_event = { id = f93_shroud.3 days = 1}
+		system_event = { id = f93_shroud.3 days = 1 }
+		system_event = { id = f93_shroud.4 days = 2 } 
 		random_list = {
-			2 = {}
+			5 = {}
 			1 = { if = { limit = { is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
 			1 = { spawn_megastructure = { type = mega_shipyard_ruined } }
 			1 = { spawn_megastructure = { type = dyson_sphere_ruined } }
@@ -75,7 +78,7 @@ system_event = {
 		# set_name = "core core"
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
-		system_event = { id = f93_shroud.4 }
+		system_event = { id = f93_shroud.4 } 
 	}
 
 }

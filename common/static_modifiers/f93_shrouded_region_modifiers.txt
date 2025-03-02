@@ -1,0 +1,6 @@
+f93_shrouded_region_star = {
+	ship_speed_reduction = 0.5
+	ship_shield_reduction = 0.5
+	ship_disengage_chance_reduction = 0.5
+	ships_upkeep_mult = -0.8
+}

@@ -1,7 +1,7 @@
 dd_union_state_init = {
 	usage = misc_system_init
 	usage_odds = {
-		base = 2000000
+		base = 1
 		modifier = {
 			factor = 0
 			is_bottleneck_system = no
@@ -15,14 +15,44 @@ dd_union_state_init = {
 			is_fe_cluster = yes
 		}
 		modifier = {
+			add = 1000000
+			distance_to_core_percent < 0.33
+		}
+		modifier = {
+			add = 1000000
+			distance_to_core_percent < 0.35
+		}
+		modifier = {
+			add = 1000000
+			distance_to_core_percent < 0.40
+		}
+		modifier = {
 			factor = 0
-			distance_to_core_percent > 0.40
+			any_neighbor_system_euclidean = {
+				is_rim_system = yes
+			}
+		}
+		modifier = {
+			factor = 0
+			is_rim_system = yes
+		}
+		modifier = {
+			factor = 0
+			any_neighbor_system_euclidean = {
+				is_fe_cluster = yes
+			}
+		}
+		modifier = {
+			factor = 0
+			any_neighbor_system_euclidean = {
+				has_star_flag = empire_cluster
+			}
 		}
 	}
 	max_instances = 1
-	class = "rl_standard_stars"
+	class = sc_g
 	flags = { dd_highway_system_flag }
-
+	name = Taurinus
 	init_effect = {
 		# set_name = "GalUS Star"
 		save_global_event_target_as = system_highway_start
@@ -36,6 +66,7 @@ dd_union_state_init = {
 	
 	planet = {
 		count = 1
+		name = Taurinus
 		class = star
 		orbit_distance = 0
 		orbit_angle = 1
@@ -94,6 +125,7 @@ dd_union_state_init = {
 
 		moon = {
 			count = 1
+			name = Meritair
 			class = pc_city
 			size = 24
 			orbit_angle = { min = 90 max = 270 }
@@ -199,7 +231,7 @@ dd_union_state_init = {
 			class = rl_habitable_normal
 			orbit_angle = { min = 90 max = 270 }
 			orbit_distance = 6
-			init_effect = {  }
+			init_effect = {}
 		}
 		moon = {
 			count = { min = 1 max = 3 }

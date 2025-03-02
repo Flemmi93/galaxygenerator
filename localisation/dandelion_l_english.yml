@@ -2,6 +2,12 @@
 #Events
  f93_galaxy.2.name: "Real of Hoax?"
  f93_galaxy.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proofs difficult.\nWithout solid data the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of a first report the artifact was transferd into a private collection. Who orchestrated this is unknown. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notable none of the creatures could be identified as §Y[Root.GetSpeciesName]§!§!"
+
+ f93_galaxy.8.name: "Game Start Quality"
+ f93_galaxy.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!"
+ f93_galaxy.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!"
+ f93_galaxy.8.red: "We have run the numbers and your game start seems\n\n§RIsolated§!.\n\nHave fun!"
+ f93_galaxy.8.a: "...All statements without guarantee."
 #Dandelion Megastructures
  dandelion_relay: "Ancient Relay"
  dandelion_relay_plural:0 "Ancient Relays"
@@ -12,3 +18,8 @@
  dandelion_sphere_ruined_DESC: "$crisis_sphere_ruined_DESC$"
  dandelion_sphere_ruined_plural: "$crisis_sphere_ruined_plural$"
  dandelion_sphere_ruined_MEGASTRUCTURE_DETAILS: "$crisis_sphere_ruined_MEGASTRUCTURE_DETAILS$"
+
+#Shrouded Region
+ Shrouded_Region_NAME: " " #Shrouded Region
+ f93_shrouded_region_star: "Shrouded Star"
+ f93_shrouded_region_star_desc: "This Star is deep within the shrouded regions, long ago unbelievable forces tore reality apart, the lack of hyperlanes in this area makes ship logistics challanging."

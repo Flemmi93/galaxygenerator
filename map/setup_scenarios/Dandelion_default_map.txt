@@ -3,7 +3,7 @@ static_galaxy_scenario = {
 	colonizable_planet_odds = 0.80
 	priority = 0
 	num_empires = { min = 0 max = 18 }
-    num_empire_default = 18
+	num_empire_default = 18
 	num_wormhole_pairs_default = 0
 	num_gateways_default = 0
 	num_hyperlanes = { min = 1 max = 1 }

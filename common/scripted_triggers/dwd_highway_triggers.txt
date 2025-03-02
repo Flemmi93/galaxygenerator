@@ -6,7 +6,7 @@ safe_highway_start_end = {
 		has_star_flag = empire_cluster
 		# any_neighbor_system = { exists = owner }
 		closest_system = {
-			limit = { exists = owner  }
+			limit = { exists = owner }
 			max_steps = 3
 		}
 	}

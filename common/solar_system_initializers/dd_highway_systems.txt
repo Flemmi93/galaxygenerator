@@ -114,7 +114,7 @@ dd_highway_system_init_01 = {
 			class = rl_habitable_normal
 			orbit_angle = { min = 90 max = 270 }
 			orbit_distance = 6
-			init_effect = {  }
+			init_effect = {}
 		}
 		moon = {
 			count = { min = 1 max = 3 }
