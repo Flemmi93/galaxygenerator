@@ -1,0 +1,177 @@
+create_ralis_country = { #target a valid planet with this
+	create_species = {
+		name = "Esear"
+		plural = "Esears"
+		class = AVI
+		portrait = cyb5
+		homeworld = root
+		traits = random
+		sapient = yes
+		effect = {}
+	}
+
+	create_country = {
+		name = "Sactuary of Ralis"
+		adjective = "Rali"
+		type = primitive
+		# auto_delete = no
+		name_list = AVI4
+		# contact_rule = default
+		ship_prefix = "SoR"
+		authority = "auth_imperial"
+		civics = { civic = civic_fanatic_purifiers civic = civic_heroic_tales }
+		species = last_created_species
+		flag = {
+				icon = { category = "union_state" file = ralis_banner.dds }
+				background = { category = "backgrounds" file = "00_solid.dds" }
+				colors = {"purple" "dark_purple" "null" "null" }
+				}
+		ethos = { ethic = ethic_fanatic_xenophobe ethic = ethic_militarist }
+		effect = {
+			set_country_type = default
+			give_technology = {
+				tech = tech_archaeo_refinery
+			}
+			set_country_flag = ralis_country_flag
+			add_resource = {
+				alloys = 2
+				minerals = 5
+				energy = 6
+				food = 0.01
+				consumer_goods = 0.25
+				unity = 0.1
+				mult = 3000
+			}
+			add_modifier = {
+				modifier = fe_ship_cost_modifier
+				multiplier = 1
+				days = -1
+			}
+		}
+	}
+	create_colony = {
+		owner = last_created_country
+		species = last_created_species
+	}
+	while = {
+		count = 120
+		create_pop = {
+			species = last_created_species
+			ethos = last_created_country
+		}
+	}
+	remove_building = building_colony_shelter
+	add_building = building_major_capital
+	add_building = building_archaeo_refinery
+	add_building = building_nourishment_complex
+	add_building = building_nourishment_complex
+	add_building = building_nourishment_complex
+	add_deposit = d_arcane_generator
+
+	while = {
+		count = 3
+		add_district = district_arcology_housing
+		add_district = district_arcology_arms_industry
+		add_district = district_arcology_civilian_industry
+		add_district = district_arcology_leisure
+		add_district = district_arcology_administrative
+	}
+
+	add_modifier = {
+		modifier = ruler_savior
+		multiplier = 100
+		days = 7200
+	}
+	add_modifier = {
+		modifier = b_world_saved
+		multiplier = 1.5
+		days = 7200
+	}
+	add_modifier = {
+		modifier = cost_of_freedom_07
+		multiplier = 100
+		days = 7200
+	}
+	add_modifier = {
+		modifier = wasteland_infrastructure
+		multiplier = 4
+		days = 7200
+	}
+	add_modifier = {
+		modifier = wasteland_orbital_debris
+		multiplier = -10
+		days = 7200
+	}
+	add_modifier = {
+		modifier = horse_powered_factories_medium
+		multiplier = 10
+		days = 7200
+	}
+}
+
+give_ciris_sphere_0_and_buff = {
+	set_ai_personality = fanatic_purifiers
+	add_resource = {
+		sr_dark_matter = 1
+		alloys = 2
+		minerals = 0.5
+		energy = 3
+		food = 0.01
+		consumer_goods = 0.25
+		unity = 0.1
+		mult = 30000
+	}
+	add_tradition = tr_supremacy_adopt
+	add_tradition = tr_supremacy_fleet_logistical_corps
+	add_tradition = tr_supremacy_master_shipwrights
+	add_tradition = tr_supremacy_war_games
+	add_tradition = tr_supremacy_overwhelming_force
+	add_tradition = tr_supremacy_great_game
+	add_tradition = tr_supremacy_finish
+
+	random_system_within_border = {
+		limit = { has_megastructure = crisis_sphere_ruined }
+		random_system_megastructure = {
+			limit = { is_megastructure_type = crisis_sphere_ruined }
+			remove_megastructure = this
+		}
+		spawn_megastructure = {
+			type = crisis_sphere_0
+		}
+		random_system_megastructure = {
+			limit = { is_megastructure_type = crisis_sphere_0 }
+			set_megastructure_flag = crisis_sphere
+		}
+		star = {
+			create_ambient_object = {
+				type = "crisis_sphere_1"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = crisis_sphere_1_system_effect
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+		
+		random_system = {
+			limit = { NOT = { exists = owner } has_megastructure = dandelion_relay }
+			prev = {
+				spawn_natural_wormhole = {
+					bypass_type = wormhole
+					random_pos = yes
+					orbit_angle = 360
+				}
+			}
+			spawn_natural_wormhole = {
+				bypass_type = wormhole
+				random_pos = yes
+				orbit_angle = 360
+			}
+			link_wormholes = prev
+		}
+	}
+}

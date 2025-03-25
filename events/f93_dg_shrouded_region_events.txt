@@ -90,7 +90,7 @@ system_event = {
 	fire_only_once = yes
 
 	immediate = {
-		set_name = changed
+		# set_name = changed
 		spawn_megastructure = {
 			type = crisis_sphere_ruined
 			planet = star
@@ -100,7 +100,21 @@ system_event = {
 			random_neighbor_system_euclidean = {
 				limit = { NOT = { has_star_flag = star_cracked } }
 				destroy_star_system = yes
+				
 			}
+		}
+		random_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					is_planet_class = pc_gas_giant
+					is_planet_class = pc_asteroid
+					is_planet_class = pc_ice_asteroid
+				}
+			}
+			change_pc = pc_city
+			set_planet_size = 28
+			planet_event = { id = f93_shroud.6 days = 10}
 		}
 	}
 }
@@ -111,7 +125,7 @@ country_event = {
 	fire_only_once = yes
 
 	immediate = {
-		set_name = changed
+		set_name = changed2
 		random_system = {
 			limit = { has_megastructure = dandelion_sphere_ruined }
 			while = {
@@ -122,5 +136,63 @@ country_event = {
 				}
 			}
 		}
+	}
+}
+planet_event = {
+	id = f93_shroud.6
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		create_ralis_country = yes
+		solar_system = {
+			every_system = {
+				limit = { has_star_flag = star_cracked has_star_flag = f93_shroud_region_flag }
+				add_hyperlane = { from = this to = prev }
+				every_system_planet = {
+					random_list = {
+						5 = { add_deposit = random }
+						5 = { }
+						1 = { add_deposit = random add_deposit = random }
+					}
+				}
+			}
+			random_system = {
+				limit = { has_star_flag = star_cracked has_star_flag = f93_shroud_region_flag }
+				spawn_megastructure = {
+					type = matter_decompressor_1
+					owner = last_created_country
+					planet = star
+					coords_from = planet
+					graphical_culture = root.owner
+				}
+				create_starbase = {
+					owner = last_created_country
+					size = starbase_starport
+				}
+				
+			}
+			every_system_planet = {
+				limit = { is_colonizable = no }
+				random_list = {
+					5 = { add_deposit = random }
+					5 = { }
+					1 = { add_deposit = random add_deposit = random }
+				}
+			}
+		}
+	}
+}
+country_event = { #midgame trigger
+	id = f93_shroud.7
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = ralis_country_flag
+	}
+	immediate = {
+		give_ciris_sphere_0_and_buff = yes
 	}
 }

@@ -1,4 +1,4 @@
-dandelion_sphere_ruined = {
+dandelion_sphere_ruined = { # Copy of the Dyson sphere Ruin, that it cannot be repaired
 	entity = "dyson_sphere_destroyed_entity"
 	portrait = "GFX_megastructure_construction_background"
 	resources = {
