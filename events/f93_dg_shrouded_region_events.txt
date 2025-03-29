@@ -91,6 +91,20 @@ system_event = {
 
 	immediate = {
 		# set_name = changed
+		if = {
+			limit = { num_planets_in_system = 0 }
+			spawn_planet = {
+				name = "Ralis"
+				class = pc_city
+				orbit_location = yes
+				orbit_distance_offset = 32
+				orbit_angle_offset = 291
+				size = 28
+			}
+		}
+		every_system_megastructure = {
+			remove_megastructure = this
+		}
 		spawn_megastructure = {
 			type = crisis_sphere_ruined
 			planet = star
@@ -113,6 +127,7 @@ system_event = {
 				}
 			}
 			change_pc = pc_city
+			set_name = "Ralis"
 			set_planet_size = 28
 			planet_event = { id = f93_shroud.6 days = 10}
 		}
@@ -133,6 +148,9 @@ country_event = {
 				random_neighbor_system_euclidean = {
 					limit = { NOT = { has_star_flag = star_cracked } }
 					destroy_star_system = yes
+					every_system_megastructure = {
+						remove_megastructure = this
+					}
 				}
 			}
 		}
@@ -147,6 +165,10 @@ planet_event = {
 	immediate = {
 		create_ralis_country = yes
 		solar_system = {
+			set_star_class = sc_black_hole
+			star = {
+				set_planet_size = 5
+			}
 			every_system = {
 				limit = { has_star_flag = star_cracked has_star_flag = f93_shroud_region_flag }
 				add_hyperlane = { from = this to = prev }
@@ -164,7 +186,6 @@ planet_event = {
 					type = matter_decompressor_1
 					owner = last_created_country
 					planet = star
-					coords_from = planet
 					graphical_culture = root.owner
 				}
 				create_starbase = {
@@ -174,7 +195,8 @@ planet_event = {
 				
 			}
 			every_system_planet = {
-				limit = { is_colonizable = no }
+				limit = { is_colonizable = no is_star = no NOT = { is_planet_class = pc_city } }
+				change_pc = pc_shrouded
 				random_list = {
 					5 = { add_deposit = random }
 					5 = { }
