@@ -8,12 +8,14 @@ system_event = {
 	trigger = {
 		NOR = {
 			has_star_flag = chosen_system
-			has_star_flag = f93_shroud_periphery_flag
+			has_star_flag = crisis_sapwn_exclude
+			has_star_flag = empire_cluster
 		}
 		has_star_flag = f93_shroud_region_flag
 	}
 
 	immediate = {
+		set_star_flag = crisis_sapwn_exclude
 		if = {
 			limit = { is_inside_nebula = no }
 			create_nebula = {
@@ -23,7 +25,7 @@ system_event = {
 			}
 		}
 		
-		# set_name = BLANK_STRING
+		set_name = "Shrouded"
 		set_star_flag = f93_shroud_periphery_flag
 		system_event = { id = f93_shroud.2 }
 		system_event = { id = f93_shroud.2 days = 1 }
@@ -44,14 +46,14 @@ system_event = {
 	}
 
 	immediate = {
-		# set_name = "core"
+		set_name = "core"
 		remove_star_flag = f93_shroud_periphery_flag
 		set_star_flag = f93_shroud_core_flag
 		system_event = { id = f93_shroud.3 }
 		system_event = { id = f93_shroud.3 days = 1 }
 		system_event = { id = f93_shroud.4 days = 2 } 
 		random_list = {
-			5 = {}
+			10 = {}
 			1 = { if = { limit = { is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
 			1 = { spawn_megastructure = { type = mega_shipyard_ruined } }
 			1 = { spawn_megastructure = { type = dyson_sphere_ruined } }
@@ -75,10 +77,20 @@ system_event = {
 	}
 
 	immediate = {
-		# set_name = "core core"
+		set_name = "core core"
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
-		system_event = { id = f93_shroud.4 } 
+		if = {
+			limit = { distance_to_core_percent >= 0.8 }
+			system_event = { id = f93_shroud.4 } 
+		}
+		else_if = {
+			limit = { distance_to_core_percent >= 0.6 }
+			system_event = { id = f93_shroud.4 days = 1 } 
+		}
+		else = {
+			system_event = { id = f93_shroud.4 days = 2 } 
+		}
 	}
 
 }
@@ -105,6 +117,9 @@ system_event = {
 		every_system_megastructure = {
 			remove_megastructure = this
 		}
+		every_fleet_in_system = {
+			destroy_fleet = this
+		}
 		spawn_megastructure = {
 			type = crisis_sphere_ruined
 			planet = star
@@ -113,8 +128,10 @@ system_event = {
 			count = 3
 			random_neighbor_system_euclidean = {
 				limit = { NOT = { has_star_flag = star_cracked } }
-				destroy_star_system = yes
-				
+				destroy_star_system = yes	
+				every_system_megastructure = {
+					remove_megastructure = this
+				}
 			}
 		}
 		random_system_planet = {

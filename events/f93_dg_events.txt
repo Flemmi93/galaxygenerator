@@ -228,7 +228,7 @@ country_event = {
 			limit = {
 				controlled_systems > 0
 				OR = {
-					num_pops > 0 
+					# num_pops > 0 
 					is_country_type = dormant_marauders
 					is_country_type = default
 				}

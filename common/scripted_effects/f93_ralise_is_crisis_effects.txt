@@ -107,6 +107,10 @@ create_ralis_country = { #target a valid planet with this
 		multiplier = 10
 		days = 7200
 	}
+	add_modifier = {
+		modifier = black_hole_energy
+		days = -1
+	}
 }
 
 give_ciris_sphere_0_and_buff = {
@@ -128,7 +132,8 @@ give_ciris_sphere_0_and_buff = {
 	add_tradition = tr_supremacy_overwhelming_force
 	add_tradition = tr_supremacy_great_game
 	add_tradition = tr_supremacy_finish
-	give_technology = tech_wormhole_stabilization
+	give_technology = { tech = tech_wormhole_stabilization }
+	add_ascension_perk = ap_become_the_crisis
 
 	random_system_within_border = {
 		limit = { has_megastructure = crisis_sphere_ruined }
