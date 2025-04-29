@@ -34,7 +34,9 @@ country_event = {
 		is_ai = no
 	}
 	immediate = {
-		every_country = { country_event = { id = f93_galaxy.8 days = 5 } }
+		every_country = {
+			country_event = { id = f93_galaxy.8 days = 5 }
+		}
 		hidden_effect = {
 			if = {
 				limit = {
@@ -308,5 +310,20 @@ country_event = {
 
 	option = {
 		name = f93_galaxy.8.a
+	}
+}
+
+country_event = {
+	id = f93_galaxy.9
+	hide_window = yes
+	mean_time_to_happen = {
+		days = 3600
+	}
+	trigger = {
+		NOT = { has_country_flag = f93_galaxy_9_done }
+	}
+	immediate = {
+		set_country_flag =  f93_galaxy_9_done
+		create_capital_to_acient_relay_lane = yes
 	}
 }

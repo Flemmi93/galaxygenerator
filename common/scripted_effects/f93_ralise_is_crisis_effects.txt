@@ -29,6 +29,7 @@ create_ralis_country = { #target a valid planet with this
 		ethos = { ethic = ethic_fanatic_xenophobe ethic = ethic_militarist }
 		effect = {
 			set_country_type = default
+			save_global_event_target_as = f93_ralis_country
 			give_technology = {
 				tech = tech_archaeo_refinery
 			}
@@ -133,7 +134,7 @@ give_ciris_sphere_0_and_buff = {
 	add_tradition = tr_supremacy_great_game
 	add_tradition = tr_supremacy_finish
 	give_technology = { tech = tech_wormhole_stabilization }
-	add_ascension_perk = ap_become_the_crisis
+	add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
 
 	random_system_within_border = {
 		limit = { has_megastructure = crisis_sphere_ruined }

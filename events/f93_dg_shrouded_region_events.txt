@@ -233,5 +233,13 @@ country_event = { #midgame trigger
 	}
 	immediate = {
 		give_ciris_sphere_0_and_buff = yes
+		every_country = {
+			limit = {
+				is_country_type = default
+			}
+			country_event = {
+				id = f93_ralis_crisis_events.0001
+			}
+		}
 	}
 }

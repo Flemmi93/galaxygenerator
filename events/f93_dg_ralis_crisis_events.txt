@@ -1,0 +1,155 @@
+namespace = f93_ralis_crisis_events
+
+# Ralis Crisis 
+#################################
+# numbers						#
+# first 2 digits are level		#
+# 2nd two digits are varriance	#
+#################################
+
+country_event = {
+	id = f93_ralis_crisis_events.0001
+	title = f93_ralis_crisis_events.0.name
+	desc = f93_ralis_crisis_events.0.desc
+	picture = GFX_evt_black_hole #placeholder
+	show_sound = event_whispering
+	is_triggered_only = yes
+
+	trigger = {
+		is_country_type = default
+	}
+	immediate = {
+		country_event = {
+			id = f93_ralis_crisis_events.0101
+			days = 120
+		}
+	}
+	option = {
+		name = WORRYING
+	}
+}
+
+country_event = {
+	id = f93_ralis_crisis_events.0101
+	title = f93_ralis_crisis_events.1.name
+	desc = f93_ralis_crisis_events.1.desc
+	picture = GFX_evt_black_hole #placeholder
+	show_sound = event_screams
+	is_triggered_only = yes
+
+	immediate = {
+		every_system = {
+			limit = {
+				NOT = { has_star_flag = f93_ralis_crisis_events0101_already_flag }
+				NOT = { any_system_planet = { is_colonizable = yes } }
+			}
+			set_star_flag = f93_ralis_crisis_events0101_already_flag
+			random_list = {
+				50 = { destroy_star_system = yes }
+				50 = { }
+			}
+		}
+		every_system = {
+			limit = {
+				NOT = { has_star_flag = f93_ralis_crisis_events0101_already_flag }
+				any_system_planet = { is_colonizable = yes }
+				is_capital_system = no
+			}
+			set_star_flag = f93_ralis_crisis_events0101_already_flag
+			random_list = {
+				33 = { destroy_star_system = yes set_star_flag = f93_ralis_crisis_events_got_hit_flag }
+				67 = { }
+			}
+		}
+	}
+	option = {
+		name = f93_ralis_crisis_events.1.a
+		country_event = { id = f93_ralis_crisis_events.0201 days = 30 }
+		hidden_effect = {
+			random_country = {
+				limit = {
+					is_ai = yes
+					is_country_type = default
+					any_system_within_border = { has_star_flag = f93_ralis_crisis_events_got_hit_flag }
+				}
+				save_global_event_target_as = f93_to_be_killed_by_ralis
+			}
+			if = {
+				NOT = { exists = event_target:f93_to_be_killed_by_ralis }
+				random_country = {
+					limit = {
+						is_ai = yes
+						is_country_type = default
+						f93_is_close_to_highway = yes
+					}
+				}
+				save_global_event_target_as = f93_to_be_killed_by_ralis
+			}
+			else_if = {
+				NOT = { exists = event_target:f93_to_be_killed_by_ralis }
+				random_country = {
+					limit = {
+						is_ai = yes
+						is_country_type = default
+					}
+				}
+				save_global_event_target_as = f93_to_be_killed_by_ralis
+			}
+			else_if = {
+				NOT = { exists = event_target:f93_to_be_killed_by_ralis }
+				random_country = {
+					limit = {
+						is_country_type = default
+					}
+				}
+				save_global_event_target_as = f93_to_be_killed_by_ralis
+			}
+		}
+	}
+}
+
+country_event = {
+	id = f93_ralis_crisis_events.0201
+	title = f93_ralis_crisis_events.2.name
+	desc = f93_ralis_crisis_events.2.desc
+	picture = GFX_evt_black_hole #placeholder
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:f93_to_be_killed_by_ralis = {
+			every_system_within_border = { destroy_star_system = yes }
+			destroy_country = yes
+		}
+		event_target:f93_ralis_country = {
+			add_resource = {
+				menace = 4500
+			}
+		}
+	}
+
+	option = {
+		name = f93_ralis_crisis_events.2.a
+		country_event = { id = f93_ralis_crisis_events.0301 days = 180 }
+	}
+}
+country_event = {
+	id = f93_ralis_crisis_events.0301
+	title = f93_ralis_crisis_events.3.name
+	desc = f93_ralis_crisis_events.3.desc
+	picture = GFX_evt_black_hole #placeholder
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:f93_ralis_country = {
+			establish_contact = root
+			set_country_flag = f93_ralis_arms_race_active
+		}
+	}
+	option = {
+		name = f93_ralis_crisis_events.0301.a
+	}
+	option = {
+		name = f93_ralis_crisis_events.0301.b
+	}
+}
