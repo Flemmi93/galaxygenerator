@@ -238,7 +238,7 @@ country_event = { #midgame trigger
 				is_country_type = default
 			}
 			country_event = {
-				id = f93_ralis_crisis_events.0001
+				id = f93_ralis_crisis_event.0001
 			}
 		}
 	}

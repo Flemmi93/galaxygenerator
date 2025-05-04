@@ -1,4 +1,4 @@
-namespace = f93_ralis_crisis_events
+namespace = f93_ralis_crisis_event
 
 # Ralis Crisis 
 #################################
@@ -9,9 +9,9 @@ namespace = f93_ralis_crisis_events
 
 #Anomalies along the Galactic Crossing
 country_event = {
-	id = f93_ralis_crisis_events.0001
-	title = f93_ralis_crisis_events.0.name
-	desc = f93_ralis_crisis_events.0.desc
+	id = f93_ralis_crisis_event.0001
+	title = f93_ralis_crisis_event.0001.name
+	desc = f93_ralis_crisis_event.0001.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_whispering
 	
@@ -22,7 +22,7 @@ country_event = {
 	}
 	immediate = {
 		country_event = {
-			id = f93_ralis_crisis_events.0101
+			id = f93_ralis_crisis_event.0101
 			days = 120
 		}
 	}
@@ -33,9 +33,9 @@ country_event = {
 
 #A galaxy holds its breath
 country_event = {
-	id = f93_ralis_crisis_events.0101
-	title = f93_ralis_crisis_events.1.name
-	desc = f93_ralis_crisis_events.1.desc
+	id = f93_ralis_crisis_event.0101
+	title = f93_ralis_crisis_event.0101.name
+	desc = f93_ralis_crisis_event.0101.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_screams
 	
@@ -44,10 +44,10 @@ country_event = {
 	immediate = {
 		every_system = {
 			limit = {
-				NOT = { has_star_flag = f93_ralis_crisis_events0101_already_flag }
+				NOT = { has_star_flag = f93_ralis_crisis_event0101_already_flag }
 				NOT = { any_system_planet = { is_colonizable = yes } }
 			}
-			set_star_flag = f93_ralis_crisis_events0101_already_flag
+			set_star_flag = f93_ralis_crisis_event0101_already_flag
 			random_list = {
 				50 = { destroy_star_system = yes }
 				50 = { }
@@ -55,26 +55,26 @@ country_event = {
 		}
 		every_system = {
 			limit = {
-				NOT = { has_star_flag = f93_ralis_crisis_events0101_already_flag }
+				NOT = { has_star_flag = f93_ralis_crisis_event0101_already_flag }
 				any_system_planet = { is_colonizable = yes }
 				is_capital_system = no
 			}
-			set_star_flag = f93_ralis_crisis_events0101_already_flag
+			set_star_flag = f93_ralis_crisis_event0101_already_flag
 			random_list = {
-				33 = { destroy_star_system = yes set_star_flag = f93_ralis_crisis_events_got_hit_flag }
+				33 = { destroy_star_system = yes set_star_flag = f93_ralis_crisis_event_got_hit_flag }
 				67 = { }
 			}
 		}
 	}
 	option = {
-		name = f93_ralis_crisis_events.1.a
-		country_event = { id = f93_ralis_crisis_events.0201 days = 30 }
+		name = f93_ralis_crisis_event.0101.a
+		country_event = { id = f93_ralis_crisis_event.0201 days = 30 }
 		hidden_effect = {
 			random_country = {
 				limit = {
 					is_ai = yes
 					is_country_type = default
-					any_system_within_border = { has_star_flag = f93_ralis_crisis_events_got_hit_flag }
+					any_system_within_border = { has_star_flag = f93_ralis_crisis_event_got_hit_flag }
 				}
 				save_global_event_target_as = f93_to_be_killed_by_ralis
 			}
@@ -114,9 +114,9 @@ country_event = {
 
 #Senate Report
 country_event = {
-	id = f93_ralis_crisis_events.0201
-	title = f93_ralis_crisis_events.2.name
-	desc = f93_ralis_crisis_events.2.desc
+	id = f93_ralis_crisis_event.0201
+	title = f93_ralis_crisis_event.0201.name
+	desc = f93_ralis_crisis_event.0201.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_mystic_reveal
 	
@@ -135,16 +135,16 @@ country_event = {
 	}
 
 	option = {
-		name = f93_ralis_crisis_events.2.a
-		country_event = { id = f93_ralis_crisis_events.0301 days = 180 }
+		name = f93_ralis_crisis_event.0201.a
+		country_event = { id = f93_ralis_crisis_event.0301 days = 180 }
 	}
 }
 
 #Receding of the Abyss
 country_event = {
-	id = f93_ralis_crisis_events.0301
-	title = f93_ralis_crisis_events.3.name
-	desc = f93_ralis_crisis_events.3.desc
+	id = f93_ralis_crisis_event.0301
+	title = f93_ralis_crisis_event.0301.name
+	desc = f93_ralis_crisis_event.0301.desc
 	picture = GFX_evt_black_hole #placeholder
 	
 	is_triggered_only = yes
@@ -158,10 +158,10 @@ country_event = {
 		set_country_flag = f93_ralis_awoken
 	}
 	option = {
-		name = f93_ralis_crisis_events.0301.a
+		name = f93_ralis_crisis_event.0301.a
 	}
 	option = {
-		name = f93_ralis_crisis_events.0301.b
+		name = f93_ralis_crisis_event.0301.b
 	}
 
 	after = {
@@ -171,9 +171,9 @@ country_event = {
 
 #Secrets of Ralis
 country_event = {
-	id = f93_ralis_crisis_events.0401
-	title = f93_ralis_crisis_events.4.name
-	desc = f93_ralis_crisis_events.4.desc
+	id = f93_ralis_crisis_event.0401
+	title = f93_ralis_crisis_event.0401.name
+	desc = f93_ralis_crisis_event.0401.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_mystic_reveal
 	
@@ -187,16 +187,16 @@ country_event = {
 	}
 	immediate = {}
 	option = {
-		name = f93_ralis_crisis_events.4.a
+		name = f93_ralis_crisis_event.0401.a
 	}
 	after = {}
 }
 
 #The War Plan Debate
 country_event = {
-	id = f93_ralis_crisis_events.0501
-	title = f93_ralis_crisis_events.5.name
-	desc = f93_ralis_crisis_events.5.desc
+	id = f93_ralis_crisis_event.0501
+	title = f93_ralis_crisis_event.0501.name
+	desc = f93_ralis_crisis_event.0501.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_mystic_reveal
 	
@@ -207,17 +207,17 @@ country_event = {
 	immediate = {
 	}
 	option = {
-		name = f93_ralis_crisis_events.5.a
-		custom_tooltip = f93_ralis_crisis_even_ts.5.a_desc
+		name = f93_ralis_crisis_event.0501.a
+		custom_tooltip = f93_ralis_crisis_even_ts.0501.a_desc
 		hidden_effect = {
-			set_country_flag = f93_ralis_crisis_events_5_vote_a
+			set_country_flag = f93_ralis_crisis_event_5_vote_a
 		}
 	}
 	option = {
-		name = f93_ralis_crisis_events.5.b
-		custom_tooltip = f93_ralis_crisis_even_ts.5.b_desc
+		name = f93_ralis_crisis_event.0501.b
+		custom_tooltip = f93_ralis_crisis_even_ts.0501.b_desc
 		hidden_effect = {
-			set_country_flag = f93_ralis_crisis_events_5_vote_b
+			set_country_flag = f93_ralis_crisis_event_5_vote_b
 		}
 	}
 	after = {
@@ -225,15 +225,158 @@ country_event = {
 }
 
 
-#The War plan treaty
+#The War plan treaty passed
 country_event = {
-	id = f93_ralis_crisis_events.0601
-	title = f93_ralis_crisis_events.6.name
-	desc = f93_ralis_crisis_events.6.desc
+	id = f93_ralis_crisis_event.0601
+	title = f93_ralis_crisis_event.0601.name
+	desc = f93_ralis_crisis_event.0601.desc
 	picture = GFX_evt_black_hole #placeholder
-	show_sound = event_mystic_reveal
-	
+	# show_sound = event_mystic_reveal
+	trigger = {
+		is_galactic_community_member = yes
+	}
 	is_triggered_only = yes
 
+	option = {
+		allow = {
+			OR = {
+				is_egalitarian = yes
+				is_spiritualist = yes
+				is_materialist = yes
+				is_xenophile = yes
+				is_megacorp = yes
+			}
+		}
+		option = f93_ralis_crisis_event.0601.a
+		hidden_effect = {
+			set_country_flag = f93_ralis_crisis_accepted_treaty
+		}
+	}
+	option = {
+		allow = {
+			OR = {
+				is_authoritarian = yes
+				is_spiritualist = yes
+				is_materialist = yes
+				is_xenophobe = yes
+				is_gestalt = yes
+			}
+		}
+		option = f93_ralis_crisis_event.0601.b
+		hidden_effect = {
+			set_country_flag = f93_ralis_crisis_accepted_treaty_unwillingly
+		}
+	}
+	option = {
+		potential = { is_ai = yes }
+		name = OK
+	}
+	option = {
+		potential = { is_ai = no }
+		option = f93_ralis_crisis_event.0601.c
+		hidden_effect = {
+			set_country_flag = f93_ralis_crisis_rejected_treaty
+		}
+		remove_from_galactic_community = yes
+	}
 	
+}
+#The War plan treaty failed
+country_event = {
+	id = f93_ralis_crisis_event.0602
+	title = f93_ralis_crisis_event.0602.name
+	desc = f93_ralis_crisis_event.0602.desc
+	picture = GFX_evt_black_hole #placeholder
+	# show_sound = event_mystic_reveal
+	trigger = {
+		is_galactic_community_member = yes
+	}
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+#The War plan treaty psssed and tells everyone else about it
+country_event = {
+	id = f93_ralis_crisis_event.0603
+	title = f93_ralis_crisis_event.0603.name
+	desc = f93_ralis_crisis_event.0603.desc
+	picture = GFX_evt_black_hole #placeholder
+	# show_sound = event_mystic_reveal
+	trigger = {
+		is_galactic_community_member = no
+	}
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+	}
+}
+
+#anyone entering ralis system for the first time
+country_event = {
+	id = f93_ralis_crisis_event.0701
+	title = f93_ralis_crisis_event.0701.name
+	desc = f93_ralis_crisis_event.0701.desc
+	picture = GFX_evt_black_hole #placeholder
+	# show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	option = {
+		name = f93_ralis_crisis_event.0701.a
+	}
+}
+
+planet_event = {
+	id = f93_ralis_crisis_event.8000
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		is_same_value = event_target:f93_ralis_planet
+	}
+
+	immediate = {
+		if = {
+			from = { is_country_type = default }
+			every_country = { country_event = { id = f93_ralis_crisis_event.0802 } }
+		}
+		else_if = {
+			from = { is_ship_size = colossus }
+			every_country = { country_event = { id = f93_ralis_crisis_event.0801 } }
+		}
+	}
+}
+#ralis is destroyed
+country_event = {
+	id = f93_ralis_crisis_event.0801
+	title = f93_ralis_crisis_event.0801.name
+	desc = f93_ralis_crisis_event.0801.desc
+	picture = GFX_evt_black_hole #placeholder
+	# show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	option = {
+		name = f93_ralis_crisis_event.0801.a
+	}
+}
+
+# This = Planet scope
+# From = Country scope (new owner)
+# FromFrom = Former Owner
+#ralis is conquered
+country_event = {
+	id = f93_ralis_crisis_event.0802
+	title = f93_ralis_crisis_event.0802.name
+	desc = f93_ralis_crisis_event.0802.desc
+	picture = GFX_evt_black_hole #placeholder
+	# show_sound = event_mystic_reveal
+
+	is_triggered_only = yes
+
+	option = {
+		name = f93_ralis_crisis_event.0802.a
+	}
 }

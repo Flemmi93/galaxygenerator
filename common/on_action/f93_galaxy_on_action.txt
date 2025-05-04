@@ -1,12 +1,34 @@
 
 on_yearly_pulse_country = {
 	events = {
-		f93_ralis_crisis_events.0401
+		f93_ralis_crisis_event.0401
 	}
 }
 
 on_mid_game_pulse_country = {
 	events = {
 		f93_shroud.7
+	}
+}
+
+
+# Triggers event when each country first sends a ship into the system (once per country)
+# Scope = Ship
+# From = System
+# FromFrom = Country
+on_entering_system_first_time = {
+	events = {
+		f93_ralis_crisis_event.0701
+	}
+}
+
+# Fired whenever a new owner is set for a planet, and the planet was aggressively conquered
+# NOTE: fired in ADDITION to on_planet_transfer
+# This = Planet scope
+# From = Country scope (new owner)
+# FromFrom = Former Owner
+on_planet_conquer = {
+	events = {
+		f93_ralis_crisis_event.0800
 	}
 }

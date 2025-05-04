@@ -1,0 +1,59 @@
+# Scope:
+# this/root = planet that have been fired upon
+# from = fleet that fired
+on_destroy_planet_with_PLANET_KILLER_CRACKER = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_SHIELDER = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
+
+
+on_destroy_planet_with_PLANET_KILLER_NEUTRON = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
+
+
+on_destroy_planet_with_PLANET_KILLER_GODRAY = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_NANOBOTS = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_STAR_CRACKER = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
+
+
+on_destroy_planet_with_PLANET_KILLER_DELUGE = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_TOXIFIER = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
+
+on_destroy_planet_with_PLANET_KILLER_DEVOLUTION = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
