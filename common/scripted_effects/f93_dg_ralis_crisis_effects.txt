@@ -25,7 +25,7 @@ create_capital_to_acient_relay_lane = {
 						}
 					}
 					save_global_event_target_as = new_highway_system
-					set_star_flag = f93_empire_connects_to_ancient_relay_flag
+					root = { set_country_flag = f93_empire_connects_to_ancient_relay_flag }
 				}
 			}
 			clear_global_event_target = new_highway_system
@@ -33,7 +33,7 @@ create_capital_to_acient_relay_lane = {
 		}
 		if = {
 			limit = { event_target:system_ancient_relay = { any_neighbor_system = { is_same_value = event_target:system_last_step } } }
-			set_star_flag = f93_empire_connects_to_ancient_relay_flag
+			set_country_flag = f93_empire_connects_to_ancient_relay_flag
 		}
 	}
 }

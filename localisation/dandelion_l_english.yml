@@ -31,3 +31,5 @@
  f93_hyper_relay_ai: "$hyper_relay$"
  f93_hyper_relay_ai_DESC: "$hyper_relay_DESC$"
  f93_hyper_relay_ai_MEGASTRUCTURE_DETAILS: "$hyper_relay_MEGASTRUCTURE_DETAILS$"
+ f93_ralis_vote_a: "Vote for the Plan"
+ f93_ralis_vote_b: "Vote against the Plan"

@@ -1,0 +1,117 @@
+f93_ralis_plan_resolution = {
+	icon = "GFX_resolution_emergency_measure"
+	target = yes
+	harmful = yes
+	valid_target = {
+		NOT = { is_same_value = from }
+		is_country_type = default
+		has_country_flag = ralis_country_flag
+	}
+
+	resources = {
+		category = resolutions
+		cost = {
+			influence = 100
+		}
+	}
+
+	potential = {
+		event_target:f93_ralis_planet = {
+			NOR = {
+				has_planet_flag = f93_galactic_community_claim
+				has_planet_flag = f93_galactic_community_claim_faild
+			}
+		}
+	}
+
+	allow = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			NOT = { is_active_resolution = f93_ralis_plan_resolution }
+		}
+	}
+
+	effect = {
+		event_target:f93_ralis_planet = {
+			set_planet_flag = f93_galactic_community_claim
+		}
+		set_country_flag = crisis_sphere_revealed
+	}
+	fail_effect = {
+		event_target:f93_ralis_country = {
+			set_planet_flag = f93_galactic_community_claim_faild
+		}
+	}
+
+	ai_weight = {
+		factor = 10
+	}
+	#self serving empires should oppose it.
+	modifier = {
+		factor = 0.75
+		is_authoritarian = yes
+		desc = ethic_authoritarian
+	}
+	modifier = {
+		factor = 3
+		is_egalitarian = yes
+		desc = ethic_egalitarian
+	}
+	modifier = {
+		factor = 5
+		is_xenophile = yes
+		desc = ethic_xenophile
+	}
+	modifier = {
+		factor = 0.2
+		is_xenophobe = yes
+		desc = ethic_xenophobe
+	}
+	modifier = {
+		factor = 2
+		is_materialist = yes
+		desc = ethic_materialist
+	}
+	modifier = {
+		factor = 2
+		is_spiritualist = yes
+		desc = ethic_spiritualist
+	}
+	modifier = {
+		factor = 0.5
+		is_militarist = yes
+		desc = ethic_militarist
+	}
+	modifier = {
+		factor = 4
+		is_pacifist = yes
+		desc = ethic_pacifist
+	}
+	modifier = {
+		factor = 10
+		is_galactic_custodian = yes
+		desc = gal_com_is_the_custodian
+	}
+	modifier = {
+		factor = 0.5
+		is_gestalt = yes
+		desc = ethic_gestalt_consciousness
+	}
+	modifier = {
+		factor = 3
+		is_megacorp = yes
+		desc = gov_megacorporation
+	}
+	modifier = {
+		factor = 0.5
+		is_megacorp = yes
+		is_worker_coop_empire = no
+		desc = gov_megacorporation
+	}
+	modifier = {
+		factor = 0.25
+		is_in_breach_of_any = yes
+		desc = gal_com_is_in_breach
+	}
+
+}

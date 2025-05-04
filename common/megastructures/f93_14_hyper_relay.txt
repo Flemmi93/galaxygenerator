@@ -128,7 +128,7 @@ f93_hyper_relay_ai = {
 
 		modifier = {
 			factor = 0
-			not = { has_star_flag = f93_empire_connects_to_ancient_relay_flag }
+			not = { from = { has_country_flag = f93_empire_connects_to_ancient_relay_flag } }
 		}
 	}
 

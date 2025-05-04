@@ -61,6 +61,11 @@ create_ralis_country = { #target a valid planet with this
 			ethos = last_created_country
 		}
 	}
+	event_target:f93_ralis_country = {
+		capital_scope = {
+			save_global_event_target_as = f93_ralis_planet
+		}
+	}
 	remove_building = building_colony_shelter
 	add_building = building_major_capital
 	add_building = building_archaeo_refinery

@@ -7,12 +7,14 @@ namespace = f93_ralis_crisis_events
 # 2nd two digits are varriance	#
 #################################
 
+#Anomalies along the Galactic Crossing
 country_event = {
 	id = f93_ralis_crisis_events.0001
 	title = f93_ralis_crisis_events.0.name
 	desc = f93_ralis_crisis_events.0.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_whispering
+	
 	is_triggered_only = yes
 
 	trigger = {
@@ -29,12 +31,14 @@ country_event = {
 	}
 }
 
+#A galaxy holds its breath
 country_event = {
 	id = f93_ralis_crisis_events.0101
 	title = f93_ralis_crisis_events.1.name
 	desc = f93_ralis_crisis_events.1.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_screams
+	
 	is_triggered_only = yes
 
 	immediate = {
@@ -108,12 +112,14 @@ country_event = {
 	}
 }
 
+#Senate Report
 country_event = {
 	id = f93_ralis_crisis_events.0201
 	title = f93_ralis_crisis_events.2.name
 	desc = f93_ralis_crisis_events.2.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_mystic_reveal
+	
 	is_triggered_only = yes
 
 	immediate = {
@@ -133,18 +139,23 @@ country_event = {
 		country_event = { id = f93_ralis_crisis_events.0301 days = 180 }
 	}
 }
+
+#Receding of the Abyss
 country_event = {
 	id = f93_ralis_crisis_events.0301
 	title = f93_ralis_crisis_events.3.name
 	desc = f93_ralis_crisis_events.3.desc
 	picture = GFX_evt_black_hole #placeholder
+	
 	is_triggered_only = yes
 
 	immediate = {
 		event_target:f93_ralis_country = {
-			establish_contact = root
+			establish_contact = { who = root }
 			set_country_flag = f93_ralis_arms_race_active
 		}
+		
+		set_country_flag = f93_ralis_awoken
 	}
 	option = {
 		name = f93_ralis_crisis_events.0301.a
@@ -152,4 +163,77 @@ country_event = {
 	option = {
 		name = f93_ralis_crisis_events.0301.b
 	}
+
+	after = {
+
+	}
+}
+
+#Secrets of Ralis
+country_event = {
+	id = f93_ralis_crisis_events.0401
+	title = f93_ralis_crisis_events.4.name
+	desc = f93_ralis_crisis_events.4.desc
+	picture = GFX_evt_black_hole #placeholder
+	show_sound = event_mystic_reveal
+	
+	is_triggered_only = yes
+
+	trigger = {
+		has_country_flag = f93_ralis_awoken
+		event_target:f93_ralis_country = {
+			has_resource = { type = menace amount > 9999 }
+		}
+	}
+	immediate = {}
+	option = {
+		name = f93_ralis_crisis_events.4.a
+	}
+	after = {}
+}
+
+#The War Plan Debate
+country_event = {
+	id = f93_ralis_crisis_events.0501
+	title = f93_ralis_crisis_events.5.name
+	desc = f93_ralis_crisis_events.5.desc
+	picture = GFX_evt_black_hole #placeholder
+	show_sound = event_mystic_reveal
+	
+	is_triggered_only = yes
+
+	trigger = {
+	}
+	immediate = {
+	}
+	option = {
+		name = f93_ralis_crisis_events.5.a
+		custom_tooltip = f93_ralis_crisis_even_ts.5.a_desc
+		hidden_effect = {
+			set_country_flag = f93_ralis_crisis_events_5_vote_a
+		}
+	}
+	option = {
+		name = f93_ralis_crisis_events.5.b
+		custom_tooltip = f93_ralis_crisis_even_ts.5.b_desc
+		hidden_effect = {
+			set_country_flag = f93_ralis_crisis_events_5_vote_b
+		}
+	}
+	after = {
+	}
+}
+
+
+#The War plan treaty
+country_event = {
+	id = f93_ralis_crisis_events.0601
+	title = f93_ralis_crisis_events.6.name
+	desc = f93_ralis_crisis_events.6.desc
+	picture = GFX_evt_black_hole #placeholder
+	show_sound = event_mystic_reveal
+	
+	is_triggered_only = yes
+
+	
 }

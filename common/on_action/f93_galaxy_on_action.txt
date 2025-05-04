@@ -1,3 +1,12 @@
+
+on_yearly_pulse_country = {
+	events = {
+		f93_ralis_crisis_events.0401
+	}
+}
+
 on_mid_game_pulse_country = {
-	f93_shroud.7
+	events = {
+		f93_shroud.7
+	}
 }
