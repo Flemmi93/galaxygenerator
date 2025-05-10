@@ -32,6 +32,9 @@ f93_ralis_plan_resolution = {
 	}
 
 	effect = {
+		every_system_within_border = {
+			set_star_flag = f93_belonged_to_ralis
+		}
 		event_target:f93_ralis_planet = {
 			set_planet_flag = f93_galactic_community_claim
 		}
@@ -39,7 +42,8 @@ f93_ralis_plan_resolution = {
 		every_country = { country_event = { id = f93_ralis_crisis_event.0601 } }
 		every_country = { country_event = { id = f93_ralis_crisis_event.0603 } }
 	}
-	fail_effect = {
+	
+	fail_effects = {
 		event_target:f93_ralis_country = {
 			set_planet_flag = f93_galactic_community_claim_faild
 		}

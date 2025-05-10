@@ -187,3 +187,122 @@ give_ciris_sphere_0_and_buff = {
 		}
 	}
 }
+
+create_capital_to_acient_relay_lane = {
+	if = {
+		limit = {
+			exists = event_target:system_capital
+			exists = event_target:system_ancient_relay
+		}
+		save_global_event_target_as = system_last_step
+		while = {
+			# count = @steps
+			limit = {
+				NOT = { event_target:system_ancient_relay = { any_neighbor_system = { is_same_value = event_target:system_last_step } } } 
+			}
+			event_target:system_ancient_relay = {
+				closest_system = {
+					limit = {
+						NOT = { has_star_flag = dd_highway_system_flag }
+						or = {
+							distance = {
+								source = event_target:system_last_step
+								max_jumps = 1
+								type = hyperlane
+							}
+						}
+					}
+					save_global_event_target_as = new_highway_system
+					root = { set_country_flag = f93_empire_connects_to_ancient_relay_flag }
+				}
+			}
+			clear_global_event_target = new_highway_system
+
+		}
+		if = {
+			limit = { event_target:system_ancient_relay = { any_neighbor_system = { is_same_value = event_target:system_last_step } } }
+			set_country_flag = f93_empire_connects_to_ancient_relay_flag
+		}
+	}
+}
+
+f93_create_community_ralis_admin = {
+	create_country = {
+		name = f93_community_ralis_admin_NAME
+		adjective = f93_community_ralis_admin_ADJ
+		type = nice_faction
+		auto_delete = no
+		name_list = random
+		ship_prefix = "GalCom"
+		flag = {
+			icon = { category = "union_state" file = cra_flag.dds }
+			background = { category = "backgrounds" file = "00_solid.dds" }
+			colors = {"blue" "dark_blue" "null" "null" }
+		}
+		effect = { save_global_event_target_as = f93_community_ralis_admin_country }
+		# graphical_culture = root.owner
+	}
+}
+
+#Ralis Decision
+f93_return_ralis = {
+	name = f93_ralis_crisis_event.0902.a # keep the plan
+	every_playable_country = {
+		add_opinion_modifier = { modifier = f93_liberator_of_ralis who = root }
+	}
+	hidden_effect = {
+		set_country_flag = f93_handed_ralis_to_community
+	}
+	if = {
+		limit = {
+			is_galactic_community_member = yes
+		}
+		every_system_within_border = {
+			limit = {
+				OR = {
+					has_star_flag = f93_belonged_to_ralis
+					AND = {
+						NOT = {
+							has_star_flag = f93_ralis_took_it_from@root
+						}
+						has_star_flag = f93_ralis_took_it_from_someome
+					}
+				}
+			}
+			starbase = { set_owner = event_target:f93_community_ralis_admin }
+		}
+	else = {
+		every_system_within_border = {
+			limit = {
+				has_star_flag = f93_belonged_to_ralis
+			}
+			starbase = { set_owner = event_target:f93_community_ralis_admin }
+		}
+	}
+	}
+}
+f93_keep_ralis = {
+	name = f93_ralis_crisis_event.0902.b #keep ralis
+	country_event = { id = f93_ralis_crisis_event.1001}
+	hidden_effect = {
+		set_country_flag = f93_conquered_and_kept_ralis
+	}
+	event_target:f93_ralis_planet = {
+		solar_system.starbase = {
+			set_owner = event_target:f93_ralis_liberator
+		}
+	}
+	
+	if = {
+		limit = {
+			is_galactic_community_member = yes
+			event_target:f93_ralis_planet = {
+				has_planet_flag = f93_galactic_community_claim
+			}
+		}
+		every_playable_country = {
+			add_opinion_modifier = { modifier = f93_false_liberator_of_ralis who = root }
+		}
+		remove_from_galactic_community = yes
+	}
+}

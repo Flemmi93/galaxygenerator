@@ -1,0 +1,22 @@
+f93_liberator_of_ralis = {
+	opinion = {
+		base = 100
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 1
+	}
+}
+f93_false_liberator_of_ralis = {
+	opinion = {
+		base = -200
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 1
+	}
+}

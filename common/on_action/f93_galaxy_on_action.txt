@@ -2,6 +2,7 @@
 on_yearly_pulse_country = {
 	events = {
 		f93_ralis_crisis_event.0401
+		f93_galaxy.9
 	}
 }
 
@@ -30,5 +31,15 @@ on_entering_system_first_time = {
 on_planet_conquer = {
 	events = {
 		f93_ralis_crisis_event.0800
+	}
+}
+
+
+# From = system
+# FromFrom = country (previous owner)
+# This = country (new owner)
+on_system_gained = {
+	events = {
+		f93_ralis_crisis_event.0604
 	}
 }

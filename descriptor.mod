@@ -3,4 +3,4 @@ tags={
 	"Galaxy Generation"
 }
 name="galaxy geenrator"
-supported_version="v3.99.*"
+supported_version="v4.0.*"

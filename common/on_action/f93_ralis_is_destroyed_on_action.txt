@@ -57,3 +57,12 @@ on_destroy_planet_with_PLANET_KILLER_DEVOLUTION = {
 		f93_ralis_crisis_event.0800
 	}
 }
+
+# Planet has reached 0 pops from orbital bombardment
+# This = Planet
+# From = Bombarder
+on_planet_zero_pops = {
+	events = {
+		f93_ralis_crisis_event.0800
+	}
+}
