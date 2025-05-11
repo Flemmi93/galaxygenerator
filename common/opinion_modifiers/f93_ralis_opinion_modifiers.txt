@@ -9,6 +9,29 @@ f93_liberator_of_ralis = {
 		base = 1
 	}
 }
+f93_ralis_true_liberator = {
+	opinion = {
+		base = 150
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 1
+	}
+}
+f93_kept_ralis_traty = {
+	opinion = {
+		base = 50
+	}
+
+	accumulative = yes
+
+	decay = {
+		base = 1
+	}
+}
+
 f93_false_liberator_of_ralis = {
 	opinion = {
 		base = -200

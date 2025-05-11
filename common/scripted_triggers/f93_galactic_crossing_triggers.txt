@@ -59,3 +59,15 @@ f93_is_close_to_highway = {
 		}
 	}
 }
+
+f93_should_not_be_destroyed = {
+	OR = {
+		is_ringworld = yes
+		has_modifier = holy_planet
+		if = {
+			limit = { exists = owner }
+			solar_system.starbase.owner = { is_same_value = event_target:f93_ralis_country }
+		}
+		solar_system = { has_star_flag = f93_empty_system_on_galcrossing }
+	}
+}

@@ -30,9 +30,6 @@ create_ralis_country = { #target a valid planet with this
 		effect = {
 			set_country_type = default
 			save_global_event_target_as = f93_ralis_country
-			give_technology = {
-				tech = tech_archaeo_refinery
-			}
 			set_country_flag = ralis_country_flag
 			add_resource = {
 				alloys = 2
@@ -45,6 +42,11 @@ create_ralis_country = { #target a valid planet with this
 			}
 			add_modifier = {
 				modifier = fe_ship_cost_modifier
+				multiplier = 1
+				days = -1
+			}
+			add_modifier = {
+				modifier = f93_ralis_country_buff
 				multiplier = 1
 				days = -1
 			}
@@ -119,74 +121,6 @@ create_ralis_country = { #target a valid planet with this
 	}
 }
 
-give_ciris_sphere_0_and_buff = {
-	set_ai_personality = fanatic_purifiers
-	add_resource = {
-		sr_dark_matter = 1
-		alloys = 2
-		minerals = 0.5
-		energy = 3
-		food = 0.01
-		consumer_goods = 0.25
-		unity = 0.1
-		mult = 30000
-	}
-	add_tradition = tr_supremacy_adopt
-	add_tradition = tr_supremacy_fleet_logistical_corps
-	add_tradition = tr_supremacy_master_shipwrights
-	add_tradition = tr_supremacy_war_games
-	add_tradition = tr_supremacy_overwhelming_force
-	add_tradition = tr_supremacy_great_game
-	add_tradition = tr_supremacy_finish
-	give_technology = { tech = tech_wormhole_stabilization }
-	add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
-
-	random_system_within_border = {
-		limit = { has_megastructure = crisis_sphere_ruined }
-		random_system_megastructure = {
-			limit = { is_megastructure_type = crisis_sphere_ruined }
-			remove_megastructure = this
-		}
-		spawn_megastructure = {
-			type = crisis_sphere_0
-		}
-		random_system_megastructure = {
-			limit = { is_megastructure_type = crisis_sphere_0 }
-			set_megastructure_flag = crisis_sphere
-		}
-		star = {
-			create_ambient_object = {
-				type = "crisis_sphere_1"
-				location = this
-			}
-			last_created_ambient_object = {
-				set_ambient_object_flag = crisis_sphere_1_system_effect
-				set_location = {
-					target = prev
-					distance = 0
-					angle = random
-				}
-			}
-		}
-		
-		random_system = {
-			limit = { NOT = { exists = owner } has_megastructure = dandelion_relay }
-			prev = {
-				spawn_natural_wormhole = {
-					bypass_type = wormhole
-					random_pos = yes
-					orbit_angle = 360
-				}
-			}
-			spawn_natural_wormhole = {
-				bypass_type = wormhole
-				random_pos = yes
-				orbit_angle = 360
-			}
-			link_wormholes = prev
-		}
-	}
-}
 
 create_capital_to_acient_relay_lane = {
 	if = {
@@ -279,6 +213,23 @@ f93_return_ralis = {
 			starbase = { set_owner = event_target:f93_community_ralis_admin }
 		}
 	}
+	}
+}
+
+f93_give_conquest_to_ralis_admin = {
+	every_system_within_border = {
+		limit = {
+			OR = {
+				has_star_flag = f93_belonged_to_ralis
+				AND = {
+					NOT = {
+						has_star_flag = f93_ralis_took_it_from@root
+					}
+					has_star_flag = f93_ralis_took_it_from_someome
+				}
+			}
+		}
+		starbase = { set_owner = event_target:f93_community_ralis_admin }
 	}
 }
 f93_keep_ralis = {

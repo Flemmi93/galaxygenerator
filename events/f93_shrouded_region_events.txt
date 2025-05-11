@@ -20,20 +20,36 @@ system_event = {
 			limit = { is_inside_nebula = no }
 			create_nebula = {
 				name = Shrouded_Region_NAME
-				radius = 140
+				radius = @f93_nebulae_radiuis
 				effect = {
-					add_modifier = { modifier = f93_shrouded_region_star multiplier = 1 }
-					random_list = {
-						40 = { create_ambient_object = { type = nebula_1 location = star } }
-						40 = { create_ambient_object = { type = nebula_2 location = star } }
-						40 = { create_ambient_object = { type = nebula_3 location = star } }
-						40 = { create_ambient_object = { type = nebula_4 location = star } }
-						10 = { create_ambient_object = { type = rare_nebula_1 location = star } }
-						10 = { create_ambient_object = { type = rare_nebula_2 location = star } }
-						20 = { create_ambient_object = { type = turbulent_nebula_1 location = star } }
-						20 = { create_ambient_object = { type = turbulent_nebula_2 location = star } }
-					}
+					add_modifier = { modifier = f93_shrouded_region_star multiplier = 0.5 }
+					# random_list = {
+					# 	20 = { create_nebula_1 = yes }
+					# 	20 = { create_nebula_2 = yes }
+					# 	20 = { create_nebula_3 = yes }
+					# 	20 = { create_nebula_4 = yes }
+					# 	10 = { create_rare_nebula_1 = yes }
+					# 	10 = { create_rare_nebula_2 = yes }
+					# 	4 = {
+					# 		modifier = {
+					# 			factor = 0
+					# 			has_star_flag = empire_home_system
+					# 		}
+					# 		create_turbulent_nebula_1 = yes
+					# 	}
+					# 	4 = {
+					# 		modifier = {
+					# 			factor = 0
+					# 			has_star_flag = empire_home_system
+					# 		}
+					# 		create_turbulent_nebula_2 = yes
+					# 	}
+					# }
 				}
+			}
+			random_country = {
+				limit = { is_ai = no }
+				country_event = { id = f93_game_start.50 days = 5 }
 			}
 		}
 		
@@ -237,6 +253,27 @@ planet_event = {
 }
 country_event = { #midgame trigger
 	id = f93_shroud.7
+	title = f93_shroud.7.name
+	desc = f93_shroud.7.desc
+	picture = GFX_evt_fallen_empire
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		is_ai = no
+	}
+	option = {
+		name = f93_shroud.7.a
+		hidden_effect = {
+			event_target:f93_ralis_country = {
+				country_event = { id = f93_shroud.8 }
+			}
+		}
+		
+	}
+}
+country_event = {
+	id = f93_shroud.8
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -244,14 +281,72 @@ country_event = { #midgame trigger
 		has_country_flag = ralis_country_flag
 	}
 	immediate = {
-		give_ciris_sphere_0_and_buff = yes
-		every_country = {
-			limit = {
-				is_country_type = default
+		set_ai_personality = fanatic_purifiers
+	add_resource = {
+		sr_dark_matter = 1
+		alloys = 2
+		minerals = 0.5
+		energy = 3
+		food = 0.01
+		consumer_goods = 0.25
+		unity = 0.1
+		mult = 30000
+	}
+	add_tradition = tr_supremacy_adopt
+	add_tradition = tr_supremacy_fleet_logistical_corps
+	add_tradition = tr_supremacy_master_shipwrights
+	add_tradition = tr_supremacy_war_games
+	add_tradition = tr_supremacy_overwhelming_force
+	add_tradition = tr_supremacy_great_game
+	add_tradition = tr_supremacy_finish
+	give_technology = { tech = tech_wormhole_stabilization }
+	give_technology = { tech = tech_ascension_theory }
+	add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
+
+	random_system_within_border = {
+		limit = { has_megastructure = crisis_sphere_ruined }
+		random_system_megastructure = {
+			limit = { is_megastructure_type = crisis_sphere_ruined }
+			remove_megastructure = this
+		}
+		spawn_megastructure = {
+			type = crisis_sphere_0
+		}
+		random_system_megastructure = {
+			limit = { is_megastructure_type = crisis_sphere_0 }
+			set_megastructure_flag = crisis_sphere
+		}
+		star = {
+			create_ambient_object = {
+				type = "crisis_sphere_1"
+				location = this
 			}
-			country_event = {
-				id = f93_ralis_crisis_event.0001
+			last_created_ambient_object = {
+				set_ambient_object_flag = crisis_sphere_1_system_effect
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
 			}
 		}
+		
+		random_system = {
+			limit = { NOT = { exists = owner } has_megastructure = dandelion_relay }
+			prev = {
+				spawn_natural_wormhole = {
+					bypass_type = wormhole
+					random_pos = yes
+					orbit_angle = 360
+				}
+			}
+			spawn_natural_wormhole = {
+				bypass_type = wormhole
+				random_pos = yes
+				orbit_angle = 360
+			}
+			link_wormholes = prev
+		}
+	}
 	}
 }

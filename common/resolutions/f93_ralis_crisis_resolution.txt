@@ -16,35 +16,43 @@ f93_ralis_plan_resolution = {
 	}
 
 	potential = {
+		OR = {
+			has_country_flag = f93_ralis_crisis_event_5_vote_a
+			has_country_flag = f93_ralis_crisis_event_5_vote_b
+		}
 		event_target:f93_ralis_planet = {
-			NOR = {
-				has_planet_flag = f93_galactic_community_claim
-				has_planet_flag = f93_galactic_community_claim_faild
+			owner = { is_same_value = event_target:f93_ralis_country }
+		}
+	}
+
+	active = {
+		custom_tooltip = {
+			fail_text = "resolution_already_active"
+			event_target:f93_ralis_planet = {
+				NOR = {
+					has_planet_flag = f93_galactic_community_claim_faild
+					has_planet_flag = f93_galactic_community_claim
+				}
 			}
 		}
 	}
 
-	allow = {
-		custom_tooltip = {
-			fail_text = "resolution_already_active"
-			NOT = { is_active_resolution = f93_ralis_plan_resolution }
-		}
-	}
-
 	effect = {
-		every_system_within_border = {
-			set_star_flag = f93_belonged_to_ralis
+		event_target:f93_ralis_country = {
+			every_system_within_border = {
+				set_star_flag = f93_belonged_to_ralis
+			}
+			event_target:f93_ralis_planet = {
+				set_planet_flag = f93_galactic_community_claim
+			}
+			# set_country_flag = crisis_sphere_revealed
 		}
-		event_target:f93_ralis_planet = {
-			set_planet_flag = f93_galactic_community_claim
-		}
-		set_country_flag = crisis_sphere_revealed
 		every_country = { country_event = { id = f93_ralis_crisis_event.0601 } }
 		every_country = { country_event = { id = f93_ralis_crisis_event.0603 } }
 	}
 	
 	fail_effects = {
-		event_target:f93_ralis_country = {
+		capital_scope = {
 			set_planet_flag = f93_galactic_community_claim_faild
 		}
 		every_country = { country_event = { id = f93_ralis_crisis_event.0602 } }

@@ -1,0 +1,11 @@
+# Example Resolution Cateogry
+# NOTE: Resolution types specified here need to exist in the type database!
+
+f93_ralis_crisis_category_galactic_focus = {
+	group = ralis_focus
+	icon = "GFX_resolution_galactic_focus_category"
+
+	resolution_types = {
+		"f93_ralis_plan_resolution"
+	}
+}

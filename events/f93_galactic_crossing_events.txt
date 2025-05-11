@@ -186,7 +186,7 @@ country_event = {
 						has_megastructure = dandelion_relay
 						distance = {
 							source = prev
-							max_jumps = 11
+							max_jumps = @galactic_crossing_outskirts
 							type = hyperlane
 						}
 					}
@@ -222,6 +222,7 @@ country_event = {
 				}
 			}
 			set_star_class = sc_no_star
+			set_star_flag = f93_empty_system_on_galcrossing
 			# set_name = BLANK_STRING
 			every_system_planet = { remove_planet = yes }
 			every_ambient_object = { destroy_ambient_object = this }

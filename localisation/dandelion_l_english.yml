@@ -31,16 +31,40 @@
  f93_ralis_vote_b: "Vote against the Plan"
 
 #Modifier
- 
+ f93_ascension_perks_add: "$MOD_COUNTRY_ASCENSION_PERKS_ADD$"
  f93_false_liberator_of_ralis: "False Liberator"
- f93_liberator_of_ralis: "Libverator of $ralis_NAME$"
+ f93_liberator_of_ralis: "Liberator of $ralis_NAME$"
+ f93_kept_ralis_traty: "Kept the traty of $ralis_NAME$"
+ f93_ralis_true_liberator: "True Liberator of $ralis_NAME$"
+ f93_ralis_country_buff: "Bringer of endtimes"
+
+ mod_country_resource_max_energy_add: "Max Energy"
+ mod_country_resource_max_minerals_add: "Max Minerls"
+ mod_country_resource_max_unity_add: "Max Unity"
+ mod_country_resource_max_trade_add: "Max Trade"
+ mod_country_resource_max_consumer_goods_add: "Max Consumer Good"
+ mod_country_resource_max_volatile_motes_add: "Max Volatiles"
+ mod_country_resource_max_exotic_gases_add: "Max Exotic"
+ mod_country_resource_max_rare_crystals_add: "Max Crystal"
+ mod_country_resource_max_sr_living_metal_add: "Max Living Metal"
+ mod_country_resource_max_sr_zro_add: "Max Zro"
+ mod_country_resource_max_nanites_add: "Max Nanites"
+
+ RALISGATE_GALACTIC: "Ralis Gate"
 
 ############################
 # Ralis Crisis Event Texts #
 ############################
+ f93_shroud.7.name: "The Galactic Crossing"
+ f93_shroud.7.desc: "The Galactic Crossing is the academic name for a region in space where an anscient civilisation has constructed a mighty trade empire. Only the Hyper Relays left behind by them tell of their story... or so we tought, A feeling of unese spreads across the galaxy"
+ f93_shroud.7.a: "What horror has befallen us?"
  ralis_NAME: "§Y[f93_ralis_planet.GetName]§!"
+  #resolution
+ ralis_focus: "Ralis War Plans"
+ f93_ralis_crisis_category_galactic_focus: "Ralis Crisis"
  f93_ralis_plan_resolution: "Senatorial Debate on the Galactic use of the $ralis_NAME$ System"
- f93_ralis_plan_resolution_desc: ""
+ f93_ralis_plan_resolution_desc: "Bureaucrats and politicians are debating fiercly over this issue. Some even going so far as to say that $ralis_NAME$ isnt real and can't hurt us. "
+  #more events
  f93_ralis_crisis_event.0001.name: "Anomalies along the Galactic Crossing"
  f93_ralis_crisis_event.0001.desc: "Reports of massive gravitational anomalies have surfaced along the Galactic Crossing, shifting unpredictably through deep space. Members of the Galactic Community have deployed scouting fleets to investigate, but details remain scarce. Leaked footage reveals space itself warping around the anomalies, stretching the light of stars into eerie strings around them. Mysterious bursts of incomprehensible signals were detected - then, without warning, all contact was lost. No Government has made any official statements so far."
  f93_ralis_crisis_event.0101.name: "A galaxy holds its breath"
@@ -59,9 +83,9 @@
  f93_ralis_crisis_event.0501.name: "The War Plan Debate"
  f93_ralis_crisis_event.0501.desc: "A petition has gained support across the galaxy, pressuring the Senate to move beyond defense coordination and create a full-scale war plan.\nThe proposal includes a post-war framework: enemy assets and systems would be placed under shared administration, with their resources used for war relief across all member states. Territories taken during the war would be governed collectively to ensure coordinated rebuilding.\n\nBut not everyone agrees. Some argue that the promise of keeping what is conquered - especially the crisis home systems deep inside the Shrouded Regions - motivates empires to commit fully to the war effort. For them, competition drives progress, and the rewards must match the risks."
  f93_ralis_crisis_event.0501.a: "For the Galaxy!"
- f93_ralis_crisis_event.0501.a_desc: ""
+ f93_ralis_crisis_event.0501.a_desc: "We can now introduce a new §YResolution§! in the galactic senate."
  f93_ralis_crisis_event.0501.b: "We can't sign this!"
- f93_ralis_crisis_event.0501.b_desc: ""
+ f93_ralis_crisis_event.0501.b_desc: "Some §Rfool§! will make this a senatorial issue and waste everyones time with it."
  f93_ralis_crisis_event.0601.name: "The War Plan Treaty"
  f93_ralis_crisis_event.0601.desc: "The Senate has passed the Resolution, and the War Treaty is currently being signed by the member states. Not everyone is pleased with the outcome of this session - some are even questioning their ties to the Community entirely. First Senators have already declared the withdrawal of their delegations from the Community…"
  f93_ralis_crisis_event.0601.a: "Where can I sign?"
@@ -90,6 +114,7 @@
  f93_ralis_crisis_event.0902.desc: "With $ralis_NAME$ fully under our control, the Senate demands we abide by galactic law and hand the system, combined with all other territories we reclaimed during the war, over to a shared administration. The handover will take time, as forces and new personnel are deployed, logistics restructured, and the groundwork for long-term Community governance is put in place.\n\nThe planet's advanced technology, once used to defy the black hole's hostility, will aid in rebuilding the galaxy. Scientists see an opportunity to use the planet as an exploration hub for deep space missions into the Shrouded Regions. What lies beyond the thin veil could be made visible - or at least turned into a profitable venture for the conglomerates.\nIf disobeyed, the Community will act harshly, bringing severe consequences. Disobeying the Community and breaking the treaty also brings opportunities - new paths will open, and bold choices could change the course of history. This is the time to decide where you stand."
  f93_ralis_crisis_event.0902.a: "We hold our promises!"
  f93_ralis_crisis_event.0902.b: "The treaty was more like a guideline anyways… We will keep it!"
+ f93_ralis_crisis_event.0902.b_desc: "$RThis will lead to use being kicked out of the community§!"
  f93_ralis_crisis_event.0903.name: "The Community’s Request"
  f93_ralis_crisis_event.0903.desc: "Even though we are under no obligation to do so, the Community has formally asked us to hand $ralis_NAME$, along with any other reclaimed territories, over to a shared administration.\nThe planet’s advanced technology to survive the gravitational extremes of the black hole could serve as a foundation for rebuilding efforts across the galaxy. Community officials also see strategic potential in turning $ralis_NAME$ into a hub for future expeditions into the Shrouded Regions, but we could manage this undertaking ourselves too.\nWe are free to decide. But the choice we make now will be remembered - by allies, rivals, and history alike."
  f93_ralis_crisis_event.0903.a: "It would be better for all…"

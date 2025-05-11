@@ -14,18 +14,133 @@ country_event = {
 	desc = f93_ralis_crisis_event.0001.desc
 	picture = GFX_evt_black_hole #placeholder
 	show_sound = event_whispering
+	fire_only_once = yes
 	
-	is_triggered_only = yes
+	mean_time_to_happen = 1
 
 	trigger = {
-		is_country_type = default
+		is_ai = no
+		mid_game_years_passed >= 0
 	}
+
 	immediate = {
 		country_event = {
 			id = f93_ralis_crisis_event.0101
 			days = 120
 		}
 	}
+	option = {
+		name = WORRYING
+		hidden_effect = {
+			every_playable_country = {
+				limit = { NOT = { is_same_value = root } }
+				country_event = { id = f93_ralis_crisis_event.0002 }
+			}
+			event_target:f93_ralis_country = {
+				set_ai_personality = fanatic_purifiers
+				add_resource = {
+					sr_dark_matter = 1
+					alloys = 2
+					minerals = 0.5
+					energy = 3
+					food = 0.01
+					consumer_goods = 0.25
+					unity = 0.1
+					mult = 30000
+				}
+				add_tradition = tr_supremacy_adopt
+				add_tradition = tr_supremacy_fleet_logistical_corps
+				add_tradition = tr_supremacy_master_shipwrights
+				add_tradition = tr_supremacy_war_games
+				add_tradition = tr_supremacy_overwhelming_force
+				add_tradition = tr_supremacy_great_game
+				add_tradition = tr_supremacy_finish
+				give_technology = { tech = tech_wormhole_stabilization } 
+				give_technology = { tech = tech_rift_sphere } 
+				add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
+				create_fleet = {
+					name = "Explorer Fleet"
+					effect = {
+						set_owner = event_target:f93_ralis_country
+						set_location = event_target:f93_ralis_country.capital_scope
+						create_ship = {
+							name = random
+							random_existing_design = science
+						}
+					}
+				}
+				create_fleet = {
+					name = "Explorer Fleet"
+					effect = {
+						set_owner = event_target:f93_ralis_country
+						set_location = event_target:f93_ralis_country.capital_scope
+						create_ship = {
+							name = random
+							random_existing_design = science
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { has_modifier = f93_ralis_country_buff } }
+					add_modifier = {
+						modifier = f93_ralis_country_buff
+						multiplier = 1
+						days = -1
+					}
+				}
+				random_system_within_border = {
+					limit = { has_megastructure = crisis_sphere_ruined }
+					random_system_megastructure = {
+						limit = { is_megastructure_type = crisis_sphere_ruined }
+						remove_megastructure = this
+					}
+					random_system_megastructure = {
+						limit = { is_megastructure_type = crisis_sphere_0 }
+						set_megastructure_flag = crisis_sphere
+					}
+					star = {
+						create_ambient_object = {
+							type = "crisis_sphere_1"
+							location = this
+						}
+						last_created_ambient_object = {
+							set_ambient_object_flag = crisis_sphere_1_system_effect
+							set_location = {
+								target = prev
+								distance = 0
+								angle = random
+							}
+						}	
+					}
+					random_system = {
+						limit = { NOT = { exists = owner } has_megastructure = dandelion_relay }
+						prev = {
+							spawn_natural_wormhole = {
+								bypass_type = wormhole
+								random_pos = yes
+								orbit_angle = 360
+							}
+						}
+						spawn_natural_wormhole = {
+							bypass_type = wormhole
+							random_pos = yes
+							orbit_angle = 360
+						}
+						link_wormholes = prev
+					}
+				}
+			}
+		}
+	}
+}
+#Anomalies along the Galactic Crossing
+country_event = {
+	id = f93_ralis_crisis_event.0002
+	title = f93_ralis_crisis_event.0001.name
+	desc = f93_ralis_crisis_event.0001.desc
+	picture = GFX_evt_black_hole #placeholder
+	show_sound = event_whispering
+	is_triggered_only = yes
 	option = {
 		name = WORRYING
 	}
@@ -44,25 +159,58 @@ country_event = {
 	immediate = {
 		every_system = {
 			limit = {
-				NOT = { has_star_flag = f93_ralis_crisis_event0101_already_flag }
-				NOT = { any_system_planet = { is_colonizable = yes } }
+				NOR = {
+					has_star_flag = f93_ralis_crisis_event0101_already_flag
+					any_system_planet = { f93_should_not_be_destroyed = yes }
+					any_system_planet = { is_colonizable = yes }
+				}
+				any_neighbor_system = { has_megastructure = dandelion_relay }
+				NOT = {
+					owner = { OR = { is_country_type = fallen_empire is_country_type = awakened_fallen_empire } }
+					any_system_planet = { is_colonizable = yes }
+				}
 			}
 			set_star_flag = f93_ralis_crisis_event0101_already_flag
+			if = {
+				limit = {
+					has_megastructure = dandelion_relay
+				}
+				set_star_flag = f93_has_dandelion_relay
+			}
 			random_list = {
-				50 = { destroy_star_system = yes }
+				50 = { destroy_star_system = yes every_system_planet = { reroll_deposits = yes } }
 				50 = { }
+			}
+			if = {
+				limit = { has_star_flag = f93_has_dandelion_relay NOT = { has_megastructure = dandelion_relay } }
+				highway_connect_relay_only = yes
 			}
 		}
 		every_system = {
 			limit = {
-				NOT = { has_star_flag = f93_ralis_crisis_event0101_already_flag }
+				NOR = {
+					has_star_flag = f93_ralis_crisis_event0101_already_flag
+					any_system_planet = { f93_should_not_be_destroyed = yes }
+					star = { is_star_class = sc_no_star }
+				}
 				any_system_planet = { is_colonizable = yes }
 				is_capital_system = no
+				any_neighbor_system = { has_megastructure = dandelion_relay }
 			}
 			set_star_flag = f93_ralis_crisis_event0101_already_flag
+			if = {
+				limit = {
+					has_megastructure = dandelion_relay
+				}
+				set_star_flag = f93_has_dandelion_relay
+			}
 			random_list = {
-				33 = { destroy_star_system = yes set_star_flag = f93_ralis_crisis_event_got_hit_flag }
+				33 = { destroy_star_system = yes set_star_flag = f93_ralis_crisis_event_got_hit_flag every_system_planet = { reroll_deposits = yes } }
 				67 = { }
+			}
+			if = {
+				limit = { has_star_flag = f93_has_dandelion_relay NOT = { has_megastructure = dandelion_relay } }
+				highway_connect_relay_only = yes
 			}
 		}
 	}
@@ -124,13 +272,17 @@ country_event = {
 
 	immediate = {
 		event_target:f93_to_be_killed_by_ralis = {
-			every_system_within_border = { destroy_star_system = yes }
+			every_system_within_border = { destroy_star_system = yes every_system_planet = { reroll_deposits = yes } }
 			destroy_country = yes
 		}
 		event_target:f93_ralis_country = {
-			add_resource = {
-				menace = 4500
+			if = {
+				limit = { is_ai = yes }
+				add_resource = {
+					menace = 10000
+				}
 			}
+			capital_scope = { set_name = "Ralis" }
 		}
 	}
 
@@ -168,7 +320,22 @@ country_event = {
 
 	}
 }
-
+country_event = {
+	id = f93_ralis_crisis_event.4000
+	hide_window = yes
+	fire_only_once = yes
+	mean_time_to_happen = 1
+	trigger = {
+		event_target:f93_ralis_country = {
+			has_country_flag = crisis_special_projec_3_complete
+		}
+	}
+	immediate = {
+		every_playable_country = {
+			country_event = { id = f93_ralis_crisis_event.0401 }
+		}
+	}
+}
 #Secrets of Ralis
 country_event = {
 	id = f93_ralis_crisis_event.0401
@@ -178,16 +345,10 @@ country_event = {
 	show_sound = event_mystic_reveal
 	
 	is_triggered_only = yes
-
-	trigger = {
-		event_target:f93_ralis_country = {
-			has_country_flag = f93_ralis_awoken
-			has_resource = { type = menace amount > 9999 }
-		}
-	}
 	immediate = {}
 	option = {
 		name = f93_ralis_crisis_event.0401.a
+		country_event = { id = f93_ralis_crisis_event.0501 }
 	}
 	after = {}
 }
@@ -225,7 +386,6 @@ country_event = {
 }
 
 
-#The War plan treaty passed
 country_event = {
 	id = f93_ralis_crisis_event.0601
 	title = f93_ralis_crisis_event.0601.name
@@ -320,7 +480,7 @@ country_event = {
 # This = country (new owner)
 #tracking what system was conquered from who by ralis
 country_event = {
-	id = f93_ralis_crisis_event.6004
+	id = f93_ralis_crisis_event.0604
 	hide_window = yes
 	is_triggered_only = yes
 	
@@ -511,13 +671,17 @@ country_event = {
 			}
 			starbase = { set_owner = event_target:f93_community_ralis_admin }
 		}
+		every_playable_country = {
+			limit = { is_galactic_community_member = yes }		
+			add_opinion_modifier = { modifier = f93_kept_ralis_traty who = root }
+		}
 		ai_chance = {
 			factor = 50 # opposes the last option
 		}
 	}
 	option = {
 		trigger = { is_galactic_community_member = yes is_ai = no }
-		name = f93_ralis_crisis_event.0901.b
+		name = f93_ralis_crisis_event.0901.d
 	}
 	option = {
 		trigger = { is_galactic_community_member = no }
@@ -620,21 +784,9 @@ country_event = {
 		}
 		hidden_effect = {
 			set_country_flag = f93_handed_ralis_to_community
+			set_global_flag = f93_community_claim_happened
 		}
-		every_system_within_border = {
-			limit = {
-				OR = {
-					has_star_flag = f93_belonged_to_ralis
-					AND = {
-						NOT = {
-							has_star_flag = f93_ralis_took_it_from@root
-						}
-						has_star_flag = f93_ralis_took_it_from_someome
-					}
-				}
-			}
-			starbase = { set_owner = event_target:f93_community_ralis_admin }
-		}
+		f93_give_conquest_to_ralis_admin = yes
 	}
 	
 	option = {
@@ -642,17 +794,14 @@ country_event = {
 		country_event = { id = f93_ralis_crisis_event.1001}
 		hidden_effect = {
 			set_country_flag = f93_conquered_and_kept_ralis
+			set_global_flag = f93_community_claim_denied
 		}
 		event_target:f93_ralis_planet = {
 			solar_system.starbase = {
 				set_owner = event_target:f93_ralis_liberator
 			}
-		}
-		
-		every_playable_country = {
-			add_opinion_modifier = { modifier = f93_false_liberator_of_ralis who = root }
-		}
-		remove_from_galactic_community = yes
+		}	
+		custom_tooltip = f93_ralis_crisis_event.0902.b_desc
 	}
 
 }
@@ -673,27 +822,13 @@ country_event = {
 		hidden_effect = {
 			set_country_flag = f93_handed_ralis_to_community
 		}
-		every_system_within_border = {
-			limit = {
-				OR = {
-					has_star_flag = f93_belonged_to_ralis
-					AND = {
-						NOT = {
-							has_star_flag = f93_ralis_took_it_from@root
-						}
-						has_star_flag = f93_ralis_took_it_from_someome
-					}
-				}
-			}
-			starbase = { set_owner = event_target:f93_community_ralis_admin }
-		}
+		f93_give_conquest_to_ralis_admin = yes
 	}
 	
 	option = {
 		name = f93_ralis_crisis_event.0903.b #keep ralis
-		country_event = { id = f93_ralis_crisis_event.1001}
 		hidden_effect = {
-			set_country_flag = f93_conquered_and_kept_ralis
+			set_country_flag = f93_conquered_and_kept_ralis_justly
 		}
 		event_target:f93_ralis_planet = {
 			solar_system.starbase = {
@@ -704,21 +839,7 @@ country_event = {
 
 }
 #no treaty path
-#The Community's Request
-# country_event = {
-# 	id = f93_ralis_crisis_event.0904
-# 	title = f93_ralis_crisis_event.0904.name
-# 	desc = f93_ralis_crisis_event.0904.desc
-# 	picture = GFX_evt_black_hole #placeholder
-# 	# show_sound = event_mystic_reveal
-# 	is_triggered_only = yes
-# 	option = {
-# 		name = OK
-# 	}
-
-# }
-
-#The Community's Plea
+#The Community's Plea, for everyone but the liberator of ralis
 country_event = {
 	id = f93_ralis_crisis_event.0905
 	title = f93_ralis_crisis_event.0905.name
@@ -729,32 +850,18 @@ country_event = {
 	option = {
 		name = f93_ralis_crisis_event.0905.a # keep the plan
 		every_playable_country = {
-			country_event = { id = f93_ralis_crisis_event.1101 days = 1800 }
+			country_event = { id = f93_ralis_crisis_event.1101 days = 960 }
 		}
 		hidden_effect = {
 			set_country_flag = f93_handed_ralis_to_community
 		}
-		every_system_within_border = {
-			limit = {
-				OR = {
-					has_star_flag = f93_belonged_to_ralis
-					AND = {
-						NOT = {
-							has_star_flag = f93_ralis_took_it_from@root
-						}
-						has_star_flag = f93_ralis_took_it_from_someome
-					}
-				}
-			}
-			starbase = { set_owner = event_target:f93_community_ralis_admin }
-		}
+		f93_give_conquest_to_ralis_admin = yes
 	}
 	
 	option = {
 		name = f93_ralis_crisis_event.0905.b #keep ralis
-		country_event = { id = f93_ralis_crisis_event.1001}
 		hidden_effect = {
-			set_country_flag = f93_conquered_and_kept_ralis
+			set_country_flag = f93_conquered_and_kept_ralis_justly
 		}
 		event_target:f93_ralis_planet = {
 			solar_system.starbase = {
@@ -801,10 +908,158 @@ country_event = {
 				}
 			}
 		}
+		country_event = { id = f93_ralis_crisis_event.1200 days = 720 }
 	}
 
 	option = {
 		name = OK
 	}
 
+}
+
+
+#Event 12 distribution event
+country_event = {
+	id = f93_ralis_crisis_event.1200
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = { has_global_flag = f93_community_claim_denied }
+			event_target:f93_ralis_liberator = {
+				country_event = { id = f93_ralis_crisis_event.1201 }
+			}
+		}
+		
+		if = {
+			limit = { has_global_flag = f93_community_claim_happened }
+			event_target:f93_ralis_liberator = {
+				country_event = { id = f93_ralis_crisis_event.1204 }
+			}
+			every_playable_country = {
+				country_event = { id = f93_ralis_crisis_event.1205 }
+			}
+		}
+		remove_global_flag = f93_community_claim_happened
+		remove_global_flag = f93_community_claim_denied
+	}
+}
+
+#a Cold Coup
+country_event = {
+	id = f93_ralis_crisis_event.1201
+	title = f93_ralis_crisis_event.1201.name
+	desc = f93_ralis_crisis_event.1201.desc
+	picture = GFX_evt_black_hole #placeholder
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = f93_conquered_and_kept_ralis
+	}
+	option = {
+		every_playable_country = {
+			country_event = { id = f93_ralis_crisis_event.1202 days = 30 }
+		}
+		country_event = { id = f93_ralis_crisis_event.1203 days = 180 }
+	}
+}
+#Ralis Admin collapses
+country_event = {
+	id = f93_ralis_crisis_event.1202
+	title = f93_ralis_crisis_event.1202.name
+	desc = f93_ralis_crisis_event.1202.desc
+	picture = GFX_evt_black_hole #placeholder
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				exists = event_target:f93_community_ralis_admin
+			}
+			event_target:f93_community_ralis_admin = {
+				every_system_within_border = {
+					limit = { NOT = { has_star_flag = f93_ralis_took_it_from_someome } }
+					starbase = {
+						set_owner = event_target:f93_ralis_liberator
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = OK
+	}
+}
+
+
+#a quiet verdicts
+country_event = {
+	id = f93_ralis_crisis_event.1203
+	title = f93_ralis_crisis_event.1203.name
+	desc = f93_ralis_crisis_event.1203.desc
+	picture = GFX_evt_black_hole #placeholder
+	is_triggered_only = yes
+	option = {
+		every_playable_country = {
+			limit = { is_galactic_community_member = yes }
+			add_opinion_modifier = { modifier = f93_false_liberator_of_ralis who = root }
+		}
+		remove_from_galactic_community = yes
+		
+	}
+}
+
+#treaty fulfilled
+country_event = {
+	id = f93_ralis_crisis_event.1204
+	title = f93_ralis_crisis_event.1204.name
+	desc = f93_ralis_crisis_event.1204.desc
+	picture = GFX_evt_black_hole #placeholder
+	is_triggered_only = yes
+	immediate = {
+		event_target:f93_ralis_country = {
+			every_system_within_border = { starbase = { set_owner = event_target:f93_community_ralis_admin } }
+		}
+	}
+	option = {
+		name = OK
+		every_playable_country = {
+			limit = { is_galactic_community_member = yes }
+			add_opinion_modifier = {
+				modifier = f93_ralis_true_liberator
+				who = event_target:f93_ralis_liberator
+			}
+			event_target:f93_ralis_liberator = {
+				every_system_within_border = {
+					remove_claims = {
+						who = prevprev
+						num_of_claims = 100
+					}
+				}
+			}
+		}
+		if = {
+			limit = { is_part_of_galactic_council = no }
+			increase_council_size = yes
+		}
+		add_permanent_councillor = yes
+		add_resource = {
+			unity = 10000
+		}
+		add_modifier = {
+			modifier = f93_ralis_true_liberator
+			multiplier = 1
+		}
+	}
+}
+
+#the last handover
+country_event = {
+	id = f93_ralis_crisis_event.1205
+	title = f93_ralis_crisis_event.1205.name
+	desc = f93_ralis_crisis_event.1205.desc
+	picture = GFX_evt_black_hole #placeholder
+	is_triggered_only = yes
+	option = {
+		name = OK
+	}	
 }
