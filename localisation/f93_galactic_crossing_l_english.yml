@@ -50,7 +50,12 @@
  mod_country_resource_max_sr_zro_add: "Max Zro"
  mod_country_resource_max_nanites_add: "Max Nanites"
 
- RALISGATE_GALACTIC: "Ralis Gate"
+ RALISGATE_GALACTIC: "$ralisgate_gate_desc$"
+ RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"
+ ralisgate_gate: "Shrouded Hyperlane"
+ ralisgate_gate_desc: "A Gateway like many others encountered in this galaxy, but this §Yseperated cluster§! of gates connects Systems in the §MShrouded Regions§!, new connections are discovered by enterprising Entities."
+ BYPASS_RALISGATE: ""
+ BYPASS_DESC_INACTIVE_RALISGATE: ""
 
 ############################
 # Ralis Crisis Event Texts #

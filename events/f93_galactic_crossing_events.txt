@@ -363,5 +363,44 @@ country_event = {
 				}
 			}
 		}
+		#Rename Ralis to Ralis as long as the AI holds it.
+		if = {
+			limit = {
+				event_target:f93_ralis_planet = { owner = { is_ai = yes } }
+			}
+			event_target:f93_ralis_planet = {
+				set_name = "Ralis"
+				solar_system = { set_name = "Sactuary of Ralis" }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = f93_galaxy.10
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_global_flag = f93_shroud_gate_active
+		random_system = {
+			limit = {
+				is_star_class = sc_no_star
+			}
+			f93_place_shroud_gate_nexus = yes
+		}
+		random_system = {
+			limit = {
+				is_star_class = sc_no_star
+				not = { has_star_flag = f93_raliscluster1 }
+			}
+			f93_place_shroud_gate_nexus = yes
+		}
+		event_target:f93_ralis_planet = {
+			solar_system = {
+				f93_place_shroud_gate_node = yes
+			}
+		}
 	}
 }

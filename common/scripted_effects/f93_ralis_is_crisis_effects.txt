@@ -257,3 +257,20 @@ f93_keep_ralis = {
 		remove_from_galactic_community = yes
 	}
 }
+
+f93_place_shroud_gate_node = {
+	spawn_natural_wormhole = {
+		bypass_type = ralisgate
+		random_pos = yes
+		orbit_angle = 360
+	}
+	set_star_flag = f93_ralisgate
+}
+f93_place_shroud_gate_nexus = {
+	spawn_natural_wormhole = {
+		bypass_type = ralisgate
+		random_pos = yes
+		orbit_angle = 360
+	}
+	set_star_flag = f93_raliscluster1
+}

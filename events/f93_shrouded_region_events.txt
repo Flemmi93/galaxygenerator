@@ -282,16 +282,16 @@ country_event = {
 	}
 	immediate = {
 		set_ai_personality = fanatic_purifiers
-	add_resource = {
-		sr_dark_matter = 1
-		alloys = 2
-		minerals = 0.5
-		energy = 3
-		food = 0.01
-		consumer_goods = 0.25
-		unity = 0.1
-		mult = 30000
-	}
+		add_resource = {
+			sr_dark_matter = 1
+			alloys = 2
+			minerals = 0.5
+			energy = 3
+			food = 0.01
+			consumer_goods = 0.25
+			unity = 0.1
+			mult = 30000
+		}
 	add_tradition = tr_supremacy_adopt
 	add_tradition = tr_supremacy_fleet_logistical_corps
 	add_tradition = tr_supremacy_master_shipwrights
