@@ -23,28 +23,6 @@ system_event = {
 				radius = @f93_nebulae_radiuis
 				effect = {
 					add_modifier = { modifier = f93_shrouded_region_star multiplier = 0.5 }
-					# random_list = {
-					# 	20 = { create_nebula_1 = yes }
-					# 	20 = { create_nebula_2 = yes }
-					# 	20 = { create_nebula_3 = yes }
-					# 	20 = { create_nebula_4 = yes }
-					# 	10 = { create_rare_nebula_1 = yes }
-					# 	10 = { create_rare_nebula_2 = yes }
-					# 	4 = {
-					# 		modifier = {
-					# 			factor = 0
-					# 			has_star_flag = empire_home_system
-					# 		}
-					# 		create_turbulent_nebula_1 = yes
-					# 	}
-					# 	4 = {
-					# 		modifier = {
-					# 			factor = 0
-					# 			has_star_flag = empire_home_system
-					# 		}
-					# 		create_turbulent_nebula_2 = yes
-					# 	}
-					# }
 				}
 			}
 			random_country = {
@@ -81,11 +59,12 @@ system_event = {
 		system_event = { id = f93_shroud.3 days = 1 }
 		system_event = { id = f93_shroud.4 days = 2 } 
 		random_list = {
-			1000 = {}
+			250 = {}
 			100 = { if = { limit = { is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
-			100 = { spawn_megastructure = { type = mega_shipyard_ruined } }
-			100 = { spawn_megastructure = { type = dyson_sphere_ruined } }
-			100 = { spawn_megastructure = { type = think_tank_ruined } }
+			10 = { spawn_megastructure = { type = mega_shipyard_ruined } }
+			10 = { spawn_megastructure = { type = mega_art_installation_ruined } }
+			3 = { spawn_megastructure = { type = dyson_sphere_ruined planet = star } }
+			8 = { spawn_megastructure = { type = think_tank_ruined } }
 			1 = { spawn_megastructure = { type = spy_orb_ruined } }
 		}
 	}

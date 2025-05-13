@@ -179,7 +179,7 @@ country_event = {
 	immediate = {
 		every_system = {
 			limit = {
-				NOT = {
+				NOR = {
 					exists = owner
 					has_star_flag = empire_cluster
 					any_system = {
@@ -190,6 +190,10 @@ country_event = {
 							type = hyperlane
 						}
 					}
+					has_star_flag = chosen_system
+					has_star_flag = crisis_sapwn_exclude
+					has_star_flag = lcluster
+					has_star_flag = surveillance_supercomputer_system
 				}
 			}
 			set_star_flag = f93_shroud_region_flag
@@ -400,6 +404,29 @@ country_event = {
 		event_target:f93_ralis_planet = {
 			solar_system = {
 				f93_place_shroud_gate_node = yes
+			}
+		}
+		every_system = {
+			limit = {
+				any_system_planet = { is_homeworld = yes }
+				NOT = { any_neighbor_system = { has_hyperlane_to = prev } }
+			}
+			random_neighbor_system_euclidean = {
+				f93_place_shroud_gate_node = yes
+
+			}
+		}
+		while = {
+			count = 5
+			random_system = {
+				limit = {
+					has_star_flag = f93_shroud_region_flag
+					NOR = {
+						has_star_flag = f93_ralisgate_cluster
+						has_star_flag = f93_ralisgate
+					}
+				}
+				f93_place_shroud_gate_node_and_cluster_level_2 = yes
 			}
 		}
 	}

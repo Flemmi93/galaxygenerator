@@ -274,3 +274,105 @@ f93_place_shroud_gate_nexus = {
 	}
 	set_star_flag = f93_raliscluster1
 }
+
+f93_place_shroud_gate_node_and_cluster = {
+	spawn_natural_wormhole = {
+		bypass_type = ralisgate
+		random_pos = yes
+		orbit_angle = 360
+	}
+	set_star_flag = f93_ralisgate
+	while = {
+		count = 4
+		random_neighbor_system_euclidean = {
+			limit = {
+				has_star_flag = f93_shroud_region_flag
+				NOR = {
+					has_star_flag = f93_ralisgate_cluster
+					has_star_flag = f93_ralisgate
+					any_neighbor_system = { has_hyperlane_to = prev }
+				}
+			}
+			add_hyperlane = { from = this to = prev }
+			set_star_flag = f93_ralisgate_cluster
+		}
+	}
+}
+f93_place_shroud_gate_node_and_cluster_level_2 = {
+	spawn_natural_wormhole = {
+		bypass_type = ralisgate
+		random_pos = yes
+		orbit_angle = 360
+	}
+	set_star_flag = f93_ralisgate
+	
+	random_list = {
+		50 = {
+			while = {
+				count = 4
+				random_neighbor_system_euclidean = {
+					limit = {
+						has_star_flag = f93_shroud_region_flag
+						NOR = {
+							has_star_flag = f93_ralisgate_cluster
+							has_star_flag = f93_ralisgate
+							any_neighbor_system = { has_hyperlane_to = prev }
+						}
+					}
+					add_hyperlane = { from = this to = prev }
+					set_star_flag = f93_ralisgate_cluster
+				}
+			}
+		}
+		25 = {
+			while = {
+				count = 3
+				random_neighbor_system_euclidean = {
+					limit = {
+						has_star_flag = f93_shroud_region_flag
+						NOR = {
+							has_star_flag = f93_ralisgate_cluster
+							has_star_flag = f93_ralisgate
+							any_neighbor_system = { has_hyperlane_to = prev }
+						}
+					}
+					add_hyperlane = { from = this to = prev }
+					set_star_flag = f93_ralisgate_cluster
+					set_star_flag = f93_ralisgate_cluster@prev
+						random_neighbor_system_euclidean = {
+						limit = {
+							has_star_flag = f93_shroud_region_flag
+							calc_true_if = {
+								amount = 1
+								NOT = { has_star_flag = f93_ralisgate_cluster }
+								has_star_flag = f93_ralisgate_cluster@prevprev
+							}
+							# NOT = { any_neighbor_system = { has_hyperlane_to = prev } }
+						}
+						
+						add_hyperlane = { from = this to = prev }
+						set_star_flag = f93_ralisgate_cluster
+					}
+				}
+			}
+		}
+		25 = {
+			while = {
+				count = 5
+				random_neighbor_system_euclidean = {
+					limit = {
+						has_star_flag = f93_shroud_region_flag
+						NOR = {
+							has_star_flag = f93_ralisgate_cluster
+							has_star_flag = f93_ralisgate
+							any_neighbor_system = { has_hyperlane_to = prev }
+						}
+					}
+					add_hyperlane = { from = this to = prev }
+					set_star_flag = f93_ralisgate_cluster
+				}
+			}
+		}
+	}
+			
+}

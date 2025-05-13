@@ -44,7 +44,13 @@ on_planet_conquer = {
 # From = system
 # FromFrom = country (previous owner)
 # This = country (new owner)
-on_system_gained = {
+# on_system_gained = {
+
+
+# Called when a Starbase changes owner
+# THIS = Ship (Starbase)
+# FROM = Former Owner (Country)
+on_starbase_transfer = {
 	events = {
 		f93_ralis_crisis_event.0604
 	}

@@ -481,20 +481,24 @@ country_event = {
 # FromFrom = country (previous owner)
 # This = country (new owner)
 #tracking what system was conquered from who by ralis
-country_event = {
+
+# Called when a Starbase changes owner
+# THIS = Ship (Starbase)
+# FROM = Former Owner (Country)
+ship_event = {
 	id = f93_ralis_crisis_event.0604
 	hide_window = yes
 	is_triggered_only = yes
 	
 	trigger = {
-		is_same_value = event_target:f93_ralis_country
+		owner = { is_same_value = event_target:f93_ralis_country }
 	}
 
 	immediate = {
-		from = {
-			set_star_flag = f93_ralis_took_it_from@fromfrom
+		solar_system = {
+			set_star_flag = f93_ralis_took_it_from@FROM
 			set_star_flag = f93_ralis_took_it_from_someome
-			add_claims = { who = fromfrom num_of_claims = 10 show_notification = no }
+			add_claims = { who = FROM num_of_claims = 25 show_notification = no }
 		}
 	}
 }
