@@ -79,7 +79,12 @@ system_event = {
 		NOT = { has_star_flag = f93_shroud_core_core_flag }
 		count_neighbor_system_euclidean = {
 			count = all
-			limit = { OR = { has_star_flag = f93_shroud_core_core_flag has_star_flag = f93_shroud_core_flag } }
+			limit = {
+				OR = {
+					has_star_flag = f93_shroud_core_core_flag
+					has_star_flag = f93_shroud_core_flag
+				}
+			}
 		}
 	}
 
@@ -87,27 +92,25 @@ system_event = {
 		# set_name = "core core"
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
-		if = {
-			limit = { distance_to_core_percent >= 0.8 }
-			system_event = { id = f93_shroud.4 } 
-		}
-		else_if = {
-			limit = { distance_to_core_percent >= 0.6 }
-			system_event = { id = f93_shroud.4 days = 1 } 
-		}
-		else = {
-			system_event = { id = f93_shroud.4 days = 2 } 
-		}
+		system_event = { id = f93_shroud.4 }
+		system_event = { id = f93_shroud.402 days = 1 }
 	}
 
 }
 
-system_event = {
+system_event = { #creating ralis cluster
 	id = f93_shroud.4
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
-
+	trigger = {
+		NOR = {
+			any_neighbor_system_euclidean = {
+				any_neighbor_system = { has_hyperlane_to = prev }
+			}
+			is_rim_system = yes
+		}
+	}
 	immediate = {
 		# set_name = changed
 		if = {
@@ -153,10 +156,68 @@ system_event = {
 			change_pc = pc_city
 			set_name = "Ralis"
 			set_planet_size = 28
-			planet_event = { id = f93_shroud.6 days = 10}
+			planet_event = { id = f93_shroud.6 days = 2 }
 		}
 	}
 }
+system_event = { #creating ralis cluster backup
+	id = f93_shroud.402
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { exists = event_target:f93_ralis_system }
+	}
+	immediate = {
+		# set_name = changed
+		if = {
+			limit = { num_planets_in_system = 0 }
+			spawn_planet = {
+				name = "Ralis"
+				class = pc_city
+				orbit_location = yes
+				orbit_distance_offset = 32
+				orbit_angle_offset = 291
+				size = 28
+			}
+		}
+		every_system_megastructure = {
+			remove_megastructure = this
+		}
+		every_fleet_in_system = {
+			destroy_fleet = this
+		}
+		spawn_megastructure = {
+			type = crisis_sphere_ruined
+			planet = star
+		}
+		while = {
+			count = 3
+			random_neighbor_system_euclidean = {
+				limit = { NOT = { has_star_flag = star_cracked } }
+				destroy_star_system = yes	
+				every_system_megastructure = {
+					remove_megastructure = this
+				}
+			}
+		}
+		random_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					is_planet_class = pc_gas_giant
+					is_planet_class = pc_asteroid
+					is_planet_class = pc_ice_asteroid
+				}
+			}
+			change_pc = pc_city
+			set_name = "Ralis"
+			set_planet_size = 28
+			planet_event = { id = f93_shroud.6 days = 2 }
+		}
+	}
+}
+
 country_event = {
 	id = f93_shroud.5
 	hide_window = yes
@@ -164,9 +225,10 @@ country_event = {
 	fire_only_once = yes
 
 	immediate = {
-		set_name = changed2
+		# set_name = changed2
 		random_system = {
 			limit = { has_megastructure = dandelion_sphere_ruined }
+			save_global_event_target_as = f93_ralis_system
 			while = {
 				count = 3
 				random_neighbor_system_euclidean = {
@@ -175,6 +237,13 @@ country_event = {
 					every_system_megastructure = {
 						remove_megastructure = this
 					}
+					every_neighbor_system = {
+						remove_hyperlane = { from = this to = prev }
+						add_hyperlane = { from = this to = event_target:f93_ralis_system }
+					}
+					set_star_flag = crisis_sapwn_exclude
+					set_star_flag = f93_shroud_core_core_flag
+					set_star_flag = f93_shroud_region_flag
 				}
 			}
 		}
@@ -227,6 +296,10 @@ planet_event = {
 					1 = { add_deposit = random add_deposit = random }
 				}
 			}
+		}
+		event_target:f93_ralis_planet = {
+			set_name = "Ralis"
+			solar_system = { set_name = "Sactuary of Ralis" }
 		}
 	}
 }

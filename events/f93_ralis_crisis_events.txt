@@ -161,7 +161,7 @@ country_event = {
 			limit = {
 				NOR = {
 					has_star_flag = f93_ralis_crisis_event0101_already_flag
-					any_system_planet = { f93_should_not_be_destroyed = yes }
+					f93_should_not_be_destroyed = yes
 					any_system_planet = { is_colonizable = yes }
 				}
 				any_neighbor_system = { has_megastructure = dandelion_relay }
@@ -190,7 +190,7 @@ country_event = {
 			limit = {
 				NOR = {
 					has_star_flag = f93_ralis_crisis_event0101_already_flag
-					any_system_planet = { f93_should_not_be_destroyed = yes }
+					f93_should_not_be_destroyed = yes
 					star = { is_star_class = sc_no_star }
 				}
 				any_system_planet = { is_colonizable = yes }

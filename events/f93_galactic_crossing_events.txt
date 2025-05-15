@@ -1,7 +1,7 @@
-namespace = f93_galaxy
+namespace = f93_galactic_crossing
 
 system_event = {
-	id = f93_galaxy.1
+	id = f93_galactic_crossing.1
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -22,12 +22,12 @@ system_event = {
 }
 
 country_event = {
-	id = f93_galaxy.2
+	id = f93_galactic_crossing.2
 	mean_time_to_happen = { days = 1 }
 	fire_only_once = yes
 	hide_window = yes
-	# title = f93_galaxy.2.name
-	# desc = f93_galaxy.2.desc
+	# title = f93_galactic_crossing.2.name
+	# desc = f93_galactic_crossing.2.desc
 	# picture = GFX_evt_alien_hieroglyphics
 
 	trigger = {
@@ -35,7 +35,7 @@ country_event = {
 	}
 	immediate = {
 		every_country = {
-			country_event = { id = f93_galaxy.8 days = 5 }
+			country_event = { id = f93_galactic_crossing.8 days = 5 }
 		}
 		hidden_effect = {
 			if = {
@@ -124,15 +124,15 @@ country_event = {
 			}
 			clear_global_event_target = system_highway_start
 		}
-		country_event = { id = f93_galaxy.6 }
-		country_event = { id = f93_galaxy.7 days = 1 }
+		country_event = { id = f93_galactic_crossing.6 }
+		country_event = { id = f93_galactic_crossing.7 days = 1 }
 	}
 }
 
-#f93_galaxy.3 is in an addon
+#f93_galactic_crossing.3 is in an addon
 
 country_event = {
-	id = f93_galaxy.4
+	id = f93_galactic_crossing.4
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -159,7 +159,7 @@ country_event = {
 	}
 }
 country_event = {
-	id = f93_galaxy.5
+	id = f93_galactic_crossing.5
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -172,7 +172,7 @@ country_event = {
 }
 
 country_event = {
-	id = f93_galaxy.6
+	id = f93_galactic_crossing.6
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -206,10 +206,10 @@ country_event = {
 	}
 }
 country_event = {
-	id = f93_galaxy.7
+	id = f93_galactic_crossing.7
 	hide_window = yes
 	is_triggered_only = yes
-
+	fire_only_once = yes
 	immediate = {
 		every_system = {
 			limit = {
@@ -268,18 +268,7 @@ country_event = {
 					}
 				}
 				owner = {
-					add_research_option = tech_wormhole_stabilization
-					add_tech_progress = {
-						tech = tech_wormhole_stabilization
-						progress = 0.5
-					}
-					if = {
-						limit = { is_ai = no }
-						add_tech_progress = {
-							tech = tech_wormhole_stabilization
-							progress = 0.3
-						}
-					}
+					country_event = { id = f93_galactic_crossing.11 }
 				}
 			}
 		}
@@ -287,39 +276,39 @@ country_event = {
 }
 
 country_event = {
-	id = f93_galaxy.8
-	title = f93_galaxy.8.name
+	id = f93_galactic_crossing.8
+	title = f93_galactic_crossing.8.name
 	picture = GFX_evt_alien_hieroglyphics
 	is_triggered_only = yes
 	desc = {
 		trigger = {
 			owner = { is_shrouded_player = no }
 		}
-		text = f93_galaxy.8.green
+		text = f93_galactic_crossing.8.green
 	}
 	desc = {
 		trigger = {
 			owner = { capital_scope.solar_system = { any_neighbor_system_euclidean = { has_modifier = f93_shrouded_region_star } } }
 		}
-		text = f93_galaxy.8.yellow
+		text = f93_galactic_crossing.8.yellow
 	}
 	desc = {
 		trigger = {
 			owner = { is_shrouded_player = yes }
 		}
-		text = f93_galaxy.8.red
+		text = f93_galactic_crossing.8.red
 	}
 	trigger = {
 		is_ai = no
 	}
-
+	
 	option = {
-		name = f93_galaxy.8.a
+		name = f93_galactic_crossing.8.a
 	}
 }
 
 country_event = {
-	id = f93_galaxy.9
+	id = f93_galactic_crossing.9
 	hide_window = yes
 	is_triggered_only = yes
 
@@ -381,7 +370,7 @@ country_event = {
 }
 
 country_event = {
-	id = f93_galaxy.10
+	id = f93_galactic_crossing.10
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -427,6 +416,91 @@ country_event = {
 					}
 				}
 				f93_place_shroud_gate_node_and_cluster_level_2 = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = f93_galactic_crossing.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		add_research_option = tech_wormhole_stabilization
+		add_tech_progress = {
+			tech = tech_wormhole_stabilization
+			progress = 0.5
+		}
+		if = { #create a small event chain to obtain this tech early on.
+			limit = { is_ai = no }
+			add_tech_progress = {
+				tech = tech_wormhole_stabilization
+				progress = 0.3
+			}
+		}
+		if = {
+			limit = { has_origin = origin_void_dwellers }
+			closest_system = {
+				min_steps = 1
+				random_system_planet = {
+					save_event_target_as = target_planet
+				}
+				if = {
+					limit = {
+						event_target:target_planet = {
+							is_star = yes
+						}
+					}
+					spawn_habitat_effect = {
+						DISTANCE = 19.798
+					}
+				}
+				else = {
+					spawn_habitat_effect = {
+						DISTANCE = 9.899
+					}
+				}
+				event_target:target_planet.solar_system = {
+					set_star_flag = has_habitat
+				}
+			}
+		}
+		else_if = {
+			limit = { closest_system = { min_steps = 2 exists = this } }
+			closest_system = {
+				limit = {
+					NOR = {
+						has_star_flag = neighbor_t1
+						has_star_flag = neighbor_t2
+						has_star_flag = neighbor_t1_first_colony
+						has_star_flag = neighbor_t2_second_colony
+					}
+					any_system_planet = { is_planet_class = pc_barren }
+				}
+				min_steps = 2
+				random_system_planet = {
+					limit = { is_planet_class = pc_barren }
+					change_pc = root.owner_species
+					reroll_deposits = yes
+				}
+			}
+		}
+		else = {
+			closest_system = {
+				limit = {
+					NOR = {
+						has_star_flag = neighbor_t1_first_colony
+						has_star_flag = neighbor_t2_second_colony
+					}
+					any_system_planet = { is_planet_class = pc_barren }
+				}
+				min_steps = 1
+				random_system_planet = {
+					limit = { is_planet_class = pc_barren }
+					change_pc = root.owner_species
+					reroll_deposits = yes
+				}
 			}
 		}
 	}

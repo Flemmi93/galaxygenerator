@@ -1,13 +1,13 @@
 ﻿l_english:
 #Events
- f93_galaxy.2.name: "Real of Hoax?"
- f93_galaxy.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proofs difficult.\nWithout solid data the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of a first report the artifact was transferd into a private collection. Who orchestrated this is unknown. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notable none of the creatures could be identified as §Y[Root.GetSpeciesName]§!§!"
+ f93_galactic_crossing.2.name: "Real of Hoax?"
+ f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proofs difficult.\nWithout solid data the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of a first report the artifact was transferd into a private collection. Who orchestrated this is unknown. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notable none of the creatures could be identified as §Y[Root.GetSpeciesName]§!§!"
 
- f93_galaxy.8.name: "Game Start Quality"
- f93_galaxy.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!"
- f93_galaxy.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!"
- f93_galaxy.8.red: "We have run the numbers and your game start seems\n\n§RIsolated§!.\n\nHave fun!"
- f93_galaxy.8.a: "...All statements without guarantee."
+ f93_galactic_crossing.8.name: "Game Start Quality"
+ f93_galactic_crossing.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!"
+ f93_galactic_crossing.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!"
+ f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§RIsolated§!.\n\nHave fun!"
+ f93_galactic_crossing.8.a: "...All statements without guarantee."
 #Dandelion Megastructures
  dandelion_relay: "Ancient Relay"
  dandelion_relay_plural:0 "Ancient Relays"
@@ -53,7 +53,7 @@
  RALISGATE_GALACTIC: "$ralisgate_gate_desc$"
  RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"
  ralisgate_gate: "Shrouded Hyperlane"
- ralisgate_gate_desc: "A Gateway like many others encountered in this galaxy, but this §Yseperated cluster§! of gates connects Systems in the §MShrouded Regions§!, new connections are discovered by enterprising Entities."
+ ralisgate_gate_desc: "A stable breach point to the parallel hyperlane network inside the galaxy."
  BYPASS_RALISGATE: ""
  BYPASS_DESC_INACTIVE_RALISGATE: ""
 

@@ -62,13 +62,28 @@ f93_is_close_to_highway = {
 
 f93_should_not_be_destroyed = {
 	OR = {
-		is_ringworld = yes
-		has_modifier = holy_planet
-		if = {
-			limit = { exists = owner }
-			solar_system.starbase.owner = { is_same_value = event_target:f93_ralis_country }
+		any_system_planet = {
+			OR = {
+				is_ringworld = yes
+				has_modifier = holy_planet
+				if = {
+					limit = { exists = owner }
+					solar_system.starbase.owner = { is_same_value = event_target:f93_ralis_country }
+				}
+				#If you only have a planet that should be protected add it here and the entire system will be safe from me.
+			}
 		}
-		solar_system = { has_star_flag = f93_empty_system_on_galcrossing }
-		solar_system = { has_star_flag = crisis_sapwn_exclude }
+		has_star_flag = f93_empty_system_on_galcrossing 
+		has_star_flag = crisis_sapwn_exclude 
+		has_star_flag = wenkwort_system
+		#Exlcluding a bunch of mods, feel free to add your own or request me to add it.
+		has_star_flag = jupitwo_system
+		has_star_flag = pouchkinn_system
+		has_star_flag = eaw_system
+		has_star_flag = giga_system_four
+		has_star_flag = giga_system_three
+		has_star_flag = giga_system_two
+		has_star_flag = giga_system_one	
+		
 	}
 }
