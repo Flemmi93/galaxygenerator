@@ -68,23 +68,7 @@ create_ralis_country = { #target a valid planet with this
 			save_global_event_target_as = f93_ralis_planet
 		}
 	}
-	remove_building = building_colony_shelter
-	add_building = building_major_capital
-	add_building = building_archaeo_refinery
-	add_building = building_nourishment_complex
-	add_building = building_nourishment_complex
-	add_building = building_nourishment_complex
-	add_deposit = d_arcane_generator
-
-	while = {
-		count = 3
-		add_district = district_arcology_housing
-		add_district = district_arcology_arms_industry
-		add_district = district_arcology_civilian_industry
-		add_district = district_arcology_leisure
-		add_district = district_arcology_administrative
-	}
-
+	
 	add_modifier = {
 		modifier = ruler_savior
 		multiplier = 100
@@ -121,6 +105,48 @@ create_ralis_country = { #target a valid planet with this
 	}
 }
 
+create_ralis_planet = {
+	owner = { set_country_type = fallen_empire }
+	remove_all_buildings = yes
+	add_building = building_ancient_palace
+	add_building = building_fe_stronghold
+	add_building = building_affluence_center
+	add_building = building_affluence_center
+	add_building = building_nourishment_center
+	add_building = building_class_4_singularity
+	add_building = building_dimensional_fabricator
+	add_building = building_fe_mine_2
+	add_building = building_nano_forge
+	add_building = building_nano_forge
+	add_building = building_fe_dome
+	add_building = building_fe_administration_hive_2
+
+	remove_all_districts = yes
+	if = {
+		limit = {
+			is_planet_class = pc_city
+		}
+		while = {
+			limit = {
+				free_district_slots > 10
+			}
+			random_list = {
+				3 = { add_district = district_arcology_housing }
+				1 = { add_district = district_arcology_arms_industry }
+				1 = { add_district = district_arcology_civilian_industry }
+				1 = { add_district = district_arcology_leisure }
+				1 = { add_district = district_arcology_administrative }
+			}
+		}
+	}
+	while = {
+		count = 65
+		create_pop_group = {
+			species = root.ower.species
+		}
+	}
+	owner = { set_country_type = default }
+}
 
 create_capital_to_acient_relay_lane = {
 	if = {

@@ -92,7 +92,7 @@ system_event = {
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
 		system_event = { id = f93_shroud.4 }
-		system_event = { id = f93_shroud.402 days = 1 }
+		system_event = { id = f93_shroud.5 days = 1 }
 	}
 
 }
@@ -148,6 +148,7 @@ system_event = { #creating ralis cluster
 				every_system_megastructure = {
 					remove_megastructure = this
 				}
+				set_star_flag = f93_ralis_empire_cluster
 			}
 		}
 		random_system_planet = {
@@ -167,7 +168,7 @@ system_event = { #creating ralis cluster
 	}
 }
 system_event = { #creating ralis cluster backup
-	id = f93_shroud.402
+	id = f93_shroud.5
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -205,6 +206,7 @@ system_event = { #creating ralis cluster backup
 				every_system_megastructure = {
 					remove_megastructure = this
 				}
+				set_star_flag = f93_ralis_empire_cluster
 			}
 		}
 		random_system_planet = {
@@ -224,36 +226,6 @@ system_event = { #creating ralis cluster backup
 	}
 }
 
-country_event = {
-	id = f93_shroud.5
-	hide_window = yes
-	is_triggered_only = yes
-	fire_only_once = yes
-
-	immediate = {
-		# set_name = changed2
-		random_system = {
-			limit = { has_megastructure = dandelion_sphere_ruined }
-			save_global_event_target_as = f93_ralis_system
-			while = {
-				count = 3
-				random_neighbor_system_euclidean = {
-					limit = { NOT = { has_star_flag = star_cracked } }
-					destroy_star_system = yes
-					every_system_megastructure = {
-						remove_megastructure = this
-					}
-					every_neighbor_system = {
-						remove_hyperlane = { from = this to = prev }
-						add_hyperlane = { from = this to = event_target:f93_ralis_system }
-					}
-					set_star_flag = f93_shroud_core_core_flag
-					set_star_flag = f93_shroud_region_flag
-				}
-			}
-		}
-	}
-}
 planet_event = {
 	id = f93_shroud.6
 	hide_window = yes
@@ -262,24 +234,31 @@ planet_event = {
 
 	immediate = {
 		create_ralis_country = yes
+		create_ralis_planet = yes
 		solar_system = {
 			set_star_class = sc_black_hole
 			star = {
 				set_planet_size = 5
 			}
 			every_system = {
-				limit = { has_star_flag = star_cracked has_star_flag = f93_shroud_region_flag }
+				limit = { has_star_flag = f93_ralis_empire_cluster }
+				every_neighbor_system = {
+					remove_hyperlane = { from = this to = prev }
+				}
+			}
+			every_neighbor_system_euclidean = {
+				limit = { has_star_flag = f93_ralis_empire_cluster }
 				add_hyperlane = { from = this to = prev }
 				every_system_planet = {
 					random_list = {
 						5 = { add_deposit = random }
-						5 = { }
+						3 = { }
 						1 = { add_deposit = random add_deposit = random }
 					}
 				}
 			}
 			random_system = {
-				limit = { has_star_flag = star_cracked has_star_flag = f93_shroud_region_flag }
+				limit = { has_star_flag = f93_ralis_empire_cluster }
 				spawn_megastructure = {
 					type = matter_decompressor_1
 					owner = last_created_country
@@ -301,11 +280,9 @@ planet_event = {
 					1 = { add_deposit = random add_deposit = random }
 				}
 			}
+			set_name = "Sactuary of Ralis"
 		}
-		event_target:f93_ralis_planet = {
-			set_name = "Ralis"
-			solar_system = { set_name = "Sactuary of Ralis" }
-		}
+		set_name = "Ralis"
 		every_system = {
 			limit = { has_star_flag = f93_shroud_region_flag }
 			set_star_flag = crisis_sapwn_exclude

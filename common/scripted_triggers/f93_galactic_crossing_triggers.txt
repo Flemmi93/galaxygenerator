@@ -88,3 +88,45 @@ f93_should_not_be_destroyed = {
 		
 	}
 }
+
+f93_valid_gal_crossing_endpoint = {
+	if = {
+		limit = {
+			any_system = {
+				exists = owner
+				owner = { is_country_type = fallen_empire }
+				is_capital_system = yes
+				NOT = { has_megastructure = dandelion_relay }
+			}
+		}
+		AND = {
+			exists = owner
+			owner = { is_country_type = fallen_empire }
+			is_capital_system = yes
+		}
+	}
+	else = {
+		OR = {
+			any_system_planet = {
+				is_ringworld = yes
+				if = {
+					limit = { exists = owner }
+					owner = { NOT = { is_country_type = fallen_empire } }
+				}
+			}
+			any_system_planet = {
+				NOT = { exists = owner }
+				is_planet_class = pc_city
+			}
+			any_system_planet = {
+				NOT = { exists = owner }
+				has_planet_flag = nuked_earth
+			}
+			# feel free to use this to make your own systems valid starting points
+			# this means: the mod will spawn an "ancient relay" in the system and try to connect it
+			# to the existing network.
+			has_star_flag = f93_valid_gal_crossing_endpoint_flag 
+			
+		}
+	}
+}

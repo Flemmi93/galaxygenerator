@@ -53,7 +53,7 @@
  RALISGATE_GALACTIC: "$ralisgate_gate_desc$"
  RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"
  ralisgate_gate: "Shrouded Hyperlane"
- ralisgate_gate_desc: "A stable breach point to the parallel hyperlane network inside the galaxy."
+ ralisgate_gate_desc: "A stable breach point to another hyperlane network inside the galaxy."
  BYPASS_RALISGATE: ""
  BYPASS_DESC_INACTIVE_RALISGATE: ""
 

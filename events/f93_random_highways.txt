@@ -68,7 +68,8 @@ country_event = {
 	immediate = {
 		if = {
 			limit = {
-				OR = { galaxy_size = huge galaxy_size = dandelion }
+				# OR = { galaxy_size = huge galaxy_size = dandelion }
+					galaxy_size = huge
 			}
 			random_system = {
 				limit = {

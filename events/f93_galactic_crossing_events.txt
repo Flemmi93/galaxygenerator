@@ -26,13 +26,6 @@ country_event = {
 	mean_time_to_happen = { days = 1 }
 	fire_only_once = yes
 	hide_window = yes
-	# title = f93_galactic_crossing.2.name
-	# desc = f93_galactic_crossing.2.desc
-	# picture = GFX_evt_alien_hieroglyphics
-
-	trigger = {
-		is_ai = no
-	}
 	immediate = {
 		every_country = {
 			country_event = { id = f93_galactic_crossing.8 days = 5 }
@@ -46,30 +39,29 @@ country_event = {
 				}
 				random_system = {
 					limit = {
-							exists = owner
-							owner = { is_country_type = fallen_empire }
-							is_capital_system = yes
-						}
+						f93_valid_gal_crossing_endpoint = yes
+					}
 					highway_connect_relay_only = yes
 					save_global_event_target_as = system_highway_start
 				}
 			}
-			
+			set_variable = { which = f93_gal_size value = 4 }
+			if = { limit = { galaxy_size = tiny } set_variable = { which = f93_gal_size value = 3 } }
+			if = { limit = { galaxy_size = small } set_variable = { which = f93_gal_size value = 3 } }
+			if = { limit = { galaxy_size = medium } set_variable = { which = f93_gal_size value = 4 } }
+			if = { limit = { galaxy_size = large } set_variable = { which = f93_gal_size value = 5 } }
+			if = { limit = { galaxy_size = huge } set_variable = { which = f93_gal_size value = 6 } }
 			while = {
-				count = 10
+				count = f93_gal_size
 				limit = {
 					any_system = {
-						exists = owner
-						owner = { is_country_type = fallen_empire }
-						is_capital_system = yes
+						f93_valid_gal_crossing_endpoint = yes
 						NOT = { has_megastructure = dandelion_relay }
 					}
 				}
 				random_system = {
 					limit = {
-						exists = owner
-						owner = { is_country_type = fallen_empire }
-						is_capital_system = yes
+						f93_valid_gal_crossing_endpoint = yes
 						NOT = { has_megastructure = dandelion_relay }
 					}
 					save_global_event_target_as = system_highway_end
@@ -194,6 +186,7 @@ country_event = {
 					has_star_flag = crisis_sapwn_exclude
 					has_star_flag = lcluster
 					has_star_flag = surveillance_supercomputer_system
+					has_star_flag = unplugged_machine_legacy_flag
 				}
 			}
 			set_star_flag = f93_shroud_region_flag
@@ -503,5 +496,56 @@ country_event = {
 				}
 			}
 		}
+	}
+}
+
+country_event = {
+	id = f93_galactic_crossing.12
+	title = f93_galactic_crossing.12.name
+	desc = f93_galactic_crossing.12.name
+	mean_time_to_happen = { days = 30 }
+
+	trigger = {
+		any_system = {
+			limit = { has_megastructure = dandelion_relay }
+			is_system_connected_to_relay_network = yes
+		}
+		NOT = { has_country_flag = f93_is_connected_to_gal_crossing }
+	}
+
+	immediate = {
+		set_country_flag = f93_is_connected_to_gal_crossing
+	}
+
+	option = {
+		name = f93_galactic_crossing.12.a
+		add_modifier = {
+			modifier = f93_country_is_connected
+		}
+	}
+}
+country_event = {
+	id = f93_galactic_crossing.13
+	title = f93_galactic_crossing.13.name
+	desc = f93_galactic_crossing.13.name
+	mean_time_to_happen = { days = 30 }
+
+	trigger = {
+		NOT = {
+			any_system = {
+				limit = { has_megastructure = dandelion_relay }
+				is_system_connected_to_relay_network = yes
+			}
+		}
+		has_country_flag = f93_is_connected_to_gal_crossing
+	}
+
+	immediate = {
+		remove_country_flag = f93_is_connected_to_gal_crossing
+	}
+
+	option = {
+		name = f93_galactic_crossing.13.a
+		remove_modifier = f93_country_is_connected
 	}
 }
