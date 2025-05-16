@@ -181,7 +181,7 @@ country_event = {
 			limit = {
 				NOR = {
 					exists = owner
-					has_star_flag = empire_cluster
+					any_neighbor_system = { has_star_flag = empire_cluster }
 					any_system = {
 						has_megastructure = dandelion_relay
 						distance = {

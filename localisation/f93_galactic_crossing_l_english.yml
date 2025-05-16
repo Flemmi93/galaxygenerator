@@ -61,8 +61,10 @@
 # Ralis Crisis Event Texts #
 ############################
  f93_shroud.7.name: "The Galactic Crossing"
- f93_shroud.7.desc: "The Galactic Crossing is the academic name for a region in space where an anscient civilisation has constructed a mighty trade empire. Only the Hyper Relays left behind by them tell of their story... or so we tought, A feeling of unese spreads across the galaxy"
+ f93_shroud.7.desc: "The Galactic Crossing is the academic name for a region in space where an ancient civilisation has constructed a mighty trade empire. Only the Hyper Relays left behind by them tell of their story... or so we tought, A feeling of unease spreads across the galaxy"
+ f93_shroud.8.desc: ""
  f93_shroud.7.a: "What horror has befallen us?"
+ f93_shroud.7.b: "Let the galaxy burn!"
  ralis_NAME: "§Y[f93_ralis_planet.GetName]§!"
   #resolution
  ralis_focus: "Ralis War Plans"

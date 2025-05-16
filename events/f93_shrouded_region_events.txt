@@ -15,7 +15,6 @@ system_event = {
 	}
 
 	immediate = {
-		set_star_flag = crisis_sapwn_exclude
 		if = {
 			limit = { is_inside_nebula = no }
 			create_nebula = {
@@ -137,7 +136,14 @@ system_event = { #creating ralis cluster
 		while = {
 			count = 3
 			random_neighbor_system_euclidean = {
-				limit = { NOT = { has_star_flag = star_cracked } }
+				limit = {
+					f93_should_not_be_destroyed = yes
+					distance = {
+						source = root
+						max_distance <= 120
+						type = euclidean
+					}
+				}
 				destroy_star_system = yes	
 				every_system_megastructure = {
 					remove_megastructure = this
@@ -241,7 +247,6 @@ country_event = {
 						remove_hyperlane = { from = this to = prev }
 						add_hyperlane = { from = this to = event_target:f93_ralis_system }
 					}
-					set_star_flag = crisis_sapwn_exclude
 					set_star_flag = f93_shroud_core_core_flag
 					set_star_flag = f93_shroud_region_flag
 				}
@@ -292,7 +297,7 @@ planet_event = {
 				change_pc = pc_shrouded
 				random_list = {
 					5 = { add_deposit = random }
-					5 = { }
+					3 = { }
 					1 = { add_deposit = random add_deposit = random }
 				}
 			}
@@ -301,29 +306,57 @@ planet_event = {
 			set_name = "Ralis"
 			solar_system = { set_name = "Sactuary of Ralis" }
 		}
+		every_system = {
+			limit = { has_star_flag = f93_shroud_region_flag }
+			set_star_flag = crisis_sapwn_exclude
+		}
 	}
 }
 country_event = { #midgame trigger
 	id = f93_shroud.7
 	title = f93_shroud.7.name
-	desc = f93_shroud.7.desc
 	picture = GFX_evt_fallen_empire
 
 	is_triggered_only = yes
-	fire_only_once = yes
-	trigger = {
-		is_ai = no
+	
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = ralis_country_flag }
+		}
+		text = f93_shroud.7.desc
 	}
-	option = {
-		name = f93_shroud.7.a
-		hidden_effect = {
-			event_target:f93_ralis_country = {
-				country_event = { id = f93_shroud.8 }
+	
+	desc = {
+		trigger = {
+			has_country_flag = ralis_country_flag
+		}
+		text = f93_shroud.8.desc
+	}
+	
+	immediate = {
+		if = {
+			limit = { event_target:f93_ralis_country = { is_ai = yes } }
+			event_target:f93_ralis_planet = {
+				set_name = "Ralis"
+				solar_system = { set_name = "Sactuary of Ralis" }
 			}
 		}
-		
+	}
+
+	option = {
+		trigger = { NOT = { has_country_flag = ralis_country_flag } }
+		name = f93_shroud.7.a
+	}
+
+	option = {
+		trigger = { has_country_flag = ralis_country_flag }
+		name = f93_shroud.7.b
+		hidden_effect = {
+			country_event = { id = f93_shroud.8 }
+		}
 	}
 }
+
 country_event = {
 	id = f93_shroud.8
 	hide_window = yes
