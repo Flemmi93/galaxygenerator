@@ -111,6 +111,7 @@ system_event = { #creating ralis cluster
 	}
 	immediate = {
 		save_global_event_target_as = f93_ralis_system
+		set_star_flag = f93_ralis_empire_cluster
 		# set_name = changed
 		if = {
 			limit = { num_planets_in_system = 0 }

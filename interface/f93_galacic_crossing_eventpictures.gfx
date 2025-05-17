@@ -1,0 +1,64 @@
+spriteTypes = {
+
+
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_deal"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_deal.dds" #custom 1
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_refugees"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_refugees.dds" #custom 2
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_city_world"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_city_world.dds" #custom 3
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_city_world_2"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_city_world_2.dds" #custom 4
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_senate"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_senate.dds" #custom 5
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_cat_walk"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_cat_walk.dds" #custom 6
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_party"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_party.dds" #custom 7
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_public_announcment"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_public_announcment.dds" #custom 8
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_storm_world"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_storm_world.dds" #custom 9
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_galactic_crossing_dark_eyes"
+		texturefile = "gfx/event_pictures/f93_galactic_crossing_dark_eyes.dds" #custom 10
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+}
