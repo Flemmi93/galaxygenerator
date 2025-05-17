@@ -283,7 +283,7 @@ planet_event = {
 					1 = { add_deposit = random add_deposit = random }
 				}
 			}
-			set_name = "Sactuary of Ralis"
+			set_name = "Sanctuary of Ralis"
 		}
 		set_name = "Ralis"
 		every_system = {
@@ -318,7 +318,7 @@ country_event = { #midgame trigger
 			limit = { event_target:f93_ralis_country = { is_ai = yes } }
 			event_target:f93_ralis_planet = {
 				set_name = "Ralis"
-				solar_system = { set_name = "Sactuary of Ralis" }
+				solar_system = { set_name = "Sanctuary of Ralis" }
 			}
 		}
 	}

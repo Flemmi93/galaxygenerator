@@ -43,6 +43,7 @@ country_event = {
 					}
 					highway_connect_relay_only = yes
 					save_global_event_target_as = system_highway_start
+					set_star_flag = enigmatic_cache_system # dirty trick to stpo cach form ctd when spawning in shroud region
 				}
 			}
 			set_variable = { which = f93_gal_size value = 4 }
@@ -383,7 +384,7 @@ country_event = {
 			}
 			event_target:f93_ralis_planet = {
 				set_name = "Ralis"
-				solar_system = { set_name = "Sactuary of Ralis" }
+				solar_system = { set_name = "Sanctuary of Ralis" }
 			}
 		}
 		every_country = {
@@ -411,35 +412,6 @@ country_event = {
 	fire_only_once = yes
 
 	immediate = {
-		set_global_flag = f93_shroud_gate_active
-		random_system = {
-			limit = {
-				is_star_class = sc_no_star
-			}
-			f93_place_shroud_gate_nexus = yes
-		}
-		random_system = {
-			limit = {
-				is_star_class = sc_no_star
-				not = { has_star_flag = f93_raliscluster1 }
-			}
-			f93_place_shroud_gate_nexus = yes
-		}
-		event_target:f93_ralis_planet = {
-			solar_system = {
-				f93_place_shroud_gate_node = yes
-			}
-		}
-		every_system = {
-			limit = {
-				any_system_planet = { is_homeworld = yes }
-				NOT = { any_neighbor_system = { has_hyperlane_to = prev } }
-			}
-			random_neighbor_system_euclidean = {
-				f93_place_shroud_gate_node = yes
-
-			}
-		}
 		while = {
 			count = 5
 			random_system = {
@@ -450,7 +422,7 @@ country_event = {
 						has_star_flag = f93_ralisgate
 					}
 				}
-				f93_place_shroud_gate_node_and_cluster_level_2 = yes
+				f93_place_shroud_gate_node_and_cluster = yes
 			}
 		}
 	}
@@ -542,10 +514,15 @@ country_event = {
 	id = f93_galactic_crossing.12
 	title = f93_galactic_crossing.12.name
 	desc = f93_galactic_crossing.12.name
+	picture = GFX_evt_star_chart
+
 	mean_time_to_happen = { days = 30 }
 
 	trigger = {
-		any_neighbor_country = { is_capitals_connected_through_relay_network = root }
+		OR = {
+			any_neighbor_country = { is_capitals_connected_through_relay_network = root }
+			has_megastructure = dandelion_relay
+		}
 		NOT = { has_country_flag = f93_is_connected_to_gal_crossing }
 	}
 
@@ -564,11 +541,16 @@ country_event = {
 	id = f93_galactic_crossing.13
 	title = f93_galactic_crossing.13.name
 	desc = f93_galactic_crossing.13.name
+	picture = GFX_evt_star_chart
 	mean_time_to_happen = { days = 30 }
 
 	trigger = {
-		NOT = { any_neighbor_country = { is_capitals_connected_through_relay_network = root }}
+		NOR = {
+			any_neighbor_country = { is_capitals_connected_through_relay_network = root }
+			has_megastructure = dandelion_relay
+		}
 		has_country_flag = f93_is_connected_to_gal_crossing
+
 	}
 
 	immediate = {

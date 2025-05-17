@@ -4,10 +4,16 @@ f93_shrouded_region_star = {
 	ship_disengage_chance_reduction = 0.5
 	ships_upkeep_mult = -0.8
 }
+f93_shrouded_region_star2 = {
+	ship_speed_reduction = 0.5
+	ship_shield_reduction = 0.5
+	ship_disengage_chance_reduction = 0.5
+	ships_upkeep_mult = -0.8
+	
+}
 f93_ralis_true_liberator = {
 	diplo_weight_mult = 0.2
 }
-
 f93_ralis_country_buff = {
 	planet_crime_add = -1000
 	pop_demotion_time_mult = -1
@@ -38,4 +44,17 @@ f93_ralis_science_stop = {
 	country_physics_research_produces_mult = -10
 	country_society_research_produces_mult = -10
 	country_engineering_research_produces_mult = -10
+}
+
+f93_the_zro_must_flow = {
+	country_base_sr_zro_produces_add = 1
+}
+
+f93_zro_cartel = {
+	job_f93_zro_criminal_per_crime = 0.1
+	planet_crime_add = 20
+}
+f93_zro_drone_cartel = {
+	job_f93_zro_deviant_drone_per_crime = 0.1
+	planet_crime_add = 20
 }

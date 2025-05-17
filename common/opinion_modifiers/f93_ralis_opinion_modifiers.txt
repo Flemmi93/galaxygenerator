@@ -20,7 +20,7 @@ f93_ralis_true_liberator = {
 		base = 1
 	}
 }
-f93_kept_ralis_traty = {
+f93_kept_ralis_treaty = {
 	opinion = {
 		base = 50
 	}
@@ -41,5 +41,16 @@ f93_false_liberator_of_ralis = {
 
 	decay = {
 		base = 1
+	}
+}
+
+f93_legendary_friendship = {
+	opinion = {
+		base = 250
+	}
+	accumulative = yes
+
+	decay = {
+		base = 0
 	}
 }

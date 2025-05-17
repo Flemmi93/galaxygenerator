@@ -1,0 +1,80 @@
+f93_zro_criminal = {
+	category = criminal
+	is_capped_by_modifier = yes
+	can_set_priority = no
+
+	swappable_data = {
+		default = {
+			building_icon = building_residence
+		}
+	}
+
+	contributes_to_diplo_weight = no
+
+	tags = { crime }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_sapient = yes
+	}
+	resources = {
+		category = planet_jobs
+		produces = {
+			sr_zro = 1
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+	possible = {
+		# check that this is not a robot in servitude
+		NOT = {
+			has_citizenship_type = {
+				country = owner
+				type = citizenship_robot_servitude
+			}
+		}
+		owner = {
+			is_gestalt = no
+		}
+	}
+
+	weight = {
+		weight = @criminal_job_weight
+	}
+}
+
+f93_zro_deviant_drone = {
+	category = deviant_drone
+	is_capped_by_modifier = yes
+	can_set_priority = no
+
+	swappable_data = {
+		default = {
+			icon = criminal
+		}
+	}
+
+	contributes_to_diplo_weight = no
+
+	tags = { crime }
+
+	possible_pre_triggers = {
+		has_planet = yes
+		is_sapient = yes
+	}
+
+	resources = {
+		category = planet_jobs
+		produces = {
+			sr_zro = 1
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+
+	weight = {
+		weight = @criminal_job_weight
+	}
+}

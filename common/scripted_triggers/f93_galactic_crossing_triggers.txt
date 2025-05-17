@@ -130,3 +130,14 @@ f93_valid_gal_crossing_endpoint = {
 		}
 	}
 }
+
+f93_has_zro_cartel = {
+	OR = {
+		has_modifier = f93_zro_cartel
+		has_modifier = f93_zro_drone_cartel
+	}
+}
+
+f93_is_zro_cartel_lord = {
+	any_owned_planet = { is_same_value = event_target:f93_ralis_planet }
+}
