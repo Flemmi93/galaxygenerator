@@ -7,7 +7,6 @@ namespace = f93_ralis_crisis_event
 # 2nd two digits are varriance	#
 #################################
 
-#Anomalies along the Galactic Crossing
 country_event = {
 	id = f93_ralis_crisis_event.0001
 	title = f93_ralis_crisis_event.0001.name
@@ -19,118 +18,118 @@ country_event = {
 	mean_time_to_happen = 1
 
 	trigger = {
-		is_ai = no
+		# is_ai = no
 		mid_game_years_passed >= 0
 	}
 
 	immediate = {
-		country_event = {
-			id = f93_ralis_crisis_event.0101
-			days = 120
+		set_global_flag = f93_ralis_awoken
+		every_playable_country = {
+			country_event = {
+				id = f93_ralis_crisis_event.0101
+				days = 120
+			}
+		}
+		every_playable_country = {
+			limit = { NOR = { is_same_value = root has_country_flag = ralis_country_flag } }
+			country_event = { id = f93_ralis_crisis_event.0002 }
+		}
+		event_target:f93_ralis_country = {
+			set_ai_personality = fanatic_purifiers
+			add_resource = {
+				sr_dark_matter = 1
+				alloys = 2
+				minerals = 0.5
+				energy = 3
+				food = 0.01
+				consumer_goods = 0.25
+				unity = 0.1
+				mult = 30000
+			}
+			add_tradition = tr_supremacy_adopt
+			add_tradition = tr_supremacy_fleet_logistical_corps
+			add_tradition = tr_supremacy_master_shipwrights
+			add_tradition = tr_supremacy_war_games
+			add_tradition = tr_supremacy_overwhelming_force
+			add_tradition = tr_supremacy_great_game
+			add_tradition = tr_supremacy_finish
+			give_technology = { tech = tech_wormhole_stabilization } 
+			give_technology = { tech = tech_rift_sphere } 
+			add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
+			force_remove_civic = 2
+			force_add_civic = civic_fanatic_purifiers
+			force_add_civic = civic_heroic_tales
+			create_fleet = {
+				name = "Explorer Fleet"
+				effect = {
+					set_owner = event_target:f93_ralis_country
+					set_location = event_target:f93_ralis_country.capital_scope
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+				}
+			}
+			create_fleet = {
+				name = "Explorer Fleet"
+				effect = {
+					set_owner = event_target:f93_ralis_country
+					set_location = event_target:f93_ralis_country.capital_scope
+					create_ship = {
+						name = random
+						random_existing_design = science
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { has_modifier = f93_ralis_country_buff } }
+				add_modifier = {
+					modifier = f93_ralis_country_buff
+					multiplier = 1
+					days = -1
+				}
+			}
+			random_system_within_border = {
+				limit = { has_megastructure = crisis_sphere_ruined }
+				random_system_megastructure = {
+					limit = { is_megastructure_type = crisis_sphere_ruined }
+					remove_megastructure = this
+				}
+				random_system_megastructure = {
+					limit = { is_megastructure_type = crisis_sphere_0 }
+					set_megastructure_flag = crisis_sphere
+				}
+				star = {
+					create_ambient_object = {
+						type = "crisis_sphere_1"
+						location = this
+					}
+					last_created_ambient_object = {
+						set_ambient_object_flag = crisis_sphere_1_system_effect
+						set_location = {
+							target = prev
+							distance = 0
+							angle = random
+						}
+					}	
+				}
+				set_global_flag = f93_shroud_gate_active
+				random_system = {
+					limit = { NOT = { exists = owner } has_megastructure = dandelion_relay NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+					prev = {
+						f93_place_shroud_gate_node = yes
+					}
+					f93_place_shroud_gate_nexus = yes
+				}
+				random_system = {
+					limit = { NOT = { exists = owner } has_megastructure = dandelion_relay NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+					f93_place_shroud_gate_nexus = yes
+				}
+			}
 		}
 	}
 	option = {
 		name = WORRYING
-		hidden_effect = {
-			every_playable_country = {
-				limit = { NOT = { is_same_value = root } }
-				country_event = { id = f93_ralis_crisis_event.0002 }
-			}
-			event_target:f93_ralis_country = {
-				set_ai_personality = fanatic_purifiers
-				add_resource = {
-					sr_dark_matter = 1
-					alloys = 2
-					minerals = 0.5
-					energy = 3
-					food = 0.01
-					consumer_goods = 0.25
-					unity = 0.1
-					mult = 30000
-				}
-				add_tradition = tr_supremacy_adopt
-				add_tradition = tr_supremacy_fleet_logistical_corps
-				add_tradition = tr_supremacy_master_shipwrights
-				add_tradition = tr_supremacy_war_games
-				add_tradition = tr_supremacy_overwhelming_force
-				add_tradition = tr_supremacy_great_game
-				add_tradition = tr_supremacy_finish
-				give_technology = { tech = tech_wormhole_stabilization } 
-				give_technology = { tech = tech_rift_sphere } 
-				add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
-				create_fleet = {
-					name = "Explorer Fleet"
-					effect = {
-						set_owner = event_target:f93_ralis_country
-						set_location = event_target:f93_ralis_country.capital_scope
-						create_ship = {
-							name = random
-							random_existing_design = science
-						}
-					}
-				}
-				create_fleet = {
-					name = "Explorer Fleet"
-					effect = {
-						set_owner = event_target:f93_ralis_country
-						set_location = event_target:f93_ralis_country.capital_scope
-						create_ship = {
-							name = random
-							random_existing_design = science
-						}
-					}
-				}
-				if = {
-					limit = { NOT = { has_modifier = f93_ralis_country_buff } }
-					add_modifier = {
-						modifier = f93_ralis_country_buff
-						multiplier = 1
-						days = -1
-					}
-				}
-				random_system_within_border = {
-					limit = { has_megastructure = crisis_sphere_ruined }
-					random_system_megastructure = {
-						limit = { is_megastructure_type = crisis_sphere_ruined }
-						remove_megastructure = this
-					}
-					random_system_megastructure = {
-						limit = { is_megastructure_type = crisis_sphere_0 }
-						set_megastructure_flag = crisis_sphere
-					}
-					star = {
-						create_ambient_object = {
-							type = "crisis_sphere_1"
-							location = this
-						}
-						last_created_ambient_object = {
-							set_ambient_object_flag = crisis_sphere_1_system_effect
-							set_location = {
-								target = prev
-								distance = 0
-								angle = random
-							}
-						}	
-					}
-					random_system = {
-						limit = { NOT = { exists = owner } has_megastructure = dandelion_relay }
-						prev = {
-							spawn_natural_wormhole = {
-								bypass_type = wormhole
-								random_pos = yes
-								orbit_angle = 360
-							}
-						}
-						spawn_natural_wormhole = {
-							bypass_type = wormhole
-							random_pos = yes
-							orbit_angle = 360
-						}
-						link_wormholes = prev
-					}
-				}
-			}
-		}
 	}
 }
 #Anomalies along the Galactic Crossing
@@ -157,7 +156,10 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		every_system = {
+		if = {
+			limit = { NOT = { has_global_flag = f93_ralis_crisis_event0101_happened } }
+			set_global_flag = f93_ralis_crisis_event0101_happened
+			every_system = {
 			limit = {
 				NOR = {
 					has_star_flag = f93_ralis_crisis_event0101_already_flag
@@ -212,6 +214,7 @@ country_event = {
 				limit = { has_star_flag = f93_has_dandelion_relay NOT = { has_megastructure = dandelion_relay } }
 				highway_connect_relay_only = yes
 			}
+		}
 		}
 	}
 	option = {
@@ -271,24 +274,53 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		event_target:f93_to_be_killed_by_ralis = {
-			every_system_within_border = { destroy_star_system = yes every_system_planet = { reroll_deposits = yes } }
-			destroy_country = yes
-		}
-		event_target:f93_ralis_country = {
-			if = {
-				limit = { is_ai = yes }
-				add_resource = {
-					menace = 10000
+		if = {
+			limit = { NOT = { has_global_flag = f93_ralis_crisis_event0201_happened } }
+			set_global_flag = f93_ralis_crisis_event0201_happened
+			event_target:f93_to_be_killed_by_ralis = {
+				every_system_within_border = {
+					limit = { NOT = { f93_should_not_be_destroyed = yes } }
+					destroy_star_system = yes every_system_planet = { reroll_deposits = yes }
 				}
+				destroy_country = yes
 			}
-			capital_scope = { set_name = "Ralis" }
+			event_target:f93_ralis_country = {
+				if = {
+					limit = { is_ai = yes }
+					add_resource = {
+						menace = 10000
+					}
+					country_event = { id = f93_ralis_crisis_event.0202 }
+				}
+				capital_scope = { set_name = "Ralis" }
+			}
 		}
 	}
 
 	option = {
 		name = f93_ralis_crisis_event.0201.a
 		country_event = { id = f93_ralis_crisis_event.0301 days = 180 }
+	}
+}
+
+country_event = {
+	id = f93_ralis_crisis_event.0202
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		random_system = {
+			limit = { has_star_flag = f93_ralis_empire_cluster }
+			spawn_megastructure = {
+				type = think_tank_4
+				owner = root
+				planet = star
+				graphical_culture = root
+			}
+			save_global_event_target_as = f93_ralis_think_tank_system
+			add_hyperlane = { from = this to = event_target:f93_ralis_system }
+		}
 	}
 }
 
@@ -306,8 +338,6 @@ country_event = {
 			establish_contact = { who = root }
 			set_country_flag = f93_ralis_arms_race_active
 		}
-		
-		set_country_flag = f93_ralis_awoken
 	}
 	option = {
 		name = f93_ralis_crisis_event.0301.a
@@ -329,7 +359,7 @@ country_event = {
 		mid_game_years_passed >= 0
 		exists = event_target:f93_ralis_country
 		event_target:f93_ralis_country = {
-			has_country_flag = crisis_special_projec_3_complete
+			has_country_flag = crisis_special_project_3_complete
 		}
 	}
 	immediate = {
@@ -350,7 +380,7 @@ country_event = {
 	immediate = {}
 	option = {
 		name = f93_ralis_crisis_event.0401.a
-		country_event = { id = f93_ralis_crisis_event.0501 }
+		country_event = { id = f93_ralis_crisis_event.0501 days = 30 }
 	}
 	after = {}
 }
@@ -368,6 +398,13 @@ country_event = {
 	trigger = {
 	}
 	immediate = {
+		event_target:f93_ralis_country = {
+			add_modifier = {
+				modifier = f93_ralis_science_stop
+				multiplier = 1
+			}
+		}
+		set_global_flag = f93_activate_ralis_resolution_1
 	}
 	option = {
 		name = f93_ralis_crisis_event.0501.a
@@ -459,7 +496,7 @@ country_event = {
 		name = f93_ralis_crisis_event.0602.a
 	}
 }
-#The War plan treaty psssed and tells everyone else about it
+#The War plan treaty passed and tells everyone else about it
 country_event = {
 	id = f93_ralis_crisis_event.0603
 	title = f93_ralis_crisis_event.0603.name
@@ -502,7 +539,28 @@ ship_event = {
 		}
 	}
 }
+country_event = {
+	id = f93_ralis_crisis_event.0605
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
 
+	trigger = {
+		event_target:f93_ralis_country = {
+			is_level_5_player_crisis = yes
+		}
+	}
+
+	immediate = {
+		event_target:f93_ralis_think_tank_system = {
+			every_system_megastructure = {
+				limit = { is_megastructure_type = think_tank_4 }
+				remove_megastructure = this
+			}
+			spawn_megastructure = { type = think_tank_ruined }
+		}
+	}
+}
 #anyone entering ralis system for the first time
 country_event = {
 	id = f93_ralis_crisis_event.0701
@@ -580,21 +638,15 @@ planet_event = {
 
 	is_triggered_only = yes
 	immediate = {
-		owner = { save_global_event_target_as = f93_ralis_liberator }
-		# if = { #in case the union state compantion mod is installed.
-		# 	limit = { exists = event_target:f93_union_state_country }
-		# 	solar_system = {
-		# 		set_owner = event_target:f93_union_state_country
-		# 		every_system_planet = { set_owner = event_target:f93_union_state_country }
-		# 	}
-		# }
-		# else = {
+		if = {
+			limit = { owner = { is_ai = yes } }
+			owner = { save_global_event_target_as = f93_ralis_liberator }
 			f93_create_community_ralis_admin = yes
 			solar_system = {
 				starbase = { set_owner = last_created_country }
 				every_system_planet = { set_owner = last_created_country }
 			}
-		# }
+		}
 		
 	}
 	option = {
@@ -781,11 +833,25 @@ country_event = {
 	picture = GFX_evt_black_hole #placeholder
 	# show_sound = event_mystic_reveal
 	is_triggered_only = yes
-
+	immediate = {
+		country_event = { id = f93_ralis_crisis_event.1100 days = 1800 }
+	}
 	option = {
 		name = f93_ralis_crisis_event.0902.a # keep the plan
+		
+		hidden_effect = {
+			if = {
+				limit = { is_ai = no }
+				owner = { save_global_event_target_as = f93_ralis_liberator }
+				f93_create_community_ralis_admin = yes
+				solar_system = {
+					starbase = { set_owner = last_created_country }
+					every_system_planet = { set_owner = last_created_country }
+				}
+			}
+		}
+
 		every_playable_country = {
-			country_event = { id = f93_ralis_crisis_event.1101 days = 1800 }
 			add_opinion_modifier = { modifier = f93_liberator_of_ralis who = root }
 		}
 		hidden_effect = {
@@ -819,14 +885,22 @@ country_event = {
 	picture = GFX_evt_black_hole #placeholder
 	# show_sound = event_mystic_reveal
 	is_triggered_only = yes
-
+	immediate = {
+		country_event = { id = f93_ralis_crisis_event.1100 days = 1800 }
+	}
 	option = {
 		name = f93_ralis_crisis_event.0903.a # keep the plan
-		every_playable_country = {
-			country_event = { id = f93_ralis_crisis_event.1101 days = 1800 }
-		}
 		hidden_effect = {
 			set_country_flag = f93_handed_ralis_to_community
+			if = {
+				limit = { is_ai = no }
+				owner = { save_global_event_target_as = f93_ralis_liberator }
+				f93_create_community_ralis_admin = yes
+				solar_system = {
+					starbase = { set_owner = last_created_country }
+					every_system_planet = { set_owner = last_created_country }
+				}
+			}
 		}
 		f93_give_conquest_to_ralis_admin = yes
 	}
@@ -853,11 +927,12 @@ country_event = {
 	picture = GFX_evt_black_hole #placeholder
 	# show_sound = event_mystic_reveal
 	is_triggered_only = yes
+	immediate = {
+		country_event = { id = f93_ralis_crisis_event.1100 days = 1800 }
+	}
 	option = {
 		name = f93_ralis_crisis_event.0905.a # keep the plan
-		every_playable_country = {
-			country_event = { id = f93_ralis_crisis_event.1101 days = 960 }
-		}
+
 		hidden_effect = {
 			set_country_flag = f93_handed_ralis_to_community
 		}
@@ -892,6 +967,30 @@ country_event = {
 	}
 
 }
+#post war reconstruction or divided recovery
+country_event = {
+	id = f93_ralis_crisis_event.1100
+	hide_window = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = {
+				event_target:f93_ralis_planet = {
+					has_planet_flag = f93_galactic_community_claim
+				}
+			}
+			every_playable_country = {
+				country_event = { id = f93_ralis_crisis_event.1101 }
+			}
+		}
+		else = {
+			every_playable_country = {
+				country_event = { id = f93_ralis_crisis_event.1102 }
+			}
+		}
+	}
+}
 
 # Postwar Reconstruction	
 country_event = {
@@ -919,6 +1018,29 @@ country_event = {
 
 	option = {
 		name = OK
+	}
+
+}
+
+# a divided recovery
+country_event = {
+	id = f93_ralis_crisis_event.1102
+	title = f93_ralis_crisis_event.1102.name
+	desc = f93_ralis_crisis_event.1102.desc
+	picture = GFX_evt_black_hole #placeholder
+	# show_sound = event_mystic_reveal
+	is_triggered_only = yes
+
+	immediate = {
+	}
+
+	option = {
+		name = f93_ralis_crisis_event.1102.a
+		trigger = { is_galactic_community_member = yes }
+	}
+	option = {
+		name = f93_ralis_crisis_event.1102.b
+		trigger = { is_galactic_community_member = no }
 	}
 
 }

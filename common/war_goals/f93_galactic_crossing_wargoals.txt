@@ -1,0 +1,52 @@
+f93_wg_gal_cross_force_open_border = {
+	casus_belli = f93_cb_gal_cross_force_open_border
+	threat_multiplier = 0:25 # Default 1.0
+	cede_claims = no
+	surrender_acceptance = 20 # Default 0
+	war_exhaustion = 2.0 # Default 1.0
+
+	# FROM = The targeted country
+	# THIS = The acting country
+	potential = {
+		always = yes
+	}
+	possible = {
+		always = yes
+	}
+	# Run when war ends in status quo
+	on_status_quo = {
+
+	}
+	# Run when target surrenders after claims are ceded
+	on_accept = {
+		FROM = {
+			set_closed_borders = {
+				who = ROOT
+				status = no
+				forced = 30
+			}
+			hidden_effect = {
+				export_resource_income_to_variable = {
+					resource = trade
+					variable = f93_wg_payout
+				}
+				set_variable = { which = f93_wg_payout10 value = f93_wg_payout }
+				multiply_variable = { which = f93_wg_payout value = 10 }
+			}
+			add_resource = {
+				trade = -1
+				mult = f93_wg_payout
+			}
+		}
+		hidden_effect = { set_variable = { which = f93_wg_payout value = from.f93_wg_payout } }
+		add_resource = {
+			trade = 1
+			mult = f93_wg_payout
+		}
+		custom_tooltip = f93_wg_gal_cross_force_open_border_payout
+	}
+
+	ai_weight = {
+		weight = 4
+	}
+}

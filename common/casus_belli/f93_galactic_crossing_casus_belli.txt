@@ -1,0 +1,17 @@
+f93_cb_gal_cross_force_open_border = {
+	show_in_diplomacy = yes
+	show_notification = yes
+	
+	potential = {
+		OR = {
+			is_country_type = default
+			is_country_type = awakened_fallen_empire
+		}
+		FROM = { any_system_within_border = { has_megastructure = dandelion_relay } }
+	}
+
+	is_valid = {
+		FROM = { has_closed_borders = ROOT }
+		NOT = { has_closed_borders = FROM }
+	}
+}

@@ -1,7 +1,12 @@
 spriteTypes = {
-
 	spriteType = {
 		name = "GFX_dandelion_sphere_ruined_outliner_icon"
 		textureFile = "gfx/interface/icons/megastructures/crisis_sphere_ruined.dds"
 	}
+	spriteType = {
+		name = "GFX_f93_wg_gal_cross_force_open_border"
+		texturefile = "gfx/interface/icons/diplomacy/diplomacy_f93_border_war.dds"
+		noOfFrames = 2
+	}
+
 }

@@ -1,20 +1,20 @@
 
 on_yearly_pulse_country = {
 	events = {
-		f93_galaxy.9
+		f93_galactic_crossing.9
 	}
 }
 
 on_monthly_pulse_country = {
 	events = {
-		f93_ralis_crisis_event.0401
+		f93_ralis_crisis_event.0400
+		f93_ralis_crisis_event.0605
 		# f93_ralis_crisis_event.0001
 	}
 }
 
 on_mid_game_pulse_country = {
 	events = {
-		# f93_ralis_crisis_event.0001
 	}
 }
 

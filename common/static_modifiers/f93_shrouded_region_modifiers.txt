@@ -27,3 +27,15 @@ f93_ralis_country_buff = {
 	country_resource_max_sr_dark_matter_add = 7500
 	country_resource_max_nanites_add = 7500
 }
+
+f93_country_is_connected = {
+	country_trade_produces_mult = 0.1
+	country_trade_fee = -0.05
+	country_base_influence_produces_add = 1
+}
+
+f93_ralis_science_stop = {
+	country_physics_research_produces_mult = -10
+	country_society_research_produces_mult = -10
+	country_engineering_research_produces_mult = -10
+}

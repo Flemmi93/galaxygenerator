@@ -16,10 +16,7 @@ f93_ralis_plan_resolution = {
 	}
 
 	potential = {
-		OR = {
-			has_country_flag = f93_ralis_crisis_event_5_vote_a
-			has_country_flag = f93_ralis_crisis_event_5_vote_b
-		}
+		has_global_flag = f93_activate_ralis_resolution_1
 		event_target:f93_ralis_planet = {
 			owner = { is_same_value = event_target:f93_ralis_country }
 		}
@@ -59,7 +56,7 @@ f93_ralis_plan_resolution = {
 	}
 
 	ai_weight = {
-		factor = 10
+		factor = 12
 	#self serving empires should oppose it.
 		modifier = {
 			factor = 0.75
@@ -67,7 +64,7 @@ f93_ralis_plan_resolution = {
 			desc = ethic_authoritarian
 		}
 		modifier = {
-			factor = 3
+			factor = 5
 			is_egalitarian = yes
 			desc = ethic_egalitarian
 		}

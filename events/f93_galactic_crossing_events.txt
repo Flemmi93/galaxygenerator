@@ -294,7 +294,20 @@ country_event = {
 	trigger = {
 		is_ai = no
 	}
-	
+	immediate = {
+		export_trigger_value_to_variable = {
+			trigger = count_system
+			parameters = { limit = { has_star_flag = f93_shroud_region_flag } }
+			variable = f93_num_shrouded_systems
+		}
+		export_trigger_value_to_variable = {
+			trigger = count_system
+			variable = f93_num_systems
+		}
+		every_country = {
+			remove_communications = event_target:f93_ralis_country
+		}
+	}
 	option = {
 		name = f93_galactic_crossing.8.a
 	}
@@ -312,7 +325,6 @@ country_event = {
 		every_system_within_border = {
 			remove_star_flag = f93_crossing_capital_route_flag
 		}
-
 		capital_scope.solar_system = {
 			if = {
 				limit = {
@@ -350,6 +362,21 @@ country_event = {
 			}
 		}
 		#Rename Ralis to Ralis as long as the AI holds it.
+	}
+}
+
+country_event = {
+	id = f93_galactic_crossing.901
+	hide_window = yes
+	mean_time_to_happen = 30
+
+	trigger = {
+		exists = event_target:f93_ralis_country
+		is_same_value = event_target:f93_ralis_country
+		NOT = { has_global_flag = f93_ralis_awoken }
+	}
+
+	immediate = {
 		if = {
 			limit = {
 				event_target:f93_ralis_planet = { owner = { is_ai = yes } }
@@ -358,6 +385,21 @@ country_event = {
 				set_name = "Ralis"
 				solar_system = { set_name = "Sactuary of Ralis" }
 			}
+		}
+		every_country = {
+			limit = { NOT = { has_country_flag = mercenary_enclave_country } }
+			remove_communications = event_target:f93_ralis_country
+		}
+		event_target:f93_ralis_country = { remove_from_galactic_community = yes }
+		every_country = {
+			limit = {
+				has_country_flag = mercenary_enclave_country
+				has_country_flag = created_by@root
+			}
+			every_controlled_fleet = {
+				set_owner = event_target:f93_ralis_country
+			}
+			destroy_country = yes
 		}
 	}
 }
@@ -421,16 +463,13 @@ country_event = {
 
 	immediate = {
 		add_research_option = tech_wormhole_stabilization
-		add_tech_progress = {
+		add_tech_progress = { #create a small event chain to obtain this tech early on.
 			tech = tech_wormhole_stabilization
-			progress = 0.5
+			progress = 0.75
 		}
-		if = { #create a small event chain to obtain this tech early on.
-			limit = { is_ai = no }
-			add_tech_progress = {
-				tech = tech_wormhole_stabilization
-				progress = 0.3
-			}
+		if = {
+			limit = { is_ai = yes }
+			give_technology = { tech = tech_wormhole_stabilization message = yes }
 		}
 		if = {
 			limit = { has_origin = origin_void_dwellers }
@@ -506,10 +545,7 @@ country_event = {
 	mean_time_to_happen = { days = 30 }
 
 	trigger = {
-		any_system = {
-			limit = { has_megastructure = dandelion_relay }
-			is_system_connected_to_relay_network = yes
-		}
+		any_neighbor_country = { is_capitals_connected_through_relay_network = root }
 		NOT = { has_country_flag = f93_is_connected_to_gal_crossing }
 	}
 
@@ -531,12 +567,7 @@ country_event = {
 	mean_time_to_happen = { days = 30 }
 
 	trigger = {
-		NOT = {
-			any_system = {
-				limit = { has_megastructure = dandelion_relay }
-				is_system_connected_to_relay_network = yes
-			}
-		}
+		NOT = { any_neighbor_country = { is_capitals_connected_through_relay_network = root }}
 		has_country_flag = f93_is_connected_to_gal_crossing
 	}
 
@@ -547,5 +578,27 @@ country_event = {
 	option = {
 		name = f93_galactic_crossing.13.a
 		remove_modifier = f93_country_is_connected
+	}
+}
+
+country_event = {
+	id = f93_galactic_crossing.14
+	hide_window = yes
+	mean_time_to_happen = 360
+	trigger = {
+		years_passed >= value:halfway_to_mid_game_year
+		NOR = {
+			has_global_flag = galactic_community_founded
+			has_global_flag = galcom_founding_begun
+		}
+	}
+
+	immediate = {
+		random_playable_country = {
+			limit = {
+				NOT = { has_communications = root }
+			}
+			establish_communications = root
+		}
 	}
 }
