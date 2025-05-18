@@ -316,6 +316,7 @@ f93_give_conquest_to_ralis_admin = {
 					has_star_flag = f93_ralis_took_it_from_someone
 				}
 			}
+			NOT = { has_star_flag = f93_promised_to_ralis_admin }
 		}
 		set_star_flag = f93_promised_to_ralis_admin
 		if = {
@@ -336,7 +337,26 @@ f93_first_handover_to_ralis_admin = {
 			owner = { is_galactic_community_member = yes }
 		}
 		starbase = { set_owner = event_target:f93_community_ralis_admin_country }
+		every_system_planet = { set_owner = event_target:f93_community_ralis_admin_country }
 		remove_star_flag = f93_promised_to_ralis_admin
+	}
+	every_system = {
+		limit = {
+			has_star_flag = f93_belonged_to_ralis
+			NOT = { exists = owner }
+		}
+		create_starbase = {
+			owner = event_target:f93_community_ralis_admin_country 
+			size = starbase_starport
+		}
+	}
+	event_target:f93_ralis_country = {
+		every_controlled_fleet = {
+			set_owner = event_target:f93_community_ralis_admin_country
+		}
+		every_controlled_planet = {
+			set_owner = event_target:f93_community_ralis_admin_country
+		}
 	}
 }
 
@@ -409,25 +429,25 @@ f93_place_shroud_gate_node_and_cluster = {
 							any_neighbor_system = { has_hyperlane_to = prev }
 						}
 					}
+					set_star_flag = f93_current_nexus
 					add_hyperlane = { from = this to = prev }
 					set_star_flag = f93_ralisgate_cluster
-					set_star_flag = f93_ralisgate_cluster@prev
 					random_neighbor_system_euclidean = {
 						limit = {
 							has_star_flag = f93_shroud_region_flag
 							calc_true_if = {
 								amount = 1
 								NOT = { has_star_flag = f93_ralisgate_cluster }
-								has_star_flag = f93_ralisgate_cluster@prevprev
+								has_star_flag = f93_current_nexus
 							}
-							# NOT = { any_neighbor_system = { has_hyperlane_to = prev } }
 						}
-						
+						set_star_flag = f93_current_nexus
 						add_hyperlane = { from = this to = prev }
 						set_star_flag = f93_ralisgate_cluster
 					}
 				}
 			}
+			every_system = { remove_star_flag = f93_current_nexus }
 		}
 		25 = { #up to 5 systems
 			while = {
@@ -446,7 +466,7 @@ f93_place_shroud_gate_node_and_cluster = {
 				}
 			}
 		}
-		25 = { #up to 6 systems
+		20 = { #up to 8 systems
 			while = {
 				count = 2
 				random_neighbor_system_euclidean = {
@@ -458,6 +478,7 @@ f93_place_shroud_gate_node_and_cluster = {
 							any_neighbor_system = { has_hyperlane_to = prev }
 						}
 					}
+					set_star_flag = f93_current_nexus
 					add_hyperlane = { from = this to = prev }
 					set_star_flag = f93_ralisgate_cluster
 					while = {
@@ -468,11 +489,10 @@ f93_place_shroud_gate_node_and_cluster = {
 								calc_true_if = {
 									amount = 1
 									NOT = { has_star_flag = f93_ralisgate_cluster }
-									has_star_flag = f93_ralisgate_cluster@prevprev
+									has_star_flag = f93_current_nexus
 								}
-								# NOT = { any_neighbor_system = { has_hyperlane_to = prev } }
 							}
-							
+							set_star_flag = f93_current_nexus
 							add_hyperlane = { from = this to = prev }
 							set_star_flag = f93_ralisgate_cluster
 						}
@@ -483,11 +503,10 @@ f93_place_shroud_gate_node_and_cluster = {
 							calc_true_if = {
 								amount = 1
 								NOT = { has_star_flag = f93_ralisgate_cluster }
-								has_star_flag = f93_ralisgate_cluster@prevprev
+								has_star_flag = f93_current_nexus
 							}
-							# NOT = { any_neighbor_system = { has_hyperlane_to = prev } }
 						}
-						
+						set_star_flag = f93_current_nexus
 						add_hyperlane = { from = this to = prev }
 						set_star_flag = f93_ralisgate_cluster
 						random_neighbor_system_euclidean = {
@@ -496,17 +515,17 @@ f93_place_shroud_gate_node_and_cluster = {
 								calc_true_if = {
 									amount = 1
 									NOT = { has_star_flag = f93_ralisgate_cluster }
-									has_star_flag = f93_ralisgate_cluster@prevprev
+									has_star_flag = f93_current_nexus
 								}
-								# NOT = { any_neighbor_system = { has_hyperlane_to = prev } }
 							}
-							
+							set_star_flag = f93_current_nexus
 							add_hyperlane = { from = this to = prev }
 							set_star_flag = f93_ralisgate_cluster
 						}
 					}
 				}
 			}
+			every_system = { remove_star_flag = f93_current_nexus }
 		}
 	}
 			

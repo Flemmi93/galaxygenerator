@@ -29,6 +29,10 @@ country_event = {
 	immediate = {
 		every_country = {
 			country_event = { id = f93_galactic_crossing.8 days = 5 }
+			add_modifier = {
+				modifier = country_enclave_capacity_decrease_modifier
+				mult = 100
+			}
 		}
 		hidden_effect = {
 			if = {
@@ -581,6 +585,118 @@ country_event = {
 				NOT = { has_communications = root }
 			}
 			establish_communications = root
+		}
+	}
+}
+#hardcore debugger
+country_event = {
+	id = f93_galactic_crossing.15
+	is_triggered_only = yes
+	title = f93_galactic_crossing.13.name
+	desc = f93_galactic_crossing.13.name
+	picture = GFX_evt_star_chart
+	option = {
+		name = "random enclave"
+		random_country = {
+			limit = { 
+				OR = {
+					is_country_type = enclave_mercenary
+					is_country_type = enclave
+				}
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "playable countries"
+		every_playable_country = {
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "non playable countries"
+		every_country = {
+			limit = { NOT = { is_country_type = default } }
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "enclave countries"
+		every_country = {
+			limit = { 
+				OR = {
+					is_country_type = enclave_mercenary
+					is_country_type = enclave
+				}
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "marauder countries"
+		every_country = {
+			limit = { 
+				OR = {
+					is_country_type = dormant_marauders
+					is_country_type = awakened_marauders
+				}
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "falen countries"
+		every_country = {
+			limit = { 
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "primitive countries"
+		every_country = {
+			limit = {
+				is_country_type = primitive
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "space faune countries"
+		every_country = {
+			limit = { is_fauna_country = yes }
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "all countries"
+		every_country = {
+			destroy_country = yes
+		}
+		every_system = {
+			every_fleet_in_system = {
+				delete_fleet = this
+			}
+		}
+	}
+	option = {
+		name = "random country"
+		random_country = {
+			limit = { is_ai = yes }
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = "fleets"
+		
+		every_system = {
+			every_fleet_in_system = {
+				delete_fleet = this
+			}
 		}
 	}
 }

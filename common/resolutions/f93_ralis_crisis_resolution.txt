@@ -20,6 +20,7 @@ f93_ralis_plan_resolution = {
 		event_target:f93_ralis_planet = {
 			owner = { is_same_value = event_target:f93_ralis_country }
 		}
+		NOR = { has_global_flag = f93_community_claim_made has_global_flag = f93_community_claim_never_made }
 	}
 
 	active = {
@@ -58,7 +59,7 @@ f93_ralis_plan_resolution = {
 	}
 
 	ai_weight = {
-		factor = 15
+		factor = 8
 	#self serving empires should oppose it.
 		modifier = {
 			factor = 10
@@ -70,6 +71,7 @@ f93_ralis_plan_resolution = {
 					has_crisis_level = crisis_level_5
 				}
 			}
+			NOT ={ is_voting_on_resolution = f93_ralis_plan_resolution }
 			desc = f93_time_running_out
 		}
 		modifier = {

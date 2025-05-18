@@ -4,10 +4,10 @@
  f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proofs difficult.\nWithout solid data the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of a first report the artifact was transferd into a private collection. Who orchestrated this is unknown. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notable none of the creatures could be identified as §Y[Root.GetSpeciesName]§!§!"
 
  f93_galactic_crossing.8.name: "Game Start Quality"
- f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! Systems: §Y[root.f93_num_shrouded_systems]§! Systems are Shrouded Systems.\n\nIt is up to you if this is good or bad."
+ f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! Systems: §Y[root.f93_num_shrouded_systems]§! Systems are Shrouded Systems.\n\nIt is up to you if this is good or bad.\n\n§RDue to causing crashes, Mercenary Enclaves have been turned off for now.§!"
  f93_galactic_crossing.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
- f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§RIsolated§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
+ f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§RIsolated§!.\n\n§GHave fun!§!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.a: "...All statements without guarantee."
 
  f93_galactic_crossing.12.name: "Connected to Galactic Crossing"
@@ -74,7 +74,7 @@
  mod_job_f93_zro_deviant_drone_per_crime: "§G+1§!£job_sand_whisperer£ $f93_zro_deviant_drone$ Job per $VALUE$ £crime£ Crime"
  mod_job_f93_zro_deviant_drone_per_crime_short: "\n§G+1§!£job_sand_whisperer£ $f93_zro_deviant_drone$ Job per $VALUE$ £crime£"
 
- RALISGATE_GALACTIC: "$ralisgate_gate_desc$"
+ RALISGATE_GALACTIC: "$ralisgate_gate$"
  RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"
  ralisgate_gate: "Shrouded Hyperlane"
  ralisgate_gate_desc: "A stable breach point to another hyperlane network inside the galaxy."
@@ -158,7 +158,7 @@
  f93_ralis_crisis_event.0802.desc: "$ralis_NAME$ has fallen. After brutal fighting, the forces of $f93_ralis_liberator$ have seized control of the planet's major regions. The last remnants of their regime flee into the planet's lower levels, refusing to surrender. But the war is over. The galaxy, at last, can breathe again."
  f93_ralis_crisis_event.0802.a: "Finally."
  f93_ralis_crisis_event.0901.name: "The Community's Mandate"
- f93_ralis_crisis_event.0901.desc: "With the war coming to an end, the Senate turns its attention to the wider territories gained throughout the conflict. Under the terms of the war treaty, signed by all current Community members, systems taken during the fighting are to be handed over to a shared administration for coordinated reconstruction efforts.\n\nSystems that were merely reclaimed by their original owners will remain with them - those empires will of course be eligible for reconstruction aids. But others must give up their gains. While some discontent is expected, the Senate plans to ease tensions with a Reclamation Fund for the most successful contributors to the war effort, ensuring their sacrifices are recognized.\n\nThe planet §Y[f93_ralis_planet.GetName]§! and it's system §Y[f93_ralis_planet.System.GetName]§! are controlled by §Y[f93_ralis_planet.Owner.GetName]§!"
+ f93_ralis_crisis_event.0901.desc: "With the war coming to an end, the Senate turns its attention to the wider territories gained throughout the conflict. Under the terms of the war treaty, signed by all current Community members, systems taken during the fighting are to be handed over to a shared administration for coordinated reconstruction efforts.\n\nSystems that were merely reclaimed by their original owners will remain with them - those empires will of course be eligible for reconstruction aids. But others must give up their gains. While some discontent is expected, the Senate plans to ease tensions with a Reclamation Fund for the most successful contributors to the war effort, ensuring their sacrifices are recognized.\n\nThe planet §Y[f93_ralis_planet.GetName]§! and its system §Y[f93_ralis_planet.System.GetName]§! are controlled by §Y[f93_ralis_planet.Owner.GetName]§!"
  f93_ralis_crisis_event.0901.a: "It's for the best of all."
  f93_ralis_crisis_event.0901.b: "This isn't a concern for us."
  f93_ralis_crisis_event.0901.c: "We will voluntarily hand our systems over. "

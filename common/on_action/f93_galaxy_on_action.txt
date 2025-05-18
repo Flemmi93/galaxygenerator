@@ -37,6 +37,7 @@ on_entering_system_first_time = {
 on_planet_conquer = {
 	events = {
 		f93_ralis_crisis_event.0800
+		# f93_ralis_crisis_event.0802
 	}
 }
 
