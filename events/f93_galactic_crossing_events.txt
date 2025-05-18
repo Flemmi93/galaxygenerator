@@ -29,10 +29,6 @@ country_event = {
 	immediate = {
 		every_country = {
 			country_event = { id = f93_galactic_crossing.8 days = 5 }
-			add_modifier = {
-				modifier = country_enclave_capacity_decrease_modifier
-				mult = 100
-			}
 		}
 		hidden_effect = {
 			if = {
@@ -321,10 +317,11 @@ country_event = {
 country_event = {
 	id = f93_galactic_crossing.9
 	hide_window = yes
-	is_triggered_only = yes
+	mean_time_to_happen = 360
 
 	trigger = {
 		exists = capital_scope
+		is_country_type = default
 	}
 	immediate = {
 		every_system_within_border = {
@@ -352,11 +349,13 @@ country_event = {
 			else = {
 				closest_system = {
 					limit = {
-						OR = {
-							owner = { is_same_value = root }
-							owner = { has_overlord = root }
+						AND = {
+							exists = owner
+							OR = {
+								owner = { is_same_value = root }
+								owner = { has_overlord = root }
+							}
 						}
-						
 						OR = {
 							any_neighbor_system = { has_megastructure = dandelion_relay }
 							any_neighbor_system = { has_megastructure = hyper_relay }
@@ -367,6 +366,21 @@ country_event = {
 			}
 		}
 		#Rename Ralis to Ralis as long as the AI holds it.
+		add_modifier = {
+			modifier = country_enclave_capacity_decrease_modifier
+			mult = 100
+		}
+		if = {
+			limit = { exists = event_target:f93_community_ralis_admin_country }
+			every_country = {
+				event_target:f93_community_ralis_admin_country = {
+					set_closed_borders = {
+						who = prev
+						status = no
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -628,6 +642,7 @@ country_event = {
 					is_country_type = enclave_mercenary
 					is_country_type = enclave
 				}
+				NOT = { is_same_value = event_target:f93_community_ralis_admin_country }
 			}
 			destroy_country = yes
 		}

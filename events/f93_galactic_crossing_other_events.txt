@@ -1,0 +1,119 @@
+namespace = f93_oe_event
+
+
+# Triggers event when each country first sends a ship into the system (once per country)
+# Scope = Ship
+# From = System
+# FromFrom = Country
+
+#entering galactic crossing for the first time
+ship_event = {
+	id = f93_oe_event.1
+	title = f93_oe_event.1.name
+	desc = f93_oe_event.1.desc
+	picture = GFX_evt_f93_galactic_crossing_map
+	is_triggered_only = yes
+	trigger = {
+		FromFrom = { NOT = { has_country_flag = f93_seen_dandelion_relay } }
+		FROM = { has_megastructure = dandelion_relay }
+	}
+	immediate = { FromFrom = { set_country_flag = f93_seen_dandelion_relay } }
+	option = {
+		name = f93_oe_event.1.a
+	}
+
+}
+
+ship_event = {
+	id = f93_oe_event.2
+	title = f93_oe_event.2.name
+	desc = f93_oe_event.2.desc
+	picture = GFX_evt_astral_rift_vortex
+	is_triggered_only = yes
+	trigger = {
+		owner = { NOT = { has_country_flag = f93_seen_shroud_region } }
+		any_neighbor_system_euclidean = {
+			has_star_flag = f93_shroud_region_flag
+			distance =  {
+				type = euclidean
+				max_distance <= 80
+			}
+		}
+	}
+	immediate = { owner = { set_country_flag = f93_seen_shroud_region } }
+	option = {
+		name = f93_oe_event.2.a
+	}
+}
+
+country_event = {
+	id = f93_oe_event.3
+	title = f93_oe_event.3.name
+	desc = f93_oe_event.3.desc
+	picture = GFX_evt_skrand_ship
+	trigger = {
+		has_seen_any_bypass = ralisgate
+		NOT = { has_country_flag = f93_seen_ralisgate_bypass }
+	}
+	immediate = { set_country_flag = f93_seen_ralisgate_bypass }
+	option = {
+		name = f93_oe_event.3.a
+	}
+}
+
+planet_event = {
+	id = f93_oe_event.4
+	title = f93_oe_event.4.name
+	desc = f93_oe_event.4.desc
+	picture = GFX_evt_skrand_ship
+	trigger = {
+		solar_system = { has_megastructure = dandelion_relay }
+		NOT = { has_country_flag = f93_seen_galactic_crossing_mod }
+	}
+	immediate = { owner = { set_country_flag = f93_seen_galactic_crossing_mod } }
+	option = {
+		name = f93_oe_event.4.a:
+		tooltip = {
+			add_modifier = {
+				modifier = f93_galactic_crossing_planet
+			}
+		}
+		hidden_effect = {
+			planet_event = {
+				id = f93_oe_event.5
+				days = 3600
+			}
+		}
+	}
+}
+
+planet_event = {
+	id = f93_oe_event.4001
+	hide_window = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		solar_system = { has_megastructure = dandelion_relay }
+	}
+	immediate = {
+		add_modifier = {
+			modifier = f93_galactic_crossing_planet
+		}
+	}
+}
+
+planet_event = {
+	id = f93_oe_event.5
+	title = f93_oe_event.5.name
+	desc = f93_oe_event.5.desc
+	picture = GFX_evt_obelisk_tourists
+	is_triggered_only = yes
+	option = {
+		owner = {
+			add_modifier = {
+				modifier = diplo_weight_mult
+				mult = 0.05
+			}
+		}
+	}
+}

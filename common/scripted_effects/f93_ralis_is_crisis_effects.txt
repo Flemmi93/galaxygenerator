@@ -352,6 +352,7 @@ f93_first_handover_to_ralis_admin = {
 	}
 	event_target:f93_ralis_country = {
 		every_controlled_fleet = {
+			limit = { NOT = { is_ship_size = star_eater } }
 			set_owner = event_target:f93_community_ralis_admin_country
 		}
 		every_controlled_planet = {
@@ -368,6 +369,7 @@ f93_final_handover_to_ralis_admin = {
 			owner = { is_galactic_community_member = yes }
 		}
 		starbase = { set_owner = event_target:f93_community_ralis_admin_country }
+		every_system_planet = { set_owner = event_target:f93_community_ralis_admin_country }
 		remove_star_flag = f93_promised_to_ralis_admin
 	}
 }
