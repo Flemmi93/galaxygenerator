@@ -32,11 +32,13 @@ ship_event = {
 	is_triggered_only = yes
 	trigger = {
 		owner = { NOT = { has_country_flag = f93_seen_shroud_region } }
-		any_neighbor_system_euclidean = {
-			has_star_flag = f93_shroud_region_flag
-			distance =  {
-				type = euclidean
-				max_distance <= 80
+		solar_system = {
+			any_neighbor_system_euclidean = {
+				has_star_flag = f93_shroud_region_flag
+				distance =  {
+					type = euclidean
+					max_distance <= 80
+				}
 			}
 		}
 	}
@@ -51,6 +53,7 @@ country_event = {
 	title = f93_oe_event.3.name
 	desc = f93_oe_event.3.desc
 	picture = GFX_evt_skrand_ship
+	is_triggered_only = yes
 	trigger = {
 		has_seen_any_bypass = ralisgate
 		NOT = { has_country_flag = f93_seen_ralisgate_bypass }
@@ -66,13 +69,15 @@ planet_event = {
 	title = f93_oe_event.4.name
 	desc = f93_oe_event.4.desc
 	picture = GFX_evt_skrand_ship
+	is_triggered_only = yes
+
 	trigger = {
-		solar_system = { has_megastructure = dandelion_relay }
-		NOT = { has_country_flag = f93_seen_galactic_crossing_mod }
+		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
+		space_owner = { NOT = { has_country_flag = f93_seen_galactic_crossing_mod } }
 	}
 	immediate = { owner = { set_country_flag = f93_seen_galactic_crossing_mod } }
 	option = {
-		name = f93_oe_event.4.a:
+		name = f93_oe_event.4.a
 		tooltip = {
 			add_modifier = {
 				modifier = f93_galactic_crossing_planet
@@ -93,7 +98,7 @@ planet_event = {
 	is_triggered_only = yes
 	
 	trigger = {
-		solar_system = { has_megastructure = dandelion_relay }
+		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
 	}
 	immediate = {
 		add_modifier = {
@@ -111,9 +116,57 @@ planet_event = {
 	option = {
 		owner = {
 			add_modifier = {
-				modifier = diplo_weight_mult
-				mult = 0.05
+				modifier = f93_galactic_crossing_buff_diplomats
+				mult = 0.5
 			}
 		}
+	}
+}
+
+
+country_event = {
+	id = f93_oe_event.6
+	title = f93_oe_event.6.name
+	desc = f93_oe_event.6.desc
+	picture = GFX_evt_star_chart
+
+	mean_time_to_happen = { days = 30 }
+
+	trigger = {
+		f93_system_is_connected_to_gal_crossing = yes
+		NOT = { has_country_flag = f93_is_connected_to_gal_crossing_flag }
+	}
+
+	immediate = {
+		set_country_flag = f93_is_connected_to_gal_crossing_flag
+	}
+
+	option = {
+		name = f93_oe_event.6.a
+		add_modifier = {
+			modifier = f93_country_is_connected
+		}
+	}
+}
+country_event = {
+	id = f93_oe_event.7
+	title = f93_oe_event.7.name
+	desc = f93_oe_event.7.name
+	picture = GFX_evt_star_chart
+	mean_time_to_happen = { days = 30 }
+
+	trigger = {
+		f93_system_is_connected_to_gal_crossing = no
+		has_country_flag = f93_is_connected_to_gal_crossing_flag
+
+	}
+
+	immediate = {
+		remove_country_flag = f93_is_connected_to_gal_crossing_flag
+	}
+
+	option = {
+		name = f93_oe_event.7.a
+		remove_modifier = f93_country_is_connected
 	}
 }

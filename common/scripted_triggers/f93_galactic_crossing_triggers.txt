@@ -141,3 +141,18 @@ f93_has_zro_cartel = {
 f93_is_zro_cartel_lord = {
 	any_owned_planet = { is_same_value = event_target:f93_ralis_planet }
 }
+
+f93_system_is_connected_to_gal_crossing = {
+	any_system_within_border = {
+		OR = {
+			AND = {
+				has_megastructure = hyper_relay
+				any_neighbor_system = {
+					has_megastructure = dandelion_relay
+				}
+			}
+			has_megastructure = dandelion_relay
+		}
+		is_system_connected_to_relay_network = yes
+	}
+}

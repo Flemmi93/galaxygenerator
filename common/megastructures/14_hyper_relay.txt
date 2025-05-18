@@ -176,15 +176,14 @@ hyper_relay = {
 			is_capital_system = no
 			#has_trade_route = no
 		}
-		#this edited part makes it so the AI should only build them in specif9ic desired systems.
-		modifier = { # this flag is unused but might be used
-			factor = 0
-			not = { from = { has_country_flag = f93_empire_connects_to_ancient_relay_flag } }
-		}
 		modifier = {
 			factor = 0 
 			not = { has_star_flag = f93_crossing_capital_route_flag }
 		}
+		# modifier = {
+		# 	factor = 50
+		# 	has_star_flag = f93_crossing_capital_route_flag
+		# }
 	}
 
 	bypass_type = relay_bypass

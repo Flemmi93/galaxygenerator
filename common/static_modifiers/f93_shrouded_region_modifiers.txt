@@ -64,3 +64,8 @@ f93_galactic_crossing_planet = {
 	planet_amenities_mult = 0.1
 	planet_jobs_consumer_goods_produces_mult = 0.1
 }
+
+
+f93_galactic_crossing_buff_diplomats = {
+	diplo_weight_mult = 0.1
+}

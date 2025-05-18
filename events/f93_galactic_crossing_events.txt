@@ -330,46 +330,37 @@ country_event = {
 		capital_scope.solar_system = {
 			if = {
 				limit = {
-					OR = {
-						any_neighbor_system = { has_megastructure = dandelion_relay }
-						any_neighbor_system = { has_megastructure = hyper_relay }
+					any_neighbor_system = {
+						OR = {
+							has_megastructure = dandelion_relay
+							has_megastructure = hyper_relay
+						}
 					}
 				}
 				set_star_flag = f93_crossing_capital_route_flag
-				if = {
-					limit = {
-						any_system = { 
-							has_megastructure = dandelion_relay
-							is_system_connected_to_relay_network = yes
-						}
-					}
-					remove_star_flag = f93_crossing_capital_route_flag
-				}
 			}
 			else = {
 				closest_system = {
 					limit = {
-						AND = {
-							exists = owner
+						exists = owner
+						space_owner = { is_same_value = root }
+						any_neighbor_system = {
 							OR = {
-								owner = { is_same_value = root }
-								owner = { has_overlord = root }
+								has_megastructure = dandelion_relay
+								has_megastructure = hyper_relay
 							}
-						}
-						OR = {
-							any_neighbor_system = { has_megastructure = dandelion_relay }
-							any_neighbor_system = { has_megastructure = hyper_relay }
 						}
 					}
 					set_star_flag = f93_crossing_capital_route_flag
 				}
 			}
 		}
-		#Rename Ralis to Ralis as long as the AI holds it.
+		#prpevent ai form making enclaves
 		add_modifier = {
 			modifier = country_enclave_capacity_decrease_modifier
 			mult = 100
 		}
+		#make community admin open borders
 		if = {
 			limit = { exists = event_target:f93_community_ralis_admin_country }
 			every_country = {
@@ -529,59 +520,6 @@ country_event = {
 }
 
 country_event = {
-	id = f93_galactic_crossing.12
-	title = f93_galactic_crossing.12.name
-	desc = f93_galactic_crossing.12.name
-	picture = GFX_evt_star_chart
-
-	mean_time_to_happen = { days = 30 }
-
-	trigger = {
-		OR = {
-			any_neighbor_country = { is_capitals_connected_through_relay_network = root }
-			has_megastructure = dandelion_relay
-		}
-		NOT = { has_country_flag = f93_is_connected_to_gal_crossing }
-	}
-
-	immediate = {
-		set_country_flag = f93_is_connected_to_gal_crossing
-	}
-
-	option = {
-		name = f93_galactic_crossing.12.a
-		add_modifier = {
-			modifier = f93_country_is_connected
-		}
-	}
-}
-country_event = {
-	id = f93_galactic_crossing.13
-	title = f93_galactic_crossing.13.name
-	desc = f93_galactic_crossing.13.name
-	picture = GFX_evt_star_chart
-	mean_time_to_happen = { days = 30 }
-
-	trigger = {
-		NOR = {
-			any_neighbor_country = { is_capitals_connected_through_relay_network = root }
-			has_megastructure = dandelion_relay
-		}
-		has_country_flag = f93_is_connected_to_gal_crossing
-
-	}
-
-	immediate = {
-		remove_country_flag = f93_is_connected_to_gal_crossing
-	}
-
-	option = {
-		name = f93_galactic_crossing.13.a
-		remove_modifier = f93_country_is_connected
-	}
-}
-
-country_event = {
 	id = f93_galactic_crossing.14
 	hide_window = yes
 	mean_time_to_happen = 360
@@ -603,115 +541,115 @@ country_event = {
 	}
 }
 #hardcore debugger
-country_event = {
-	id = f93_galactic_crossing.15
-	is_triggered_only = yes
-	title = f93_galactic_crossing.13.name
-	desc = f93_galactic_crossing.13.name
-	picture = GFX_evt_star_chart
-	option = {
-		name = "random enclave"
-		random_country = {
-			limit = { 
-				OR = {
-					is_country_type = enclave_mercenary
-					is_country_type = enclave
-				}
-			}
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "playable countries"
-		every_playable_country = {
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "non playable countries"
-		every_country = {
-			limit = { NOT = { is_country_type = default } }
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "enclave countries"
-		every_country = {
-			limit = { 
-				OR = {
-					is_country_type = enclave_mercenary
-					is_country_type = enclave
-				}
-				NOT = { is_same_value = event_target:f93_community_ralis_admin_country }
-			}
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "marauder countries"
-		every_country = {
-			limit = { 
-				OR = {
-					is_country_type = dormant_marauders
-					is_country_type = awakened_marauders
-				}
-			}
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "falen countries"
-		every_country = {
-			limit = { 
-				OR = {
-					is_country_type = fallen_empire
-					is_country_type = awakened_fallen_empire
-				}
-			}
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "primitive countries"
-		every_country = {
-			limit = {
-				is_country_type = primitive
-			}
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "space faune countries"
-		every_country = {
-			limit = { is_fauna_country = yes }
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "all countries"
-		every_country = {
-			destroy_country = yes
-		}
-		every_system = {
-			every_fleet_in_system = {
-				delete_fleet = this
-			}
-		}
-	}
-	option = {
-		name = "random country"
-		random_country = {
-			limit = { is_ai = yes }
-			destroy_country = yes
-		}
-	}
-	option = {
-		name = "fleets"
+# country_event = {
+# 	id = f93_galactic_crossing.15
+# 	is_triggered_only = yes
+# 	title = f93_galactic_crossing.13.name
+# 	desc = f93_galactic_crossing.13.name
+# 	picture = GFX_evt_star_chart
+# 	option = {
+# 		name = "random enclave"
+# 		random_country = {
+# 			limit = { 
+# 				OR = {
+# 					is_country_type = enclave_mercenary
+# 					is_country_type = enclave
+# 				}
+# 			}
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "playable countries"
+# 		every_playable_country = {
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "non playable countries"
+# 		every_country = {
+# 			limit = { NOT = { is_country_type = default } }
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "enclave countries"
+# 		every_country = {
+# 			limit = { 
+# 				OR = {
+# 					is_country_type = enclave_mercenary
+# 					is_country_type = enclave
+# 				}
+# 				NOT = { is_same_value = event_target:f93_community_ralis_admin_country }
+# 			}
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "marauder countries"
+# 		every_country = {
+# 			limit = { 
+# 				OR = {
+# 					is_country_type = dormant_marauders
+# 					is_country_type = awakened_marauders
+# 				}
+# 			}
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "falen countries"
+# 		every_country = {
+# 			limit = { 
+# 				OR = {
+# 					is_country_type = fallen_empire
+# 					is_country_type = awakened_fallen_empire
+# 				}
+# 			}
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "primitive countries"
+# 		every_country = {
+# 			limit = {
+# 				is_country_type = primitive
+# 			}
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "space faune countries"
+# 		every_country = {
+# 			limit = { is_fauna_country = yes }
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "all countries"
+# 		every_country = {
+# 			destroy_country = yes
+# 		}
+# 		every_system = {
+# 			every_fleet_in_system = {
+# 				delete_fleet = this
+# 			}
+# 		}
+# 	}
+# 	option = {
+# 		name = "random country"
+# 		random_country = {
+# 			limit = { is_ai = yes }
+# 			destroy_country = yes
+# 		}
+# 	}
+# 	option = {
+# 		name = "fleets"
 		
-		every_system = {
-			every_fleet_in_system = {
-				delete_fleet = this
-			}
-		}
-	}
-}
+# 		every_system = {
+# 			every_fleet_in_system = {
+# 				delete_fleet = this
+# 			}
+# 		}
+# 	}
+# }

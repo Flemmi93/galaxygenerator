@@ -544,9 +544,10 @@ country_event = {
 	trigger = {
 		is_same_value = event_target:f93_ralis_country
 		any_system = {
+			exists = starbase
 			starbase = { controller = { is_same_value = event_target:f93_ralis_country } }
 			any_system_colony = {
-				owner = { NOT = { is_same_value = event_target:f93_ralis_countryot } }
+				owner = { NOT = { is_same_value = event_target:f93_ralis_country } }
 			}
 		}
 	}
