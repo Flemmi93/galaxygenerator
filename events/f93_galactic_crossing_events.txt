@@ -554,9 +554,30 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = f93_galactic_crossing.15
+	hide_window = yes
+	mean_time_to_happen = 360
+	trigger = { is_same_value = event_target:global_event_country }
+	immediate = {
+		random_system = {
+			limit = {
+				f93_system_has_ancient_relay = no
+				has_star_flag = f93_ancient_relay_system
+			}
+			f93_sapwn_ancient_relay = yes
+			# if = {
+			# 	limit = { exists = space_owner }
+			# 	space_owner = { country_event = {  } }
+			# }
+		}
+	}
+}
+
 #hardcore debugger
 # country_event = {
-# 	id = f93_galactic_crossing.15
+# 	id = f93_galactic_crossing.99
 # 	is_triggered_only = yes
 # 	title = f93_galactic_crossing.13.name
 # 	desc = f93_galactic_crossing.13.name

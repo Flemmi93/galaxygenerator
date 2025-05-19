@@ -7,42 +7,51 @@ namespace = f93_oe_event
 # FromFrom = Country
 
 #entering galactic crossing for the first time
-ship_event = {
+country_event = {
 	id = f93_oe_event.1
 	title = f93_oe_event.1.name
 	desc = f93_oe_event.1.desc
 	picture = GFX_evt_f93_galactic_crossing_map
-	is_triggered_only = yes
+	mean_time_to_happen = 360
 	trigger = {
-		FromFrom = { NOT = { has_country_flag = f93_seen_dandelion_relay } }
-		FROM = { f93_system_has_ancient_relay = yes }
+		is_ai = no
+		NOT = { has_country_flag = has_seen_f93_oe_event1 }
+		# has_seen_any_bypass = relay_bypass
+		any_system = {
+			has_star_flag = f93_ancient_relay_system
+			is_in_sensor_range_of_country = root
+		}
 	}
-	immediate = { FromFrom = { set_country_flag = f93_seen_dandelion_relay } }
+	immediate = {
+		set_country_flag = has_seen_f93_oe_event1
+	}
 	option = {
 		name = f93_oe_event.1.a
 	}
-
 }
 
-ship_event = {
+# Triggers event when each country first sends a ship into the system (once per country)
+# Scope = Ship
+# From = System
+# FromFrom = Country
+country_event = {
 	id = f93_oe_event.2
 	title = f93_oe_event.2.name
 	desc = f93_oe_event.2.desc
 	picture = GFX_evt_astral_rift_vortex
-	is_triggered_only = yes
+	mean_time_to_happen = 360
 	trigger = {
-		owner = { NOT = { has_country_flag = f93_seen_shroud_region } }
-		solar_system = {
+		is_ai = no
+		NOT = { has_country_flag = has_seen_f93_oe_event2 }
+		any_system_within_border = {
 			any_neighbor_system_euclidean = {
 				has_star_flag = f93_shroud_region_flag
-				distance =  {
-					type = euclidean
-					max_distance <= 80
-				}
 			}
 		}
 	}
-	immediate = { owner = { set_country_flag = f93_seen_shroud_region } }
+	immediate = {
+		set_country_flag = has_seen_f93_oe_event2
+	}
 	option = {
 		name = f93_oe_event.2.a
 	}
@@ -53,9 +62,16 @@ country_event = {
 	title = f93_oe_event.3.name
 	desc = f93_oe_event.3.desc
 	picture = GFX_evt_skrand_ship
-	is_triggered_only = yes
+	mean_time_to_happen = 360
 	trigger = {
-		has_seen_any_bypass = ralisgate
+		is_ai = no
+		any_system = {
+			OR = {
+				has_star_flag = f93_ralisgate
+				has_star_flag = f93_raliscluster1
+			}
+			is_in_sensor_range_of_country = root
+		}
 		NOT = { has_country_flag = f93_seen_ralisgate_bypass }
 	}
 	immediate = { set_country_flag = f93_seen_ralisgate_bypass }
@@ -69,13 +85,13 @@ planet_event = {
 	title = f93_oe_event.4.name
 	desc = f93_oe_event.4.desc
 	picture = GFX_evt_skrand_ship
-	is_triggered_only = yes
+	mean_time_to_happen = 360
 
 	trigger = {
 		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
-		space_owner = { NOT = { has_country_flag = f93_seen_galactic_crossing_mod } }
+		space_owner = { NOT = { has_country_flag = has_seen_f93_oe_event4 } }
 	}
-	immediate = { owner = { set_country_flag = f93_seen_galactic_crossing_mod } }
+	immediate = { space_owner = { set_country_flag = has_seen_f93_oe_event4 } }
 	option = {
 		name = f93_oe_event.4.a
 		tooltip = {
@@ -99,6 +115,7 @@ planet_event = {
 	
 	trigger = {
 		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
+		NOT = { has_modifier = f93_galactic_crossing_planet }
 	}
 	immediate = {
 		add_modifier = {
