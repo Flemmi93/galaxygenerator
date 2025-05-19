@@ -533,6 +533,25 @@ f93_place_shroud_gate_node_and_cluster = {
 			
 }
 
+f93_place_shroud_hyperlane_in_isolated_wormhole_region = {
+	every_system = {
+		limit = {
+			has_star_flag = f93_shroud_region_flag
+			has_star_flag = f93_ralis_empire_cluster
+			NOT = { has_star_flag = f93_ralisgate_cluster }
+			has_natural_wormhole = yes
+		}
+		set_star_flag = f93_current_nexus
+		random_neighbor_system_euclidean = {
+			f93_place_shroud_gate_node_and_cluster = yes
+			if = {
+				limit = { NOT = { has_hyperlane_to = prev } }
+				add_hyperlane = { from = this to = prev }
+			}
+		}
+	}
+}
+
 f93_add_zro_cartel = {
 	if = {
 		limit = { owner = { is_gestalt = yes } }

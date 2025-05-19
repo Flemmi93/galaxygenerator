@@ -398,7 +398,7 @@ country_event = {
 		}
 		
 		random_system = {
-			limit = { NOT = { exists = owner } has_megastructure = dandelion_relay }
+			limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes }
 			prev = {
 				spawn_natural_wormhole = {
 					bypass_type = wormhole

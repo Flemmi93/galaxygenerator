@@ -117,14 +117,14 @@ country_event = {
 				}
 				set_global_flag = f93_shroud_gate_active
 				random_system = {
-					limit = { NOT = { exists = owner } has_megastructure = dandelion_relay NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+					limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
 					prev = {
 						f93_place_shroud_gate_node = yes
 					}
 					f93_place_shroud_gate_nexus = yes
 				}
 				random_system = {
-					limit = { NOT = { exists = owner } has_megastructure = dandelion_relay NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+					limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
 					f93_place_shroud_gate_nexus = yes
 				}
 			}
@@ -162,61 +162,61 @@ country_event = {
 			limit = { NOT = { has_global_flag = f93_ralis_crisis_event0101_happened } }
 			set_global_flag = f93_ralis_crisis_event0101_happened
 			every_system = {
-			limit = {
-				NOR = {
-					has_star_flag = f93_ralis_crisis_event0101_already_flag
-					f93_should_not_be_destroyed = yes
-					any_system_planet = { is_colonizable = yes }
-				}
-				any_neighbor_system = { has_megastructure = dandelion_relay }
-				NOT = {
-					owner = { OR = { is_country_type = fallen_empire is_country_type = awakened_fallen_empire } }
-					any_system_planet = { is_colonizable = yes }
-				}
-			}
-			set_star_flag = f93_ralis_crisis_event0101_already_flag
-			if = {
 				limit = {
-					has_megastructure = dandelion_relay
+					NOR = {
+						has_star_flag = f93_ralis_crisis_event0101_already_flag
+						f93_should_not_be_destroyed = yes
+						any_system_planet = { is_colonizable = yes }
+					}
+					any_neighbor_system = { f93_system_has_ancient_relay = yes }
+					NOT = {
+						owner = { OR = { is_country_type = fallen_empire is_country_type = awakened_fallen_empire } }
+						any_system_planet = { is_colonizable = yes }
+					}
 				}
-				set_star_flag = f93_has_dandelion_relay
-			}
-			random_list = {
-				50 = { destroy_star_system = yes every_system_planet = { reroll_deposits = yes } }
-				50 = { }
-			}
-			if = {
-				limit = { has_star_flag = f93_has_dandelion_relay NOT = { has_megastructure = dandelion_relay } }
-				highway_connect_relay_only = yes
-			}
-		}
-		every_system = {
-			limit = {
-				NOR = {
-					has_star_flag = f93_ralis_crisis_event0101_already_flag
-					f93_should_not_be_destroyed = yes
-					star = { is_star_class = sc_no_star }
+				set_star_flag = f93_ralis_crisis_event0101_already_flag
+				if = {
+					limit = {
+						f93_system_has_ancient_relay = yes
+					}
+					set_star_flag = f93_has_dandelion_relay
 				}
-				any_system_planet = { is_colonizable = yes }
-				is_capital_system = no
-				any_neighbor_system = { has_megastructure = dandelion_relay }
+				random_list = {
+					50 = { destroy_star_system = yes every_system_planet = { reroll_deposits = yes } }
+					50 = { }
+				}
+				if = {
+					limit = { has_star_flag = f93_has_dandelion_relay f93_system_has_ancient_relay = no }
+					highway_connect_relay_only = yes
+				}
 			}
-			set_star_flag = f93_ralis_crisis_event0101_already_flag
-			if = {
+			every_system = {
 				limit = {
-					has_megastructure = dandelion_relay
+					NOR = {
+						has_star_flag = f93_ralis_crisis_event0101_already_flag
+						f93_should_not_be_destroyed = yes
+						star = { is_star_class = sc_no_star }
+					}
+					any_system_planet = { is_colonizable = yes }
+					is_capital_system = no
+					any_neighbor_system = { f93_system_has_ancient_relay = yes }
 				}
-				set_star_flag = f93_has_dandelion_relay
+				set_star_flag = f93_ralis_crisis_event0101_already_flag
+				if = {
+					limit = {
+						f93_system_has_ancient_relay = yes
+					}
+					set_star_flag = f93_has_dandelion_relay
+				}
+				random_list = {
+					33 = { destroy_star_system = yes set_star_flag = f93_ralis_crisis_event_got_hit_flag every_system_planet = { reroll_deposits = yes } }
+					67 = { }
+				}
+				if = {
+					limit = { has_star_flag = f93_has_dandelion_relay f93_system_has_ancient_relay = no }
+					highway_connect_relay_only = yes
+				}
 			}
-			random_list = {
-				33 = { destroy_star_system = yes set_star_flag = f93_ralis_crisis_event_got_hit_flag every_system_planet = { reroll_deposits = yes } }
-				67 = { }
-			}
-			if = {
-				limit = { has_star_flag = f93_has_dandelion_relay NOT = { has_megastructure = dandelion_relay } }
-				highway_connect_relay_only = yes
-			}
-		}
 		}
 	}
 	option = {
@@ -295,6 +295,9 @@ country_event = {
 					country_event = { id = f93_ralis_crisis_event.0202 days = 720 random = 360 }
 				}
 				capital_scope = { set_name = "Ralis" }
+				every_playable_country = {
+					establish_contact = { who = prev location = prev.capital_scope }
+				}
 			}
 		}
 	}
@@ -542,6 +545,7 @@ country_event = {
 	mean_time_to_happen = 15
 	
 	trigger = {
+		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
 		any_system = {
 			exists = starbase
@@ -569,6 +573,7 @@ country_event = {
 	mean_time_to_happen = 15
 	
 	trigger = {
+		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
 		event_target:f93_ralis_system = {
 			has_star_flag = crisis_sphere_system@prev
@@ -595,6 +600,7 @@ country_event = {
 	fire_only_once = yes
 
 	trigger = {
+		exists = event_target:f93_ralis_country
 		event_target:f93_ralis_country = {
 			is_level_5_player_crisis = yes
 		}
@@ -686,6 +692,7 @@ country_event = {
 	fire_only_once = yes
 	trigger = {
 		any_owned_planet = {
+			exists = event_target:f93_ralis_planet
 			is_same_value = event_target:f93_ralis_planet
 			owner = { NOT = { is_same_value = event_target:f93_ralis_country } }
 		}

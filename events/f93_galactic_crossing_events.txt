@@ -34,7 +34,7 @@ country_event = {
 			if = {
 				limit = {
 					NOT = {
-						any_system = { has_megastructure = dandelion_relay }
+						any_system = { f93_system_has_ancient_relay = yes }
 					}
 				}
 				random_system = {
@@ -57,13 +57,13 @@ country_event = {
 				limit = {
 					any_system = {
 						f93_valid_gal_crossing_endpoint = yes
-						NOT = { has_megastructure = dandelion_relay }
+						f93_system_has_ancient_relay = no
 					}
 				}
 				random_system = {
 					limit = {
 						f93_valid_gal_crossing_endpoint = yes
-						NOT = { has_megastructure = dandelion_relay }
+						f93_system_has_ancient_relay = no
 					}
 					save_global_event_target_as = system_highway_end
 					event_target:system_highway_start = {
@@ -78,7 +78,7 @@ country_event = {
 					limit = {
 						has_megastructure = ring_world_ruined
 						NOT = { exists = owner }
-						NOT = { has_megastructure = dandelion_relay }
+						f93_system_has_ancient_relay = no
 					}
 					save_global_event_target_as = system_highway_end
 					event_target:system_highway_start = {
@@ -93,7 +93,7 @@ country_event = {
 						exists = owner
 						owner = { is_country_type = fallen_empire }
 						is_capital_system = yes
-						NOT = { has_megastructure = dandelion_relay }
+						f93_system_has_ancient_relay = no
 					}
 				}
 				every_system = {
@@ -101,13 +101,13 @@ country_event = {
 						exists = owner
 						owner = { is_country_type = fallen_empire }
 						is_capital_system = yes
-						NOT = { has_megastructure = dandelion_relay }
+						f93_system_has_ancient_relay = no
 					}
 					save_global_event_target_as = system_highway_end
 					closest_system = {
 						limit = {
 							NOT = { is_same_value = prev }
-							has_megastructure = dandelion_relay
+							f93_system_has_ancient_relay = yes
 						}
 						save_global_event_target_as = system_highway_start
 						highway_create_system = yes
@@ -135,13 +135,13 @@ country_event = {
 				exists = owner
 				owner = { is_country_type = fallen_empire }
 				is_capital_system = yes
-				NOT = { has_megastructure = dandelion_relay }
+				f93_system_has_ancient_relay = no
 			}
 			save_global_event_target_as = system_highway_end
 			closest_system = {
 				limit = {
 					NOT = { is_same_value = prev }
-					has_megastructure = dandelion_relay
+					f93_system_has_ancient_relay = yes
 				}
 				save_global_event_target_as = system_highway_start
 				highway_create_system = yes
@@ -176,7 +176,7 @@ country_event = {
 					exists = owner
 					any_neighbor_system = { has_star_flag = empire_cluster }
 					any_system = {
-						has_megastructure = dandelion_relay
+						f93_system_has_ancient_relay = yes
 						distance = {
 							source = prev
 							max_jumps = @galactic_crossing_outskirts
@@ -191,6 +191,12 @@ country_event = {
 				}
 			}
 			set_star_flag = f93_shroud_region_flag
+			every_system = {
+				limit = {
+					invalid_shrouded_system = yes
+				}
+				remove_star_flag = f93_shroud_region_flag
+			}
 			every_system = {
 				limit = { has_hyperlane_to = prev }
 				remove_hyperlane = { from = this to = prev }
@@ -207,7 +213,7 @@ country_event = {
 	immediate = {
 		every_system = {
 			limit = {
-				has_megastructure = dandelion_relay
+				f93_system_has_ancient_relay = yes
 				NOR = {
 					exists = owner
 					has_star_flag = empire_cluster
@@ -233,19 +239,24 @@ country_event = {
 					is_country_type = dormant_marauders
 					is_country_type = default
 				}
-				NOT = { is_country_type = primitive }
-				NOT = {
+				NOR = {
+					is_country_type = primitive
 					closest_system = {
-						limit = { has_megastructure = dandelion_relay }
+						limit = { f93_system_has_ancient_relay = yes }
 						max_steps = 20
 					}
+					has_country_flag = chosen_empire
 				}
 			}
 			random_system_within_border = {
 				closest_system = {
 					min_steps = 2
 					random_system = {
-						limit = { NOT = { exists = owner } has_megastructure = dandelion_relay has_natural_wormhole = no }
+						limit = {
+							NOT = { exists = owner }
+							f93_system_has_ancient_relay = yes
+							has_natural_wormhole = no
+						}
 						prev = {
 							spawn_natural_wormhole = {
 								bypass_type = wormhole
@@ -332,7 +343,7 @@ country_event = {
 				limit = {
 					any_neighbor_system = {
 						OR = {
-							has_megastructure = dandelion_relay
+							f93_system_has_ancient_relay = yes
 							has_megastructure = hyper_relay
 						}
 					}
@@ -346,7 +357,7 @@ country_event = {
 						space_owner = { is_same_value = root }
 						any_neighbor_system = {
 							OR = {
-								has_megastructure = dandelion_relay
+								f93_system_has_ancient_relay = yes
 								has_megastructure = hyper_relay
 							}
 						}
@@ -434,6 +445,7 @@ country_event = {
 				f93_place_shroud_gate_node_and_cluster = yes
 			}
 		}
+		f93_place_shroud_hyperlane_in_isolated_wormhole_region = yes
 	}
 }
 
@@ -524,7 +536,8 @@ country_event = {
 	hide_window = yes
 	mean_time_to_happen = 360
 	trigger = {
-		years_passed >= value:halfway_to_mid_game_year
+		years_passed >= 50
+		is_ai = yes
 		NOR = {
 			has_global_flag = galactic_community_founded
 			has_global_flag = galcom_founding_begun
@@ -535,8 +548,9 @@ country_event = {
 		random_playable_country = {
 			limit = {
 				NOT = { has_communications = root }
+				is_ai = yes
 			}
-			establish_communications = root
+			establish_communications_no_message = root
 		}
 	}
 }

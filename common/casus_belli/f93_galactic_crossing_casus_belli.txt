@@ -7,7 +7,7 @@ f93_cb_gal_cross_force_open_border = {
 			is_country_type = default
 			is_country_type = awakened_fallen_empire
 		}
-		FROM = { any_system_within_border = { has_megastructure = dandelion_relay } }
+		FROM = { any_system_within_border = { f93_system_has_ancient_relay = yes } }
 	}
 
 	is_valid = {

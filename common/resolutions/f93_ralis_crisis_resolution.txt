@@ -18,6 +18,7 @@ f93_ralis_plan_resolution = {
 	potential = {
 		has_global_flag = f93_activate_ralis_resolution_1
 		event_target:f93_ralis_planet = {
+			exists = owner
 			owner = { is_same_value = event_target:f93_ralis_country }
 		}
 		NOR = { has_global_flag = f93_community_claim_made has_global_flag = f93_community_claim_never_made }

@@ -120,11 +120,11 @@ system_event = { #removed triangle bits
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		has_megastructure = dandelion_relay #system a
+		f93_system_has_ancient_relay = yes #system a
 		any_neighbor_system = { 
-		has_megastructure = dandelion_relay #system b
+		f93_system_has_ancient_relay = yes #system b
 		any_neighbor_system = {
-			has_megastructure = dandelion_relay #system c
+			f93_system_has_ancient_relay = yes #system c
 			NOT = { is_same_value = root }
 			any_neighbor_system = {
 				is_same_value = root #system a
@@ -135,11 +135,11 @@ system_event = { #removed triangle bits
 	
 	immediate = {
 		random_neighbor_system = {
-			limit = { has_megastructure = dandelion_relay }
+			limit = { f93_system_has_ancient_relay = yes }
 			save_global_event_target_as = system_1 #system b
 		}
 		random_neighbor_system = {
-			limit = { has_megastructure = dandelion_relay NOT = { is_same_value = event_target:system_1 } }
+			limit = { f93_system_has_ancient_relay = yes NOT = { is_same_value = event_target:system_1 } }
 			save_global_event_target_as = system_2 #system c
 		}
 		if = {
@@ -149,7 +149,7 @@ system_event = { #removed triangle bits
 				}
 				count_neighbor_system = {
 					count = 2
-					limit = { has_megastructure = dandelion_relay }
+					limit = { f93_system_has_ancient_relay = yes }
 				}
 			}
 			random_megastructure = { limit = { is_megastructure_type = dandelion_relay } delete_megastructure = this }

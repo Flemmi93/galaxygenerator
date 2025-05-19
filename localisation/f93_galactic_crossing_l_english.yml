@@ -19,14 +19,17 @@
 
 #Dandelion Megastructures
  dandelion_relay: "Ancient Relay"
- dandelion_relay_plural:0 "Ancient Relays"
- dandelion_relay_DESC: "This relay looks as good as new, automated repair systems keep it going, its tiny gravitational impact in [Solar_system.GetName] lets us estimate its age as: really old. \n$hyper_relay_DESC$"
+ dandelion_relay_plural: "Ancient Relays"
+ dandelion_relay_DESC: "This relay looks as good as new, automated repair systems keep it going, its tiny gravitational impact in this system lets us estimate its age as: really old. \n$hyper_relay_DESC$"
  dandelion_relay_MEGASTRUCTURE_DETAILS:"$hyper_relay_MEGASTRUCTURE_DETAILS$"
 
  dandelion_sphere_ruined: "$crisis_sphere_ruined$"
  dandelion_sphere_ruined_DESC: "$crisis_sphere_ruined_DESC$"
  dandelion_sphere_ruined_plural: "$crisis_sphere_ruined_plural$"
  dandelion_sphere_ruined_MEGASTRUCTURE_DETAILS: "$crisis_sphere_ruined_MEGASTRUCTURE_DETAILS$"
+
+ sc_no_star: "Empty System"
+ sc_no_star_desc: "This system contains no star, it might have been artificially connected to the Hyperlane Network."
 
 #Wargoals
  war_goal_f93_wg_gal_cross_force_open_border: "Force Open Borders"

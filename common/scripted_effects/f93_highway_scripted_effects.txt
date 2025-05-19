@@ -1,7 +1,8 @@
-highway_connect_relay_only = {
-	set_star_flag = dd_highway_system_flag@this
+f93_sapwn_ancient_relay = { #spawn ancient relay DLC restriction complient
 	if = {
-		limit = { NOT = { has_megastructure = dandelion_relay } }
+		limit = { 
+			NOT = { has_megastructure = dandelion_relay }
+		}
 		spawn_megastructure = {
 			type = dandelion_relay
 			random_pos = yes
@@ -10,16 +11,13 @@ highway_connect_relay_only = {
 		set_star_flag = f93_ancient_relay_system # to repair it later with events
 	}
 }
+
+highway_connect_relay_only = {
+	set_star_flag = dd_highway_system_flag@this
+	f93_sapwn_ancient_relay = yes
+}
 highway_connect = {
-	if = {
-		limit = { NOT = { has_megastructure = dandelion_relay } }
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
-		set_star_flag = f93_ancient_relay_system
-	}
+	f93_sapwn_ancient_relay = yes
 	if = {
 		limit = { exists = event_target:new_highway_system exists = event_target:old_highway_system }
 		event_target:new_highway_system = {

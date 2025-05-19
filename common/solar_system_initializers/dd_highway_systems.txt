@@ -124,11 +124,7 @@ dd_highway_system_init_01 = {
 		}
 	}
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 }
 
@@ -138,11 +134,7 @@ basic_init_01_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 
 	planet = {
@@ -177,11 +169,7 @@ basic_init_02_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -235,11 +223,7 @@ basic_init_03_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 
 	planet = {
@@ -292,11 +276,7 @@ basic_init_04_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 	asteroid_belt = {
 		type = icy_asteroid_belt
@@ -344,11 +324,7 @@ basic_init_05_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -455,11 +431,7 @@ basic_init_06_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -567,11 +539,7 @@ asteroid_init_01_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 	asteroid_belt = {
 		type = rocky_asteroid_belt
@@ -642,11 +610,7 @@ binary_init_01_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 
 	planet = {
@@ -689,11 +653,7 @@ binary_init_02_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 
 	planet = {
@@ -757,11 +717,7 @@ trinary_init_01_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 
 	planet = {
@@ -814,11 +770,7 @@ trinary_init_02_dd_highway = {
 	flags = { dd_highway_system_flag }
 
 	init_effect = {
-		spawn_megastructure = {
-			type = dandelion_relay
-			random_pos = yes
-			orbit_angle = 360		# range of the randomization
-		}
+		f93_sapwn_ancient_relay = yes
 	}
 
 	planet = {

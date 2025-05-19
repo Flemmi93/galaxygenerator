@@ -15,7 +15,7 @@ ship_event = {
 	is_triggered_only = yes
 	trigger = {
 		FromFrom = { NOT = { has_country_flag = f93_seen_dandelion_relay } }
-		FROM = { has_megastructure = dandelion_relay }
+		FROM = { f93_system_has_ancient_relay = yes }
 	}
 	immediate = { FromFrom = { set_country_flag = f93_seen_dandelion_relay } }
 	option = {

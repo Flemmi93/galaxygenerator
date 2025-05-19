@@ -1,3 +1,9 @@
+f93_system_has_ancient_relay = {
+	OR = {
+		has_megastructure = dandelion_relay
+	}
+}
+
 safe_highway_start_end = {
 	NOR = {
 		exists = owner
@@ -23,10 +29,13 @@ is_union_state = {
 is_shrouded_ai = {
 	is_ai = yes
 	is_country_type = default
+	NOR = {
+		has_country_flag = chosen_empire
+	}
 	capital_scope = {
 		NOT = {
 			closest_system = {
-				limit = { has_megastructure = dandelion_relay }
+				limit = { f93_system_has_ancient_relay = yes }
 				max_steps = 20
 			}
 		}
@@ -37,7 +46,7 @@ is_shrouded_player = {
 	capital_scope = {
 		NOT = {
 			closest_system = {
-				limit = { has_megastructure = dandelion_relay }
+				limit = { f93_system_has_ancient_relay = yes }
 				max_steps = 20
 			}
 		}
@@ -45,17 +54,11 @@ is_shrouded_player = {
 }
 
 
-has_ancient_relay = {
-	solar_system = {
-		has_megastructure = dandelion_relay
-	}
-}
-
 f93_is_close_to_highway = {
 	OR = {
-		any_system_within_border = { has_megastructure = dandelion_relay }
+		any_system_within_border = { f93_system_has_ancient_relay = yes }
 		any_system_within_border = {
-			any_neighbor_system = { has_megastructure = dandelion_relay }
+			any_neighbor_system = { f93_system_has_ancient_relay = yes }
 		}
 	}
 }
@@ -96,7 +99,7 @@ f93_valid_gal_crossing_endpoint = {
 				exists = owner
 				owner = { is_country_type = fallen_empire }
 				is_capital_system = yes
-				NOT = { has_megastructure = dandelion_relay }
+				f93_system_has_ancient_relay = no
 			}
 		}
 		AND = {
@@ -148,11 +151,19 @@ f93_system_is_connected_to_gal_crossing = {
 			AND = {
 				has_megastructure = hyper_relay
 				any_neighbor_system = {
-					has_megastructure = dandelion_relay
+					f93_system_has_ancient_relay = yes
 				}
 			}
-			has_megastructure = dandelion_relay
+			f93_system_has_ancient_relay = yes
 		}
 		is_system_connected_to_relay_network = yes
+	}
+}
+
+invalid_shrouded_system = {
+	OR = {
+		has_star_flag = chosen_cluster
+		has_star_flag = lcluster
+		has_star_flag = surveillance_supercomputer_system
 	}
 }
