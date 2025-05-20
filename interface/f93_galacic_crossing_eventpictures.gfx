@@ -1,6 +1,5 @@
 spriteTypes = {
 
-
 	spriteType = {
 		name = "GFX_evt_f93_galactic_crossing_deal"
 		texturefile = "gfx/event_pictures/f93_galactic_crossing_deal.dds" #custom 1

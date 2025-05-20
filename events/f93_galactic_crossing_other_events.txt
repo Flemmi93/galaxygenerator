@@ -12,14 +12,13 @@ country_event = {
 	title = f93_oe_event.1.name
 	desc = f93_oe_event.1.desc
 	picture = GFX_evt_f93_galactic_crossing_map
-	mean_time_to_happen = 360
+	mean_time_to_happen = 30
 	trigger = {
 		is_ai = no
 		NOT = { has_country_flag = has_seen_f93_oe_event1 }
 		# has_seen_any_bypass = relay_bypass
-		any_system = {
-			has_star_flag = f93_ancient_relay_system
-			any_fleet_in_system = { owner = { is_same_value = root } }
+		any_owned_fleet = {
+			solar_system = { has_star_flag = f93_ancient_relay_system }
 		}
 	}
 	immediate = {
@@ -34,18 +33,21 @@ country_event = {
 # Scope = Ship
 # From = System
 # FromFrom = Country
+# country first encounters shrouded region
 country_event = {
 	id = f93_oe_event.2
 	title = f93_oe_event.2.name
 	desc = f93_oe_event.2.desc
 	picture = GFX_evt_astral_rift_vortex
-	mean_time_to_happen = 360
+	mean_time_to_happen = 30
 	trigger = {
 		is_ai = no
 		NOT = { has_country_flag = has_seen_f93_oe_event2 }
-		any_system_within_border = {
-			any_neighbor_system_euclidean = {
-				has_star_flag = f93_shroud_region_flag
+		any_owned_fleet = {
+			solar_system = {
+				any_neighbor_system_euclidean = {
+					has_star_flag = f93_shroud_region_flag
+				}
 			}
 		}
 	}
@@ -56,13 +58,13 @@ country_event = {
 		name = f93_oe_event.2.a
 	}
 }
-
+#first time running into a shrouded hyperlane
 country_event = {
 	id = f93_oe_event.3
 	title = f93_oe_event.3.name
 	desc = f93_oe_event.3.desc
 	picture = GFX_evt_skrand_ship
-	mean_time_to_happen = 360
+	mean_time_to_happen = 30
 	trigger = {
 		is_ai = no
 		any_system = {
@@ -79,58 +81,89 @@ country_event = {
 		name = f93_oe_event.3.a
 	}
 }
-
-planet_event = {
+#silk road flavor event to add modifier to colonies on galactic crossing
+country_event = {
 	id = f93_oe_event.4
 	title = f93_oe_event.4.name
 	desc = f93_oe_event.4.desc
-	picture = GFX_evt_skrand_ship
+	picture = GFX_evt_busy_spaceport
 	mean_time_to_happen = 360
 
 	trigger = {
-		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
-		space_owner = { NOT = { has_country_flag = has_seen_f93_oe_event4 } }
+		any_owned_planet = {
+			is_homeworld = no
+			is_colony = yes
+			exists = space_owner
+			solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
+			space_owner = { NOT = { has_country_flag = has_seen_f93_oe_event4 } }
+		}
 	}
-	immediate = { space_owner = { set_country_flag = has_seen_f93_oe_event4 } }
+	immediate = {
+		space_owner = { set_country_flag = has_seen_f93_oe_event4 }
+		random_owned_planet = {
+			limit = {
+				is_colony = yes
+				NOT = { has_modifier = f93_galactic_crossing_planet }
+				solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
+			}
+			save_event_target_as = f93_planet_on_galactic_crossing
+		}
+	}
 	option = {
 		name = f93_oe_event.4.a
-		tooltip = {
+		event_target:f93_planet_on_galactic_crossing = {
+			add_modifier = {
+				modifier = f93_galactic_crossing_planet
+			}
+			hidden_effect = {
+				planet_event = {
+					id = f93_oe_event.5
+					days = 3600
+				}
+			}
+		}
+	}
+}
+#adding modifier to planets colonized on the galactic crossing
+country_event = {
+	id = f93_oe_event.4001
+	hide_window = yes
+	mean_time_to_happen = 360
+	
+	trigger = {
+		any_owned_planet = {
+			is_homeworld = no
+			is_colony = yes
+			exists = space_owner
+			solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
+			space_owner = { NOT = { has_country_flag = has_seen_f93_oe_event4 } }
+		}
+	}
+	immediate = {
+		space_owner = { set_country_flag = has_seen_f93_oe_event4 }
+		random_owned_planet = {
+			limit = {
+				is_colony = yes
+				NOT = { has_modifier = f93_galactic_crossing_planet }
+				solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
+			}
 			add_modifier = {
 				modifier = f93_galactic_crossing_planet
 			}
 		}
-		hidden_effect = {
-			planet_event = {
-				id = f93_oe_event.5
-				days = 3600
-			}
-		}
 	}
 }
-
-planet_event = {
-	id = f93_oe_event.4001
-	hide_window = yes
-	is_triggered_only = yes
-	
-	trigger = {
-		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
-		NOT = { has_modifier = f93_galactic_crossing_planet }
-	}
-	immediate = {
-		add_modifier = {
-			modifier = f93_galactic_crossing_planet
-		}
-	}
-}
-
+#a shining world
 planet_event = {
 	id = f93_oe_event.5
 	title = f93_oe_event.5.name
 	desc = f93_oe_event.5.desc
 	picture = GFX_evt_obelisk_tourists
 	is_triggered_only = yes
+	trigger = {
+	}
 	option = {
+		name = f93_oe_event.5.a
 		owner = {
 			add_modifier = {
 				modifier = f93_galactic_crossing_buff_diplomats
@@ -140,7 +173,7 @@ planet_event = {
 	}
 }
 
-
+#gained connection to galactic crossing
 country_event = {
 	id = f93_oe_event.6
 	title = f93_oe_event.6.name
@@ -151,20 +184,25 @@ country_event = {
 
 	trigger = {
 		f93_system_is_connected_to_gal_crossing = yes
-		NOT = { has_country_flag = f93_is_connected_to_gal_crossing_flag }
+		NOT = { has_modifier = f93_country_is_connected }
 	}
 
 	immediate = {
-		set_country_flag = f93_is_connected_to_gal_crossing_flag
-	}
-
-	option = {
-		name = f93_oe_event.6.a
 		add_modifier = {
 			modifier = f93_country_is_connected
 		}
 	}
+
+	option = {
+		name = f93_oe_event.6.a
+		tooltip = {
+			add_modifier = {
+				modifier = f93_country_is_connected
+			}
+		}
+	}
 }
+#lost connection to Galactic Crossing
 country_event = {
 	id = f93_oe_event.7
 	title = f93_oe_event.7.name
@@ -174,16 +212,16 @@ country_event = {
 
 	trigger = {
 		f93_system_is_connected_to_gal_crossing = no
-		has_country_flag = f93_is_connected_to_gal_crossing_flag
+		has_modifier = f93_country_is_connected
 
 	}
 
 	immediate = {
-		remove_country_flag = f93_is_connected_to_gal_crossing_flag
+		remove_modifier = f93_country_is_connected
 	}
 
 	option = {
 		name = f93_oe_event.7.a
-		remove_modifier = f93_country_is_connected
+		tooltip = { remove_modifier = f93_country_is_connected }
 	}
 }

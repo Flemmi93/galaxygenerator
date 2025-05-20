@@ -43,12 +43,12 @@ on_planet_conquer = {
 
 # A planet has been colonized.
 # Scope = Planet
-on_colony_1_year_old = {
-	events = {
-		f93_oe_event.4
-		f93_oe_event.4001
-	}
-}
+# on_colony_1_year_old = {
+# 	events = {
+# 		f93_oe_event.4
+# 		f93_oe_event.4001
+# 	}
+# }
 
 
 # From = system

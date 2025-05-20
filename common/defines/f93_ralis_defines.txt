@@ -13,3 +13,21 @@ NGraphics = {
 	HYPERLANE_THICKNESS_DEFAULT = 0.75 
 	HYPERLANE_THICKNESS_RELAY = 1.5
 }
+
+	NEconomy = {
+		EXPANSION_COST_DISTANCE				= 45.0		# Added per hyperlane jump away
+	}
+
+	NAI = {
+		
+		FEDERATION_ACCEPTANCE_DISTANCE_MULT = -0.066 # per 1 border distance
+		DEFENSIVE_PACT_ACCEPTANCE_DISTANCE_MULT = -0.066 # per 1 border distance
+		EMBASSY_ACCEPTANCE_DISTANCE_MULT = -0.05 # per 1 border distance
+		NON_AGGRESSION_PACT_ACCEPTANCE_DISTANCE_MULT = -0.066 # per 1 border distance
+		RESEARCH_AGREEMENT_ACCEPTANCE_DISTANCE_MULT = -0.066 # per 1 border distance
+		COMMERCIAL_PACT_ACCEPTANCE_DISTANCE_MULT = -0.066 # per 1 border distance
+		MIGRATION_PACT_ACCEPTANCE_DISTANCE_MULT = -0.03 # per 1 border distance
+		VASSALIZATION_ACCEPTANCE_DISTANCE_MULT = -0.3 # per 1 border distance
+		MAX_EXPANSION_DISTANCE = 3				# Max number of jumps away AI will build starbases
+		MAX_CLAIM_DISTANCE = 6					# Max number of jumps away AI will make claims on
+	}

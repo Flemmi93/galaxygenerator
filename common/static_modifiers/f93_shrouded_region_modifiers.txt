@@ -51,15 +51,16 @@ f93_the_zro_must_flow = {
 }
 
 f93_zro_cartel = {
-	job_f93_zro_criminal_per_crime = 0.1
+	job_f93_zro_criminal_per_crime = 10
 	planet_crime_add = 20
 }
 f93_zro_drone_cartel = {
-	job_f93_zro_deviant_drone_per_crime = 0.1
+	job_f93_zro_deviant_drone_per_crime = 10
 	planet_crime_add = 20
 }
 
 f93_galactic_crossing_planet = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_hyper_relays.dds"
 	planet_jobs_trade_produces_mult = 0.1
 	planet_amenities_mult = 0.1
 	planet_jobs_consumer_goods_produces_mult = 0.1

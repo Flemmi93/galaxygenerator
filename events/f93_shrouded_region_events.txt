@@ -262,7 +262,7 @@ planet_event = {
 				}
 			}
 			random_system = {
-				limit = { has_star_flag = f93_ralis_empire_cluster }
+				limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
 				spawn_megastructure = {
 					type = matter_decompressor_1
 					owner = last_created_country

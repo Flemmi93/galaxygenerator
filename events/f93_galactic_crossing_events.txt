@@ -229,7 +229,11 @@ country_event = {
 			set_star_flag = f93_empty_system_on_galcrossing
 			# set_name = BLANK_STRING
 			every_system_planet = { remove_planet = yes }
+			spawn_planet = {
+				class = no_star
+			}
 			every_ambient_object = { destroy_ambient_object = this }
+			f93_replace_relay_with_relay_star = yes
 		}
 		every_country = {
 			limit = {
