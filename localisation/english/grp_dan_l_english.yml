@@ -1,0 +1,16 @@
+﻿l_english:
+ grp_dan_ev.1.name: "Shrouded Regions - Mod Menu"
+ grp_dan_ev.1.desc: "You can adjust your gameplay experience here."
+
+ grp_dan_button.1: "Option 1"
+ grp_dan_button.2: "Option 2"
+ grp_dan_button.3: "Option 3"
+ grp_dan_button.4: "Option 4"
+ grp_dan_button.5: "Option 5"
+ grp_dan_button.6: "Option 6"
+ grp_dan_button.7: "Option 7"
+ grp_dan_button.8: "Option 8"
+ grp_dan_button.9: "Option 9"
+ grp_dan_button.10: "Option 10"
+ grp_dan_button.help: "Help"
+ close_menu.1: "Close"

@@ -1,0 +1,591 @@
+guiTypes = {
+
+    containerWindowType = {
+        name = "fix_main_window" # Main container window for the UI
+        position = { x = 0 y = 0 }
+        size = { width = 964 height = 700 }
+        orientation = center
+        origo = center
+        moveable = yes
+        clipping = no
+
+        background = {
+            name = "grp_background_1" # Background for the main window
+            position = { x = 0 y = 0 }
+            spriteType = "GFX_tiles_dark_area_cut_8"
+            alwaysTransparent = yes
+        }
+
+        iconType = {
+            name = "grp_background_2" # Secondary background layer
+            spriteType = "GFX_grp_dan_nebulacolor"
+            position = { x = 0 y = 0 }
+            scale = 1
+        }
+
+        buttonType = {
+            name = "close" # Close button for the UI
+            quadTextureSprite = "GFX_grp_dan_button_1"
+            buttonText = "close_menu.1"
+            buttonFont = large_title_font_17
+            position = { x = 50 y = 600 }
+            shortcut = "ESCAPE"
+            clicksound = "back_click"
+            oversound = mouse_over
+        }
+
+        effectbuttonType = {
+            name = "grp_menu_help" # Help button for the UI
+            quadTextureSprite = "GFX_grp_dan_button_1"
+            position = { x = 50 y = 500 }
+            buttonText = "grp_dan_button.help"
+            buttonFont = large_title_font_17
+            clicksound = increment_click
+            oversound = mouse_over
+            effect = NaN
+        }
+
+        ### Dropdown Menu 1 ###
+        dropDownBoxType = {
+            name = "grp_dropdown_menu_1" # Dropdown menu 1
+            position = { x = 50 y = 200 }
+            size = { width = 200 height = 50 }
+            background = {
+                name = "grp_dropdown_menu_1_bg" # Background for dropdown menu 1
+                spriteType = "GFX_grp_dan_button_1"
+            }
+            expandButton = {
+                name = "grp_dropdown_menu_1_expand_button" # Expand button for dropdown menu 1
+                spriteType = "GFX_grp_dan_button_1"
+                position = { x = 0 y = 0 }
+                buttonText = "grp_dan_button.1"
+                buttonFont = large_title_font_17
+                clicksound = increment_click
+                oversound = mouse_over
+            }
+            expandedWindow = {
+                name = "grp_dropdown_menu_1_expanded_window" # Expanded window for dropdown menu 1
+                hide_position = { x = 100 y = 0 }
+                show_position = { x = 400 y = 0 }
+                size = { width = 400 height = 400 }
+                show_animation_type = decelerated
+                hide_animation_type = accelerated
+                animation_time = 250
+                background = {
+                    name = "grp_dropdown_menu_1_expanded_bg" # Background for expanded window
+                    spriteType = "GFX_tiles_dark_area_cut_8"
+                }
+                containerWindowType = {
+                    name = "grp_dropdown_menu_1_expanded_container" # Container for expanded window
+                    position = { x = 10 y = 10 }
+                    size = { width = 395 height = 395 }
+                    margin = { top = 5 bottom = 5 left = 5 right = 5 }
+                    background = {
+                        name = "grp_dropdown_menu_1_expanded_container_bg"
+                        spriteType = "GFX_tiles_dark_area_cut_8"
+                        alwaysTransparent = yes
+                    }
+                    effectbuttonType = {
+                        name = "grp_dropdown_menu_1_option_1" # Option 1 in dropdown menu 1
+                        quadTextureSprite = "GFX_grp_dan_button_1"
+                        position = { x = 10 y = 80 }
+                        buttonText = "grp_dan_button.1"
+                        buttonFont = large_title_font_17
+                        clicksound = increment_click
+                        oversound = mouse_over
+                        effect = NaN
+                    }
+                    effectbuttonType = {
+                        name = "grp_dropdown_menu_1_option_2" # Option 2 in dropdown menu 1
+                        quadTextureSprite = "GFX_grp_dan_button_1"
+                        position = { x = 10 y = 130 }
+                        buttonText = "grp_dan_button.2"
+                        buttonFont = large_title_font_17
+                        clicksound = increment_click
+                        oversound = mouse_over
+                        effect = NaN
+                    }
+                }
+                instantTextBoxType = {
+                    name = "grp_dropdown_menu_1_textbox" # Textbox for dropdown menu 1
+                    font = "cg_16b"
+                    text = "These are the [x] settings."
+                    position = { x = 0 y = 20 }
+                    maxWidth = 250
+                    maxHeight = 40
+                    fixedSize = yes
+                    format = center
+                    vertical_alignment = center
+                    borderSize = { x = 5 y = 0 }
+                }
+            }
+        }
+
+        ### Dropdown Menu 2 ###
+        dropDownBoxType = {
+            name = "grp_dropdown_menu_2" # Dropdown menu 2
+            position = { x = 50 y = 250 }
+            size = { width = 200 height = 50 }
+            background = {
+                name = "grp_dropdown_menu_2_bg" # Background for dropdown menu 2
+                spriteType = "GFX_grp_dan_button_1"
+            }
+            expandButton = {
+                name = "grp_dropdown_menu_2_expand_button" # Expand button for dropdown menu 2
+                spriteType = "GFX_grp_dan_button_1"
+                position = { x = 0 y = 0 }
+                buttonText = "grp_dan_button.2"
+                buttonFont = large_title_font_17
+                clicksound = increment_click
+                oversound = mouse_over
+            }
+            expandedWindow = {
+                name = "grp_dropdown_menu_2_expanded_window" # Expanded window for dropdown menu 2
+                hide_position = { x = 200 y = -50 }
+                show_position = { x = 400 y = -50 }
+                size = { width = 400 height = 400 }
+                show_animation_type = decelerated
+                hide_animation_type = accelerated
+                animation_time = 250
+                background = {
+                    name = "grp_dropdown_menu_2_expanded_bg" # Background for expanded window
+                    spriteType = "GFX_tiles_dark_area_cut_8"
+                }
+                containerWindowType = {
+                    name = "grp_dropdown_menu_2_expanded_container" # Container for expanded window
+                    position = { x = 10 y = 10 }
+                    size = { width = 395 height = 395 }
+                    margin = { top = 5 bottom = 5 left = 5 right = 5 }
+                    background = {
+                        name = "grp_dropdown_menu_2_expanded_container_bg"
+                        spriteType = "GFX_tiles_dark_area_cut_8"
+                        alwaysTransparent = yes
+                    }
+                    effectbuttonType = {
+                        name = "grp_dropdown_menu_2_option_1" # Option 1 in dropdown menu 2
+                        quadTextureSprite = "GFX_grp_dan_button_1"
+                        position = { x = 10 y = 80 }
+                        buttonText = "grp_dan_button.1"
+                        buttonFont = large_title_font_17
+                        clicksound = increment_click
+                        oversound = mouse_over
+                        effect = NaN
+                    }
+                    effectbuttonType = {
+                        name = "grp_dropdown_menu_2_option_2" # Option 2 in dropdown menu 2
+                        quadTextureSprite = "GFX_grp_dan_button_1"
+                        position = { x = 10 y = 130 }
+                        buttonText = "grp_dan_button.2"
+                        buttonFont = large_title_font_17
+                        clicksound = increment_click
+                        oversound = mouse_over
+                        effect = NaN
+                    }
+                }
+                instantTextBoxType = {
+                    name = "grp_dropdown_menu_2_textbox" # Textbox for dropdown menu 2
+                    font = "cg_16b"
+                    text = "These are the [x] settings."
+                    position = { x = 0 y = 20 }
+                    maxWidth = 250
+                    maxHeight = 40
+                    fixedSize = yes
+                    format = center
+                    vertical_alignment = center
+                    borderSize = { x = 5 y = 0 }
+                }
+            }
+        }
+
+		### Dropdown Menu 3 ###
+		dropDownBoxType = {
+			name = "grp_dropdown_menu_3" # Dropdown menu 3
+			position = { x = 50 y = 300 }
+			size = { width = 200 height = 50 }
+			background = {
+				name = "grp_dropdown_menu_3_bg" # Background for dropdown menu 3
+				spriteType = "GFX_grp_dan_button_1"
+			}
+			expandButton = {
+				name = "grp_dropdown_menu_3_expand_button" # Expand button for dropdown menu 3
+				spriteType = "GFX_grp_dan_button_1"
+				position = { x = 0 y = 0 }
+				buttonText = "grp_dan_button.3"
+				buttonFont = large_title_font_17
+				clicksound = increment_click
+				oversound = mouse_over
+			}
+			expandedWindow = {
+				name = "grp_dropdown_menu_3_expanded_window" # Expanded window for dropdown menu 3
+				hide_position = { x = 200 y = -100 }
+				show_position = { x = 400 y = -100 }
+				size = { width = 400 height = 400 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 250
+				background = {
+					name = "grp_dropdown_menu_3_expanded_bg" # Background for expanded window
+					spriteType = "GFX_tiles_dark_area_cut_8"
+				}
+				containerWindowType = {
+					name = "grp_dropdown_menu_3_expanded_container" # Container for expanded window
+					position = { x = 10 y = 10 }
+					size = { width = 395 height = 395 }
+					margin = { top = 5 bottom = 5 left = 5 right = 5 }
+					background = {
+						name = "grp_dropdown_menu_3_expanded_container_bg"
+						spriteType = "GFX_tiles_dark_area_cut_8"
+						alwaysTransparent = yes
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_3_option_1" # Option 1 in dropdown menu 3
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 80 }
+						buttonText = "grp_dan_button.1"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_3_option_2" # Option 2 in dropdown menu 3
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 130 }
+						buttonText = "grp_dan_button.2"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_3_option_3" # Option 3 in dropdown menu 3
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 180 }
+						buttonText = "grp_dan_button.3"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_3_option_4" # Option 4 in dropdown menu 3
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 230 }
+						buttonText = "grp_dan_button.4"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_3_option_5" # Option 5 in dropdown menu 3
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 280 }
+						buttonText = "grp_dan_button.5"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+				}
+				instantTextBoxType = {
+                    name = "grp_dropdown_menu_3_textbox" # Textbox for dropdown menu 3
+                    font = "cg_16b"
+                    text = "These are the [x] settings."
+                    position = { x = 0 y = 20 }
+                    maxWidth = 250
+                    maxHeight = 40
+                    fixedSize = yes
+                    format = center
+                    vertical_alignment = center
+                    borderSize = { x = 5 y = 0 }
+                }
+			}
+		}
+
+		### Dropdown Menu 4 ###
+		dropDownBoxType = {
+			name = "grp_dropdown_menu_4" # Dropdown menu 4
+			position = { x = 50 y = 350 }
+			size = { width = 200 height = 50 }
+			background = {
+				name = "grp_dropdown_menu_4_bg" # Background for dropdown menu 4
+				spriteType = "GFX_grp_dan_button_1"
+			}
+			expandButton = {
+				name = "grp_dropdown_menu_4_expand_button" # Expand button for dropdown menu 4
+				spriteType = "GFX_grp_dan_button_1"
+				position = { x = 0 y = 0 }
+				buttonText = "grp_dan_button.4"
+				buttonFont = large_title_font_17
+				clicksound = increment_click
+				oversound = mouse_over
+			}
+			expandedWindow = {
+				name = "grp_dropdown_menu_4_expanded_window" # Expanded window for dropdown menu 4
+				hide_position = { x = 200 y = -150 }
+				show_position = { x = 400 y = -150 }
+				size = { width = 400 height = 400 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 250
+				background = {
+					name = "grp_dropdown_menu_4_expanded_bg" # Background for expanded window
+					spriteType = "GFX_tiles_dark_area_cut_8"
+				}
+				containerWindowType = {
+					name = "grp_dropdown_menu_4_expanded_container" # Container for expanded window
+					position = { x = 10 y = 10 }
+					size = { width = 395 height = 395 }
+					margin = { top = 5 bottom = 5 left = 5 right = 5 }
+					background = {
+						name = "grp_dropdown_menu_4_expanded_container_bg"
+						spriteType = "GFX_tiles_dark_area_cut_8"
+						alwaysTransparent = yes
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_4_option_1" # Option 1 in dropdown menu 4
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 80 }
+						buttonText = "grp_dan_button.1"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_4_option_2" # Option 2 in dropdown menu 4
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 130 }
+						buttonText = "grp_dan_button.2"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_4_option_3" # Option 3 in dropdown menu 4
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 180 }
+						buttonText = "grp_dan_button.3"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_4_option_4" # Option 4 in dropdown menu 4
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 230 }
+						buttonText = "grp_dan_button.4"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+					effectbuttonType = {
+						name = "grp_dropdown_menu_4_option_5" # Option 5 in dropdown menu 4
+						quadTextureSprite = "GFX_grp_dan_button_1"
+						position = { x = 10 y = 280 }
+						buttonText = "grp_dan_button.5"
+						buttonFont = large_title_font_17
+						clicksound = increment_click
+						oversound = mouse_over
+						effect = NaN
+					}
+				}
+				instantTextBoxType = {
+                    name = "grp_dropdown_menu_4_textbox" # Textbox for dropdown menu 4
+                    font = "cg_16b"
+                    text = "These are the [x] settings."
+                    position = { x = 0 y = 20 }
+                    maxWidth = 250
+                    maxHeight = 40
+                    fixedSize = yes
+                    format = center
+                    vertical_alignment = center
+                    borderSize = { x = 5 y = 0 }
+                }
+			}
+		}
+
+		### FROM HERE ON EVERYTHING IS HIDDEN ###
+		### DESCRIPTION ###
+
+		instantTextBoxType = {
+			name = "alien_message"
+			font = "cg_16b"
+			position = { x = 70 y = 57 }
+			maxWidth = 825
+			maxHeight = 50
+			format = center
+			scrollbartype = "standardtext_slider"
+		}
+
+		buttonType = {
+			name = "tts_button"
+			position = { x = 10 y = 0 }
+			spriteType = "GFX_button_tts_start"
+			buttonFont = "cg_16b"
+			shortCut = "t"
+		}
+
+		instantTextBoxType = {
+			name = "heading"
+			font = "malgun_goth_24"
+			position = { x = -1000 y = 0 }
+		}
+
+		buttonType = {
+			name = "confirm_button"
+			quadTextureSprite = "GFX_standard_button_142_34_button"
+		}
+
+		### PORTRAIT ###
+
+		containerWindowType = {
+			name = "portrait_background"
+			position = { x = 100 y = 100 }
+			size = { width = 0 height = 0 }
+			clipping = yes
+		}
+		
+		containerWindowType = {
+			name = "portrait"
+			position = { x = 0 y = 0 }
+			size = { width = 0 height = 0 }
+			clipping = no
+			
+			iconType = {
+				name = "city_frame"
+				spriteType = "GFX_grp_dan_galcom"
+				position = { x = -100000 y = -100000 }
+				scale = 0
+				alwaysTransparent = yes
+			}
+			iconType = {
+				name = "portrait"
+				spriteType = "GFX_portrait_gamesetup_mask"
+				position = { x = -100000 y = -100000 }
+				alwaysTransparent = yes
+			}
+					
+			iconType = {
+				name = "black_frame"
+				spriteType = "GFX_grp_dan_pframe"
+				position = { x = -100000 y = -100000 }
+				alwaysTransparent = yes
+			}
+			
+			iconType = {
+				name = "stripes_1"
+				spriteType = "GFX_grp_dan_stripes"
+				position = { x = -100000 y = -100000 }
+				alwaysTransparent = yes
+			}
+		}
+
+		### OPINION ###
+
+		containerWindowType = {
+			name = "opinion_window"
+			position = { x = 0 y = 0 }
+			size = { width = 0 height = 0 }
+			
+			iconType = {
+				name = "their_opinion_icon"
+				spriteType = "GFX_diplomacy_opinion"
+			}
+
+			instantTextBoxType = {
+				name = "their_opinion"
+				font = "cg_16b"
+			}
+		}
+
+		### EMPIRE INFO ###
+
+		iconType = {
+			name = "empire_info_bg"
+			spriteType = "GFX_diplomacy_dark_fade_bg"
+		}
+
+		instantTextBoxType = {
+			name = "empire_name"
+			font = "malgun_goth_24"
+		}
+
+		instantTextBoxType = {
+			name = "empire_government_type"
+			font = "cg_16b"
+		}
+
+		instantTextBoxType={
+			name = "empire_personality_type"
+			font = "cg_16b"
+		}
+
+		buttonType = {
+			name = "empire_flag"
+			quadTextureSprite = "GFX_empire_flag_128_trader"
+			position = { x = 0 y = 0 }
+		}
+
+		containerWindowType = {
+			name = "leader_details"
+			position = { x = 0 y = 0 }
+			
+			containerWindowType = {
+				name = "empire_traits_box"
+			}
+			
+			instantTextBoxType = {
+				name = "empire_traits_label"
+				font = "cg_16b"
+			}
+		
+			overlappingElementsBoxType = {
+				name = "leader_traits"
+			}
+	
+			instantTextBoxType = {
+				name = "leader_name"
+				font = "cg_16b"
+			}
+	
+			instantTextBoxType = {
+				name = "leader_species"
+				font = "cg_16b"
+			}
+		}
+		
+		### EVENT DIPLO ###
+		
+		containerWindowType = {
+			name = "EVENT_DIPLO"
+			position = { x = 0 y = 0 }
+			size = { width = 0 height = 0 }
+			
+			### TITLE ###
+
+			instantTextBoxType = {
+				name = "action_title"
+				font = large_title_font_28
+				position = { x = 220 y = -24 }
+				maxWidth = 520
+				format = center
+				alwaysTransparent = yes
+			}
+
+			instantTextBoxType = {
+				name = "action_desc"
+				font = "malgun_goth_24"
+			}
+
+			listboxType = {
+				name = "option_list"
+				position = { x = 0 y = 0 }
+			}
+		}
+	}
+}

@@ -1,0 +1,5 @@
+on_game_start_country = {
+	events = {
+		grp_dan_ev.0
+	}	
+}

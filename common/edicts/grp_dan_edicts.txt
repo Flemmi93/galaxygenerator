@@ -1,0 +1,25 @@
+edict_open_test_menu = {
+    length = 0
+    icon = "GFX_edict_type_policy"
+    resources = {
+        category = edicts
+        cost = {
+            influence = 0
+        }
+    }
+
+    potential = {
+        is_ai = no
+    }
+    
+    effect = {
+        custom_tooltip = "Opens the TEST menu"
+        hidden_effect = {
+            country_event = { id = grp_dan_ev.1 }
+        }
+    }
+    
+    ai_weight = {
+        weight = 0
+    }
+}
