@@ -19,7 +19,7 @@ country_event = {
 		# has_seen_any_bypass = relay_bypass
 		any_system = {
 			has_star_flag = f93_ancient_relay_system
-			is_in_sensor_range_of_country = root
+			any_fleet_in_system = { owner = { is_same_value = root } }
 		}
 	}
 	immediate = {
@@ -70,7 +70,7 @@ country_event = {
 				has_star_flag = f93_ralisgate
 				has_star_flag = f93_raliscluster1
 			}
-			is_in_sensor_range_of_country = root
+			any_fleet_in_system = { owner = { is_same_value = root } }
 		}
 		NOT = { has_country_flag = f93_seen_ralisgate_bypass }
 	}

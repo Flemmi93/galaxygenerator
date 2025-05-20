@@ -55,7 +55,6 @@ country_event = {
 			add_tradition = tr_supremacy_great_game
 			add_tradition = tr_supremacy_finish
 			give_technology = { tech = tech_wormhole_stabilization } 
-			give_technology = { tech = tech_rift_sphere } 
 			add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
 			force_remove_civic = 1
 			force_remove_civic = 1
