@@ -11,7 +11,7 @@
  f93_galactic_crossing.8.a: "...All statements without guarantee."
 
  f93_oe_event.6.name: "One Galaxy, One Crossing"
- f93_oe_event.6.desc: "How do we know which moments in our galactic lives will be written into history? There is so much to be remembered, yet so little that most of us would choose to agree remembering to.\nIn those rare moments when we know history is being made, we feel the pride of witnessing something greater than ourselves. Today is one of them - the people of (Empire Name) have expanded the Galactic Crossing into their capital, carving their legacy into the history of the galaxy - to be remembered by us all."
+ f93_oe_event.6.desc: "How do we know which moments in our galactic lives will be written into history? There is so much to be remembered, yet so little that most of us would choose to agree remembering to.\nIn those rare moments when we know history is being made, we feel the pride of witnessing something greater than ourselves. Today is one of them - the people of [Root.GetName] have expanded the Galactic Crossing into their capital, carving their legacy into the history of the galaxy - to be remembered by us all."
  f93_oe_event.6.a: "A galactic legacy"
  f93_oe_event.7.name: "Connection to Galactic Crossing lost"
  f93_oe_event.7.desc: ""
@@ -106,6 +106,17 @@
  job_f93_zro_criminal_desc: "$f93_zro_criminal_plural$"
  job_f93_zro_deviant_drone: "$f93_zro_deviant_drone$"
  job_f93_zro_deviant_drone_desc: "$f93_zro_deviant_drone_desc$"
+#Ralis Planet and System and races and others
+ ralis_NAME: "[f93_ralis_planet.GetName]"
+ ralis_planet_NAME: "Ralis"
+ ralis_system_NAME: "Sanctuary of Ralis"
+ ralis_remnant_NAME: "Remnants of Ralis"
+ ralis_republic_NAME: "Republic of Ralis"
+ ralis_ADJ: "Rali"
+ ralis_ship_prefix: "SoR"
+ esear_NAME: "Esear"
+ esear_NAME_plural: "Esears"
+ galcom_admin_station_NAME: "Administration"
 ############################
 # Ralis Crisis Event Texts #
 ############################
@@ -117,7 +128,7 @@
  f93_shroud.8.desc: "It is your job now, to be the source the universe deserves!"
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
- ralis_NAME: "[f93_ralis_planet.GetName]"
+
   #resolution
  ralis_focus: "Ralis War Plans"
  f93_ralis_crisis_category_galactic_focus: "Ralis Crisis"
@@ -275,6 +286,6 @@
  f93_oe_event.4.a: "Our golden planet."
  f93_galactic_crossing_planet: "Galactic Crossing"
  f93_oe_event.5.name: "A Shining World"
- f93_oe_event.5.desc: "Our rising star along the Galactic Crossing, (planet name) has become more than just a trade hub - it's become a spotlight.\nDiplomats, artists, influencers, and propagandists from across the galaxy now pass through, eager to be seen. Local broadcasts have gone interstellar, and even small news get wide coverage.\nNot every world gets to perform in the spotlight. But (planet name) does - whether we want to or not."
+ f93_oe_event.5.desc: "Our rising star along the Galactic Crossing, [Root.GetName] has become more than just a trade hub - it's become a spotlight.\nDiplomats, artists, influencers, and propagandists from across the galaxy now pass through, eager to be seen. Local broadcasts have gone interstellar, and even small news get wide coverage.\nNot every world gets to perform in the spotlight. But [Root.GetName] does - whether we want to or not."
  f93_oe_event.5.a: "We are not to be left behind."
  f93_oe_event.5.b: "We will make so much money from this!"

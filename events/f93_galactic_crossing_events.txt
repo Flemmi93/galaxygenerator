@@ -407,8 +407,8 @@ country_event = {
 				event_target:f93_ralis_planet = { owner = { is_ai = yes } }
 			}
 			event_target:f93_ralis_planet = {
-				set_name = "Ralis"
-				solar_system = { set_name = "Sanctuary of Ralis" }
+				set_name = ralis_planet_NAME
+				solar_system = { set_name = ralis_system_NAME }
 			}
 		}
 		every_country = {

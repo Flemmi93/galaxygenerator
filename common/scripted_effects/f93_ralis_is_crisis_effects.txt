@@ -1,7 +1,7 @@
 create_ralis_country = { #target a valid planet with this
 	create_species = {
-		name = "Esear"
-		plural = "Esears"
+		name = esear_NAME
+		plural = esear_NAME_plural
 		class = AVI
 		portrait = cyb5
 		homeworld = root
@@ -11,13 +11,13 @@ create_ralis_country = { #target a valid planet with this
 	}
 
 	create_country = {
-		name = "Sanctuary of Ralis"
-		adjective = "Rali"
+		name = ralis_system_NAME
+		adjective = ralis_ADJ
 		type = primitive
 		# auto_delete = no
 		name_list = AVI4
 		# contact_rule = default
-		ship_prefix = "SoR"
+		ship_prefix = ralis_ship_prefix
 		authority = "auth_imperial"
 		civics = { civic = civic_fanatic_purifiers civic = civic_heroic_tales }
 		species = last_created_species
@@ -247,7 +247,7 @@ f93_create_community_ralis_admin_with_station = {
 		set_graphical_culture = mammalian_01
 		save_global_event_target_as = f93_community_ralis_admin_country
 		create_fleet = {
-			name = "Administration"
+			name = galcom_admin_station_NAME
 			settings = { spawn_debris = no }
 			effect = {
 				set_owner = prev
@@ -282,7 +282,7 @@ f93_create_community_ralis_admin_with_station = {
 f93_create_community_admin_station = {
 	event_target:f93_community_ralis_admin_country = {
 		create_fleet = {
-			name = "Administration"
+			name = galcom_admin_station_NAME
 			settings = { spawn_debris = no }
 			effect = {
 				set_owner = prev

@@ -62,7 +62,6 @@ country_event = {
 			force_add_civic = civic_fanatic_purifiers
 			force_add_civic = civic_heroic_tales
 			create_fleet = {
-				name = "Explorer Fleet"
 				effect = {
 					set_owner = event_target:f93_ralis_country
 					set_location = event_target:f93_ralis_country.capital_scope
@@ -73,7 +72,6 @@ country_event = {
 				}
 			}
 			create_fleet = {
-				name = "Explorer Fleet"
 				effect = {
 					set_owner = event_target:f93_ralis_country
 					set_location = event_target:f93_ralis_country.capital_scope
@@ -286,9 +284,11 @@ country_event = {
 
 	immediate = {
 		if = {
-			limit = { NOT = { has_global_flag = f93_ralis_crisis_event0201_happened } }
+			limit = {
+				exists = event_target:f93_to_be_killed_by_ralis
+				NOT = { has_global_flag = f93_ralis_crisis_event0201_happened }
+			}
 			set_global_flag = f93_ralis_crisis_event0201_happened
-			exists = event_target:f93_to_be_killed_by_ralis
 			event_target:f93_to_be_killed_by_ralis = {
 				every_system_within_border = {
 					limit = { NOT = { f93_should_not_be_destroyed = yes } }
@@ -310,7 +310,7 @@ country_event = {
 					}
 					country_event = { id = f93_ralis_crisis_event.0202 days = 720 random = 360 }
 				}
-				capital_scope = { set_name = "Ralis" }
+				capital_scope = { set_name = ralis_planet_NAME }
 				every_playable_country = {
 					establish_contact = { who = prev location = prev.capital_scope }
 				}
@@ -332,7 +332,7 @@ country_event = {
 
 	immediate = {
 		random_system = {
-			limit = { has_star_flag = f93_ralis_empire_cluster }
+			limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
 			spawn_megastructure = {
 				type = think_tank_4
 				owner = root
@@ -731,10 +731,23 @@ country_event = {
 	immediate = {
 		save_global_event_target_as = f93_ralis_liberator
 		event_target:f93_ralis_country = {
-			set_name = "Remnants of Ralis"
+			set_name = ralis_remnant_NAME
 		}
 		event_target:f93_ralis_system = {
-			every_system_colony = {
+			every_system_planet = {
+				limit = { exists = owner }
+				set_owner = event_target:f93_ralis_liberator
+			}
+			every_system_megastructure = {
+				limit = {
+					NOR = {
+						is_megastructure_type = crisis_sphere_0
+						is_megastructure_type = crisis_sphere_1
+						is_megastructure_type = crisis_sphere_2
+						is_megastructure_type = crisis_sphere_3
+						is_megastructure_type = crisis_sphere_4
+					}
+				}
 				set_owner = event_target:f93_ralis_liberator
 			}
 			starbase = {
@@ -1705,7 +1718,7 @@ country_event = {
 				country_add_ethic = ethic_materialist
 				country_add_ethic = ethic_egalitarian
 				country_add_ethic = ethic_xenophile
-				set_name = "Republic of Ralis"
+				set_name = ralis_republic_NAME
 				copy_techs_from = { target = event_target:f93_ralis_liberator }
 				add_opinion_modifier = {
 					modifier = f93_legendary_friendship

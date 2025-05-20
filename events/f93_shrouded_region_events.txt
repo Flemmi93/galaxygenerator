@@ -116,7 +116,7 @@ system_event = { #creating ralis cluster
 		if = {
 			limit = { num_planets_in_system = 0 }
 			spawn_planet = {
-				name = "Ralis"
+				name = ralis_planet_NAME
 				class = pc_city
 				orbit_location = yes
 				orbit_distance_offset = 32
@@ -162,7 +162,7 @@ system_event = { #creating ralis cluster
 				}
 			}
 			change_pc = pc_city
-			set_name = "Ralis"
+			set_name = ralis_planet_NAME
 			set_planet_size = 28
 			planet_event = { id = f93_shroud.6 days = 1 }
 		}
@@ -184,7 +184,7 @@ system_event = { #creating ralis cluster backup
 		if = {
 			limit = { num_planets_in_system = 0 }
 			spawn_planet = {
-				name = "Ralis"
+				name = ralis_planet_NAME
 				class = pc_city
 				orbit_location = yes
 				orbit_distance_offset = 32
@@ -223,7 +223,7 @@ system_event = { #creating ralis cluster backup
 				}
 			}
 			change_pc = pc_city
-			set_name = "Ralis"
+			set_name = ralis_planet_NAME
 			set_planet_size = 28
 			planet_event = { id = f93_shroud.6 days = 1 }
 		}
@@ -284,9 +284,9 @@ planet_event = {
 					1 = { add_deposit = random add_deposit = random }
 				}
 			}
-			set_name = "Sanctuary of Ralis"
+			set_name = ralis_system_NAME
 		}
-		set_name = "Ralis"
+		set_name = ralis_planet_NAME
 		every_system = {
 			limit = { has_star_flag = f93_shroud_region_flag }
 			set_star_flag = crisis_sapwn_exclude
@@ -318,8 +318,8 @@ country_event = { #midgame trigger
 		if = {
 			limit = { event_target:f93_ralis_country = { is_ai = yes } }
 			event_target:f93_ralis_planet = {
-				set_name = "Ralis"
-				solar_system = { set_name = "Sanctuary of Ralis" }
+				set_name = ralis_planet_NAME
+				solar_system = { set_name = ralis_system_NAME }
 			}
 		}
 	}

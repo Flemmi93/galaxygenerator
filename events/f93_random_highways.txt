@@ -35,7 +35,7 @@ country_event = {
 					any_fleet_in_system = { exists = this }
 				}
 			}
-			set_name = START
+			# set_name = START
 			save_global_event_target_as = system_highway_start
 			highway_connect_relay_only = yes
 			set_star_flag = dd_highway_system_flag_start
@@ -51,7 +51,7 @@ country_event = {
 						any_fleet_in_system = { exists = this }
 					}
 				}
-				set_name = START
+				# set_name = START
 				save_global_event_target_as = system_highway_start
 				highway_connect_relay_only = yes
 				set_star_flag = dd_highway_system_flag_start
@@ -94,7 +94,7 @@ country_event = {
 						}
 					}
 				}
-				set_name = ENDE
+				# set_name = ENDE
 				save_global_event_target_as = system_highway_end
 				highway_connect_relay_only = yes
 				set_star_flag = dd_highway_system_flag_end

@@ -106,6 +106,17 @@
  job_f93_zro_criminal_desc: "$f93_zro_criminal_plural$"
  job_f93_zro_deviant_drone: "$f93_zro_deviant_drone$"
  job_f93_zro_deviant_drone_desc: "$f93_zro_deviant_drone_desc$"
+#Ralis Planet and System and races and others
+ ralis_NAME: "[f93_ralis_planet.GetName]"
+ ralis_planet_NAME: "Ralis"
+ ralis_system_NAME: "Sanctuary of Ralis"
+ ralis_remnant_NAME: "Remnants of Ralis"
+ ralis_republic_NAME: "Republic of Ralis"
+ ralis_ADJ: "Rali"
+ ralis_ship_prefix: "SoR"
+ esear_NAME: "Esear"
+ esear_NAME_plural: "Esears"
+ galcom_admin_station_NAME: "Administration"
 ############################
 # Ralis Crisis Event Texts #
 ############################
@@ -117,7 +128,7 @@
  f93_shroud.8.desc: "It is your job now, to be the source the universe deserves!"
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
- ralis_NAME: "[f93_ralis_planet.GetName]"
+
   #resolution
  ralis_focus: "Ralis War Plans"
  f93_ralis_crisis_category_galactic_focus: "Ralis Crisis"
