@@ -19,7 +19,7 @@ f93_replace_relay_with_relay_star = {
 	}
 	spawn_megastructure = {
 		type = dandelion_relay_star
-		planet = star
+		# planet = star
 		orbit_angle = 360		# range of the randomization
 	}
 }

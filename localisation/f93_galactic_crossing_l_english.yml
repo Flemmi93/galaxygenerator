@@ -9,6 +9,7 @@
  f93_galactic_crossing.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§MIsolated§!.\n\n§GHave fun!§!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.a: "...All statements without guarantee."
+ f93_ralis_failed_to_form: "§RWARNING:§! A Planet critical for the campaign failed to form, this will lead to problems down the line."
 
  f93_oe_event.6.name: "One Galaxy, One Crossing"
  f93_oe_event.6.desc: "How do we know which moments in our galactic lives will be written into history? There is so much to be remembered, yet so little that most of us would choose to agree remembering to.\nIn those rare moments when we know history is being made, we feel the pride of witnessing something greater than ourselves. Today is one of them - the people of [Root.GetName] have expanded the Galactic Crossing into their capital, carving their legacy into the history of the galaxy - to be remembered by us all."

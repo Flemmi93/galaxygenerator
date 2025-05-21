@@ -1,20 +1,43 @@
-
+on_game_start_country = {
+	events = {
+		f93_galactic_crossing.2
+	}
+}
 on_yearly_pulse_country = {
 	events = {
 		f93_galactic_crossing.9
+		f93_galactic_crossing.14
+		
 	}
 }
-
+on_monthly_pulse = {
+	events = {
+		f93_galactic_crossing.15
+		f93_ralis_crisis_event.0400
+	}
+}
 on_monthly_pulse_country = {
 	events = {
-		f93_oe_event.3
-		f93_oe_event.2
-		f93_oe_event.1
+		f93_galactic_crossing.901
+		f93_ralis_crisis_event.0605
+		f93_oe_event.6
+		f93_oe_event.7
 	}
 }
 
+# A Megastructure has been built
+# Root = Country
+# From = Megastructure
+# FromFrom = System
+# FromFromFrom = Fleet
+on_megastructure_built = {
+	events = {
+	}
+}
 on_mid_game_pulse_country = {
 	events = {
+		f93_ralis_crisis_event.0001
+		
 	}
 }
 
@@ -26,6 +49,9 @@ on_mid_game_pulse_country = {
 on_entering_system_first_time = {
 	events = {
 		f93_ralis_crisis_event.0701
+		f93_oe_event.1
+		f93_oe_event.2
+		f93_oe_event.3
 	}
 }
 
@@ -37,24 +63,29 @@ on_entering_system_first_time = {
 on_planet_conquer = {
 	events = {
 		f93_ralis_crisis_event.0800
-		# f93_ralis_crisis_event.0802
+		f93_ralis_crisis_event.0802
 	}
 }
 
 # A planet has been colonized.
 # Scope = Planet
-# on_colony_1_year_old = {
-# 	events = {
-# 		f93_oe_event.4
-# 		f93_oe_event.4001
-# 	}
-# }
+on_colony_1_year_old = {
+	events = {
+		f93_oe_event.4
+		f93_oe_event.4001
+	}
+}
 
 
 # From = system
 # FromFrom = country (previous owner)
 # This = country (new owner)
-# on_system_gained = {
+on_system_gained = {
+	events = {
+		f93_ralis_crisis_event.0604
+		f93_ralis_crisis_event.0606
+	}
+}
 
 
 # Called when a Starbase changes owner
@@ -62,6 +93,5 @@ on_planet_conquer = {
 # FROM = Former Owner (Country)
 on_starbase_transfer = {
 	events = {
-		f93_ralis_crisis_event.0604
 	}
 }

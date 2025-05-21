@@ -16,11 +16,12 @@ country_event = {
 	show_sound = event_whispering
 	fire_only_once = yes
 	
-	mean_time_to_happen = 1
+	# mean_time_to_happen = 1
+	is_triggered_only = yes
 
 	trigger = {
 		# is_ai = no
-		mid_game_years_passed >= 0
+		# mid_game_years_passed >= 0
 	}
 
 	immediate = {
@@ -183,6 +184,13 @@ country_event = {
 				}
 				random_list = {
 					25 = {
+						every_system_colony = {
+							every_owned_pop_group = {	
+								limit = { is_valid_refugee_pop = yes }
+								save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
+								refugee_pop_effect = yes
+							}
+						}
 						destroy_star_system = yes
 						every_system_planet = { reroll_deposits = yes }
 					}
@@ -199,6 +207,10 @@ country_event = {
 						has_star_flag = f93_ralis_crisis_event0101_already_flag
 						f93_should_not_be_destroyed = yes
 						star = { is_star_class = sc_no_star }
+					}
+					AND = {
+						exists = space_owner
+						space_owner = { is_ai = yes }
 					}
 					any_system_planet = { is_colonizable = yes }
 					is_capital_system = no
@@ -375,7 +387,8 @@ country_event = {
 	id = f93_ralis_crisis_event.0400
 	hide_window = yes
 	fire_only_once = yes
-	mean_time_to_happen = 1
+	# mean_time_to_happen = 1
+	is_triggered_only = yes
 	trigger = {
 		mid_game_years_passed >= 0
 		exists = event_target:f93_ralis_country
@@ -554,57 +567,47 @@ country_event = {
 }
 
 #tracking what system was conquered from who by ralis
-
+#this event gives ralis all colonies instantly, so ralis has less insentive to crack the star
 country_event = {
 	id = f93_ralis_crisis_event.0606
 	hide_window = yes
-	mean_time_to_happen = 15
+	# mean_time_to_happen = 15
+	is_triggered_only = yes
 	
 	trigger = {
 		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
-		any_system = {
-			exists = starbase
-			starbase = { controller = { is_same_value = event_target:f93_ralis_country } }
-			any_system_colony = {
-				owner = { NOT = { is_same_value = event_target:f93_ralis_country } }
-			}
-		}
+		FROMFROM = { is_ai = yes }
 	}
 	immediate = {
-		every_system = {
-			limit = {
-				exists = starbase
-				starbase = { controller = { is_same_value = event_target:f93_ralis_country } }
-				any_system_colony = { owner = { NOT = { is_same_value = event_target:f93_ralis_country } } }
-			}
+		from = {
 			every_system_colony = { set_owner = event_target:f93_ralis_country }
 		}
 	}
 }
 
+# From = system
+# FromFrom = country (previous owner)
+# This = country (new owner)
 country_event = {
 	id = f93_ralis_crisis_event.0604
 	hide_window = yes
-	mean_time_to_happen = 15
+	# mean_time_to_happen = 15
+	is_triggered_only = yes
 	
 	trigger = {
 		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
-		event_target:f93_ralis_system = {
-			has_star_flag = crisis_sphere_system@prev
-		}
 	}
 
 	immediate = {
-		every_system_within_border = {
-			limit = {
-				NOR = {
-					has_star_flag = f93_belonged_to_ralis
-					has_star_flag = f93_ralis_took_it_from_someone
-				}
+		if = {
+			limit = { FROM = { NOT = { has_star_flag = f93_belonged_to_ralis } } }
+			FROM = {
+				set_star_flag = f93_ralis_took_it_from_someone
+				#last owner could be someone else every time, this is intentional.
+				set_star_flag = f93_ralis_took_it_from@FORMFROM
 			}
-			set_star_flag = f93_ralis_took_it_from_someone
 		}
 	}
 }
@@ -612,7 +615,8 @@ country_event = {
 country_event = {
 	id = f93_ralis_crisis_event.0605
 	hide_window = yes
-	mean_time_to_happen = 180
+	# mean_time_to_happen = 180
+	is_triggered_only = yes
 	fire_only_once = yes
 
 	trigger = {
@@ -633,23 +637,17 @@ country_event = {
 	}
 }
 #anyone entering ralis system for the first time
-country_event = {
+ship_event = {
 	id = f93_ralis_crisis_event.0701
 	title = f93_ralis_crisis_event.0701.name
 	desc = f93_ralis_crisis_event.0701.desc
 	picture = GFX_evt_situation_the_seal
 	# show_sound = event_mystic_reveal
-	mean_time_to_happen = 30
-	# is_triggered_only = yes
+	# mean_time_to_happen = 30
+	is_triggered_only = yes
 	trigger = {
-		is_ai = no
-		event_target:f93_ralis_system = {
-			any_fleet_in_system = { owner = { is_same_value = root } }
-		}
-		NOT = { has_country_flag = has_seen_f93_ralis_crisis_event0701 }
-	}
-	immediate = {
-		set_country_flag = has_seen_f93_ralis_crisis_event0701
+		FROMFROM = { is_ai = no }
+		FROM = { is_same_value = event_target:f93_ralis_system }
 	}
 	option = {
 		name = f93_ralis_crisis_event.0701.a
@@ -709,27 +707,20 @@ country_event = {
 # From = Country scope (new owner)
 # FromFrom = Former Owner
 #ralis is conquered
-country_event = {
+planet_event = {
 	id = f93_ralis_crisis_event.0802
 	title = f93_ralis_crisis_event.0802.name
 	desc = f93_ralis_crisis_event.0802.desc
 	picture = GFX_evt_burning_city
+	# mean_time_to_happen = 1
+	is_triggered_only = yes
 	trigger = {
 		NOT = { has_global_flag = f93_ralis_defeated_for_good }
-		any_owned_planet = {
-			exists = event_target:f93_ralis_planet
-			is_same_value = event_target:f93_ralis_planet
-			owner = {
-				NOR = {
-					is_same_value = event_target:f93_ralis_country
-					is_same_value = event_target:f93_ralis_liberator
-				}
-			}
-		}
+		is_same_value = event_target:f93_ralis_planet
+		FROM = { NOT = { is_same_value = event_target:f93_ralis_country } }
 	}
-	mean_time_to_happen = 1
 	immediate = {
-		save_global_event_target_as = f93_ralis_liberator
+		FROM = { save_global_event_target_as = f93_ralis_liberator }
 		event_target:f93_ralis_country = {
 			set_name = ralis_remnant_NAME
 		}
