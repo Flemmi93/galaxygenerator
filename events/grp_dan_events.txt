@@ -19,7 +19,7 @@ country_event = {
 	}
 }
 
-# Main Gui Setup for edict
+# Mod Menu Setup after game start, also available as edict
 country_event = {
 	id = grp_dan_ev.1
 	title = "grp_dan_ev.1.name"
