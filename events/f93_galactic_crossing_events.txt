@@ -224,6 +224,7 @@ country_event = {
 						NOT = { is_megastructure_type = dandelion_relay }
 						exists = this
 					}
+					f93_should_not_be_destroyed = yes
 				}
 			}
 			set_star_class = sc_no_star
@@ -243,9 +244,11 @@ country_event = {
 				}
 				NOR = {
 					is_country_type = primitive
-					closest_system = {
-						limit = { f93_system_has_ancient_relay = yes }
-						max_steps = 20
+					solar_system = {
+						closest_system = {
+							limit = { f93_system_has_ancient_relay = yes }
+							max_steps = 20
+						}
 					}
 					has_country_flag = chosen_empire
 				}

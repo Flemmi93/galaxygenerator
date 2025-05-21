@@ -648,7 +648,9 @@ ship_event = {
 	trigger = {
 		FROMFROM = { is_ai = no }
 		FROM = { is_same_value = event_target:f93_ralis_system }
+		FromFrom = { NOT = { has_country_flag = f93_seen_ralis } }
 	}
+	immediate = { FromFrom = { set_country_flag = f93_seen_ralis } }
 	option = {
 		name = f93_ralis_crisis_event.0701.a
 	}

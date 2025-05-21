@@ -16,16 +16,12 @@ ship_event = {
 	is_triggered_only = yes
 	trigger = {
 		owner = { is_ai = no }
-		# NOT = { has_country_flag = has_seen_f93_oe_event1 }
-		# has_seen_any_bypass = relay_bypass
-		# any_owned_fleet = {
-		# 	exists = solar_system
-			solar_system = { has_star_flag = f93_ancient_relay_system }
-		# }
+		FromFrom = { NOT = { has_country_flag = has_seen_f93_oe_event1 } }
+		solar_system = { has_star_flag = f93_ancient_relay_system }
 	}
-	# immediate = {
-	# 	set_country_flag = has_seen_f93_oe_event1
-	# }
+	immediate = {
+		FromFrom = { set_country_flag = has_seen_f93_oe_event1 }
+	}
 	option = {
 		name = f93_oe_event.1.a
 	}
@@ -45,18 +41,16 @@ ship_event = {
 	is_triggered_only = yes
 	trigger = {
 		owner = { is_ai = no }
-		# NOT = { has_country_flag = has_seen_f93_oe_event2 }
-		# any_owned_fleet = {
-			solar_system = {
-				any_neighbor_system_euclidean = {
-					has_star_flag = f93_shroud_region_flag
-				}
+		FromFrom = { NOT = { has_country_flag = has_seen_f93_oe_event2 } }
+		solar_system = {
+			any_neighbor_system_euclidean = {
+				has_star_flag = f93_shroud_region_flag
 			}
-		# }
+		}
 	}
-	# immediate = {
-	# 	set_country_flag = has_seen_f93_oe_event2
-	# }
+	immediate = {
+		FromFrom = { set_country_flag = has_seen_f93_oe_event2 }
+	}
 	option = {
 		name = f93_oe_event.2.a
 	}
@@ -77,9 +71,9 @@ ship_event = {
 				has_star_flag = f93_raliscluster1
 			}
 		}
-		# NOT = { has_country_flag = f93_seen_ralisgate_bypass }
+		FromFrom = { NOT = { has_country_flag = f93_seen_ralisgate_bypass } }
 	}
-	# immediate = { set_country_flag = f93_seen_ralisgate_bypass }
+	immediate = { FromFrom = { set_country_flag = f93_seen_ralisgate_bypass } }
 	option = {
 		name = f93_oe_event.3.a
 	}
