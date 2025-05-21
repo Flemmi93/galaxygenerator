@@ -463,7 +463,9 @@ country_event = {
 	id = f93_galactic_crossing.11
 	hide_window = yes
 	is_triggered_only = yes
-
+	trigger = {
+		exists = capital_scope
+	}
 	immediate = {
 		add_research_option = tech_wormhole_stabilization
 		add_tech_progress = { #create a small event chain to obtain this tech early on.
@@ -522,7 +524,8 @@ country_event = {
 			}
 		}
 		else = {
-			random_neighbor_system = {
+			capital_scope.solar_system = {
+				random_neighbor_system = {
 				limit = {
 					NOR = {
 						has_star_flag = neighbor_t1_first_colony
@@ -535,6 +538,7 @@ country_event = {
 					change_pc = root.owner_species
 					reroll_deposits = yes
 				}
+			}
 			}
 		}
 	}
@@ -586,7 +590,7 @@ event = {
 	}
 }
 
-#hardcore debugger
+# hardcore debugger
 # country_event = {
 # 	id = f93_galactic_crossing.99
 # 	is_triggered_only = yes

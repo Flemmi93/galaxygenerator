@@ -114,7 +114,7 @@ planet_event = {
 	}
 }
 #adding modifier to planets colonized on the galactic crossing
-country_event = {
+planet_event = {
 	id = f93_oe_event.4001
 	hide_window = yes
 	# mean_time_to_happen = 360

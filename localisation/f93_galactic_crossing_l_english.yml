@@ -285,6 +285,7 @@
  f93_oe_event.4.name: "The Silk Road"
  f93_oe_event.4.desc: "When the settlers of [root.GetName] first saw the gigantic Hyper Relay on the outskirts of their system, they gazed at the potential waiting in the endless void beyond it. A world on the Galactic Crossing - what a wonderful privilege to call home. The ground is Rich in Minerals, the soil is fertile, the air fresh and the sky above littered with the golden lights of merchant ships arriving.\nAn island on the galactic river."
  f93_oe_event.4.a: "Our golden planet."
+ f93_oe_event.4.b: "Dont show this again"
  f93_galactic_crossing_planet: "Galactic Crossing"
  f93_oe_event.5.name: "A Shining World"
  f93_oe_event.5.desc: "Our rising star along the Galactic Crossing, [Root.GetName] has become more than just a trade hub - it's become a spotlight.\nDiplomats, artists, influencers, and propagandists from across the galaxy now pass through, eager to be seen. Local broadcasts have gone interstellar, and even small news get wide coverage.\nNot every world gets to perform in the spotlight. But [Root.GetName] does - whether we want to or not."

@@ -606,7 +606,7 @@ country_event = {
 			FROM = {
 				set_star_flag = f93_ralis_took_it_from_someone
 				#last owner could be someone else every time, this is intentional.
-				set_star_flag = f93_ralis_took_it_from@FORMFROM
+				set_star_flag = f93_ralis_took_it_from@FromFrom
 			}
 		}
 	}
