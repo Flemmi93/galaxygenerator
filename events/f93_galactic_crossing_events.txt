@@ -48,11 +48,7 @@ country_event = {
 				}
 			}
 			set_variable = { which = f93_gal_size value = 4 }
-			if = { limit = { galaxy_size = tiny } set_variable = { which = f93_gal_size value = 3 } }
-			if = { limit = { galaxy_size = small } set_variable = { which = f93_gal_size value = 3 } }
-			if = { limit = { galaxy_size = medium } set_variable = { which = f93_gal_size value = 4 } }
-			if = { limit = { galaxy_size = large } set_variable = { which = f93_gal_size value = 5 } }
-			if = { limit = { galaxy_size = huge } set_variable = { which = f93_gal_size value = 6 } }
+			f93_set_galaxy_size = yes
 			while = {
 				count = f93_gal_size
 				limit = {
@@ -243,11 +239,11 @@ country_event = {
 					is_country_type = default
 				}
 				NOR = {
-					is_country_type = primitive
-					solar_system = {
+					any_system_within_border = {
 						closest_system = {
 							limit = { f93_system_has_ancient_relay = yes }
 							max_steps = 20
+							exists = this
 						}
 					}
 					has_country_flag = chosen_empire

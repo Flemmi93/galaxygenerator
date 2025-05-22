@@ -211,3 +211,32 @@ country_event = {
 		tooltip = { remove_modifier = f93_country_is_connected }
 	}
 }
+
+
+
+# This = owner of fleet 1 (loser)
+# From = owner of fleet 2 (winner)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+# This fires whenever a fleet is finished with a combat through any means (emergency ftl, destroyed, disabled)
+#a daring plan, suggest to snipe Ralis-Planet to win the war.
+# country_event = {
+# 	id = f93_oe_event.8
+# 	title = f93_oe_event.8.name
+# 	desc = f93_oe_event.8.name
+# 	picture = GFX_evt_star_chart
+
+# 	trigger = {
+# 		is_ai = no
+# 		exists = event_target:f93_ralis_country
+# 		event_target:f93_ralis_country = {
+# 			is_same_value = From
+# 			is_at_war_with = root
+# 			relative_power = { who = root category = fleet value <= pathetic }
+# 		}
+# 	}
+
+# 	option = {
+# 		name = f93_oe_event.8.a
+# 	}
+# }

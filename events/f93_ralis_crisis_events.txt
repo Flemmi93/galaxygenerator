@@ -390,6 +390,7 @@ country_event = {
 	# mean_time_to_happen = 1
 	is_triggered_only = yes
 	trigger = {
+		exists = this
 		mid_game_years_passed >= 0
 		exists = event_target:f93_ralis_country
 		event_target:f93_ralis_country = {
@@ -568,6 +569,10 @@ country_event = {
 
 #tracking what system was conquered from who by ralis
 #this event gives ralis all colonies instantly, so ralis has less insentive to crack the star
+
+# From = system
+# FromFrom = country (new owner)
+# This = country (previous owner)
 country_event = {
 	id = f93_ralis_crisis_event.0606
 	hide_window = yes
@@ -576,8 +581,8 @@ country_event = {
 	
 	trigger = {
 		exists = event_target:f93_ralis_country
-		is_same_value = event_target:f93_ralis_country
-		FROMFROM = { is_ai = yes }
+		FromFrom = { is_same_value = event_target:f93_ralis_country }
+		is_ai = yes
 	}
 	immediate = {
 		from = {
@@ -587,8 +592,8 @@ country_event = {
 }
 
 # From = system
-# FromFrom = country (previous owner)
-# This = country (new owner)
+# FromFrom = country (new owner)
+# This = country (previous owner)
 country_event = {
 	id = f93_ralis_crisis_event.0604
 	hide_window = yes
@@ -597,7 +602,7 @@ country_event = {
 	
 	trigger = {
 		exists = event_target:f93_ralis_country
-		is_same_value = event_target:f93_ralis_country
+		FromFrom = { is_same_value = event_target:f93_ralis_country }
 	}
 
 	immediate = {
@@ -606,11 +611,12 @@ country_event = {
 			FROM = {
 				set_star_flag = f93_ralis_took_it_from_someone
 				#last owner could be someone else every time, this is intentional.
-				set_star_flag = f93_ralis_took_it_from@FromFrom
+				set_star_flag = f93_ralis_took_it_from@root
 			}
 		}
 	}
 }
+
 
 country_event = {
 	id = f93_ralis_crisis_event.0605

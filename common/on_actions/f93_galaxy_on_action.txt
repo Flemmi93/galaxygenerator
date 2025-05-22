@@ -82,6 +82,17 @@ on_colony_1_year_old = {
 # This = country (new owner)
 on_system_gained = {
 	events = {
+		# f93_ralis_crisis_event.0604
+		# f93_ralis_crisis_event.0606
+	}
+}
+
+
+# From = system
+# FromFrom = country (new owner)
+# This = country (previous owner)
+on_system_lost = {
+	events = {
 		f93_ralis_crisis_event.0604
 		f93_ralis_crisis_event.0606
 	}
@@ -93,5 +104,17 @@ on_system_gained = {
 # FROM = Former Owner (Country)
 on_starbase_transfer = {
 	events = {
+	}
+}
+
+
+# This = owner of fleet 1 (loser)
+# From = owner of fleet 2 (winner)
+# FromFrom = fleet 1
+# FromFromFrom = fleet 2
+# This fires whenever a fleet is finished with a combat through any means (emergency ftl, destroyed, disabled)
+on_space_battle_lost = {
+	events = {
+		# f93_oe_event.8
 	}
 }
