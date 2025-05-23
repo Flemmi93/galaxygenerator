@@ -138,14 +138,16 @@ system_event = { #creating ralis cluster
 			count = 3
 			random_neighbor_system_euclidean = {
 				limit = {
-					f93_should_not_be_destroyed = yes
+					NOT = {
+						has_star_flag = empire_cluster
+					}
 					distance = {
 						source = root
 						max_distance <= 120
 						type = euclidean
 					}
 				}
-				destroy_star_system = yes	
+				destroy_star_system = yes
 				every_system_megastructure = {
 					remove_megastructure = this
 				}
@@ -244,15 +246,15 @@ planet_event = {
 			star = {
 				set_planet_size = 5
 			}
-			every_system = {
-				limit = { has_star_flag = f93_ralis_empire_cluster }
-				every_neighbor_system = {
-					remove_hyperlane = { from = this to = prev }
-				}
-			}
+			# every_system = {
+			# 	limit = { has_star_flag = f93_ralis_empire_cluster }
+			# 	every_neighbor_system = {
+			# 		remove_hyperlane = { from = this to = prev }
+			# 	}
+			# }
 			every_neighbor_system_euclidean = {
 				limit = { has_star_flag = f93_ralis_empire_cluster }
-				add_hyperlane = { from = this to = prev }
+				add_hyperlane = { from = this to = event_target:f93_ralis_system }
 				every_system_planet = {
 					random_list = {
 						5 = { add_deposit = random }
@@ -261,19 +263,22 @@ planet_event = {
 					}
 				}
 			}
-			random_system = {
-				limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
-				spawn_megastructure = {
-					type = matter_decompressor_1
-					owner = last_created_country
-					planet = star
-					graphical_culture = root.owner
+			if = {
+				limit = { check_galaxy_setup_value = { setting = crisis_strength_scale value >= 10 } }
+				random_system = {
+					limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
+					spawn_megastructure = {
+						type = matter_decompressor_1
+						owner = last_created_country
+						planet = star
+						graphical_culture = root.owner
+					}
+					create_starbase = {
+						owner = last_created_country
+						size = starbase_starport
+					}
+					save_global_event_target_as = f93_ralis_matter_decompressor_system
 				}
-				create_starbase = {
-					owner = last_created_country
-					size = starbase_starport
-				}
-				save_global_event_target_as = f93_ralis_matter_decompressor_system
 			}
 			every_system_planet = {
 				limit = { is_colonizable = no is_star = no NOT = { is_planet_class = pc_city } }

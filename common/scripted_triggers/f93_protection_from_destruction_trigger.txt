@@ -11,13 +11,19 @@ f93_should_not_be_destroyed = {
 		}
 		AND = {
 			exists = space_owner
-			space_owner = { is_same_value = event_target:f93_ralis_country }
+			OR = {
+				space_owner = { is_same_value = event_target:f93_ralis_country }
+				any_system_megastructure = {
+					exists = this
+				}
+			}
 		}
 		is_star_class = sc_black_hole
 		has_star_flag = star_cracked # already destroyed
 		has_star_flag = f93_empty_system_on_galcrossing #have special star class "no Star"
 		has_star_flag = crisis_sapwn_exclude #generally marks special systems
 		has_star_flag = wenkwort_system
+		has_star_flag = empire_home_system
 		#Exlcluding a bunch of mods, feel free to add your own or request me to add it.
 		has_star_flag = jupitwo_system
 		has_star_flag = pouchkinn_system

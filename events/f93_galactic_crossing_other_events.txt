@@ -88,6 +88,8 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
+		exists = owner
+		owner = { NOT = { is_country_type = primitive } }
 		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
 		space_owner = { NOT = { has_country_flag = has_seen_f93_oe_event4 } }
 	}
@@ -115,6 +117,8 @@ planet_event = {
 	is_triggered_only = yes
 	
 	trigger = {
+		exists = owner
+		owner = { NOT = { is_country_type = primitive } }
 		NOT = { has_modifier = f93_galactic_crossing_planet }
 		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
 	}
@@ -139,7 +143,13 @@ planet_event = {
 	picture = GFX_evt_obelisk_tourists
 	is_triggered_only = yes
 	trigger = {
-		owner = { NOT = { has_modifier = f93_galactic_crossing_buff_diplomats } }
+		exists = owner
+		owner = {
+			NOR = {
+				is_country_type = primitive
+				has_modifier = f93_galactic_crossing_buff_diplomats
+			}
+		}
 	}
 	option = {
 		name = f93_oe_event.5.a

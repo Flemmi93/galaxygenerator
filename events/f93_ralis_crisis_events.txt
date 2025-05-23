@@ -159,83 +159,90 @@ country_event = {
 		if = {
 			limit = { NOT = { has_global_flag = f93_ralis_crisis_event0101_happened } }
 			set_global_flag = f93_ralis_crisis_event0101_happened
-			every_system = {
-				limit = {
-					NOR = {
-						has_star_flag = f93_ralis_crisis_event0101_already_flag
-						f93_should_not_be_destroyed = yes
-						any_system_planet = { is_colonizable = yes }
-					}
-					any_neighbor_system = { f93_system_has_ancient_relay = yes }
-					AND = {
-						exists = owner
-						NOT = {
-							owner = { OR = { is_country_type = fallen_empire is_country_type = awakened_fallen_empire } }
-							any_system_planet = { is_colonizable = yes }
-						}
-					}
-				}
-				set_star_flag = f93_ralis_crisis_event0101_already_flag
-				if = {
-					limit = {
-						f93_system_has_ancient_relay = yes
-					}
-					set_star_flag = f93_has_dandelion_relay
-				}
-				random_list = {
-					25 = {
-						every_system_colony = {
-							every_owned_pop_group = {	
-								limit = { is_valid_refugee_pop = yes }
-								save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
-								refugee_pop_effect = yes
-							}
-						}
-						destroy_star_system = yes
-						every_system_planet = { reroll_deposits = yes }
-					}
-					50 = { }
-				}
-				if = {
-					limit = { has_star_flag = f93_has_dandelion_relay f93_system_has_ancient_relay = no }
-					highway_connect_relay_only = yes
-				}
-			}
-			every_system = {
-				limit = {
-					NOR = {
-						has_star_flag = f93_ralis_crisis_event0101_already_flag
-						f93_should_not_be_destroyed = yes
-						star = { is_star_class = sc_no_star }
-					}
-					AND = {
-						exists = space_owner
-						space_owner = { is_ai = yes }
-					}
-					any_system_planet = { is_colonizable = yes }
-					is_capital_system = no
-					any_neighbor_system = { f93_system_has_ancient_relay = yes }
-				}
-				set_star_flag = f93_ralis_crisis_event0101_already_flag
-				if = {
-					limit = {
-						f93_system_has_ancient_relay = yes
-					}
-					set_star_flag = f93_has_dandelion_relay
-				}
-				random_list = {
-					25 = {
-						destroy_star_system = yes
-						set_star_flag = f93_ralis_crisis_event_got_hit_flag
-						every_system_planet = { reroll_deposits = yes }
-					}
-					75 = { }
-				}
-				if = {
-					limit = { has_star_flag = f93_has_dandelion_relay f93_system_has_ancient_relay = no }
-					highway_connect_relay_only = yes
-				}
-			}
+			country_event = { id = f93_ralis_crisis_event.0102 }
+			# every_system = {
+			# 	limit = {
+			# 		NOR = {
+			# 			has_star_flag = f93_ralis_crisis_event0101_already_flag
+			# 			f93_should_not_be_destroyed = yes
+			# 			any_system_planet = { is_colonizable = yes }
+			# 		}
+			# 		any_neighbor_system = { f93_system_has_ancient_relay = yes }
+			# 		AND = {
+			# 			exists = space_owner
+			# 			NOT = {
+			# 				space_owner = { OR = { is_country_type = fallen_empire is_country_type = awakened_fallen_empire } }
+			# 			}
+			# 		}
+			# 	}
+			# 	set_star_flag = f93_ralis_crisis_event0101_already_flag
+			# 	if = {
+			# 		limit = {
+			# 			f93_system_has_ancient_relay = yes
+			# 		}
+			# 		set_star_flag = f93_has_dandelion_relay
+			# 	}
+			# 	random_list = {
+					# 25 = {
+					# 	every_system_colony = {
+					# 		every_owned_pop_group = {	
+					# 			limit = { is_valid_refugee_pop = yes }
+					# 			save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
+					# 			refugee_pop_effect = yes
+					# 		}
+					# 	}
+					# 	destroy_star_system = yes
+					# 	every_system_planet = { reroll_deposits = yes }
+					# }
+					# 50 = { }
+			# 	}
+			# 	if = {
+			# 		limit = { has_star_flag = f93_has_dandelion_relay f93_system_has_ancient_relay = no }
+			# 		highway_connect_relay_only = yes
+			# 	}
+			# }
+			# every_system = {
+			# 	limit = {
+			# 		is_capital_system = no
+			# 		NOR = {
+			# 			has_star_flag = f93_ralis_crisis_event0101_already_flag
+			# 			f93_should_not_be_destroyed = yes
+			# 			star = { is_star_class = sc_no_star }
+			# 		}
+			# 		AND = {
+			# 			exists = space_owner
+			# 			space_owner = { is_ai = yes }
+			# 		}
+			# 		any_system_planet = { is_colonizable = yes is_homeworld = no }
+			# 		any_neighbor_system = { f93_system_has_ancient_relay = yes }
+			# 	}
+			# 	set_star_flag = f93_ralis_crisis_event0101_already_flag
+			# 	if = {
+			# 		limit = {
+			# 			f93_system_has_ancient_relay = yes
+			# 		}
+			# 		set_star_flag = f93_has_dandelion_relay
+			# 	}
+			# 	random_list = {
+			# 		25 = {
+			# 			every_system_colony = {
+			# 				every_owned_pop_group = {	
+			# 					limit = { is_valid_refugee_pop = yes }
+			# 					save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
+			# 					refugee_pop_effect = yes
+			# 				}
+			# 			}
+			# 			destroy_star_system = yes
+			# 			set_star_flag = f93_ralis_crisis_event_got_hit_flag
+			# 			every_system_planet = { reroll_deposits = yes }
+			# 		}
+			# 		75 = { }
+			# 	}
+			# 	if = {
+			# 		limit = { has_star_flag = f93_has_dandelion_relay f93_system_has_ancient_relay = no }
+			# 		highway_connect_relay_only = yes
+			# 	}
+			# }
 		}
 	}
 	option = {
@@ -283,7 +290,53 @@ country_event = {
 		}
 	}
 }
+country_event = {
+	id = f93_ralis_crisis_event.0102
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
 
+	immediate = {
+		every_system = {
+			limit = {
+				any_neighbor_system = { f93_system_has_ancient_relay = yes }
+				NOR = {
+					f93_should_not_be_destroyed = yes
+					AND = {
+						exists = space_owner
+						OR = {
+							space_owner = { is_ai = yes }
+							any_system_planet = { is_colonizable = yes }
+							space_owner = {
+								OR = {
+									is_country_type = dormant_marauders
+									is_country_type = fallen_empire
+								}
+							}
+						}
+					}
+				}
+			}
+			random_list = {
+				25 = {
+					if = {
+						limit = { exists = space_owner space_owner = { is_country_type = default } }
+						every_system_colony = {
+							every_owned_pop_group = {	
+								limit = { is_valid_refugee_pop = yes }
+								save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
+								refugee_pop_effect = yes
+							}
+						}
+					}
+					destroy_star_system = yes
+					every_system_planet = { reroll_deposits = yes }
+				}
+				100 = {}
+			}
+		}
+	}
+}
 #Senate Report
 country_event = {
 	id = f93_ralis_crisis_event.0201
@@ -581,8 +634,10 @@ country_event = {
 	
 	trigger = {
 		exists = event_target:f93_ralis_country
-		FromFrom = { is_same_value = event_target:f93_ralis_country }
+		exists = space_owner
+		space_owner = { is_same_value = event_target:f93_ralis_country }
 		is_ai = yes
+		event_target:f93_ralis_country = { is_at_war = yes }
 	}
 	immediate = {
 		from = {
@@ -602,7 +657,9 @@ country_event = {
 	
 	trigger = {
 		exists = event_target:f93_ralis_country
-		FromFrom = { is_same_value = event_target:f93_ralis_country }
+		exists = space_owner
+		space_owner = { is_same_value = event_target:f93_ralis_country }
+		event_target:f93_ralis_country = { is_at_war = yes }
 	}
 
 	immediate = {

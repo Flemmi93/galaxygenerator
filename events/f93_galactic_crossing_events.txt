@@ -208,27 +208,30 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
-		every_system = {
-			limit = {
-				f93_system_has_ancient_relay = yes
-				NOR = {
-					exists = space_owner
-					has_star_flag = empire_cluster
-					has_star_flag = unique_system
-					any_fleet_in_system = { exists = this }
-					any_system_megastructure = {
-						NOT = { is_megastructure_type = dandelion_relay }
-						exists = this
+		if = {
+			# limit = { has_global_flag = f93_empty_system_on_galcrossing_activated }
+			every_system = {
+				limit = {
+					f93_system_has_ancient_relay = yes
+					NOR = {
+						exists = space_owner
+						has_star_flag = empire_cluster
+						has_star_flag = unique_system
+						any_fleet_in_system = { exists = this }
+						any_system_megastructure = {
+							NOT = { is_megastructure_type = dandelion_relay }
+							exists = this
+						}
+						f93_should_not_be_destroyed = yes
 					}
-					f93_should_not_be_destroyed = yes
 				}
+				set_star_class = sc_no_star
+				set_star_flag = f93_empty_system_on_galcrossing
+				# set_name = BLANK_STRING
+				every_system_planet = { remove_planet = yes }
+				every_ambient_object = { destroy_ambient_object = this }
+				f93_replace_relay_with_relay_star = yes
 			}
-			set_star_class = sc_no_star
-			set_star_flag = f93_empty_system_on_galcrossing
-			# set_name = BLANK_STRING
-			every_system_planet = { remove_planet = yes }
-			every_ambient_object = { destroy_ambient_object = this }
-			f93_replace_relay_with_relay_star = yes
 		}
 		every_country = {
 			limit = {
@@ -288,7 +291,7 @@ country_event = {
 	is_triggered_only = yes
 	desc = {
 		trigger = {
-			NOT = { exists = event_target:f93_ralis_planet }
+			NOT = { exists = event_target:f93_ralis_country }
 		}
 		text = f93_ralis_failed_to_form
 	}
@@ -349,6 +352,8 @@ country_event = {
 		capital_scope.solar_system = {
 			if = {
 				limit = {
+					f93_system_has_ancient_relay = no
+					NOT = { has_megastructure = hyper_relay }
 					any_neighbor_system = {
 						OR = {
 							f93_system_has_ancient_relay = yes
@@ -363,6 +368,8 @@ country_event = {
 					limit = {
 						exists = owner
 						space_owner = { is_same_value = root }
+						f93_system_has_ancient_relay = no
+						NOT = { has_megastructure = hyper_relay }
 						any_neighbor_system = {
 							OR = {
 								f93_system_has_ancient_relay = yes
