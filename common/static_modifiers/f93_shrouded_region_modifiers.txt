@@ -16,6 +16,7 @@ f93_ralis_true_liberator = {
 }
 f93_ralis_country_buff = {
 	planet_crime_add = -1000
+	country_hostile_claim_influence_cost_mult = 100
 	pop_demotion_time_mult = -1
 	country_base_food_produces_add = 1000
 	country_resource_max_energy_add = 75000

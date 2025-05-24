@@ -1,0 +1,37 @@
+##############
+# Button 1_1 #
+##############
+f93_gc_1_1_on = {
+	potential = {
+		NOT = { has_global_flag = f82_ralis_crisis_off }
+		}
+	allow = {}
+	effect = {}
+}
+f93_gc_1_1_off = {
+	potential = {
+		has_global_flag = f82_ralis_crisis_off
+	}
+	allow = {}
+	effect = {}
+}
+
+f93_gc_1_1_onoff = {
+	potential = {}
+	allow = {}
+	
+	effect = {
+		if = {
+			limit = {
+				has_global_flag = f82_ralis_crisis_off
+			}
+			remove_global_flag = f82_ralis_crisis_off
+		}
+		else = {
+			set_global_flag = f82_ralis_crisis_off
+		}
+	}
+}
+##############
+# Button 1_2 # 
+##############
