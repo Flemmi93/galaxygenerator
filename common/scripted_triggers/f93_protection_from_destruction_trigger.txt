@@ -5,6 +5,9 @@ f93_should_not_be_destroyed = {
 			OR = {
 				is_ringworld = yes
 				has_modifier = holy_planet
+				has_planet_flag = earth
+				has_planet_flag = earth_nuked
+				
 				#If you only have a planet that should be protected add it here and the entire system will be safe from me.
 
 			}

@@ -597,115 +597,119 @@ event = {
 }
 
 # hardcore debugger
-# country_event = {
-# 	id = f93_galactic_crossing.99
-# 	is_triggered_only = yes
-# 	title = f93_galactic_crossing.13.name
-# 	desc = f93_galactic_crossing.13.name
-# 	picture = GFX_evt_star_chart
-# 	option = {
-# 		name = "random enclave"
-# 		random_country = {
-# 			limit = { 
-# 				OR = {
-# 					is_country_type = enclave_mercenary
-# 					is_country_type = enclave
-# 				}
-# 			}
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "playable countries"
-# 		every_playable_country = {
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "non playable countries"
-# 		every_country = {
-# 			limit = { NOT = { is_country_type = default } }
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "enclave countries"
-# 		every_country = {
-# 			limit = { 
-# 				OR = {
-# 					is_country_type = enclave_mercenary
-# 					is_country_type = enclave
-# 				}
-# 				NOT = { is_same_value = event_target:f93_community_ralis_admin_country }
-# 			}
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "marauder countries"
-# 		every_country = {
-# 			limit = { 
-# 				OR = {
-# 					is_country_type = dormant_marauders
-# 					is_country_type = awakened_marauders
-# 				}
-# 			}
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "falen countries"
-# 		every_country = {
-# 			limit = { 
-# 				OR = {
-# 					is_country_type = fallen_empire
-# 					is_country_type = awakened_fallen_empire
-# 				}
-# 			}
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "primitive countries"
-# 		every_country = {
-# 			limit = {
-# 				is_country_type = primitive
-# 			}
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "space faune countries"
-# 		every_country = {
-# 			limit = { is_fauna_country = yes }
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "all countries"
-# 		every_country = {
-# 			destroy_country = yes
-# 		}
-# 		every_system = {
-# 			every_fleet_in_system = {
-# 				delete_fleet = this
-# 			}
-# 		}
-# 	}
-# 	option = {
-# 		name = "random country"
-# 		random_country = {
-# 			limit = { is_ai = yes }
-# 			destroy_country = yes
-# 		}
-# 	}
-# 	option = {
-# 		name = "fleets"
+country_event = {
+	id = f93_galactic_crossing.99
+	is_triggered_only = yes
+	title = f93_galactic_crossing.99.name
+	desc = f93_galactic_crossing.99.desc
+	picture = GFX_evt_star_chart
+	option = {
+		name = OK
+	}
+	option = {
+		name = f93_galactic_crossing.99.a
+		random_country = {
+			limit = { 
+				OR = {
+					is_country_type = enclave_mercenary
+					is_country_type = enclave
+				}
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.b
+		every_playable_country = {
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.c
+		every_country = {
+			limit = { NOT = { is_country_type = default } }
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.d
+		every_country = {
+			limit = { 
+				OR = {
+					is_country_type = enclave_mercenary
+					is_country_type = enclave
+				}
+				NOT = { is_same_value = event_target:f93_community_ralis_admin_country }
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.e
+		every_country = {
+			limit = { 
+				OR = {
+					is_country_type = dormant_marauders
+					is_country_type = awakened_marauders
+				}
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.f
+		every_country = {
+			limit = { 
+				OR = {
+					is_country_type = fallen_empire
+					is_country_type = awakened_fallen_empire
+				}
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.g
+		every_country = {
+			limit = {
+				is_country_type = primitive
+			}
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.h
+		every_country = {
+			limit = { is_fauna_country = yes }
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.i
+		every_country = {
+			destroy_country = yes
+		}
+		every_system = {
+			every_fleet_in_system = {
+				delete_fleet = this
+			}
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.j
+		random_country = {
+			limit = { is_ai = yes }
+			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.k
 		
-# 		every_system = {
-# 			every_fleet_in_system = {
-# 				delete_fleet = this
-# 			}
-# 		}
-# 	}
-# }
+		every_system = {
+			limit = { has_star_flag = f93_shroud_region_flag }
+			every_fleet_in_system = {
+				delete_fleet = this
+			}
+		}
+	}
+}
