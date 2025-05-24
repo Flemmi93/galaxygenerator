@@ -44,3 +44,6 @@
   grp_dan_menubutton_5.3: "5_3"
   grp_dan_menubutton_5.4: "5_4"
   grp_dan_menubutton_5.5: "5_5"
+
+  grp_dan_menubutton_on: "ON"
+  grp_dan_menubutton_off: "OFF"
