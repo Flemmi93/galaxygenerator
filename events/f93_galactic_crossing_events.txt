@@ -209,7 +209,12 @@ country_event = {
 	fire_only_once = yes
 	immediate = {
 		if = {
-			# limit = { has_global_flag = f93_empty_system_on_galcrossing_activated }
+			limit = {
+				NOR = {
+					has_global_flag = f82_button_2_1_off
+					has_global_flag = f82_button_2_2_off
+				}
+			}
 			every_system = {
 				limit = {
 					f93_system_has_ancient_relay = yes
@@ -303,15 +308,15 @@ country_event = {
 	}
 	desc = {
 		trigger = {
-			owner = { capital_scope.solar_system = { any_neighbor_system_euclidean = { has_modifier = f93_shrouded_region_star } } }
-		}
-		text = f93_galactic_crossing.8.yellow
-	}
-	desc = {
-		trigger = {
 			owner = { is_shrouded_player = yes }
 		}
 		text = f93_galactic_crossing.8.red
+	}
+	desc = {
+		trigger = {
+			owner = { capital_scope.solar_system = { any_neighbor_system_euclidean = { has_modifier = f93_shrouded_region_star } } }
+		}
+		text = f93_galactic_crossing.8.yellow
 	}
 	trigger = {
 		is_ai = no
@@ -410,12 +415,23 @@ country_event = {
 	trigger = {
 		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
-		NOT = { has_global_flag = f93_ralis_awoken }
 	}
 
 	immediate = {
 		if = {
+			limit = { is_ai = yes }
+			export_modifier_to_variable = {
+				modifier = megastructure_build_speed_mult
+				variable = f93_megastructure_build_speed_mult_var
+			}
+			add_modifier = {
+				modifier = f93_megastructure_build_speed_mult
+				mult = f93_megastructure_build_speed_mult_var
+			}
+		}
+		if = {
 			limit = {
+				NOT = { has_global_flag = f93_ralis_awoken }
 				event_target:f93_ralis_planet = { owner = { is_ai = yes } }
 			}
 			event_target:f93_ralis_planet = {
@@ -580,7 +596,7 @@ event = {
 	hide_window = yes
 	# mean_time_to_happen = 360
 	is_triggered_only = yes
-	# trigger = { is_same_value = event_target:global_event_country }
+	trigger = { NOT = { has_global_flag = f82_button_2_1_off } }
 	immediate = {
 		random_system = {
 			limit = {

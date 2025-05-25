@@ -31,8 +31,9 @@ f93_ralis_country_buff = {
 	country_resource_max_rare_crystals_add = 7500
 	country_resource_max_sr_living_metal_add = 7500
 	country_resource_max_sr_zro_add = 7500
-	country_resource_max_sr_dark_matter_add = 7500
+	country_resource_max_sr_dark_matter_add = 75000
 	country_resource_max_nanites_add = 7500
+	relay_bypass_empire_windup_mult = -0.5
 }
 
 f93_country_is_connected = {
@@ -70,4 +71,15 @@ f93_galactic_crossing_planet = {
 
 f93_galactic_crossing_buff_diplomats = {
 	diplo_weight_mult = 0.1
+}
+
+f93_megastructure_build_speed_mult = {
+	megastructure_build_speed_mult = 1
+}
+
+
+f93_naval_cap_mod_ralis = {
+	country_naval_cap_mult = -1
+	icon = "gfx/interface/icons/planet_modifiers/pm_planet_from_space.dds"
+	icon_frame = 3
 }

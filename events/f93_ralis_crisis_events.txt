@@ -20,8 +20,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		# is_ai = no
-		# mid_game_years_passed >= 0
+		NOT = { has_global_flag = f82_button_1_1_off }
 	}
 
 	immediate = {
@@ -58,8 +57,7 @@ country_event = {
 			add_tradition = tr_supremacy_finish
 			give_technology = { tech = tech_wormhole_stabilization } 
 			add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
-			force_remove_civic = 1
-			force_remove_civic = 1
+			force_remove_civic = 2
 			force_add_civic = civic_fanatic_purifiers
 			force_add_civic = civic_heroic_tales
 			create_fleet = {
@@ -99,20 +97,6 @@ country_event = {
 					limit = { is_megastructure_type = crisis_sphere_0 }
 					set_megastructure_flag = crisis_sphere
 				}
-				# star = {
-				# 	create_ambient_object = {
-				# 		type = "crisis_sphere_1"
-				# 		location = this
-				# 	}
-				# 	last_created_ambient_object = {
-				# 		set_ambient_object_flag = crisis_sphere_1_system_effect
-				# 		set_location = {
-				# 			target = prev
-				# 			distance = 0
-				# 			angle = random
-				# 		}
-				# 	}	
-				# }
 				set_global_flag = f93_shroud_gate_active
 				random_system = {
 					limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
@@ -124,6 +108,16 @@ country_event = {
 				random_system = {
 					limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
 					f93_place_shroud_gate_nexus = yes
+				}
+			}
+			event_target:f93_ralis_matter_decompressor_system = {
+				random_system_megastructure = {
+					limit = { is_megastructure_type = matter_decompressor_1 }
+					remove_megastructure = this
+				}
+				spawn_megastructure = {
+					type = matter_decompressor_ruined
+					planet = star
 				}
 			}
 		}
@@ -145,6 +139,103 @@ country_event = {
 	}
 }
 
+#Monthly Difficulty Adjustment Event
+country_event = {
+	id = f93_ralis_crisis_event.0003
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:f93_ralis_country
+		is_same_value = event_target:f93_ralis_country
+	}
+	immediate = {
+		#easy
+		if = {
+			limit = {
+				has_global_flag = f82_button_3_1_on
+			}
+			remove_modifier = fe_ship_cost_modifier
+			add_modifier = {
+				modifier = shroud_firing_rate
+				mult = -1.15
+			}
+			
+			event_target:f93_ralis_matter_decompressor_system = {
+				if = {
+					limit = { has_star_flag = f93_matter_decompressort_active }
+					every_owned_megastructure = {
+						limit = {
+							OR = {
+								is_megastructure_type = matter_decompressor_1
+								is_megastructure_type = matter_decompressor_2
+								is_megastructure_type = matter_decompressor_3
+								is_megastructure_type = matter_decompressor_4
+							}
+						}
+						remove_megastructure = this
+					}
+					remove_star_flag = f93_matter_decompressort_active
+				}
+			}
+		}
+
+		#default
+		if = {
+			limit = {
+				has_global_flag = f82_button_3_2_on
+			}
+			add_modifier = {
+				modifier = shroud_firing_rate
+				mult = -1
+			}
+			remove_modifier = fe_ship_cost_modifier
+			
+			event_target:f93_ralis_matter_decompressor_system = {
+				if = {
+					limit = { has_star_flag = f93_matter_decompressort_active }
+					every_owned_megastructure = {
+						limit = {
+							OR = {
+								is_megastructure_type = matter_decompressor_1
+								is_megastructure_type = matter_decompressor_2
+								is_megastructure_type = matter_decompressor_3
+								is_megastructure_type = matter_decompressor_4
+							}
+						}
+						remove_megastructure = this
+					}
+					remove_star_flag = f93_matter_decompressort_active
+				}
+			}
+		}
+
+		#hard
+		if = {
+			limit = {
+				has_global_flag = f82_button_3_3_on
+			}
+			remove_modifier = shroud_firing_rate
+			add_modifier = {
+				modifier = fe_ship_cost_modifier
+				multiplier = 1
+				days = -1
+			}
+			event_target:f93_ralis_matter_decompressor_system = {
+				if = {
+					limit = { NOT = { has_star_flag = f93_matter_decompressort_active } }
+					spawn_megastructure = {
+						type = matter_decompressor_1
+						owner = last_created_country
+						planet = star
+						graphical_culture = root.owner
+					}
+					set_star_flag = f93_matter_decompressort_active
+				}
+			}
+		}
+	}
+}
+
 #A galaxy holds its breath
 country_event = {
 	id = f93_ralis_crisis_event.0101
@@ -160,89 +251,6 @@ country_event = {
 			limit = { NOT = { has_global_flag = f93_ralis_crisis_event0101_happened } }
 			set_global_flag = f93_ralis_crisis_event0101_happened
 			country_event = { id = f93_ralis_crisis_event.0102 }
-			# every_system = {
-			# 	limit = {
-			# 		NOR = {
-			# 			has_star_flag = f93_ralis_crisis_event0101_already_flag
-			# 			f93_should_not_be_destroyed = yes
-			# 			any_system_planet = { is_colonizable = yes }
-			# 		}
-			# 		any_neighbor_system = { f93_system_has_ancient_relay = yes }
-			# 		AND = {
-			# 			exists = space_owner
-			# 			NOT = {
-			# 				space_owner = { OR = { is_country_type = fallen_empire is_country_type = awakened_fallen_empire } }
-			# 			}
-			# 		}
-			# 	}
-			# 	set_star_flag = f93_ralis_crisis_event0101_already_flag
-			# 	if = {
-			# 		limit = {
-			# 			f93_system_has_ancient_relay = yes
-			# 		}
-			# 		set_star_flag = f93_has_dandelion_relay
-			# 	}
-			# 	random_list = {
-					# 25 = {
-					# 	every_system_colony = {
-					# 		every_owned_pop_group = {	
-					# 			limit = { is_valid_refugee_pop = yes }
-					# 			save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
-					# 			refugee_pop_effect = yes
-					# 		}
-					# 	}
-					# 	destroy_star_system = yes
-					# 	every_system_planet = { reroll_deposits = yes }
-					# }
-					# 50 = { }
-			# 	}
-			# 	if = {
-			# 		limit = { has_star_flag = f93_has_dandelion_relay f93_system_has_ancient_relay = no }
-			# 		highway_connect_relay_only = yes
-			# 	}
-			# }
-			# every_system = {
-			# 	limit = {
-			# 		is_capital_system = no
-			# 		NOR = {
-			# 			has_star_flag = f93_ralis_crisis_event0101_already_flag
-			# 			f93_should_not_be_destroyed = yes
-			# 			star = { is_star_class = sc_no_star }
-			# 		}
-			# 		AND = {
-			# 			exists = space_owner
-			# 			space_owner = { is_ai = yes }
-			# 		}
-			# 		any_system_planet = { is_colonizable = yes is_homeworld = no }
-			# 		any_neighbor_system = { f93_system_has_ancient_relay = yes }
-			# 	}
-			# 	set_star_flag = f93_ralis_crisis_event0101_already_flag
-			# 	if = {
-			# 		limit = {
-			# 			f93_system_has_ancient_relay = yes
-			# 		}
-			# 		set_star_flag = f93_has_dandelion_relay
-			# 	}
-			# 	random_list = {
-			# 		25 = {
-			# 			every_system_colony = {
-			# 				every_owned_pop_group = {	
-			# 					limit = { is_valid_refugee_pop = yes }
-			# 					save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
-			# 					refugee_pop_effect = yes
-			# 				}
-			# 			}
-			# 			destroy_star_system = yes
-			# 			set_star_flag = f93_ralis_crisis_event_got_hit_flag
-			# 			every_system_planet = { reroll_deposits = yes }
-			# 		}
-			# 		75 = { }
-			# 	}
-			# 	if = {
-			# 		limit = { has_star_flag = f93_has_dandelion_relay f93_system_has_ancient_relay = no }
-			# 		highway_connect_relay_only = yes
-			# 	}
-			# }
 		}
 	}
 	option = {
@@ -304,14 +312,19 @@ country_event = {
 					f93_should_not_be_destroyed = yes
 					AND = {
 						exists = space_owner
-						OR = {
-							space_owner = { is_ai = yes }
-							any_system_planet = { is_colonizable = yes }
-							space_owner = {
-								OR = {
-									is_country_type = dormant_marauders
-									is_country_type = fallen_empire
-								}
+						space_owner = {
+							OR = {
+								is_country_type = fallen_empire
+								is_country_type = dormant_marauders
+							}
+						}
+					}
+					AND = {
+						exists = space_owner
+						space_owner = {
+							OR = {
+								is_ai = no
+								NOT = { has_global_flag = f82_button_1_2_on }
 							}
 						}
 					}
@@ -443,6 +456,7 @@ country_event = {
 	# mean_time_to_happen = 1
 	is_triggered_only = yes
 	trigger = {
+		NOT = { has_global_flag = f82_button_1_1_off }
 		exists = this
 		mid_game_years_passed >= 0
 		exists = event_target:f93_ralis_country
@@ -514,6 +528,9 @@ country_event = {
 		}
 	}
 	after = {
+		every_playable_country = {
+			establish_communications = event_target:f93_ralis_country
+		}
 	}
 }
 
@@ -641,7 +658,12 @@ country_event = {
 	}
 	immediate = {
 		from = {
-			every_system_colony = { set_owner = event_target:f93_ralis_country }
+			random_list = {
+				1 = {}
+				2 = { 
+					every_system_colony = { set_owner = event_target:f93_ralis_country }
+				}
+			}
 		}
 	}
 }
@@ -683,6 +705,7 @@ country_event = {
 	fire_only_once = yes
 
 	trigger = {
+		NOT = { has_global_flag = f82_button_1_1_off }
 		exists = event_target:f93_ralis_country
 		event_target:f93_ralis_country = {
 			is_level_5_player_crisis = yes
@@ -695,7 +718,7 @@ country_event = {
 				limit = { is_megastructure_type = think_tank_4 }
 				remove_megastructure = this
 			}
-			spawn_megastructure = { type = think_tank_ruined }
+			# spawn_megastructure = { type = think_tank_ruined }
 		}
 	}
 }
@@ -709,6 +732,7 @@ ship_event = {
 	# mean_time_to_happen = 30
 	is_triggered_only = yes
 	trigger = {
+		NOT = { has_global_flag = f82_button_1_1_off }
 		FROMFROM = { is_ai = no }
 		FROM = { is_same_value = event_target:f93_ralis_system }
 		FromFrom = { NOT = { has_country_flag = f93_seen_ralis } }
@@ -719,11 +743,75 @@ ship_event = {
 	}
 }
 
+
+# A fleet has entered a system | See also: on_fleet_auto_move_arrival
+#A Fleet Entering Ralis during the War
+# Scope = Fleet
+# From = System
+fleet_event = {
+	id = f93_ralis_crisis_event.0702
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:f93_ralis_country
+		from = { is_same_value = event_target:f93_ralis_system }
+		exists = owner
+		owner = { NOT = { is_same_value = event_target:f93_ralis_country } }
+		event_target:f93_ralis_country = { is_at_war = yes }
+		event_target:f93_ralis_system = {
+			any_fleet_in_system = {
+				is_ship_class = shipclass_military
+				owner = { NOT = { is_same_value = event_target:f93_ralis_country } }
+				NOT = { has_fleet_flag = f93_ralis_already_saw_this }
+			}
+		}
+	}
+
+	immediate = {
+		set_timed_fleet_flag = {
+			flag = f93_ralis_already_saw_this
+			days = 30
+		}
+		#send home closest fleet
+		event_target:f93_ralis_system = {
+			closest_system = {
+				limit = {
+					any_fleet_in_system = {
+						owner = { is_same_value = event_target:f93_ralis_country }
+						is_ship_class = shipclass_military
+					}
+				}
+				every_fleet_in_system = {
+					limit = {
+						owner = { is_same_value = event_target:f93_ralis_country }
+						is_ship_class = shipclass_military
+					}
+					auto_move_to_planet = { target = event_target:f93_ralis_planet clear_auto_move_on_arrival = yes }
+				}
+			}
+		}
+		#send home strongest fleet
+		event_target:f93_ralis_country = {
+			ordered_controlled_fleet = {
+				limit = {
+					is_ship_class = shipclass_military
+				}
+				position = 0
+				order_by = trigger:fleet_power
+				auto_move_to_planet = { target = event_target:f93_ralis_planet clear_auto_move_on_arrival = yes }
+			}
+		}
+	}
+}
+
+
 planet_event = {
 	id = f93_ralis_crisis_event.0800
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
+		NOT = { has_global_flag = f82_button_1_1_off }
 		is_same_value = event_target:f93_ralis_planet
 	}
 
@@ -780,6 +868,7 @@ planet_event = {
 	# mean_time_to_happen = 1
 	is_triggered_only = yes
 	trigger = {
+		NOT = { has_global_flag = f82_button_1_1_off }
 		NOT = { has_global_flag = f93_ralis_defeated_for_good }
 		is_same_value = event_target:f93_ralis_planet
 		FROM = { NOT = { is_same_value = event_target:f93_ralis_country } }

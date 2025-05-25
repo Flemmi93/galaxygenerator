@@ -12,6 +12,7 @@ country_event = {
 	}
 
 	immediate = {
+		set_global_flag = f82_button_3_2_on
 		set_country_flag = host_country_flag
 		country_event = {
 			id = grp_dan_menu_evt.1
@@ -36,6 +37,19 @@ country_event = {
 		is_ai = no
 	}
 
+	option = {
+		name = OK
+	}
+}
+
+
+# mod credits
+country_event = {
+	id = grp_dan_menu_evt.2
+	title = "grp_dan_menu_evt.2.name"
+	desc = "grp_dan_menu_evt.2.desc"
+	picture = GFX_evt_alien_hieroglyphics
+	is_triggered_only = yes
 	option = {
 		name = OK
 	}

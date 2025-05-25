@@ -10,6 +10,7 @@ system_event = {
 			has_star_flag = chosen_system
 			has_star_flag = crisis_sapwn_exclude
 			has_star_flag = empire_cluster
+			has_natural_wormhole = yes
 		}
 		has_star_flag = f93_shroud_region_flag
 	}
@@ -237,21 +238,32 @@ planet_event = {
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
-
 	immediate = {
-		create_ralis_country = yes
-		create_ralis_planet = yes
+		if = {
+			limit = { NOT = { has_global_flag = f82_button_1_1_off } }
+			create_ralis_country = yes
+			create_ralis_planet = yes
+			random_system = {
+				limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
+				create_starbase = {
+					owner = last_created_country
+					size = starbase_starport
+				}
+				save_global_event_target_as = f93_ralis_matter_decompressor_system
+			}
+			else = {
+				event_target:f93_ralis_country = {
+					add_resource = {
+						minerals = 15000
+					}
+				}
+			}
+		}
 		solar_system = {
 			set_star_class = sc_black_hole
 			star = {
 				set_planet_size = 5
 			}
-			# every_system = {
-			# 	limit = { has_star_flag = f93_ralis_empire_cluster }
-			# 	every_neighbor_system = {
-			# 		remove_hyperlane = { from = this to = prev }
-			# 	}
-			# }
 			every_neighbor_system_euclidean = {
 				limit = { has_star_flag = f93_ralis_empire_cluster }
 				add_hyperlane = { from = this to = event_target:f93_ralis_system }
@@ -261,23 +273,6 @@ planet_event = {
 						3 = { }
 						1 = { add_deposit = random add_deposit = random }
 					}
-				}
-			}
-			if = {
-				limit = { check_galaxy_setup_value = { setting = crisis_strength_scale value >= 10 } }
-				random_system = {
-					limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
-					spawn_megastructure = {
-						type = matter_decompressor_1
-						owner = last_created_country
-						planet = star
-						graphical_culture = root.owner
-					}
-					create_starbase = {
-						owner = last_created_country
-						size = starbase_starport
-					}
-					save_global_event_target_as = f93_ralis_matter_decompressor_system
 				}
 			}
 			every_system_planet = {
@@ -292,6 +287,10 @@ planet_event = {
 			set_name = ralis_system_NAME
 		}
 		set_name = ralis_planet_NAME
+		if = {
+			limit = { has_global_flag = f82_button_1_1_off }
+			change_pc = pc_relic
+		}
 		every_system = {
 			limit = { has_star_flag = f93_shroud_region_flag }
 			set_star_flag = crisis_sapwn_exclude

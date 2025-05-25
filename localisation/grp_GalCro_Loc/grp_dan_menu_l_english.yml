@@ -2,9 +2,9 @@
  grp_dan_menu_evt.1.name: "Shrouded Regions - Mod Menu"
  grp_dan_menu_evt.1.desc: "You can adjust your gameplay experience here."
 
- grp_dan_button.1: "Storymode Settings"
- grp_dan_button.2: "Galactic Crossing Settings"
- grp_dan_button.3: "Crisis Strength Settings"
+ grp_dan_button.1: "Storymode"
+ grp_dan_button.2: "Galactic Crossing"
+ grp_dan_button.3: "Crisis Difficulty"
  grp_dan_button.4: "Option 4"
  grp_dan_button.5: "Option 5"
  grp_dan_button.6: "Option 6"
@@ -15,24 +15,27 @@
  grp_dan_button.help: "Help"
  close_menu.1: "Close"
 
- grp_dan_menubutton_on: " "
- grp_dan_menubutton_off: " "
+ grp_dan_menubutton_on: ""
+ grp_dan_menubutton_off: ""
 
- grp_dan_menubutton_1.1: "Turn Crisis On / Off"
- grp_dan_menubutton_1.2: "1_2"
- grp_dan_menubutton_1.3: "1_3
+#Story Settings
+# Future Content: Set specific Ending to trigger at midgame 
+ grp_dan_menubutton_1.1: "Storymode"
+ grp_dan_menubutton_1.2: "Unfair Events can hit Player"
+ grp_dan_menubutton_1.3: "1_3"
  grp_dan_menubutton_1.4: "1_4"
  grp_dan_menubutton_1.5: "1_5"
 
- grp_dan_menubutton_2.1: "2_1"
- grp_dan_menubutton_2.2: "2_2"
+#Galactic Crossing Settings
+ grp_dan_menubutton_2.1: "Galactic Crossing"
+ grp_dan_menubutton_2.2: "Unclaimable Relay Systems"
  grp_dan_menubutton_2.3: "2_3"
  grp_dan_menubutton_2.4: "2_4"
  grp_dan_menubutton_2.5: "2_5"
 
- grp_dan_menubutton_3.1: "3_1"
- grp_dan_menubutton_3.2: "3_2"
- grp_dan_menubutton_3.3: "3_3"
+ grp_dan_menubutton_3.1: "Easy"
+ grp_dan_menubutton_3.2: "Default"
+ grp_dan_menubutton_3.3: "Hard"
  grp_dan_menubutton_3.4: "3_4"
  grp_dan_menubutton_3.5: "3_5"
 
@@ -47,3 +50,6 @@
  grp_dan_menubutton_5.3: "5_3"
  grp_dan_menubutton_5.4: "5_4"
  grp_dan_menubutton_5.5: "5_5"
+
+ grp_dan_menu_evt.2.name: "Credits"
+ grp_dan_menu_evt.2.desc: "Thank you for playing our mod §MShrouded Regions§!\n\n\nLead Developer:$TABBED_NEW_LINE$§BFlemmi§!\n\nCreative Director:$TABBED_NEW_LINE$§HJanlitschka§!\n\nUser Interface Developer:$TABBED_NEW_LINE$§Ceirish§!"

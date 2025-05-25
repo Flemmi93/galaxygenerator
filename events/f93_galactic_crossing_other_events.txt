@@ -229,24 +229,32 @@ country_event = {
 # FromFrom = fleet 1
 # FromFromFrom = fleet 2
 # This fires whenever a fleet is finished with a combat through any means (emergency ftl, destroyed, disabled)
-#a daring plan, suggest to snipe Ralis-Planet to win the war.
-# country_event = {
-# 	id = f93_oe_event.8
-# 	title = f93_oe_event.8.name
-# 	desc = f93_oe_event.8.name
-# 	picture = GFX_evt_star_chart
+# a daring plan, suggest to snipe Ralis-Planet to win the war.
+country_event = {
+	id = f93_oe_event.15
+	title = f93_oe_event.15.name
+	desc = f93_oe_event.15.name
+	is_triggered_only = yes
+	picture = GFX_evt_death_from_above
 
-# 	trigger = {
-# 		is_ai = no
-# 		exists = event_target:f93_ralis_country
-# 		event_target:f93_ralis_country = {
-# 			is_same_value = From
-# 			is_at_war_with = root
-# 			relative_power = { who = root category = fleet value <= pathetic }
-# 		}
-# 	}
-
-# 	option = {
-# 		name = f93_oe_event.8.a
-# 	}
-# }
+	trigger = {
+		is_ai = no
+		exists = event_target:f93_ralis_country
+		event_target:f93_ralis_country = {
+			is_same_value = From
+			is_at_war_with = root
+			relative_power = { who = root category = fleet value <= pathetic }
+		}
+	}
+	immediate = {
+		ordered_owned_leader = {
+			limit = { leader_class = commander }
+			position = 0
+			order_by = level
+			save_event_target_as = f93_evt_com_target
+		}
+	}
+	option = {
+		name = f93_oe_event.15.a
+	}
+}
