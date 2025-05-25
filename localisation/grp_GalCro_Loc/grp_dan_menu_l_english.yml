@@ -1,7 +1,11 @@
 ﻿l_english:
  grp_dan_menu_evt.1.name: ""
  grp_dan_menu_evt.1.desc: ""
+<<<<<<< Updated upstream
 
+=======
+ f82_open_menu: ""
+>>>>>>> Stashed changes
  grp_dan_button.1: "Storymode"
  grp_dan_button.2: "Galactic Crossing"
  grp_dan_button.3: "Crisis Difficulty"
