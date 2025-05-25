@@ -1,0 +1,494 @@
+##############
+# Button 1_1 #
+##############
+f93_gc_1_1_on = {
+    potential = {
+        NOT = { has_global_flag = f82_ralis_crisis_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_1_off = {
+    potential = {
+        has_global_flag = f82_ralis_crisis_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_1_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_ralis_crisis_off
+            }
+            remove_global_flag = f82_ralis_crisis_off
+        }
+        else = {
+            set_global_flag = f82_ralis_crisis_off
+        }
+    }
+}
+
+##############
+# Button 1_2 #
+##############
+f93_gc_1_2_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_1_2_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_2_off = {
+    potential = {
+        has_global_flag = f82_button_1_2_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_2_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_1_2_off
+            }
+            remove_global_flag = f82_button_1_2_off
+        }
+        else = {
+            set_global_flag = f82_button_1_2_off
+        }
+    }
+}
+
+##############
+# Button 1_3 #
+##############
+f93_gc_1_3_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_1_3_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_3_off = {
+    potential = {
+        has_global_flag = f82_button_1_3_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_3_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_1_3_off
+            }
+            remove_global_flag = f82_button_1_3_off
+        }
+        else = {
+            set_global_flag = f82_button_1_3_off
+        }
+    }
+}
+
+##############
+# Button 1_4 #
+##############
+f93_gc_1_4_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_1_4_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_4_off = {
+    potential = {
+        has_global_flag = f82_button_1_4_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_4_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_1_4_off
+            }
+            remove_global_flag = f82_button_1_4_off
+        }
+        else = {
+            set_global_flag = f82_button_1_4_off
+        }
+    }
+}
+
+##############
+# Button 1_5 #
+##############
+f93_gc_1_5_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_1_5_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_5_off = {
+    potential = {
+        has_global_flag = f82_button_1_5_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_1_5_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_1_5_off
+            }
+            remove_global_flag = f82_button_1_5_off
+        }
+        else = {
+            set_global_flag = f82_button_1_5_off
+        }
+    }
+}
+
+##############
+# Button 2_1 #
+##############
+f93_gc_2_1_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_2_1_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_1_off = {
+    potential = {
+        has_global_flag = f82_button_2_1_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_1_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_2_1_off
+            }
+            remove_global_flag = f82_button_2_1_off
+        }
+        else = {
+            set_global_flag = f82_button_2_1_off
+        }
+    }
+}
+
+##############
+# Button 2_2 #
+##############
+f93_gc_2_2_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_2_2_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_2_off = {
+    potential = {
+        has_global_flag = f82_button_2_2_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_2_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_2_2_off
+            }
+            remove_global_flag = f82_button_2_2_off
+        }
+        else = {
+            set_global_flag = f82_button_2_2_off
+        }
+    }
+}
+
+##############
+# Button 2_3 #
+##############
+f93_gc_2_3_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_2_3_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_3_off = {
+    potential = {
+        has_global_flag = f82_button_2_3_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_3_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_2_3_off
+            }
+            remove_global_flag = f82_button_2_3_off
+        }
+        else = {
+            set_global_flag = f82_button_2_3_off
+        }
+    }
+}
+
+##############
+# Button 2_4 #
+##############
+f93_gc_2_4_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_2_4_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_4_off = {
+    potential = {
+        has_global_flag = f82_button_2_4_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_4_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_2_4_off
+            }
+            remove_global_flag = f82_button_2_4_off
+        }
+        else = {
+            set_global_flag = f82_button_2_4_off
+        }
+    }
+}
+
+##############
+# Button 2_5 #
+##############
+f93_gc_2_5_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_2_5_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_5_off = {
+    potential = {
+        has_global_flag = f82_button_2_5_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_2_5_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_2_5_off
+            }
+            remove_global_flag = f82_button_2_5_off
+        }
+        else = {
+            set_global_flag = f82_button_2_5_off
+        }
+    }
+}
+
+##############
+# Button 3_1 #
+##############
+f93_gc_3_1_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_3_1_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_1_off = {
+    potential = {
+        has_global_flag = f82_button_3_1_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_1_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_3_1_off
+            }
+            remove_global_flag = f82_button_3_1_off
+        }
+        else = {
+            set_global_flag = f82_button_3_1_off
+        }
+    }
+}
+
+##############
+# Button 3_2 #
+##############
+f93_gc_3_2_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_3_2_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_2_off = {
+    potential = {
+        has_global_flag = f82_button_3_2_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_2_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_3_2_off
+            }
+            remove_global_flag = f82_button_3_2_off
+        }
+        else = {
+            set_global_flag = f82_button_3_2_off
+        }
+    }
+}
+
+##############
+# Button 3_3 #
+##############
+f93_gc_3_3_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_3_3_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_3_off = {
+    potential = {
+        has_global_flag = f82_button_3_3_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_3_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_3_3_off
+            }
+            remove_global_flag = f82_button_3_3_off
+        }
+        else = {
+            set_global_flag = f82_button_3_3_off
+        }
+    }
+}
+
+##############
+# Button 3_4 #
+##############
+f93_gc_3_4_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_3_4_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_4_off = {
+    potential = {
+        has_global_flag = f82_button_3_4_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_4_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_3_4_off
+            }
+            remove_global_flag = f82_button_3_4_off
+        }
+        else = {
+            set_global_flag = f82_button_3_4_off
+        }
+    }
+}
+
+##############
+# Button 3_5 #
+##############
+f93_gc_3_5_on = {
+    potential = {
+        NOT = { has_global_flag = f82_button_3_5_off }
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_5_off = {
+    potential = {
+        has_global_flag = f82_button_3_5_off
+    }
+    allow = {}
+    effect = {}
+}
+f93_gc_3_5_onoff = {
+    potential = {}
+    allow = {}
+    effect = {
+        if = {
+            limit = {
+                has_global_flag = f82_button_3_5_off
+            }
+            remove_global_flag = f82_button_3_5_off
+        }
+        else = {
+            set_global_flag = f82_button_3_5_off
+        }
+    }
+}
