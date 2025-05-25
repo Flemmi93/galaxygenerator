@@ -53,3 +53,5 @@
 
  grp_dan_menu_evt.2.name: "Credits"
  grp_dan_menu_evt.2.desc: "Thank you for playing our mod §MShrouded Regions§!\n\n\nLead Developer:$TABBED_NEW_LINE$§BFlemmi§!\n\nCreative Director:$TABBED_NEW_LINE$§HJanlitschka§!\n\nUser Interface Developer:$TABBED_NEW_LINE$§Ceirish§!"
+
+ f82_button_1_1_off: "§HStorymode on§!"
