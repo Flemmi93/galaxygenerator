@@ -462,6 +462,13 @@ country_event = {
 			}
 			destroy_country = yes
 		}
+		every_country = {
+			limit = {
+				is_country_type = mercenary_enclave
+				is_country_type = enclanve
+			}
+			remove_communications = root
+		}
 		if = {
 			limit = { exists = event_target:f93_ralis_country }
 			every_country = {

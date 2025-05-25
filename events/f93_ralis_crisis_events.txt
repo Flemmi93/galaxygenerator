@@ -650,7 +650,7 @@ country_event = {
 	trigger = {
 		exists = event_target:f93_ralis_country
 		exists = space_owner
-		space_owner = { is_same_value = event_target:f93_ralis_country }
+		is_same_value = event_target:f93_ralis_country
 		is_ai = yes
 		event_target:f93_ralis_country = { is_at_war = yes }
 	}
@@ -678,7 +678,7 @@ country_event = {
 	trigger = {
 		exists = event_target:f93_ralis_country
 		exists = space_owner
-		space_owner = { is_same_value = event_target:f93_ralis_country }
+		is_same_value = event_target:f93_ralis_country
 		event_target:f93_ralis_country = { is_at_war = yes }
 	}
 
