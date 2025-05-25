@@ -1,0 +1,67 @@
+f93_crisis_egine_progress = {
+	picture = GFX_evt_arctic
+	complete_icon_frame = GFX_situation_outcome_frame_red
+	complete_icon = GFX_situation_outcome_negative
+	on_progress_complete = {
+		custom_tooltip = Shrouded_Region_NAME #supposed to be empty
+		tooltip = { event_target:f93_ralis_country = { win = yes } }
+	}
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 20
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 40
+			on_first_enter = {
+			}
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 60
+			on_first_enter = {
+			}
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_blue
+			end = 80
+			on_first_enter = {
+			}
+		}
+		
+		stage_5 = {
+			icon = GFX_situation_stage_5
+			icon_background = GFX_situation_stage_frame_blue
+			end = 100
+			on_first_enter = {
+			}
+		}
+	}
+	approach = {
+		name = deficit_approach_do_nothing
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = deficit_approach_do_nothing_tooltip
+		}
+		ai_weight = {
+			base = 1
+		}
+	}
+	monthly_progress = {
+		base = 0
+	}
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+			NOT = { exists = event_target:f93_ralis_country }
+		}
+	}
+}

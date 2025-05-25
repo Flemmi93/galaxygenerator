@@ -10,12 +10,13 @@ edict_open_test_menu = {
 
     potential = {
         is_ai = no
+        has_country_flag = host_country_flag
     }
     
     effect = {
-        custom_tooltip = "Opens the TEST menu"
+        custom_tooltip = f82_open_menu
         hidden_effect = {
-            country_event = { id = grp_dan_ev.1 }
+            country_event = { id = grp_dan_menu_evt.1 }
         }
     }
     

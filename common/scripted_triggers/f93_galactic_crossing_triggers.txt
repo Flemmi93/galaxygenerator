@@ -2,6 +2,7 @@ f93_system_has_ancient_relay = {
 	OR = {
 		has_megastructure = dandelion_relay
 		has_megastructure = dandelion_relay_star
+		has_star_flag = f93_ancient_relay_system
 	}
 }
 
@@ -64,79 +65,6 @@ f93_is_close_to_highway = {
 	}
 }
 
-f93_should_not_be_destroyed = {
-	OR = {
-		any_system_planet = {
-			OR = {
-				is_ringworld = yes
-				has_modifier = holy_planet
-				#If you only have a planet that should be protected add it here and the entire system will be safe from me.
-
-			}
-		}
-		AND = {
-			exists = space_owner
-			space_owner = { is_same_value = event_target:f93_ralis_country }
-		}
-		is_star_class = sc_black_hole
-		has_star_flag = star_cracked # already destroyed
-		has_star_flag = f93_empty_system_on_galcrossing #have special star class "no Star"
-		has_star_flag = crisis_sapwn_exclude #generally marks special systems
-		has_star_flag = wenkwort_system
-		#Exlcluding a bunch of mods, feel free to add your own or request me to add it.
-		has_star_flag = jupitwo_system
-		has_star_flag = pouchkinn_system
-		has_star_flag = eaw_system
-		has_star_flag = giga_system_four
-		has_star_flag = giga_system_three
-		has_star_flag = giga_system_two
-		has_star_flag = giga_system_one	
-		
-	}
-}
-
-f93_valid_gal_crossing_endpoint = {
-	if = {
-		limit = {
-			any_system = {
-				exists = owner
-				owner = { is_country_type = fallen_empire }
-				is_capital_system = yes
-				f93_system_has_ancient_relay = no
-			}
-		}
-		AND = {
-			exists = owner
-			owner = { is_country_type = fallen_empire }
-			is_capital_system = yes
-		}
-	}
-	else = {
-		OR = {
-			any_system_planet = {
-				is_ringworld = yes
-				if = {
-					limit = { exists = owner }
-					owner = { NOT = { is_country_type = fallen_empire } }
-				}
-			}
-			any_system_planet = {
-				NOT = { exists = owner }
-				is_planet_class = pc_city
-			}
-			any_system_planet = {
-				NOT = { exists = owner }
-				has_planet_flag = nuked_earth
-			}
-			# feel free to use this to make your own systems valid starting points
-			# this means: the mod will spawn an "ancient relay" in the system and try to connect it
-			# to the existing network.
-			has_star_flag = f93_valid_gal_crossing_endpoint_flag 
-			
-		}
-	}
-}
-
 f93_has_zro_cartel = {
 	OR = {
 		has_modifier = f93_zro_cartel
@@ -148,7 +76,7 @@ f93_is_zro_cartel_lord = {
 	any_owned_planet = { is_same_value = event_target:f93_ralis_planet }
 }
 
-f93_system_is_connected_to_gal_crossing = {
+f93_country_is_connected_to_gal_crossing = {
 	any_system_within_border = {
 		OR = {
 			AND = {

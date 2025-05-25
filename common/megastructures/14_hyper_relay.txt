@@ -178,7 +178,11 @@ hyper_relay = {
 		}
 		modifier = {
 			factor = 0 
-			not = { has_star_flag = f93_crossing_capital_route_flag }
+			NOT = { has_global_flag = f82_button_2_1_off }
+			OR = { 
+				not = { has_star_flag = f93_crossing_capital_route_flag }
+				f93_system_has_ancient_relay = yes
+			}
 		}
 		# modifier = {
 		# 	factor = 50

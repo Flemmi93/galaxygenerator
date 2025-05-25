@@ -57,6 +57,10 @@ ralisgate = {
 	country_can_use = {
 		has_global_flag = f93_shroud_gate_active
 		NOT = { is_country_type = fallen_empire }
+		NOT = {
+			is_country_type = awakened_fallen_empire
+			end_game_years_passed > 25
+		}
 	}
 
 	scripted_connection = {

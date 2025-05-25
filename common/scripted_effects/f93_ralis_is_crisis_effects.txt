@@ -107,7 +107,7 @@ create_ralis_country = { #target a valid planet with this
 }
 
 create_ralis_planet = {
-	owner = { set_country_type = fallen_empire }
+	# owner = { set_country_type = fallen_empire }
 	remove_all_buildings = yes
 	add_building = building_ancient_palace
 	add_building = building_fe_stronghold

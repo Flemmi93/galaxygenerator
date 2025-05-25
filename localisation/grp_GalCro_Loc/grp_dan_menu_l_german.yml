@@ -1,6 +1,6 @@
-﻿l_english:
- grp_dan_menu_evt.1.name: ""
- grp_dan_menu_evt.1.desc: ""
+﻿l_german:
+ grp_dan_menu_evt.1.name: "Shrouded Regions - Mod Menu"
+ grp_dan_menu_evt.1.desc: " "
  f82_open_menu: "Shrouded Region Mod Menu"
  grp_dan_button.1: "Storymode"
  grp_dan_button.2: "Galactic Crossing"
