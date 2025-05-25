@@ -8,10 +8,15 @@ guiTypes = {
         origo = center
         moveable = yes
         clipping = no
-
         background = {
             name = "grp_background_1" # Background for the main window
-            position = { x = 0 y = 0 }
+            position = { x = -5 y = -5 }
+            spriteType = "GFX_tiles_dark_area_cut_8"
+            alwaysTransparent = yes
+        }
+		background = {
+            name = "grp_background_1" # Background for the main window
+            position = { x = 5 y = 5 }
             spriteType = "GFX_tiles_dark_area_cut_8"
             alwaysTransparent = yes
         }
@@ -86,7 +91,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_1_option_1" # Option 1 in dropdown menu 1
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 80 }
+                        position = { x = 30 y = 80 }
                         buttonText = "grp_dan_menubutton_1.1"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -96,7 +101,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_1_option_2" # Option 2 in dropdown menu 1
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 130 }
+                        position = { x = 30 y = 130 }
                         buttonText = "grp_dan_menubutton_1.2"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -106,7 +111,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_1_option_3" # Option 3 in dropdown menu 1
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 180 }
+                        position = { x = 30 y = 180 }
                         buttonText = "grp_dan_menubutton_1.3"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -116,7 +121,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_1_option_4" # Option 4 in dropdown menu 1
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 230 }
+                        position = { x = 30 y = 230 }
                         buttonText = "grp_dan_menubutton_1.4"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -126,7 +131,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_1_option_5" # Option 5 in dropdown menu 1
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 280 }
+                        position = { x = 30 y = 280 }
                         buttonText = "grp_dan_menubutton_1.5"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -137,87 +142,137 @@ guiTypes = {
 						name = "grp_dan_menubutton_1.1_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 75 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 77 }
+>>>>>>> Stashed changes
 						effect = f93_gc_1_1_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_1.1_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 75 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 77 }
+>>>>>>> Stashed changes
 						effect = f93_gc_1_1_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_1.2_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 125 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 127 }
+>>>>>>> Stashed changes
 						effect = f93_gc_1_2_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_1.2_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 125 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 127 }
+>>>>>>> Stashed changes
 						effect = f93_gc_1_2_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_1.3_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 175 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 177 }
+>>>>>>> Stashed changes
 						effect = f93_gc_1_3_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_1.3_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 175 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 177 }
+>>>>>>> Stashed changes
 						effect = f93_gc_1_3_off
 					}
                     effectbuttonType = {
                         name = "grp_dan_menubutton_1.4_on"
                         quadTextureSprite = "GFX_button_20_20_accept"
                         frame = 3
+<<<<<<< Updated upstream
                         scale = 1.5
                         position = { x = 280 y = 225 }
+=======
+                        scale = 1.4
+                        position = { x = 310 y = 227 }
+>>>>>>> Stashed changes
                         effect = f93_gc_1_4_on
                     }
                     effectbuttonType = {
                         name = "grp_dan_menubutton_1.4_off"
                         quadTextureSprite = "GFX_button_20_20_reject"
                         frame = 3
+<<<<<<< Updated upstream
                         scale = 1.5
                         position = { x = 280 y = 225 }
+=======
+                        scale = 1.4
+                        position = { x = 310 y = 227 }
+>>>>>>> Stashed changes
                         effect = f93_gc_1_4_off
                     }
                     effectbuttonType = {
                         name = "grp_dan_menubutton_1.5_on"
                         quadTextureSprite = "GFX_button_20_20_accept"
                         frame = 3
+<<<<<<< Updated upstream
                         scale = 1.5
                         position = { x = 280 y = 275 }
+=======
+                        scale = 1.4
+                        position = { x = 310 y = 277 }
+>>>>>>> Stashed changes
                         effect = f93_gc_1_5_on
                     }
                     effectbuttonType = {
                         name = "grp_dan_menubutton_1.5_off"
                         quadTextureSprite = "GFX_button_20_20_reject"
                         frame = 3
+<<<<<<< Updated upstream
                         scale = 1.5
                         position = { x = 280 y = 275 }
+=======
+                        scale = 1.4
+                        position = { x = 310 y = 277 }
+>>>>>>> Stashed changes
                         effect = f93_gc_1_5_off
                     }
                 }
                 instantTextBoxType = {
                     name = "grp_dropdown_menu_1_textbox" # Textbox for dropdown menu 1
                     font = "cg_16b"
-                    text = "These are the [x] settings."
+                    text = " "
                     position = { x = 0 y = 20 }
                     maxWidth = 250
                     maxHeight = 40
@@ -272,7 +327,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_2_option_1" # Option 1 in dropdown menu 2
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 80 }
+                        position = { x = 30 y = 80 }
                         buttonText = "grp_dan_menubutton_2.1"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -282,7 +337,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_2_option_2" # Option 2 in dropdown menu 2
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 130 }
+                        position = { x = 30 y = 130 }
                         buttonText = "grp_dan_menubutton_2.2"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -292,7 +347,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_2_option_3" # Option 3 in dropdown menu 2
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 180 }
+                        position = { x = 30 y = 180 }
                         buttonText = "grp_dan_menubutton_2.3"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -302,7 +357,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_2_option_4" # Option 4 in dropdown menu 2
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 230 }
+                        position = { x = 30 y = 230 }
                         buttonText = "grp_dan_menubutton_2.4"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -312,7 +367,7 @@ guiTypes = {
                     effectbuttonType = {
                         name = "grp_dropdown_menu_2_option_5" # Option 5 in dropdown menu 2
                         quadTextureSprite = "GFX_grp_dan_button_1"
-                        position = { x = 10 y = 280 }
+                        position = { x = 30 y = 280 }
                         buttonText = "grp_dan_menubutton_2.5"
                         buttonFont = large_title_font_17
                         clicksound = increment_click
@@ -323,87 +378,137 @@ guiTypes = {
 						name = "grp_dan_menubutton_2.1_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 75 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 77 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_1_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.1_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 75 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 77 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_1_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.2_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 125 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 127 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_2_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.2_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 125 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 127 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_2_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.3_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 175 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 177 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_3_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.3_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 175 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 177 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_3_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.4_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 225 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 227 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_4_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.4_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 225 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 227 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_4_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.5_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 275 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 277 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_5_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_2.5_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 275 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 277 }
+>>>>>>> Stashed changes
 						effect = f93_gc_2_5_off
 					}
                 }
 				instantTextBoxType = {
                     name = "grp_dropdown_menu_2_textbox" # Textbox for dropdown menu 2
                     font = "cg_16b"
-                    text = "These are the [x] settings."
+                    text = " "
                     position = { x = 0 y = 20 }
                     maxWidth = 250
                     maxHeight = 40
@@ -458,7 +563,7 @@ guiTypes = {
 					effectbuttonType = {
 						name = "grp_dropdown_menu_3_option_1" # Option 1 in dropdown menu 3
 						quadTextureSprite = "GFX_grp_dan_button_1"
-						position = { x = 10 y = 80 }
+						position = { x = 30 y = 80 }
 						buttonText = "grp_dan_menubutton_3.1"
 						buttonFont = large_title_font_17
 						clicksound = increment_click
@@ -468,7 +573,7 @@ guiTypes = {
 					effectbuttonType = {
 						name = "grp_dropdown_menu_3_option_2" # Option 2 in dropdown menu 3
 						quadTextureSprite = "GFX_grp_dan_button_1"
-						position = { x = 10 y = 130 }
+						position = { x = 30 y = 130 }
 						buttonText = "grp_dan_menubutton_3.2"
 						buttonFont = large_title_font_17
 						clicksound = increment_click
@@ -478,7 +583,7 @@ guiTypes = {
 					effectbuttonType = {
 						name = "grp_dropdown_menu_3_option_3" # Option 3 in dropdown menu 3
 						quadTextureSprite = "GFX_grp_dan_button_1"
-						position = { x = 10 y = 180 }
+						position = { x = 30 y = 180 }
 						buttonText = "grp_dan_menubutton_3.3"
 						buttonFont = large_title_font_17
 						clicksound = increment_click
@@ -488,7 +593,7 @@ guiTypes = {
 					effectbuttonType = {
 						name = "grp_dropdown_menu_3_option_4" # Option 4 in dropdown menu 3
 						quadTextureSprite = "GFX_grp_dan_button_1"
-						position = { x = 10 y = 230 }
+						position = { x = 30 y = 230 }
 						buttonText = "grp_dan_menubutton_3.4"
 						buttonFont = large_title_font_17
 						clicksound = increment_click
@@ -498,7 +603,7 @@ guiTypes = {
 					effectbuttonType = {
 						name = "grp_dropdown_menu_3_option_5" # Option 5 in dropdown menu 3
 						quadTextureSprite = "GFX_grp_dan_button_1"
-						position = { x = 10 y = 280 }
+						position = { x = 30 y = 280 }
 						buttonText = "grp_dan_menubutton_3.5"
 						buttonFont = large_title_font_17
 						clicksound = increment_click
@@ -509,87 +614,137 @@ guiTypes = {
 						name = "grp_dan_menubutton_3.1_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 75 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 77 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_1_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.1_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 75 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 77 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_1_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.2_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 125 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 127 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_2_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.2_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 125 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 127 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_2_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.3_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 175 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 177 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_3_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.3_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 175 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 177 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_3_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.4_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 225 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 227 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_4_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.4_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 225 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 227 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_4_off
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.5_on"
 						quadTextureSprite = "GFX_button_20_20_accept"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 275 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 277 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_5_on
 					}
 					effectbuttonType = {
 						name = "grp_dan_menubutton_3.5_off"
 						quadTextureSprite = "GFX_button_20_20_reject"
 						frame = 3
+<<<<<<< Updated upstream
 						scale = 1.5
 						position = { x = 280 y = 275 }
+=======
+						scale = 1.4
+						position = { x = 310 y = 277 }
+>>>>>>> Stashed changes
 						effect = f93_gc_3_5_off
 					}
 				}
 				instantTextBoxType = {
 					name = "grp_dropdown_menu_3_textbox" # Textbox for dropdown menu 3
 					font = "cg_16b"
-					text = "These are the [x] settings."
+					text = " "
 					position = { x = 0 y = 20 }
 					maxWidth = 250
 					maxHeight = 40
