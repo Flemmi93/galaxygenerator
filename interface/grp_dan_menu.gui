@@ -139,54 +139,54 @@ guiTypes = {
                         oversound = mouse_over
                         effect = f93_gc_1_5_onoff
                     }
-					effectbuttonType = {
-						name = "grp_dan_menubutton_1.1_on"
-						quadTextureSprite = "GFX_button_20_20_accept"
-						frame = 3
-						scale = 1.4
-						position = { x = 310 y = 77 }
-						effect = f93_gc_1_1_on
-					}
-					effectbuttonType = {
-						name = "grp_dan_menubutton_1.1_off"
-						quadTextureSprite = "GFX_button_20_20_reject"
-						frame = 3
-						scale = 1.4
-						position = { x = 310 y = 77 }
-						effect = f93_gc_1_1_off
-					}
-					effectbuttonType = {
-						name = "grp_dan_menubutton_1.2_on"
-						quadTextureSprite = "GFX_button_20_20_accept"
-						frame = 3
-						scale = 1.4
-						position = { x = 310 y = 127 }
-						effect = f93_gc_1_2_on
-					}
-					effectbuttonType = {
-						name = "grp_dan_menubutton_1.2_off"
-						quadTextureSprite = "GFX_button_20_20_reject"
-						frame = 3
-						scale = 1.4
-						position = { x = 310 y = 127 }
-						effect = f93_gc_1_2_off
-					}
-					effectbuttonType = {
-						name = "grp_dan_menubutton_1.3_on"
-						quadTextureSprite = "GFX_button_20_20_accept"
-						frame = 3
-						scale = 1.4
-						position = { x = 310 y = 177 }
-						effect = f93_gc_1_3_on
-					}
-					effectbuttonType = {
-						name = "grp_dan_menubutton_1.3_off"
-						quadTextureSprite = "GFX_button_20_20_reject"
-						frame = 3
-						scale = 1.4
-						position = { x = 310 y = 177 }
-						effect = f93_gc_1_3_off
-					}
+			effectbuttonType = {
+				name = "grp_dan_menubutton_1.1_on"
+				quadTextureSprite = "GFX_button_20_20_accept"
+				frame = 3
+				scale = 1.4
+				position = { x = 310 y = 77 }
+				effect = f93_gc_1_1_on
+			}
+			effectbuttonType = {
+				name = "grp_dan_menubutton_1.1_off"
+				quadTextureSprite = "GFX_button_20_20_reject"
+				frame = 3
+				scale = 1.4
+				position = { x = 310 y = 77 }
+				effect = f93_gc_1_1_off
+			}
+			effectbuttonType = {
+				name = "grp_dan_menubutton_1.2_on"
+				quadTextureSprite = "GFX_button_20_20_accept"
+				frame = 3
+				scale = 1.4
+				position = { x = 310 y = 127 }
+				effect = f93_gc_1_2_on
+			}
+			effectbuttonType = {
+				name = "grp_dan_menubutton_1.2_off"
+				quadTextureSprite = "GFX_button_20_20_reject"
+				frame = 3
+				scale = 1.4
+				position = { x = 310 y = 127 }
+				effect = f93_gc_1_2_off
+			}
+			effectbuttonType = {
+				name = "grp_dan_menubutton_1.3_on"
+				quadTextureSprite = "GFX_button_20_20_accept"
+				frame = 3
+				scale = 1.4
+				position = { x = 310 y = 177 }
+				effect = f93_gc_1_3_on
+			}
+			effectbuttonType = {
+				name = "grp_dan_menubutton_1.3_off"
+				quadTextureSprite = "GFX_button_20_20_reject"
+				frame = 3
+				scale = 1.4
+				position = { x = 310 y = 177 }
+				effect = f93_gc_1_3_off
+			}
                     effectbuttonType = {
                         name = "grp_dan_menubutton_1.4_on"
                         quadTextureSprite = "GFX_button_20_20_accept"
