@@ -1,8 +1,8 @@
-namespace = grp_dan_ev
+namespace = grp_dan_menu_evt
 
 # Main Call at game start
 country_event = {
-	id = grp_dan_ev.0
+	id = grp_dan_menu_evt.0
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
@@ -12,30 +12,44 @@ country_event = {
 	}
 
 	immediate = {
+		set_global_flag = f82_button_3_2_on
 		set_country_flag = host_country_flag
 		country_event = {
-			id = grp_dan_ev.1
+			id = grp_dan_menu_evt.1
 		}
 	}
 }
 
 # Mod Menu Setup after game start, also available as edict
 country_event = {
-	id = grp_dan_ev.1
-	title = "grp_dan_ev.1.name"
-	desc = "grp_dan_ev.1.desc"
+	id = grp_dan_menu_evt.1
+	title = "grp_dan_menu_evt.1.name"
+	desc = "grp_dan_menu_evt.1.desc"
 	diplomatic = yes
 	custom_gui = "fix_main_window"
 	is_triggered_only = yes
 	force_open = yes
 	auto_opens = yes
-	show_sound = event_first_discovery_advisor
+	# show_sound = event_first_discovery_advisor
 	hide_window = no
 
 	trigger = {
 		is_ai = no
 	}
 
+	option = {
+		name = OK
+	}
+}
+
+
+# mod credits
+country_event = {
+	id = grp_dan_menu_evt.2
+	title = "grp_dan_menu_evt.2.name"
+	desc = "grp_dan_menu_evt.2.desc"
+	picture = GFX_evt_alien_hieroglyphics
+	is_triggered_only = yes
 	option = {
 		name = OK
 	}
