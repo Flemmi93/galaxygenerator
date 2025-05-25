@@ -464,8 +464,8 @@ country_event = {
 		}
 		every_country = {
 			limit = {
-				is_country_type = mercenary_enclave
-				is_country_type = enclanve
+				is_country_type = enclave_mercenary
+				is_country_type = enclave
 			}
 			remove_communications = root
 		}

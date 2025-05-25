@@ -46,7 +46,6 @@ f93_gc_1_1_off = {
 	potential = {
 		has_global_flag = f82_button_1_1_off
 	}
-	,
 	allow = {}
 	effect = {}
 }
