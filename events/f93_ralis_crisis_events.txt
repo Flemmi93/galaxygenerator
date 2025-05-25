@@ -4,7 +4,7 @@ namespace = f93_ralis_crisis_event
 #################################
 # numbers						#
 # first 2 digits are level		#
-# 2nd two digits are varriance	#
+# 2nd two digits are variance	#
 #################################
 
 #Anomalies along the Galactic Crossing
@@ -39,7 +39,7 @@ country_event = {
 		event_target:f93_ralis_country = {
 			set_ai_personality = fanatic_purifiers
 			add_resource = {
-				sr_dark_matter = 1
+				sr_dark_matter = 5
 				alloys = 2
 				minerals = 0.5
 				energy = 3
@@ -156,10 +156,10 @@ country_event = {
 			}
 			remove_modifier = fe_ship_cost_modifier
 			add_modifier = {
-				modifier = shroud_firing_rate
-				mult = -1.15
+				modifier = f93_ship_fire_rate_mult
+				mult = -0.35
 			}
-			
+
 			event_target:f93_ralis_matter_decompressor_system = {
 				if = {
 					limit = { has_star_flag = f93_matter_decompressort_active }
@@ -185,8 +185,8 @@ country_event = {
 				has_global_flag = f82_button_3_2_on
 			}
 			add_modifier = {
-				modifier = shroud_firing_rate
-				mult = -1
+				modifier = f93_ship_fire_rate_mult
+				mult = -0.2
 			}
 			remove_modifier = fe_ship_cost_modifier
 			
@@ -214,7 +214,7 @@ country_event = {
 			limit = {
 				has_global_flag = f82_button_3_3_on
 			}
-			remove_modifier = shroud_firing_rate
+			remove_modifier = f93_ship_fire_rate_mult
 			add_modifier = {
 				modifier = fe_ship_cost_modifier
 				multiplier = 1
@@ -386,7 +386,7 @@ country_event = {
 					add_resource = {
 						menace = 10000
 					}
-					country_event = { id = f93_ralis_crisis_event.0202 days = 720 random = 360 }
+					country_event = { id = f93_ralis_crisis_event.0202 days = 90 random = 90 }
 				}
 				capital_scope = { set_name = ralis_planet_NAME }
 				every_playable_country = {
@@ -457,8 +457,6 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		NOT = { has_global_flag = f82_button_1_1_off }
-		exists = this
-		mid_game_years_passed >= 0
 		exists = event_target:f93_ralis_country
 		event_target:f93_ralis_country = {
 			OR = {
@@ -471,7 +469,7 @@ country_event = {
 	}
 	immediate = {
 		every_playable_country = {
-			country_event = { id = f93_ralis_crisis_event.0401 days = 720 }
+			country_event = { id = f93_ralis_crisis_event.0401 days = 360 }
 		}
 	}
 }
@@ -722,6 +720,7 @@ country_event = {
 		}
 	}
 }
+
 #anyone entering ralis system for the first time
 ship_event = {
 	id = f93_ralis_crisis_event.0701
@@ -806,44 +805,44 @@ fleet_event = {
 }
 
 
-planet_event = {
-	id = f93_ralis_crisis_event.0800
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		NOT = { has_global_flag = f82_button_1_1_off }
-		is_same_value = event_target:f93_ralis_planet
-	}
+# planet_event = {
+# 	id = f93_ralis_crisis_event.0800
+# 	hide_window = yes
+# 	is_triggered_only = yes
+# 	trigger = {
+# 		NOT = { has_global_flag = f82_button_1_1_off }
+# 		is_same_value = event_target:f93_ralis_planet
+# 	}
 
-	immediate = {
-		if = {
-			limit = {
-				from = {
-					is_country_type = default
-					event_target:f93_ralis_planet = { is_colony = no }
-				}
-			}
-			every_country = { country_event = { id = f93_ralis_crisis_event.0801 } }
-		}
-		if = {
-			limit = {
-				from = {
-					is_country_type = default
-					event_target:f93_ralis_planet = { is_colony = no }
-				}
-			}
-			every_country = { country_event = { id = f93_ralis_crisis_event.0801 } }
-		}
-		else_if = {
-			limit = { from = { is_ship_size = colossus } }
-			every_country = { country_event = { id = f93_ralis_crisis_event.0801 } }
-		}
-	}
-}
+# 	immediate = {
+# 		if = {
+# 			limit = {
+# 				from = {
+# 					is_country_type = default
+# 					event_target:f93_ralis_planet = { is_colony = no }
+# 				}
+# 			}
+# 			every_country = { country_event = { id = f93_ralis_crisis_event.0801 } }
+# 		}
+# 		if = {
+# 			limit = {
+# 				from = {
+# 					is_country_type = default
+# 					event_target:f93_ralis_planet = { is_colony = no }
+# 				}
+# 			}
+# 			every_country = { country_event = { id = f93_ralis_crisis_event.0801 } }
+# 		}
+# 		else_if = {
+# 			limit = { from = { is_ship_size = colossus } }
+# 			every_country = { country_event = { id = f93_ralis_crisis_event.0801 } }
+# 		}
+# 	}
+# }
 #ralis is destroyed
 #nothing happens, the story ends here.
 country_event = {
-	id = f93_ralis_crisis_event.0801
+	id = f93_ralis_crisis_event.0800
 	title = f93_ralis_crisis_event.0801.name
 	desc = f93_ralis_crisis_event.0801.desc
 	picture = GFX_evt_large_explosion
@@ -868,35 +867,21 @@ planet_event = {
 	# mean_time_to_happen = 1
 	is_triggered_only = yes
 	trigger = {
-		NOT = { has_global_flag = f82_button_1_1_off }
-		NOT = { has_global_flag = f93_ralis_defeated_for_good }
+		NOR = {
+			has_global_flag = f82_button_1_1_off
+			has_global_flag = f93_ralis_defeated_for_good
+		}
 		is_same_value = event_target:f93_ralis_planet
-		FROM = { NOT = { is_same_value = event_target:f93_ralis_country } }
+		owner = { NOT = { is_same_value = event_target:f93_ralis_country } }
 	}
 	immediate = {
-		FROM = { save_global_event_target_as = f93_ralis_liberator }
+		owner = { save_global_event_target_as = f93_ralis_liberator }
 		event_target:f93_ralis_country = {
 			set_name = ralis_remnant_NAME
 		}
 		event_target:f93_ralis_system = {
-			every_system_planet = {
-				limit = { exists = owner }
-				set_owner = event_target:f93_ralis_liberator
-			}
-			every_system_megastructure = {
-				limit = {
-					NOR = {
-						is_megastructure_type = crisis_sphere_0
-						is_megastructure_type = crisis_sphere_1
-						is_megastructure_type = crisis_sphere_2
-						is_megastructure_type = crisis_sphere_3
-						is_megastructure_type = crisis_sphere_4
-					}
-				}
-				set_owner = event_target:f93_ralis_liberator
-			}
-			starbase = {
-				set_owner = event_target:f93_ralis_liberator
+			every_system_colony = {
+				planet_event = { id = f93_ralis_crisis_event.0803 days = 1 }
 			}
 		}
 	}
@@ -953,6 +938,12 @@ planet_event = {
 	}
 }
 
+planet_event = {
+	id = f93_ralis_crisis_event.0803
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = { set_owner = event_target:f93_ralis_liberator }
+}
 #Treaty Path
 #The Community's Mandate, shown to all but the Ralis Liberator
 country_event = {

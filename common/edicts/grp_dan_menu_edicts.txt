@@ -14,7 +14,7 @@ edict_open_test_menu = {
     }
     
     effect = {
-        custom_tooltip = "Opens the TEST menu"
+        custom_tooltip = f82_open_menu
         hidden_effect = {
             country_event = { id = grp_dan_menu_evt.1 }
         }

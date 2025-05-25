@@ -1,22 +1,16 @@
-﻿l_simp_chinese:
+﻿l_german:
 #Events
  f93_galactic_crossing.2.name: "Real of Hoax?"
  f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proofs difficult.\nWithout solid data the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of a first report the artifact was transferd into a private collection. Who orchestrated this is unknown. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notable none of the creatures could be identified as §Y[Root.GetSpeciesName]§!§!"
 
  f93_galactic_crossing.8.name: "Game Start Quality"
- f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! Systems: §Y[root.f93_num_shrouded_systems]§! Systems are Shrouded Systems.\n\nIt is up to you if this is good or bad.\n\n§RDue to causing crashes, Mercenary Enclaves have been turned off for now.§!"
+ f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! Systems: §Y[root.f93_num_shrouded_systems]§! Systems are Shrouded Systems.\n\nIt is up to you if this is good or bad.\n\n§RThe Crisis country can cause crashes by renting fleets, we are trying to supress this. §!§GMercenary enclaves are enabled again§!."
  f93_galactic_crossing.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§MIsolated§!.\n\n§GHave fun!§!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.a: "...All statements without guarantee."
  f93_ralis_failed_to_form: "§RWARNING:§! A Planet critical for the campaign failed to form, this will lead to problems down the line.\n\n$f93_galactic_crossing.8.desc$"
 
- f93_oe_event.6.name: "One Galaxy, One Crossing"
- f93_oe_event.6.desc: "How do we know which moments in our galactic lives will be written into history? There is so much to be remembered, yet so little that most of us would choose to agree remembering to.\nIn those rare moments when we know history is being made, we feel the pride of witnessing something greater than ourselves. Today is one of them - the people of (Empire Name) have expanded the Galactic Crossing into their capital, carving their legacy into the history of the galaxy - to be remembered by us all."
- f93_oe_event.6.a: "A galactic legacy"
- f93_oe_event.7.name: "Connection to Galactic Crossing lost"
- f93_oe_event.7.desc: ""
- f93_oe_event.7.a: "Darn it"
 
 #Dandelion Megastructures
  dandelion_relay: "Ancient Relay"
@@ -84,6 +78,10 @@
  mod_job_f93_zro_criminal_per_crime_short: "\n§G+1§!£job_sand_whisperer£ $f93_zro_criminal$ Job per $VALUE$ £crime£"
  mod_job_f93_zro_deviant_drone_per_crime: "§G+1§!£job_sand_whisperer£ $f93_zro_deviant_drone$ Job per $VALUE$ £crime£ Crime"
  mod_job_f93_zro_deviant_drone_per_crime_short: "\n§G+1§!£job_sand_whisperer£ $f93_zro_deviant_drone$ Job per $VALUE$ £crime£"
+ mod_relay_bypass_empire_windup_mult: "$MOD_SHIP_WINDUP_MULT$"
+ f93_megastructure_build_speed_mult: "$mod_megastructure_build_speed_mult$"
+ f93_naval_cap_mod_ralis: "$mod_country_naval_cap_mult$"
+ f93_ship_fire_rate_mult: "$MOD_SHIP_FIRE_RATE_MULT$"
 
  RALISGATE_GALACTIC: "$ralisgate_gate$"
  RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"
@@ -155,7 +153,7 @@
  f93_ralis_crisis_event.0401.desc: "For years, $ralis_NAME$ has spread destruction, fracturing the galactic stage and igniting political turmoil. Now, a sector-large gravitational anomaly stirs within the Shrouded Regions - its faint ripples can be felt across the entire galaxy. At the same time the two anomalies that must have destroyed the [LastKilledCountryName] and retreated back into the Shrouded Regions are returning and are tearing open the wounds that they left behind.\n\nTheir true goal is clear now: to ascend into some otherworldly madness. But to rise, they must first drown us all. The time has come to rally, to stand against them before their new creation tears our galaxy apart."
  f93_ralis_crisis_event.0401.a: "We were sleeping for too long"
  f93_ralis_crisis_event.0501.name: "The War Plan Debate"
- f93_ralis_crisis_event.0501.desc: "A petition has gained support across the galaxy, pressuring the Senate to move beyond defense coordination and create a full-scale war plan.\nThe proposal includes a post-war framework: enemy assets and systems would be placed under shared administration, with their resources used for war relief across all member states. Territories taken during the war would be governed collectively to ensure coordinated rebuilding.\n\nBut not everyone agrees. Some argue that the promise of keeping what is conquered - especially the crisis home systems deep inside the Shrouded Regions - motivates empires to commit fully to the war effort. For them, competition drives progress, and the rewards must match the risks."
+ f93_ralis_crisis_event.0501.desc: "A petition has gained support across the galaxy, pressuring the Senate §Ymove forward with a resolution§! to go beyond defense coordination and create a full-scale war plan.\nThe proposal includes a post-war framework: enemy assets and systems would be placed under §Yshared administration§!, with their resources used for war relief across all §Ymember states§!. Territories taken during the war would be governed collectively to ensure coordinated rebuilding.\n\nBut not everyone agrees. Some argue that the promise of keeping what is conquered - especially the crisis home systems deep inside the Shrouded Regions - motivates empires to commit fully to the war effort. For them, competition drives progress, and the rewards must match the risks."
  f93_ralis_crisis_event.0501.a: "For the Galaxy!"
  f93_ralis_crisis_event.0501.a_desc: "We can now introduce a new §YResolution§! in the galactic senate."
  f93_ralis_crisis_event.0501.b: "We can't sign this!"
@@ -288,10 +286,25 @@
  f93_oe_event.4.b: "Dont show this again"
  f93_galactic_crossing_planet: "Galactic Crossing"
  f93_oe_event.5.name: "A Shining World"
- f93_oe_event.5.desc: "Our rising star along the Galactic Crossing, (planet name) has become more than just a trade hub - it's become a spotlight.\nDiplomats, artists, influencers, and propagandists from across the galaxy now pass through, eager to be seen. Local broadcasts have gone interstellar, and even small news get wide coverage.\nNot every world gets to perform in the spotlight. But (planet name) does - whether we want to or not."
+ f93_oe_event.5.desc: "Our rising star along the Galactic Crossing, [Root.GetName] has become more than just a trade hub - it's become a spotlight.\nDiplomats, artists, influencers, and propagandists from across the galaxy now pass through, eager to be seen. Local broadcasts have gone interstellar, and even small news get wide coverage.\nNot every world gets to perform in the spotlight. But [Root.GetName] does - whether we want to or not."
  f93_oe_event.5.a: "We are not to be left behind."
  f93_oe_event.5.b: "We will make so much money from this!"
 
+ f93_oe_event.6.name: "One Galaxy, One Crossing"
+ f93_oe_event.6.desc: "How do we know which moments in our galactic lives will be written into history? There is so much to be remembered, yet so little that most of us would choose to agree remembering to.\nIn those rare moments when we know history is being made, we feel the pride of witnessing something greater than ourselves. Today is one of them - the people of [Root.GetName] have expanded the Galactic Crossing into their capital, carving their legacy into the history of the galaxy - to be remembered by us all."
+ f93_oe_event.6.a: "A galactic legacy"
+ f93_oe_event.7.name: "Connection to Galactic Crossing lost"
+ f93_oe_event.7.desc: ""
+ f93_oe_event.7.a: "Darn it"
+
+ f93_oe_event.15.name: "Rethinking our Strategy"
+ f93_oe_event.15.desc: "§Y[f93_evt_com_target.GetNane]§! has submitted a detailed strategic report to our defense department. According to their projections, continuing our current approach will doom the empire by the mid-century.\n\nInstead, they urge change: abandon most defense efforts, outmaneuver their much slower fleets, and strike directly at the crisis's heart. There's no future in holding the line - they believe only a rapid counteroffensive can save us. $ralis_NAME$ needs to fall, dozens of millions are already enlisting to the cause"
+ f93_oe_event.15.a: "We need to bring the war to them!"
+#Situation
+ f93_crisis_egine_progress: "Crisis Progress"
+ f93_crisis_egine_progress_type: "Intensity of Shrouded Regions anomaly"
+ f93_crisis_egine_progress_monthly_change_tooltip: ""
+ f93_crisis_egine_progress_desc: "Astrogravitational obervsations of the $ralis_system_NAME$ show a distortion of the system's bending of space time. The progress of the Dyson Structure around the central object is being monitored by us."
 
 #debug_event_loc
  f93_galactic_crossing.99.name: "Debugger"

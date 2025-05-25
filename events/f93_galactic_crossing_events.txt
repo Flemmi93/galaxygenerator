@@ -297,6 +297,7 @@ country_event = {
 	desc = {
 		trigger = {
 			NOT = { exists = event_target:f93_ralis_country }
+			NOT = { has_global_flag = f82_button_1_1_off }
 		}
 		text = f93_ralis_failed_to_form
 	}
@@ -312,12 +313,12 @@ country_event = {
 		}
 		text = f93_galactic_crossing.8.red
 	}
-	desc = {
-		trigger = {
-			owner = { capital_scope.solar_system = { any_neighbor_system_euclidean = { has_modifier = f93_shrouded_region_star } } }
-		}
-		text = f93_galactic_crossing.8.yellow
-	}
+	# desc = {
+	# 	trigger = {
+	# 		owner = { capital_scope.solar_system = { any_neighbor_system_euclidean = { has_modifier = f93_shrouded_region_star } } }
+	# 	}
+	# 	text = f93_galactic_crossing.8.yellow
+	# }
 	trigger = {
 		is_ai = no
 	}
@@ -387,9 +388,14 @@ country_event = {
 			}
 		}
 		#prpevent ai form making enclaves
-		add_modifier = {
-			modifier = country_enclave_capacity_decrease_modifier
-			mult = 100
+		# add_modifier = {
+		# 	modifier = country_enclave_capacity_decrease_modifier
+		# 	mult = 100
+		# }
+		if = {
+			limit = { NOT = { has_country_flag = f93_remove_enclave_100_cap_dec } }
+			remove_modifier = country_enclave_capacity_decrease_modifier
+			set_country_flag = f93_remove_enclave_100_cap_dec
 		}
 		#make community admin open borders
 		if = {
@@ -439,21 +445,36 @@ country_event = {
 				solar_system = { set_name = ralis_system_NAME }
 			}
 		}
-		every_country = {
-			limit = { NOT = { has_country_flag = mercenary_enclave_country } }
-			remove_communications = event_target:f93_ralis_country
+		if = {
+			limit = { exists = event_target:f93_ralis_country NOT = { has_global_flag = f93_ralis_awoken } }
+			every_country = {
+				limit = { NOT = { has_country_flag = mercenary_enclave_country } }
+				remove_communications = event_target:f93_ralis_country
+			}
 		}
-		event_target:f93_ralis_country = { remove_from_galactic_community = yes }
 		every_country = {
 			limit = {
 				has_country_flag = mercenary_enclave_country
 				has_country_flag = created_by@root
 			}
 			every_controlled_fleet = {
-				set_owner = event_target:f93_ralis_country
+				set_owner = root
 			}
 			destroy_country = yes
 		}
+		if = {
+			limit = { exists = event_target:f93_ralis_country }
+			every_country = {
+				limit = {
+					OR = {
+						has_country_flag = mercenary_enclave_country
+						has_country_flag = enclanve
+					}
+				}
+				remove_communications = event_target:f93_ralis_country
+			}
+		}
+		event_target:f93_ralis_country = { remove_from_galactic_community = yes }
 	}
 }
 
