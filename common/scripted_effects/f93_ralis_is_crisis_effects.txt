@@ -14,9 +14,7 @@ create_ralis_country = { #target a valid planet with this
 		name = ralis_system_NAME
 		adjective = ralis_ADJ
 		type = primitive
-		# auto_delete = no
 		name_list = AVI4
-		# contact_rule = default
 		ship_prefix = ralis_ship_prefix
 		authority = "auth_imperial"
 		civics = { civic = civic_fanatic_purifiers civic = civic_heroic_tales }
@@ -41,10 +39,6 @@ create_ralis_country = { #target a valid planet with this
 				unity = 0.1
 				mult = 3000
 			}
-			# add_modifier = {
-			# 	modifier = fe_ship_cost_modifier
-			# 	multiplier = 1
-			# }
 			add_modifier = {
 				modifier = f93_ralis_country_buff
 				multiplier = 1
@@ -56,12 +50,13 @@ create_ralis_country = { #target a valid planet with this
 		owner = last_created_country
 		species = last_created_species
 	}
-	while = {
-		count = 120
-		create_pop = {
-			species = last_created_species
-			ethos = last_created_country
-		}
+	create_pop = {
+		species = last_created_species
+		ethos = last_created_country
+	}
+	create_pop = {
+		species = last_created_species
+		ethos = last_created_country
 	}
 	event_target:f93_ralis_country = {
 		capital_scope = {
@@ -108,39 +103,46 @@ create_ralis_country = { #target a valid planet with this
 create_ralis_planet = {
 	# owner = { set_country_type = fallen_empire }
 	remove_all_buildings = yes
-	add_building = building_ancient_palace
-	add_building = building_fe_stronghold
-	add_building = building_affluence_center
-	add_building = building_affluence_center
-	add_building = building_nourishment_center
-	add_building = building_class_4_singularity
-	add_building = building_dimensional_fabricator
-	add_building = building_fe_mine_2
-	add_building = building_nano_forge
-	add_building = building_nano_forge
-	add_building = building_fe_dome
+	
+	# add_building = building_ancient_palace
+	# add_building = building_fe_stronghold
+	# add_building = building_affluence_center
+	# add_building = building_affluence_center
+	# add_building = building_nourishment_center
+	# add_building = building_class_4_singularity
+	# add_building = building_dimensional_fabricator
+	# add_building = building_fe_mine_2
+	# add_building = building_nano_forge
+	# add_building = building_nano_forge
+	# add_building = building_fe_dome
 
-	remove_all_districts = yes
-	if = {
-		limit = {
-			is_planet_class = pc_city
-		}
-		while = {
-			limit = {
-				free_district_slots > 10
-			}
-			random_list = {
-				3 = { add_district = district_arcology_housing }
-				1 = { add_district = district_arcology_arms_industry }
-				1 = { add_district = district_arcology_civilian_industry }
-				1 = { add_district = district_arcology_leisure }
-				1 = { add_district = district_arcology_administrative }
-			}
-		}
+	add_building = building_system_capital
+	add_building = building_hydroponics_farm
+	add_building = building_fortress
+	add_building = building_fortress
+	add_building = building_research_lab_3
+	add_building = building_research_lab_3
+	add_building = building_foundry_3
+	add_building = building_factory_3
+	while = {
+		count = 10
+		add_district = district_arcology_housing
+	}
+	add_zone = {
+		district = district_arcology_housing_1
+		zone = zone_industrial
+		zone_slot = 1
+		replace = yes
+	}
+	add_zone = {
+		district = district_arcology_housing_1
+		zone = zone_trade
+		zone_slot = 2
+		replace = yes
 	}
 	while = {
-		count = 65
-		create_pop_group = {
+		count = 150
+		create_pop = {
 			species = root.ower.species
 		}
 	}

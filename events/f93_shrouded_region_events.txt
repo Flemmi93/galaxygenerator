@@ -159,7 +159,7 @@ system_event = { #creating ralis cluster
 			limit = {
 				NOR = {
 					is_star = yes
-					is_planet_class = pc_gas_giant
+					is_moon = yes
 					is_planet_class = pc_asteroid
 					is_planet_class = pc_ice_asteroid
 				}
@@ -168,7 +168,18 @@ system_event = { #creating ralis cluster
 			set_name = ralis_planet_NAME
 			set_planet_size = 28
 			planet_event = { id = f93_shroud.6 days = 1 }
+			set_planet_flag = has_orbital_debris
 		}
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					is_planet_class = pc_city
+				}
+			}
+			remove_planet = yes
+		}
+
 	}
 }
 system_event = { #creating ralis cluster backup
@@ -220,7 +231,7 @@ system_event = { #creating ralis cluster backup
 			limit = {
 				NOR = {
 					is_star = yes
-					is_planet_class = pc_gas_giant
+					is_moon = yes
 					is_planet_class = pc_asteroid
 					is_planet_class = pc_ice_asteroid
 				}
@@ -229,6 +240,16 @@ system_event = { #creating ralis cluster backup
 			set_name = ralis_planet_NAME
 			set_planet_size = 28
 			planet_event = { id = f93_shroud.6 days = 1 }
+		}
+		
+		every_system_planet = {
+			limit = {
+				NOR = {
+					is_star = yes
+					is_planet_class = pc_city
+				}
+			}
+			remove_planet = yes
 		}
 	}
 }
@@ -243,11 +264,11 @@ planet_event = {
 			limit = { NOT = { has_global_flag = f82_button_1_1_off } }
 			create_ralis_country = yes
 			create_ralis_planet = yes
-			random_system = {
-				limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
+			every_system = {
+				limit = { has_star_flag = f93_ralis_empire_cluster  }
 				create_starbase = {
 					owner = last_created_country
-					size = starbase_starport
+					size = starbase_citadel
 				}
 				save_global_event_target_as = f93_ralis_matter_decompressor_system
 			}

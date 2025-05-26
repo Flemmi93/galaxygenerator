@@ -157,6 +157,7 @@ country_event = {
 			remove_modifier = fe_ship_cost_modifier
 			remove_modifier = f93_artificial_ship_naval_cap_usage_mult
 			remove_modifier = f93_ship_fire_rate_mult
+			remove_modifier = f93_pre_midgame_stabalisation
 			add_modifier = {
 				modifier = f93_ship_fire_rate_mult
 				mult = -0.35
@@ -164,6 +165,13 @@ country_event = {
 			add_modifier = {
 				modifier = f93_artificial_ship_naval_cap_usage_mult
 				mult = 6
+			}
+			if = {
+				limit = { mid_game_years_passed < 1 }
+				add_modifier = {
+					modifier = f93_pre_midgame_stabalisation
+					mult = 250	
+				}
 			}
 
 			event_target:f93_ralis_matter_decompressor_system = {
@@ -193,6 +201,7 @@ country_event = {
 			remove_modifier = fe_ship_cost_modifier
 			remove_modifier = f93_artificial_ship_naval_cap_usage_mult
 			remove_modifier = f93_ship_fire_rate_mult
+			remove_modifier = f93_pre_midgame_stabalisation
 			add_modifier = {
 				modifier = f93_ship_fire_rate_mult
 				mult = -0.2
@@ -202,6 +211,13 @@ country_event = {
 				mult = 5
 			}
 			
+			if = {
+				limit = { mid_game_years_passed < 1 }
+				add_modifier = {
+					modifier = f93_pre_midgame_stabalisation
+					mult = 300
+				}
+			}
 			event_target:f93_ralis_matter_decompressor_system = {
 				if = {
 					limit = { has_star_flag = f93_matter_decompressort_active }
@@ -229,6 +245,7 @@ country_event = {
 			remove_modifier = fe_ship_cost_modifier
 			remove_modifier = f93_artificial_ship_naval_cap_usage_mult
 			remove_modifier = f93_ship_fire_rate_mult
+			remove_modifier = f93_pre_midgame_stabalisation
 			add_modifier = {
 				modifier = fe_ship_cost_modifier
 				multiplier = 1
@@ -236,6 +253,13 @@ country_event = {
 			add_modifier = {
 				modifier = f93_artificial_ship_naval_cap_usage_mult
 				mult = 4
+			}
+			if = {
+				limit = { mid_game_years_passed < 1 }
+				add_modifier = {
+					modifier = f93_pre_midgame_stabalisation
+					mult = 350
+				}
 			}
 			event_target:f93_ralis_matter_decompressor_system = {
 				if = {

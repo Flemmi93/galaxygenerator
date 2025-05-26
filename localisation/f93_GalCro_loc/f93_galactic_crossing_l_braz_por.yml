@@ -83,6 +83,7 @@
  f93_naval_cap_mod_ralis: "$mod_country_naval_cap_mult$"
  f93_ship_fire_rate_mult: "$MOD_SHIP_FIRE_RATE_MULT$
  f93_artificial_ship_naval_cap_usage_mult: "$artificial_ship_naval_cap_usage_mult$"
+ f93_pre_midgame_stabalisation: "Stabilisation Buff"
 
  RALISGATE_GALACTIC: "$ralisgate_gate$"
  RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"

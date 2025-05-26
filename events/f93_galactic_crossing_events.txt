@@ -345,9 +345,7 @@ country_event = {
 			trigger = count_system
 			variable = f93_num_systems
 		}
-		every_country = {
-			remove_communications = event_target:f93_ralis_country
-		}
+		
 	}
 	option = {
 		name = f93_galactic_crossing.8.a
@@ -439,14 +437,15 @@ country_event = {
 	immediate = {
 		if = {
 			limit = { is_ai = yes }
-			export_modifier_to_variable = {
-				modifier = megastructure_build_speed_mult
-				variable = f93_megastructure_build_speed_mult_var
-			}
-			add_modifier = {
-				modifier = f93_megastructure_build_speed_mult
-				mult = f93_megastructure_build_speed_mult_var
-			}
+			remove_modifier = f93_megastructure_build_speed_mult
+			# export_modifier_to_variable = {
+			# 	modifier = megastructure_build_speed_mult
+			# 	variable = f93_megastructure_build_speed_mult_var
+			# }
+			# add_modifier = {
+			# 	modifier = f93_megastructure_build_speed_mult
+			# 	mult = f93_megastructure_build_speed_mult_var
+			# }
 		}
 		if = {
 			limit = {

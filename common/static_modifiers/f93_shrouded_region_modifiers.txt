@@ -94,3 +94,7 @@ f93_naval_cap_mod_ralis = {
 f93_ship_fire_rate_mult = {
 	ship_fire_rate_mult = 1
 }
+
+f93_pre_midgame_stabalisation = {
+	country_ruler_minerals_produces_add = 1
+}
