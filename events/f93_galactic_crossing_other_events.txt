@@ -286,7 +286,10 @@ ship_event = {
 		owner = {
 			random_owned_leader = {
 				limit = {
-					leader_class = scientist
+					OR = {
+						is_councilor_type = councilor_research
+						is_councilor_type = councilor_gestalt_cognitive
+					}
 				}
 				save_event_target_as = f93_oe_event17_scientist
 			}
