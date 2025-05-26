@@ -210,32 +210,41 @@ country_event = {
 	immediate = {
 		if = {
 			limit = {
-				NOR = {
-					has_global_flag = f82_button_2_1_off
-					has_global_flag = f82_button_2_2_off
-				}
+				NOT = { has_global_flag = f82_button_2_2_off }
 			}
-			every_system = {
-				limit = {
-					f93_system_has_ancient_relay = yes
-					NOR = {
-						exists = space_owner
-						has_star_flag = empire_cluster
-						has_star_flag = unique_system
-						any_fleet_in_system = { exists = this }
-						any_system_megastructure = {
-							NOT = { is_megastructure_type = dandelion_relay }
-							exists = this
-						}
-						f93_should_not_be_destroyed = yes
+			if = {
+				limit = { has_global_flag = f82_button_2_1_off }
+				every_system = {
+					limit = { f93_system_has_ancient_relay = yes }
+					every_system_megastructure = {
+						limit = { is_megastructure_type = dandelion_relay }
+						remove_megastructure = this
 					}
 				}
-				set_star_class = sc_no_star
-				set_star_flag = f93_empty_system_on_galcrossing
-				# set_name = BLANK_STRING
-				every_system_planet = { remove_planet = yes }
-				every_ambient_object = { destroy_ambient_object = this }
-				f93_replace_relay_with_relay_star = yes
+			}
+			else = {
+				every_system = {
+					limit = {
+						f93_system_has_ancient_relay = yes
+						NOR = {
+							exists = space_owner
+							has_star_flag = empire_cluster
+							has_star_flag = unique_system
+							any_fleet_in_system = { exists = this }
+							any_system_megastructure = {
+								NOT = { is_megastructure_type = dandelion_relay }
+								exists = this
+							}
+							f93_should_not_be_destroyed = yes
+						}
+					}
+					set_star_class = sc_no_star
+					set_star_flag = f93_empty_system_on_galcrossing
+					# set_name = BLANK_STRING
+					every_system_planet = { remove_planet = yes }
+					every_ambient_object = { destroy_ambient_object = this }
+					f93_replace_relay_with_relay_star = yes
+				}
 			}
 		}
 		every_country = {
@@ -303,13 +312,17 @@ country_event = {
 	}
 	desc = {
 		trigger = {
-			owner = { is_shrouded_player = no }
+			OR ={
+				owner = { is_shrouded_player = no }
+				NOT = { has_global_flag = f82_button_2_1_off }
+			}
 		}
 		text = f93_galactic_crossing.8.green
 	}
 	desc = {
 		trigger = {
 			owner = { is_shrouded_player = yes }
+			NOT = { has_global_flag = f82_button_2_1_off }
 		}
 		text = f93_galactic_crossing.8.red
 	}

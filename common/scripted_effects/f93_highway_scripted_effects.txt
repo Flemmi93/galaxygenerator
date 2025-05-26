@@ -17,11 +17,8 @@ f93_set_galaxy_size = {
 
 f93_sapwn_ancient_relay = { #spawn ancient relay
 	if = {
-		limit = { 
-			NOR = {
-				has_megastructure = dandelion_relay
-				has_global_flag = f82_button_2_1_off
-			}
+		limit = {
+			NOT = { has_megastructure = dandelion_relay }
 		}
 		spawn_megastructure = {
 			type = dandelion_relay
