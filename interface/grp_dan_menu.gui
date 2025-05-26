@@ -10,13 +10,13 @@ guiTypes = {
         clipping = no
         background = {
             name = "grp_background_1" # Background for the main window
-            position = { x = -5 y = -5 }
+            position = { x = -8 y = -8 }
             spriteType = "GFX_tiles_dark_area_cut_8"
             alwaysTransparent = yes
         }
 		    background = {
             name = "grp_background_1" # Background for the main window
-            position = { x = 5 y = 5 }
+            position = { x = 8 y = 8 }
             spriteType = "GFX_tiles_dark_area_cut_8"
             alwaysTransparent = yes
         }
@@ -69,12 +69,12 @@ guiTypes = {
             }
             expandedWindow = {
                 name = "grp_dropdown_menu_1_expanded_window" # Expanded window for dropdown menu 1
-                hide_position = { x = 100 y = 0 }
+                hide_position = { x = 240 y = 0 }
                 show_position = { x = 400 y = 0 }
                 size = { width = 400 height = 400 }
                 show_animation_type = decelerated
                 hide_animation_type = accelerated
-                animation_time = 400
+                animation_time = 550
                 background = {
                     name = "grp_dropdown_menu_1_expanded_bg" # Background for expanded window
                     spriteType = "GFX_tiles_dark_area_cut_8"
@@ -139,54 +139,54 @@ guiTypes = {
                         oversound = mouse_over
                         effect = f93_gc_1_5_onoff
                     }
-			effectbuttonType = {
-				name = "grp_dan_menubutton_1.1_on"
-				quadTextureSprite = "GFX_button_20_20_accept"
-				frame = 3
-				scale = 1.4
-				position = { x = 310 y = 77 }
-				effect = f93_gc_1_1_on
-			}
-			effectbuttonType = {
-				name = "grp_dan_menubutton_1.1_off"
-				quadTextureSprite = "GFX_button_20_20_reject"
-				frame = 3
-				scale = 1.4
-				position = { x = 310 y = 77 }
-				effect = f93_gc_1_1_off
-			}
-			effectbuttonType = {
-				name = "grp_dan_menubutton_1.2_on"
-				quadTextureSprite = "GFX_button_20_20_accept"
-				frame = 3
-				scale = 1.4
-				position = { x = 310 y = 127 }
-				effect = f93_gc_1_2_on
-			}
-			effectbuttonType = {
-				name = "grp_dan_menubutton_1.2_off"
-				quadTextureSprite = "GFX_button_20_20_reject"
-				frame = 3
-				scale = 1.4
-				position = { x = 310 y = 127 }
-				effect = f93_gc_1_2_off
-			}
-			effectbuttonType = {
-				name = "grp_dan_menubutton_1.3_on"
-				quadTextureSprite = "GFX_button_20_20_accept"
-				frame = 3
-				scale = 1.4
-				position = { x = 310 y = 177 }
-				effect = f93_gc_1_3_on
-			}
-			effectbuttonType = {
-				name = "grp_dan_menubutton_1.3_off"
-				quadTextureSprite = "GFX_button_20_20_reject"
-				frame = 3
-				scale = 1.4
-				position = { x = 310 y = 177 }
-				effect = f93_gc_1_3_off
-			}
+					effectbuttonType = {
+						name = "grp_dan_menubutton_1.1_on"
+						quadTextureSprite = "GFX_button_20_20_accept"
+						frame = 3
+						scale = 1.4
+						position = { x = 310 y = 77 }
+						effect = f93_gc_1_1_on
+					}
+					effectbuttonType = {
+						name = "grp_dan_menubutton_1.1_off"
+						quadTextureSprite = "GFX_button_20_20_reject"
+						frame = 3
+						scale = 1.4
+						position = { x = 310 y = 77 }
+						effect = f93_gc_1_1_off
+					}
+					effectbuttonType = {
+						name = "grp_dan_menubutton_1.2_on"
+						quadTextureSprite = "GFX_button_20_20_accept"
+						frame = 3
+						scale = 1.4
+						position = { x = 310 y = 127 }
+						effect = f93_gc_1_2_on
+					}
+					effectbuttonType = {
+						name = "grp_dan_menubutton_1.2_off"
+						quadTextureSprite = "GFX_button_20_20_reject"
+						frame = 3
+						scale = 1.4
+						position = { x = 310 y = 127 }
+						effect = f93_gc_1_2_off
+					}
+					effectbuttonType = {
+						name = "grp_dan_menubutton_1.3_on"
+						quadTextureSprite = "GFX_button_20_20_accept"
+						frame = 3
+						scale = 1.4
+						position = { x = 310 y = 177 }
+						effect = f93_gc_1_3_on
+					}
+					effectbuttonType = {
+						name = "grp_dan_menubutton_1.3_off"
+						quadTextureSprite = "GFX_button_20_20_reject"
+						frame = 3
+						scale = 1.4
+						position = { x = 310 y = 177 }
+						effect = f93_gc_1_3_off
+					}
                     effectbuttonType = {
                         name = "grp_dan_menubutton_1.4_on"
                         quadTextureSprite = "GFX_button_20_20_accept"
@@ -255,12 +255,12 @@ guiTypes = {
             }
             expandedWindow = {
                 name = "grp_dropdown_menu_2_expanded_window" # Expanded window for dropdown menu 2
-                hide_position = { x = 200 y = -50 }
+                hide_position = { x = 240 y = -50 }
                 show_position = { x = 400 y = -50 }
                 size = { width = 400 height = 400 }
                 show_animation_type = decelerated
                 hide_animation_type = accelerated
-                animation_time = 400
+                animation_time = 550
                 background = {
                     name = "grp_dropdown_menu_2_expanded_bg" # Background for expanded window
                     spriteType = "GFX_tiles_dark_area_cut_8"
@@ -441,12 +441,12 @@ guiTypes = {
 			}
 			expandedWindow = {
 				name = "grp_dropdown_menu_3_expanded_window" # Expanded window for dropdown menu 3
-				hide_position = { x = 200 y = -100 }
+				hide_position = { x = 240 y = -100 }
 				show_position = { x = 400 y = -100 }
 				size = { width = 400 height = 400 }
 				show_animation_type = decelerated
 				hide_animation_type = accelerated
-				animation_time = 400
+				animation_time = 550
 				background = {
 					name = "grp_dropdown_menu_3_expanded_bg" # Background for expanded window
 					spriteType = "GFX_tiles_dark_area_cut_8"
