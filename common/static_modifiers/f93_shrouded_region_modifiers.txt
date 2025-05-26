@@ -39,9 +39,11 @@ f93_ralis_country_buff = {
 	country_base_rare_crystals_produces_add = 10
 	ascension_perks_add = -10
 	country_enclave_capacity_add = -100
-	artificial_ship_naval_cap_usage_mult = 5 
 }
 
+f93_artificial_ship_naval_cap_usage_mult = {
+	artificial_ship_naval_cap_usage_mult = 1
+}
 
 f93_country_is_connected = {
 	country_trade_produces_mult = 0.1

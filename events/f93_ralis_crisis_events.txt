@@ -155,9 +155,15 @@ country_event = {
 				has_global_flag = f82_button_3_1_on
 			}
 			remove_modifier = fe_ship_cost_modifier
+			remove_modifier = f93_artificial_ship_naval_cap_usage_mult
+			remove_modifier = f93_ship_fire_rate_mult
 			add_modifier = {
 				modifier = f93_ship_fire_rate_mult
 				mult = -0.35
+			}
+			add_modifier = {
+				modifier = f93_artificial_ship_naval_cap_usage_mult
+				mult = 6
 			}
 
 			event_target:f93_ralis_matter_decompressor_system = {
@@ -184,11 +190,17 @@ country_event = {
 			limit = {
 				has_global_flag = f82_button_3_2_on
 			}
+			remove_modifier = fe_ship_cost_modifier
+			remove_modifier = f93_artificial_ship_naval_cap_usage_mult
+			remove_modifier = f93_ship_fire_rate_mult
 			add_modifier = {
 				modifier = f93_ship_fire_rate_mult
 				mult = -0.2
 			}
-			remove_modifier = fe_ship_cost_modifier
+			add_modifier = {
+				modifier = f93_artificial_ship_naval_cap_usage_mult
+				mult = 5
+			}
 			
 			event_target:f93_ralis_matter_decompressor_system = {
 				if = {
@@ -214,11 +226,16 @@ country_event = {
 			limit = {
 				has_global_flag = f82_button_3_3_on
 			}
+			remove_modifier = fe_ship_cost_modifier
+			remove_modifier = f93_artificial_ship_naval_cap_usage_mult
 			remove_modifier = f93_ship_fire_rate_mult
 			add_modifier = {
 				modifier = fe_ship_cost_modifier
 				multiplier = 1
-				days = -1
+			}
+			add_modifier = {
+				modifier = f93_artificial_ship_naval_cap_usage_mult
+				mult = 4
 			}
 			event_target:f93_ralis_matter_decompressor_system = {
 				if = {
