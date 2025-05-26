@@ -37,5 +37,5 @@ f93_valid_gal_crossing_endpoint = {
 		# to the existing network.
 		has_star_flag = f93_valid_gal_crossing_endpoint_flag 
 	}
-	NOT = { has_star_flag = f93_INVALID_gal_crossing_endpoint_flag   }
+	NOT = { has_star_flag = f93_INVALID_gal_crossing_endpoint_flag }
 }

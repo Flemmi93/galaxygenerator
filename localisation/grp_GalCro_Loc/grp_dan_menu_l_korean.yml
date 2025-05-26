@@ -1,6 +1,6 @@
 ﻿l_korean:
- grp_dan_menu_evt.1.name: "Shrouded Regions - Mod Menu"
- grp_dan_menu_evt.1.desc: " "
+ grp_dan_menu_evt.1.name: ""
+ grp_dan_menu_evt.1.desc: ""
  f82_open_menu: "Shrouded Region Mod Menu"
  grp_dan_button.1: "Storymode"
  grp_dan_button.2: "Galactic Crossing"
@@ -53,3 +53,7 @@
 
  grp_dan_menu_evt.2.name: "Credits"
  grp_dan_menu_evt.2.desc: "Thank you for playing our mod §MShrouded Regions§!\n\n\nLead Developer:$TABBED_NEW_LINE$§BFlemmi§!\n\nCreative Director:$TABBED_NEW_LINE$§HJanlitschka§!\n\nUser Interface Developer:$TABBED_NEW_LINE$§Ceirish§!"
+
+ f82_button_1_1_off: "§HStorymode off§!"
+ f82_button_2_1_off: "§HGalactic Crossing off§!"
+ f93_game_start_menu_done: "§HGame has already been started§!"

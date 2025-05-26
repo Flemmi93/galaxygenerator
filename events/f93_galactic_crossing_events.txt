@@ -634,7 +634,7 @@ event = {
 			f93_sapwn_ancient_relay = yes
 			# if = {
 			# 	limit = { exists = space_owner }
-			# 	space_owner = { country_event = {  } }
+			# 	space_owner = { country_event = { } }
 			# }
 		}
 	}

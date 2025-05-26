@@ -2,25 +2,25 @@ edict_open_test_menu = {
     length = 0
     icon = "GFX_edict_type_policy"
     resources = {
-        category = edicts
-        cost = {
-            influence = 0
-        }
+            category = edicts
+            cost = {
+                    influence = 0
+            }
     }
 
     potential = {
-        is_ai = no
-        has_country_flag = host_country_flag
+            is_ai = no
+            has_country_flag = host_country_flag
     }
     
     effect = {
-        custom_tooltip = f82_open_menu
-        hidden_effect = {
-            country_event = { id = grp_dan_menu_evt.1 }
-        }
+            custom_tooltip = f82_open_menu
+            hidden_effect = {
+                    country_event = { id = grp_dan_menu_evt.1 }
+            }
     }
     
     ai_weight = {
-        weight = 0
+            weight = 0
     }
 }

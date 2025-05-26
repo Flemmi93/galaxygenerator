@@ -128,15 +128,15 @@
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
 
-  #resolution
+	#resolution
  ralis_focus: "Ralis War Plans"
  f93_ralis_crisis_category_galactic_focus: "Ralis Crisis"
  f93_time_running_out: "We really should push this through."
-  # "Senatorial Debate on the Galactic use of the $ralis_NAME$ System"
+	# "Senatorial Debate on the Galactic use of the $ralis_NAME$ System"
  f93_ralis_plan_resolution: "The War Plan Treaty"
  f93_ralis_plan_resolution_desc: "This part of the crisis war plan wants to legally bind community members to hand over gained territory after the war has passed. The treaty is as popular as it is controversial, it will close the door to exploit post-war instability."
-  #"Bureaucrats and politicians are debating fiercly over this issue. Some even going so far as to say that $ralis_NAME$ isnt real and can't hurt us. "
-  #more events
+	#"Bureaucrats and politicians are debating fiercly over this issue. Some even going so far as to say that $ralis_NAME$ isnt real and can't hurt us. "
+	#more events
  f93_ralis_crisis_event.0001.name: "Anomalies along the Galactic Crossing"
  f93_ralis_crisis_event.0001.desc: "Reports of massive gravitational anomalies have surfaced along the Galactic Crossing, shifting unpredictably through deep space. Members of the Galactic Community have deployed scouting fleets to investigate, but details remain scarce. Leaked footage reveals space itself warping around the anomalies, stretching the light of stars into eerie strings around them. Mysterious bursts of incomprehensible signals were detected - then, without warning, all contact was lost. No Government has made any official statements so far."
  f93_ralis_crisis_event.0101.name: "A galaxy holds its breath"
