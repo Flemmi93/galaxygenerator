@@ -40,8 +40,9 @@ ship_event = {
 	# mean_time_to_happen = 30
 	is_triggered_only = yes
 	trigger = {
+		owner = { is_shrouded_player = no }
 		owner = { is_ai = no }
-		FromFrom = { NOT = { has_country_flag = has_seen_f93_oe_event2 } }
+		owner = { NOT = { has_country_flag = has_seen_f93_oe_event2 } }
 		solar_system = {
 			any_neighbor_system_euclidean = {
 				has_star_flag = f93_shroud_region_flag
@@ -49,7 +50,7 @@ ship_event = {
 		}
 	}
 	immediate = {
-		FromFrom = { set_country_flag = has_seen_f93_oe_event2 }
+		owner = { set_country_flag = has_seen_f93_oe_event2 }
 	}
 	option = {
 		name = f93_oe_event.2.a
@@ -71,9 +72,9 @@ ship_event = {
 				has_star_flag = f93_raliscluster1
 			}
 		}
-		FromFrom = { NOT = { has_country_flag = f93_seen_ralisgate_bypass } }
+		owner = { NOT = { has_country_flag = f93_seen_ralisgate_bypass } }
 	}
-	immediate = { FromFrom = { set_country_flag = f93_seen_ralisgate_bypass } }
+	immediate = { owner = { set_country_flag = f93_seen_ralisgate_bypass } }
 	option = {
 		name = f93_oe_event.3.a
 	}
@@ -256,5 +257,46 @@ country_event = {
 	}
 	option = {
 		name = f93_oe_event.15.a
+	}
+}
+
+# Triggers event when each country first sends a ship into the system (once per country)
+# Scope = Ship
+# From = System
+# FromFrom = Country
+#Spawnd in the shrouded regions and is isolated
+ship_event = {
+	id = f93_oe_event.17
+	title = f93_oe_event.17.name
+	desc = f93_oe_event.17.desc
+	picture = GFX_evt_astral_rift_vortex
+	# mean_time_to_happen = 30
+	is_triggered_only = yes
+	trigger = {
+		owner = { is_shrouded_player = yes }
+		owner = { is_ai = no }
+		owner = { NOT = { has_country_flag = has_seen_f93_oe_event2 } }
+		solar_system = {
+			any_neighbor_system_euclidean = {
+				has_star_flag = f93_shroud_region_flag
+			}
+		}
+	}
+	immediate = {
+		owner = {
+			random_owned_leader = {
+				limit = {
+					OR = {
+						is_councilor_type = councilor_research
+						is_councilor_type = councilor_gestalt_cognitive
+					}
+				}
+				save_event_target_as = f93_oe_event17_scientist
+			}
+		}
+		owner = { set_country_flag = has_seen_f93_oe_event2 }
+	}
+	option = {
+		name = f93_oe_event.17.a
 	}
 }

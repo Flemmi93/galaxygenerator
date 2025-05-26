@@ -38,6 +38,7 @@ is_shrouded_ai = {
 			closest_system = {
 				limit = { f93_system_has_ancient_relay = yes }
 				max_steps = 20
+				exists = this
 			}
 		}
 	}
@@ -49,6 +50,7 @@ is_shrouded_player = {
 			closest_system = {
 				limit = { f93_system_has_ancient_relay = yes }
 				max_steps = 20
+				exists = this
 			}
 		}
 	}

@@ -129,13 +129,13 @@ create_ralis_planet = {
 		add_district = district_arcology_housing
 	}
 	add_zone = {
-		district = district_arcology_housing_1
+		# district = district_arcology_housing
 		zone = zone_industrial
 		zone_slot = 1
 		replace = yes
 	}
 	add_zone = {
-		district = district_arcology_housing_1
+		# district = district_arcology_housing
 		zone = zone_trade
 		zone_slot = 2
 		replace = yes
@@ -147,6 +147,44 @@ create_ralis_planet = {
 		}
 	}
 	owner = { set_country_type = default }
+}
+
+create_galcom_admin_planet = {
+	remove_all_buildings = yes
+	
+	add_building = building_capital
+	add_building = building_hydroponics_farm
+	add_building = building_stronghold
+	add_building = building_research_lab_1
+	add_building = building_holo_theatres
+	add_building = building_precinct_house
+	add_building = building_foundry_1
+	add_building = building_factory_1
+	while = {
+		count = 3
+		add_district = district_city
+		add_district = district_mining
+		add_district = district_farming
+		add_district = district_generator
+	}
+	add_zone = {
+		# district = district_arcology_housing
+		zone = zone_industrial
+		zone_slot = 1
+		replace = yes
+	}
+	add_zone = {
+		# district = district_arcology_housing
+		zone = zone_trade
+		zone_slot = 2
+		replace = yes
+	}
+	while = {
+		count = 5
+		create_pop = {
+			species = ower.species
+		}
+	}
 }
 
 create_capital_to_acient_relay_lane = {

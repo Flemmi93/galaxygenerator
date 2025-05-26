@@ -1,7 +1,7 @@
 guiTypes = {
 
 	containerWindowType = {
-		name = "fix_main_window" # Main container window for the UI
+		name = "dan_menu_1" #fix_main_window" # Main container window for the UI
 		position = { x = 0 y = 0 }
 		size = { width = 964 height = 700 }
 		orientation = center

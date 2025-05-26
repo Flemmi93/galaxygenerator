@@ -52,6 +52,7 @@ on_entering_system_first_time = {
 		f93_oe_event.1
 		f93_oe_event.2
 		f93_oe_event.3
+		f93_oe_event.17
 	}
 }
 

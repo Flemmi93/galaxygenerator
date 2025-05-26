@@ -269,6 +269,12 @@ planet_event = {
 				create_starbase = {
 					owner = last_created_country
 					size = starbase_citadel
+					effect = {
+						while = {
+							count = 10
+							spawn_free_defense_platform = yes
+						}
+					}
 				}
 				save_global_event_target_as = f93_ralis_matter_decompressor_system
 			}
@@ -420,6 +426,13 @@ country_event = {
 					angle = random
 				}
 			}
+		}
+	
+		every_playable_country =  {
+			event_target:f93_ralis_system = {
+				remove_claims = { who = prev num_of_claims = 100 }
+			}
+		
 		}
 		
 		random_system = {

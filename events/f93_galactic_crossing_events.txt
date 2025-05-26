@@ -493,6 +493,16 @@ country_event = {
 				remove_communications = event_target:f93_ralis_country
 			}
 		}
+		if = {
+			limit = { is_at_war = yes }
+			every_war = {
+				limit = { any_war_participant = { is_same_value = event_target:f93_ralis_country } }
+				every_war_participant = {
+					limit = { OR { is_country_type = fallen_empire is_country_type = awakened_fallen_empire } }
+					prev = { remove_war_participant = prev }
+				}
+			}
+		}
 		event_target:f93_ralis_country = { remove_from_galactic_community = yes }
 	}
 }
