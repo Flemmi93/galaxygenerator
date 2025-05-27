@@ -26,7 +26,7 @@ create_ralis_country = { #target a valid planet with this
 		}
 		ethos = { ethic = ethic_fanatic_xenophobe ethic = ethic_militarist }
 		effect = {
-			set_country_type = default
+			set_country_type = f93_shrouded_region_crisis
 			save_global_event_target_as = f93_ralis_country
 			set_country_flag = ralis_country_flag
 			set_country_flag = galcom_form_nay
@@ -64,59 +64,46 @@ create_ralis_country = { #target a valid planet with this
 		}
 	}
 	
-	add_modifier = {
-		modifier = ruler_savior
-		multiplier = 100
-		days = 7200
-	}
-	add_modifier = {
-		modifier = b_world_saved
-		multiplier = 1.5
-		days = 7200
-	}
-	add_modifier = {
-		modifier = cost_of_freedom_07
-		multiplier = 100
-		days = 7200
-	}
-	add_modifier = {
-		modifier = wasteland_infrastructure
-		multiplier = 4
-		days = 7200
-	}
-	add_modifier = {
-		modifier = wasteland_orbital_debris
-		multiplier = -10
-		days = 7200
-	}
-	add_modifier = {
-		modifier = horse_powered_factories_medium
-		multiplier = 10
-		days = 7200
-	}
-	add_modifier = {
-		modifier = black_hole_energy
-		days = -1
-	}
+	# add_modifier = {
+	# 	modifier = ruler_savior
+	# 	multiplier = 100
+	# 	days = 7200
+	# }
+	# add_modifier = {
+	# 	modifier = b_world_saved
+	# 	multiplier = 1.5
+	# 	days = 7200
+	# }
+	# add_modifier = {
+	# 	modifier = cost_of_freedom_07
+	# 	multiplier = 100
+	# 	days = 7200
+	# }
+	# add_modifier = {
+	# 	modifier = wasteland_infrastructure
+	# 	multiplier = 4
+	# 	days = 7200
+	# }
+	# add_modifier = {
+	# 	modifier = wasteland_orbital_debris
+	# 	multiplier = -10
+	# 	days = 7200
+	# }
+	# add_modifier = {
+	# 	modifier = horse_powered_factories_medium
+	# 	multiplier = 10
+	# 	days = 7200
+	# }
+	# add_modifier = {
+	# 	modifier = f93_job_creating_modifier
+	# 	days = -1
+	# }
 }
 
 create_ralis_planet = {
-	# owner = { set_country_type = fallen_empire }
 	remove_all_buildings = yes
-	
-	# add_building = building_ancient_palace
-	# add_building = building_fe_stronghold
-	# add_building = building_affluence_center
-	# add_building = building_affluence_center
-	# add_building = building_nourishment_center
-	# add_building = building_class_4_singularity
-	# add_building = building_dimensional_fabricator
-	# add_building = building_fe_mine_2
-	# add_building = building_nano_forge
-	# add_building = building_nano_forge
-	# add_building = building_fe_dome
 
-	add_building = building_system_capital
+	add_building = f93_building_crisis_capital
 	add_building = building_hydroponics_farm
 	add_building = building_fortress
 	add_building = building_fortress
@@ -146,7 +133,7 @@ create_ralis_planet = {
 			species = root.ower.species
 		}
 	}
-	owner = { set_country_type = default }
+	owner = { set_country_type = f93_shrouded_region_crisis }
 }
 
 create_galcom_admin_planet = {
@@ -229,7 +216,7 @@ f93_create_community_ralis_admin = {
 	create_country = {
 		name = f93_community_ralis_admin_NAME
 		adjective = f93_community_ralis_admin_ADJ
-		type = enclave
+		type = f93_galcom_administration
 		auto_delete = no
 		name_list = random
 		origin = "origin_default"
@@ -258,7 +245,7 @@ f93_create_community_ralis_admin_with_station = {
 	create_country = {
 		name = "f93_community_ralis_admin_NAME"
 		adjective = "f93_community_ralis_admin_ADJ"
-		type = enclave
+		type = f93_galcom_administration
 		authority = "auth_democratic"
 		auto_delete = no
 		civics = {

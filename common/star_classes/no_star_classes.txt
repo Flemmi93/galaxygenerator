@@ -1,5 +1,5 @@
-sc_no_star = {
-	class			= no_star
+sc_hyper_relay_star = {
+	class			= hyper_relay_star
 	icon_scale		= 1.5
 	planet			= { key = pc_no_star }
 	spawn_odds		= 0

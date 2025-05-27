@@ -49,6 +49,20 @@ country_event = {
 			}
 			set_variable = { which = f93_gal_size value = 4 }
 			f93_set_galaxy_size = yes
+			#Should someone play with 0 fallen empires, this would generate random GalCro Endpoints
+			if = {
+				limit = {
+					count_country = {
+						count = 0
+						limit = { is_country_type = fallen_empire }
+					}
+				}
+				while = {
+					count = galaxy_size
+					random_system = { set_star_flag = f93_used_in_case_of_0_less_FE }
+				}
+			}
+
 			while = {
 				count = f93_gal_size
 				limit = {
@@ -238,7 +252,7 @@ country_event = {
 							f93_should_not_be_destroyed = yes
 						}
 					}
-					set_star_class = sc_no_star
+					set_star_class = sc_hyper_relay_star
 					set_star_flag = f93_empty_system_on_galcrossing
 					# set_name = BLANK_STRING
 					every_system_planet = { remove_planet = yes }
@@ -435,18 +449,7 @@ country_event = {
 	}
 
 	immediate = {
-		if = {
-			limit = { is_ai = yes }
-			remove_modifier = f93_megastructure_build_speed_mult
-			# export_modifier_to_variable = {
-			# 	modifier = megastructure_build_speed_mult
-			# 	variable = f93_megastructure_build_speed_mult_var
-			# }
-			# add_modifier = {
-			# 	modifier = f93_megastructure_build_speed_mult
-			# 	mult = f93_megastructure_build_speed_mult_var
-			# }
-		}
+		remove_modifier = f93_megastructure_build_speed_mult
 		if = {
 			limit = {
 				NOT = { has_global_flag = f93_ralis_awoken }
@@ -460,10 +463,10 @@ country_event = {
 		if = {
 			limit = { exists = event_target:f93_ralis_country NOT = { has_global_flag = f93_ralis_awoken } }
 			every_country = {
-				limit = { NOT = { has_country_flag = mercenary_enclave_country } }
 				remove_communications = event_target:f93_ralis_country
 			}
 		}
+		#can be cleaned away soon
 		every_country = {
 			limit = {
 				has_country_flag = mercenary_enclave_country
@@ -474,6 +477,7 @@ country_event = {
 			}
 			destroy_country = yes
 		}
+		#can be removed soon
 		every_country = {
 			limit = {
 				is_country_type = enclave_mercenary
@@ -776,6 +780,13 @@ country_event = {
 			every_fleet_in_system = {
 				delete_fleet = this
 			}
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.l
+		every_country = {
+			limit = { NOT = { is_country_type = f93_shrouded_region_crisis } }
+			destroy_country = yes
 		}
 	}
 }

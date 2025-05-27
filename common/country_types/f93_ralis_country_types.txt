@@ -1,0 +1,142 @@
+f93_shrouded_region_crisis = {
+	counts_for_victory = yes
+	pop_growth = yes
+	playable = yes							#if this type is available for players. used when listing countries for hot-joining players
+	has_pulse_events = yes					#if this type gets checked for country-specific pulse events from on_action
+	has_deficits = yes						#if this type suffers from resource deficits
+	randomize_ethos = no					#does this empire have a randomly generated ethos?
+	shuffle_pop_ethos = no					#if pops belonging to this country type should mutate their ethos every now and then
+	sub_title = "f93_ralis_crisis_SUBTITLE"	#sub title that will be shown for this empire. Like "Example Federation - Fallen Empire"
+	sub_title_desc = "f93_ralis_crisis_SUBTITLE_DESC" #description for the sub title. used in tooltips
+	needs_survey = yes						#default no, if yes then planets must be surveyed before they can be colonized, also if yes a science ship is needed for exploration.
+	ship_disengagement = yes				#default no, decides if the country's ships can flee from battle instead of fighting to the death
+	share_communications = no				#default yes, decides if they share communciations with anyone you have contact with
+	destroys_starbases = no					#if this is set to yes, country will destroy starbases instead of disabling them
+	observable = yes						#Fairly self explanatory. Will not show up in list of observable countries, and cannot be tagged to as observer.
+	mid_game_crisis = yes
+
+	ai = {
+		enabled = yes
+		declare_war = no
+		min_navy_for_wars = 0.5
+		min_assault_armies_for_wars = @armies_for_declaring_war
+		internal_policies = no
+		modification = no
+		government = yes
+		traditions = yes
+		ascension_perks = no
+		follow = yes
+		can_use_market = yes
+		modules = {
+			military_minister_module
+			foreign_minister_module
+			interior_minister_module
+		}
+	}
+	trade_routes_available = {
+		is_ai = no
+	}
+
+	modules = {
+		standard_event_module = {}
+		standard_economy_module = {}
+		standard_leader_module = {}
+		standard_diplomacy_module = { contact_rule = does_first_contact_sites }
+		standard_technology_module = {}
+		standard_pop_factions_module = {}
+		standard_expansion_module = {}
+		standard_species_rights_module = {}
+		standard_grand_archive_module = {}
+	}
+
+	faction = {
+		hostile = yes
+		needs_border_access = no
+		generate_borders = no
+		needs_colony = no
+	}
+	# custom_diplomacy = yes
+	# custom_opinion = yes
+
+	resources = {
+		category = country_base
+		produces = {
+			energy = 20
+			minerals = 20
+			food = 20
+			physics_research = 10
+			society_research = 10
+			engineering_research = 10
+			influence = 3
+			unity = 5
+			alloys = 5
+			consumer_goods = 15
+		}
+		produces = {
+			trigger = {
+				OR = {
+					is_gestalt = no
+					has_valid_civic = civic_machine_servitor
+				}
+			}
+		}
+	}
+}
+
+f93_galcom_administration = {
+	counts_for_victory = no
+	pop_growth = yes
+	playable = no							#if this type is available for players. used when listing countries for hot-joining players
+	has_pulse_events = yes					#if this type gets checked for country-specific pulse events from on_action
+	has_deficits = no						#if this type suffers from resource deficits
+	randomize_ethos = no					#does this empire have a randomly generated ethos?
+	shuffle_pop_ethos = no					#if pops belonging to this country type should mutate their ethos every now and then
+	sub_title = "f93_galcom_admin_SUBTITLE"	#sub title that will be shown for this empire. Like "Example Federation - Fallen Empire"
+	sub_title_desc = "f93_galcom_admin_SUBTITLE_DESC" #description for the sub title. used in tooltips
+	needs_survey = yes						#default no, if yes then planets must be surveyed before they can be colonized, also if yes a science ship is needed for exploration.
+	ship_disengagement = yes				#default no, decides if the country's ships can flee from battle instead of fighting to the death
+	share_communications = yes				#default yes, decides if they share communciations with anyone you have contact with
+	destroys_starbases = no					#if this is set to yes, country will destroy starbases instead of disabling them
+	observable = yes						#Fairly self explanatory. Will not show up in list of observable countries, and cannot be tagged to as observer.
+	
+	ai = {
+		enabled = no
+	}
+	
+	modules = {
+		standard_event_module = {}
+		standard_economy_module = {}
+		standard_leader_module = {}
+		standard_diplomacy_module = {}
+		standard_technology_module = {}
+		standard_pop_factions_module = {}
+		standard_expansion_module = {}
+		standard_species_rights_module = {}
+		standard_grand_archive_module = {}
+	}
+
+	faction = {
+		neutral = no
+		needs_border_access = no
+		generate_borders = no
+		needs_colony = no
+	}
+	# custom_diplomacy = yes
+	# custom_opinion = yes
+
+	resources = {
+		category = country_base
+		produces = {
+			energy = 200
+			minerals = 200
+			food = 200
+			physics_research = 10
+			society_research = 10
+			engineering_research = 10
+			influence = 3
+			unity = 5
+			alloys = 5
+			consumer_goods = 15
+		}
+	}
+}

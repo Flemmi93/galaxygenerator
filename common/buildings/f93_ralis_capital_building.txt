@@ -1,0 +1,102 @@
+f93_building_crisis_capital = {
+	base_buildtime = @b4_time
+	capital = yes
+	can_build = yes
+	can_demolish = no
+	can_be_ruined = no
+	can_be_disabled = no
+	position_priority = 0
+
+	category = government
+
+	building_sets = {
+		government
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			is_country_type = f93_shrouded_region_crisis
+		}
+	}
+
+	convert_to = {
+		building_system_capital
+	}
+
+	allow = {
+	}
+
+	prerequisites = {
+	}
+
+	show_tech_unlock_if = {
+	}
+
+	planet_modifier = {
+		job_enforcer_add = 300
+		planet_housing_add = 2000
+		planet_amenities_add = 2000
+		planet_max_branch_office_buildings_add = 4
+		planet_defense_armies_add = 16
+		f93_job_creating_modifier = 1
+	}
+
+	inline_script = {
+		script = buildings/on_all_capital_buildings
+	}
+
+	inline_script = {
+		script = buildings/regular_empire_capital_jobs
+		AMOUNT = 400
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_1 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_2 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { has_technology = tech_capital_productivity_3 }
+		}
+		modifier = {
+			pop_bonus_workforce_mult = 0.1
+		}
+	}
+
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = @b4_minerals
+		}
+		upkeep = {
+			energy = @b4_upkeep
+		}
+	}
+
+	triggered_desc = {
+		trigger = {
+			has_modifier = payback_unified_purpose
+		}
+		text = job_unifier_effect_desc
+	}
+	
+	additional_ai_weight = 1000
+}

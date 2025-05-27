@@ -269,6 +269,18 @@ planet_event = {
 				create_starbase = {
 					owner = last_created_country
 					size = starbase_citadel
+					module = shipyard
+					module = shipyard
+					module = missile_battery
+					module = missile_battery
+					module = gun_battery
+					module = gun_battery
+					
+					building = "crew_quarters"
+					building = "target_uplink_computer"
+					building = "defense_grid"
+					building = "nebula_refinery"
+
 					effect = {
 						while = {
 							count = 10

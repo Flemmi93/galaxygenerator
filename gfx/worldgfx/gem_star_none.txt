@@ -2,7 +2,7 @@
 gfx_settings = 
 {
 	# world tag identifier
-	world = no_star
+	world = hyper_relay_star
 	
 	# Effect and texture info
 	bloom_effect = "bloom"

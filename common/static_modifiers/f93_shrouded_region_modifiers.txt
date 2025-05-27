@@ -37,7 +37,7 @@ f93_ralis_country_buff = {
 	country_base_volatile_motes_produces_add = 10
 	country_base_exotic_gases_produces_add = 10
 	country_base_rare_crystals_produces_add = 10
-	ascension_perks_add = -10
+	# ascension_perks_add = -10
 	country_enclave_capacity_add = -100
 }
 
@@ -97,4 +97,28 @@ f93_ship_fire_rate_mult = {
 
 f93_pre_midgame_stabalisation = {
 	country_ruler_minerals_produces_add = 1
+}
+
+f93_job_creating_modifier = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_black_hole.dds"
+	icon_frame = 1
+	# job_civilian_per_pop = 1
+	job_politician_per_pop = 0.02
+	job_physicist_per_pop = 0.025
+	job_biologist_per_pop = 0.025
+	job_engineer_per_pop = 0.025
+	job_bureaucrat_per_pop = 0.075
+	job_enforcer_per_pop = 0.05
+	job_chemist_per_pop = 0.015
+	job_translucer_per_pop = 0.015
+	job_gas_refiner_per_pop = 0.015
+	job_trader_per_pop = 0.025
+	job_entertainer_per_pop = 0.025
+	job_foundry_per_pop = 0.175
+	job_artisan_per_pop = 0.125
+	job_clerk_per_pop = 0.075
+	job_technician_per_pop = 0.075
+	job_farmer_per_pop = 0.075
+	job_miner_per_pop = 0.075
+	job_soldier_per_pop = 0.005
 }

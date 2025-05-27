@@ -1,15 +1,15 @@
 ﻿l_simp_chinese:
 #Events
- f93_galactic_crossing.2.name: "Real of Hoax?"
- f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proofs difficult.\nWithout solid data the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of a first report the artifact was transferd into a private collection. Who orchestrated this is unknown. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notable none of the creatures could be identified as §Y[Root.GetSpeciesName]§!§!"
+ f93_galactic_crossing.2.name: "Real or Hoax?"
+ f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proves difficult.\nWithout solid data, the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of the first report, the artifact was transferred into a private collection. It is unknown who orchestrated this. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notably none of the creatures could be identified as §Y[Root.GetSpeciesName]§!"
 
  f93_galactic_crossing.8.name: "Game Start Quality"
- f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! Systems: §Y[root.f93_num_shrouded_systems]§! Systems are Shrouded Systems.\n\nIt is up to you if this is good or bad.\n\n§RThe Crisis country can cause crashes by renting fleets, we are trying to supress this. §!§GMercenary enclaves are enabled again§!."
+ f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! systems: §Y[root.f93_num_shrouded_systems]§! Systems are shrouded systems.\n\nIt is up to you if this is good or bad." #\n\n§RThe Crisis country can cause crashes by renting fleets, we are trying to suppress this. §!§GMercenary enclaves are enabled again§!."
  f93_galactic_crossing.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§MIsolated§!.\n\n§GHave fun!§!\n\n$f93_galactic_crossing.8.desc$"
- f93_galactic_crossing.8.a: "...All statements without guarantee."
- f93_ralis_failed_to_form: "§RWARNING:§! A Planet critical for the campaign failed to form, this will lead to problems down the line.\n\n$f93_galactic_crossing.8.desc$"
+ f93_galactic_crossing.8.a: "...All statements made without guarantees."
+ f93_ralis_failed_to_form: "§RWARNING:§! A planet critical for the campaign failed to form, this will lead to problems down the line.\n\n$f93_galactic_crossing.8.desc$"
 
 
 #Dandelion Megastructures
@@ -26,9 +26,19 @@
  dandelion_sphere_ruined_DESC: "$crisis_sphere_ruined_DESC$"
  dandelion_sphere_ruined_plural: "$crisis_sphere_ruined_plural$"
  dandelion_sphere_ruined_MEGASTRUCTURE_DETAILS: "$crisis_sphere_ruined_MEGASTRUCTURE_DETAILS$"
+#Building
+ f93_building_crisis_capital: "$building_system_capital$"
+ f93_building_crisis_capital_desc: "$building_system_capital_desc$"
 
- sc_no_star: "Empty System"
- sc_no_star_desc: "This system contains no star, it might have been artificially connected to the Hyperlane Network."
+#Diplomatic Subtitle
+ f93_ralis_crisis_SUBTITLE: "Bringer of the End"
+ f93_ralis_crisis_SUBTITLE_desc: "This Empire is attempting to end existence as we know it."
+ f93_galcom_admin_SUBTITLE: "Peaceful Administration"
+ f93_galcom_admin_SUBTITLE_desc: "The Galactic Community quickly established this pseudo government. They are tasked with making the galaxy whole again."
+
+#"Star"
+ sc_hyper_relay_star: "Almost Empty System"
+ sc_hyper_relay_star_desc: "This system contains no star, it might have been artificially connected to the Hyperlane Network."
 
 #Wargoals
  war_goal_f93_wg_gal_cross_force_open_border: "Force Open Borders"
@@ -41,7 +51,7 @@
 #above is empty on purpose, these are the purple neublae and would cover the entire map in this string if it was not a space.
  f93_shrouded_region_star: "Shrouded Star"
  f93_shrouded_region_star2: "$f93_shrouded_region_star$"
- f93_shrouded_region_star_desc: "This Star is deep within the shrouded regions, long ago unbelievable forces tore reality apart, the lack of hyperlanes in this area makes ship logistics challanging."
+ f93_shrouded_region_star_desc: "This Star is deep within the shrouded regions, long ago unbelievable forces tore reality apart, the lack of hyperlanes in this area makes ship logistics challenging."
  f93_shrouded_region_star2_desc: "$f93_shrouded_region_star_desc$"
 
  f93_hyper_relay_ai: "$hyper_relay$"
@@ -64,10 +74,10 @@
  f93_galactic_crossing_buff_diplomats_desc: "Due to our World being situated on the Galactic Crossing, our diplomats have many opportunities to establish new connections"
 
  mod_country_resource_max_energy_add: "Max Energy"
- mod_country_resource_max_minerals_add: "Max Minerls"
+ mod_country_resource_max_minerals_add: "Max Minerals"
  mod_country_resource_max_unity_add: "Max Unity"
  mod_country_resource_max_trade_add: "Max Trade"
- mod_country_resource_max_consumer_goods_add: "Max Consumer Good"
+ mod_country_resource_max_consumer_goods_add: "Max Consumer Goods"
  mod_country_resource_max_volatile_motes_add: "Max Volatiles"
  mod_country_resource_max_exotic_gases_add: "Max Exotic"
  mod_country_resource_max_rare_crystals_add: "Max Crystal"
@@ -81,10 +91,11 @@
  mod_relay_bypass_empire_windup_mult: "$MOD_SHIP_WINDUP_MULT$"
  f93_megastructure_build_speed_mult: "$mod_megastructure_build_speed_mult$"
  f93_naval_cap_mod_ralis: "$mod_country_naval_cap_mult$"
- f93_ship_fire_rate_mult: "$MOD_SHIP_FIRE_RATE_MULT$
+ f93_ship_fire_rate_mult: "$MOD_SHIP_FIRE_RATE_MULT$"
  f93_artificial_ship_naval_cap_usage_mult: "$artificial_ship_naval_cap_usage_mult$"
  f93_pre_midgame_stabalisation: "Stabilisation Buff"
- mod_country_ruler_minerals_produces_add: "Ruler Produces Minerals""
+ mod_country_ruler_minerals_produces_add: "Ruler Produces Minerals"
+ f93_job_creating_modifier: "$black_hole_energy$"
 
  RALISGATE_GALACTIC: "$ralisgate_gate$"
  RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"
@@ -100,7 +111,7 @@
  f93_zro_drone_cartel: "The Zro Deviancy"
  f93_zro_criminal: "Zro Pusher"
  f93_zro_criminal_plural: "Zro Pushers"
- f93_zro_criminal_desc: "Hardworking honest members of society. His crippling Zro addiction makes his eyes glow purple."
+ f93_zro_criminal_desc: "Hardworking honest members of society. Their crippling Zro addiction makes their eyes glow purple."
  f93_zro_deviant_drone: "Innocent Drone"
  f93_zro_deviant_drone_plural: "Innocent Drones"
  f93_zro_deviant_drone_desc: "This perfectly ordinary drone is holding some Zro."
@@ -126,7 +137,7 @@
  f93_community_ralis_admin_ADJ: "administrative"
  f93_ralis_liberator: "§Y[f93_ralis_liberator.GetName]§!"
  f93_shroud.7.name: "The Galactic Crossing"
- f93_shroud.7.desc: "The Galactic Crossing is the academic name for a region in space where an ancient civilisation has constructed a mighty trade empire. Only the Hyper Relays left behind by them tell of their story... or so we tought, A feeling of unease spreads across the galaxy"
+ f93_shroud.7.desc: "The Galactic Crossing is the academic name for a region in space where an ancient civilisation has constructed a mighty trade empire. Only the Hyper Relays left behind by them tell of their story... or so we thought, A feeling of unease spreads across the galaxy"
  f93_shroud.8.desc: "It is your job now, to be the source the universe deserves!"
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
@@ -149,7 +160,7 @@
  f93_ralis_crisis_event.0201.desc: "The session is over, but the air inside the Senate's chambers remains heavy. §R[LastKilledCountryName]§! is now completely gone, wiped from the stars without warning. With more systems falling silent, and yet... the Senate remains divided.\nSome delegates demanded immediate retaliation 'Mobilize now', 'Strike before more worlds are lost!' But just as many hesitated, unwilling to risk open war against an enemy they do not even know. Others, more pragmatic in nature, think: 'Why rush to fight if this Crisis is destroying our rivals for us?' Some empires may even be gambling that they can outlast this crisis, only to seize power once the dust settles."
  f93_ralis_crisis_event.0201.a: "With no coordinated response, we are left waiting"
  f93_ralis_crisis_event.0301.name: "Receding of the Abyss"
- f93_ralis_crisis_event.0301.desc: "The immense gravitational anomalies that had terrorised the Galactic Crossing are retreating. Long-range sensors report their vast distortions moving outward, slipping beyond known space and into the depths of the Shrouded Regions. As they vanish, they leave behind strange scars - regions of space where gravity flickers unpredictably, as if something is trying to maintain an opening ... maybe even to widen it.\n\nYet the crisis is far from over. While the major two anomalies withdraw, fleets continue to pour from the Galactic Crossing. Some worlds are already struggling to hold the line. The Senate remains divided, unwilling or unable to form a coordinated response, leaving desperate worlds to fend for themselves. And beyond the rift, something is still watching - waiting."
+ f93_ralis_crisis_event.0301.desc: "The immense gravitational anomalies that had terrorised the Galactic Crossing are retreating. Long-range sensors report their vast distortions moving outward, slipping beyond known space and into the depths of the Shrouded Regions. As they vanish, they leave behind strange scars - regions of space where gravity flickers unpredictably, as if something is trying to maintain an opening ... maybe even to widen it.\n\nYet the crisis is far from over. While the major two anomalies withdraw, fleets continue to pour from the Galactic Crossing. Some worlds are already struggling to hold the line. The Senate remains divided, unwilling or unable to form a coordinated response, leaving desperate worlds to fend for themselves. Beyond the rift, something is still watching - waiting."
  f93_ralis_crisis_event.0301.a: "We should prepare for the worst."
  f93_ralis_crisis_event.0301.b: " This is the opportunity of the century"
  f93_ralis_crisis_event.0401.name: "Secrets of $ralis_NAME$"
@@ -160,7 +171,7 @@
  f93_ralis_crisis_event.0501.a: "For the Galaxy!"
  f93_ralis_crisis_event.0501.a_desc: "We can now introduce a new §YResolution§! in the galactic senate."
  f93_ralis_crisis_event.0501.b: "We can't sign this!"
- f93_ralis_crisis_event.0501.b_desc: "Some §Rfool§! will make this a senatorial issue and waste everyones time with it."
+ f93_ralis_crisis_event.0501.b_desc: "Some §Rfool§! will make this a senatorial issue and waste everyone's time with it."
  f93_ralis_crisis_event.0601.name: "The War Plan Treaty"
  f93_ralis_crisis_event.0601.desc: "The Senate has passed the Resolution, and the War Treaty is currently being signed by the member states. Not everyone is pleased with the outcome of this session - some are even questioning their ties to the Community entirely. First Senators have already declared the withdrawal of their delegations from the Community..."
  f93_ralis_crisis_event.0601.a: "Where can I sign?"
@@ -198,7 +209,7 @@
  f93_ralis_crisis_event.0904.name: ""
  f93_ralis_crisis_event.0904.desc: ""
  f93_ralis_crisis_event.0905.name: "The Community's Plea"
- f93_ralis_crisis_event.0905.desc: "Community officials have approached us with a plea: to voluntarily hand over territories seized during the crisis war for shared administration and rebuilding. They cannot demand this - only request it - hoping that the galaxy will uphold the ideals of fairness, collaboration, and long-term stability. These regions, they argue, would be better served under shared oversight while relief efforts and rebuilding begin.While some may see this as a loss, others view it as a chance to lead by example. The decision is ours."
+ f93_ralis_crisis_event.0905.desc: "Community officials have approached us with a plea: to voluntarily hand over territories seized during the crisis war for shared administration and rebuilding. They cannot demand this - only request it - hoping that the galaxy will uphold the ideals of fairness, collaboration, and long-term stability. These regions, they argue, would be better served under shared oversight while relief efforts and rebuilding begin. While some may see this as a loss, others view it as a chance to lead by example. The decision is ours."
  f93_ralis_crisis_event.0905.a: "$f93_ralis_crisis_event.0903.a$"
  f93_ralis_crisis_event.0905.b: "$f93_ralis_crisis_event.0903.b$"
  f93_ralis_crisis_event.1001.name: "Paper Promises"
@@ -326,3 +337,4 @@
  f93_galactic_crossing.99.i: "Everything"
  f93_galactic_crossing.99.j: "Random ai Country"
  f93_galactic_crossing.99.k: "All Fleets in shrouded regions"
+ f93_galactic_crossing.99.l: "The Shrouded Region Crisis"
