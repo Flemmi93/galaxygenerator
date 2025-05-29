@@ -261,15 +261,14 @@ planet_event = {
 							count = 10
 							spawn_free_defense_platform = yes
 						}
+						create_ship = {
+							name = random
+							design = ion_cannon
+							graphical_culture = owner
+						}
 					}
 				}
 			}
-			# owner = {
-			# 	random_system_within_border = {
-			# 		limit = { NOT = { is_same_value = event_target:f93_ralis_system } }
-			# 		save_global_event_target_as = f93_ralis_matter_decompressor_system
-			# 	}
-			# }
 			else = {
 				event_target:f93_ralis_country = {
 					add_resource = {

@@ -82,6 +82,7 @@ create_ralis_country = { #target a valid planet with this
 			give_technology = { tech = tech_cruisers }
 			# give_technology = { tech = tech_battleships }
 			give_technology = { tech = tech_strike_craft_1 }
+			set_variable = { which = f93_fleet_size value = 1 }
 		}
 	}
 	create_colony = {
@@ -96,16 +97,10 @@ create_ralis_country = { #target a valid planet with this
 		species = last_created_species
 		ethos = last_created_country
 	}
-	event_target:f93_ralis_country = {
-		create_fleet_from_naval_cap = 1
-		capital_scope = {
-			save_global_event_target_as = f93_ralis_planet
-		}
-	}
 	create_fleet = {
 		effect = {
 			set_owner = last_created_country
-			set_location = event_target:f93_ralis_planet
+			set_location = owner.capital_scope
 			create_ship = {
 				name = random
 				random_existing_design = constructor
@@ -115,59 +110,19 @@ create_ralis_country = { #target a valid planet with this
 	create_fleet = {
 		effect = {
 			set_owner = last_created_country
-			set_location = event_target:f93_ralis_planet
+			set_location = owner.capital_scope
 			create_ship = {
 				name = random
 				random_existing_design = science
 			}
 		}
 	}
-	# add_modifier = {
-	# 	modifier = ruler_savior
-	# 	multiplier = 100
-	# 	days = 7200
-	# }
-	# add_modifier = {
-	# 	modifier = b_world_saved
-	# 	multiplier = 1.5
-	# 	days = 7200
-	# }
-	# add_modifier = {
-	# 	modifier = cost_of_freedom_07
-	# 	multiplier = 100
-	# 	days = 7200
-	# }
-	# add_modifier = {
-	# 	modifier = wasteland_infrastructure
-	# 	multiplier = 4
-	# 	days = 7200
-	# }
-	# add_modifier = {
-	# 	modifier = wasteland_orbital_debris
-	# 	multiplier = -10
-	# 	days = 7200
-	# }
-	# add_modifier = {
-	# 	modifier = horse_powered_factories_medium
-	# 	multiplier = 10
-	# 	days = 7200
-	# }
-	# add_modifier = {
-	# 	modifier = f93_job_creating_modifier
-	# 	days = -1
-	# }
 }
 
 create_ralis_planet = {
+	save_global_event_target_as = f93_ralis_planet
 	remove_all_buildings = yes
 	clear_blockers = yes
-	# if = {
-	# 	limit = { owner = { is_country_type = f93_shrouded_region_crisis } }
-	# 	add_building = f93_building_crisis_capital
-	# }
-	# else = {
-	# 	add_building = building_capital
-	# }
 	add_building = f93_building_crisis_capital
 	add_building = building_hydroponics_farm
 	add_building = building_fortress
@@ -181,13 +136,11 @@ create_ralis_planet = {
 		add_district = district_arcology_housing
 	}
 	add_zone = {
-		# district = district_arcology_housing
 		zone = zone_urban
 		zone_slot = 1
 		replace = yes
 	}
 	add_zone = {
-		# district = district_arcology_housing
 		zone = zone_urban
 		zone_slot = 2
 		replace = yes
@@ -219,13 +172,11 @@ create_galcom_admin_planet = {
 		add_district = district_generator
 	}
 	add_zone = {
-		# district = district_arcology_housing
 		zone = zone_industrial
 		zone_slot = 1
 		replace = yes
 	}
 	add_zone = {
-		# district = district_arcology_housing
 		zone = zone_trade
 		zone_slot = 2
 		replace = yes

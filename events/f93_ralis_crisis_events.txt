@@ -176,7 +176,7 @@ country_event = {
 				mult = 1.25
 			}
 			if = {
-				limit = { mid_game_years_passed < 1 }
+				limit = { mid_game_years_passed < 0 }
 				add_modifier = {
 					modifier = f93_pre_midgame_stabalisation
 					mult = 250	
@@ -187,25 +187,6 @@ country_event = {
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
 					days = 360
-				}
-				random_list = {
-					10 = {
-						create_fleet_from_naval_cap = 0.05
-					}
-					5 = {
-						create_fleet_from_naval_cap = 0.075
-					}
-					2 = {
-						create_fleet_from_naval_cap = 0.1
-					}
-				}
-				random_system_within_border = {
-					limit = { is_capital_system = no }
-					random_system_planet = {
-						last_created_fleet = {
-							set_location = prev
-						}
-					}
 				}
 			}
 		}
@@ -224,7 +205,7 @@ country_event = {
 				mult = -0.2
 			}
 			if = {
-				limit = { mid_game_years_passed < 1 }
+				limit = { mid_game_years_passed < 0 }
 				add_modifier = {
 					modifier = f93_pre_midgame_stabalisation
 					mult = 300
@@ -237,27 +218,9 @@ country_event = {
 					flag = f93_recent_reinforcments
 					days = 360
 				}
-				random_list = {
-					10 = {
-						create_fleet_from_naval_cap = 0.05
-					}
-					5 = {
-						create_fleet_from_naval_cap = 0.075
-					}
-					2 = {
-						create_fleet_from_naval_cap = 0.1
-					}
-					1 = {
-						create_fleet_from_naval_cap = 0.125
-					}
-					10 = {
-						create_fleet_from_naval_cap = 0.2
-						modifier = {
-							factor = 0
-							used_naval_capacity_percent > 0.4
-						}
-					}
-				}
+				set_variable = { which = f93_fleet_size value = 3 }
+				
+				capital_scope = { f93_create_cruiser_fleet = yes }
 				random_system_within_border = {
 					limit = { is_capital_system = no }
 					random_system_planet = {
@@ -287,39 +250,21 @@ country_event = {
 				mult = 0.85
 			}
 			if = {
-				limit = { mid_game_years_passed < 1 }
+				limit = { mid_game_years_passed < 5 }
 				add_modifier = {
 					modifier = f93_pre_midgame_stabalisation
 					mult = 350
 				}
 			}
 			if = {
-				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }
+				limit = {
+					is_country_type = f93_shrouded_region_crisis
+					used_naval_capacity_percent < 0.95
+					NOT = { has_country_flag = f93_recent_reinforcments }
+				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
 					days = 360
-				}
-				random_list = {
-					5 = {
-						create_fleet_from_naval_cap = 0.075
-					}
-					2 = {
-						create_fleet_from_naval_cap = 0.1
-					}
-					10 = {
-						create_fleet_from_naval_cap = 0.25
-						modifier = {
-							factor = 0
-							used_naval_capacity_percent > 0.5
-						}
-					}
-				}
-				random_system_within_border = {
-					random_system_planet = {
-						last_created_fleet = {
-							set_location = prev
-						}
-					}
 				}
 			}
 		}

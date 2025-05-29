@@ -1,0 +1,252 @@
+#Corvette
+f93_create_corvettes = {
+	while = {
+		count = 8
+		limit = { owner = { has_resource = { type = alloys amount < 1500 } } }
+		owner = { add_resource = { alloys = -100 } }
+		create_fleet = {
+			settings = {
+				can_upgrade = yes
+				can_change_composition = yes
+				can_change_leader = yes	
+			}
+			effect = {
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+		}
+	}
+}
+#frigate
+f93_create_frigates = {
+	while = {
+		count = 6
+		limit = { owner = { has_technology = tech_torpedoes_1 has_resource = { type = alloys amount < 1500 } } }
+		owner = { add_resource = { alloys = -125 } }
+		create_fleet = {
+			settings = {
+				can_upgrade = yes
+				can_change_composition = yes
+				can_change_leader = yes	
+			}
+			effect = {
+				create_ship = {
+					name = random
+					random_existing_design = frigate
+				}
+			}
+		}
+	}
+}
+#destroyer
+f93_create_destroyers = {
+	while = {
+		count = 4
+		limit = { owner = { has_technology = tech_destroyers has_resource = { type = alloys amount < 1500 } } }
+		owner = { add_resource = { alloys = -200 } }
+		create_fleet = {
+			settings = {
+				can_upgrade = yes
+				can_change_composition = yes
+				can_change_leader = yes	
+			}
+			effect = {
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+		}
+	}
+}
+
+#cruiser
+f93_create_cruisers = {
+	while = {
+		count = 2
+		limit = { owner = { has_technology = tech_cruisers has_resource = { type = alloys amount < 1500 } } }
+		owner = { add_resource = { alloys = -400 } }
+		create_fleet = {
+			settings = {
+				can_upgrade = yes
+				can_change_composition = yes
+				can_change_leader = yes	
+			}
+			effect = {
+				create_ship = {
+					name = random
+					random_existing_design = cruiser
+				}
+			}
+		}
+	}
+}
+
+#battleship
+f93_create_battleship = {
+	while = {
+		count = 1
+		limit = { owner = { has_resource = { type = alloys amount < 1500 } } }
+		owner = { add_resource = { alloys = -800 } }
+		create_fleet = {
+			settings = {
+				can_upgrade = yes
+				can_change_composition = yes
+				can_change_leader = yes	
+			}
+			effect = {
+				create_ship = {
+					name = random
+					random_existing_design = destroyer
+				}
+			}
+		}
+	}
+}
+
+#Corvette Fleet
+f93_create_corvette_fleet = {
+	create_fleet =  {
+		settings = {
+			can_upgrade = yes
+			can_change_composition = no
+			can_change_leader = yes	
+		}
+		effect = {
+			while = {
+				count = root.f93_fleet_size
+				create_ship = {
+					name = random
+					random_existing_design = corvette
+				}
+			}
+		}
+	}
+}
+
+#Destroyer Fleet
+f93_create_destryoer_fleet = {
+	create_fleet =  {
+		settings = {
+			can_upgrade = yes
+			can_change_composition = no
+			can_change_leader = yes	
+		}
+		effect = {
+			while = {
+				count = root.f93_fleet_size
+				while = {
+					count = 3
+					create_ship = {
+						name = random
+						random_existing_design = corvette
+					}
+				}
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						random_existing_design = destroyer
+					}
+				}
+			}
+		}
+	}
+}
+#Cruiser Fleet
+f93_create_cruiser_fleet = {
+	create_fleet =  {
+		settings = {
+			can_upgrade = yes
+			can_change_composition = no
+			can_change_leader = yes	
+		}
+		effect = {
+			set_owner = root
+			while = {
+				count = root.f93_fleet_size
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						random_existing_design = corvette
+					}
+				}
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						random_existing_design = frigate
+					}
+				}
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						random_existing_design = destroyer
+					}
+				}
+				while = {
+					count = 1
+					create_ship = {
+						name = random
+						random_existing_design = cruiser
+					}
+				}
+			}
+		}
+	}
+}
+
+#Cruiser Fleet crisis
+f93_create_crisis_cruiser_fleet = {
+	create_fleet =  {
+		settings = {
+			can_upgrade = yes
+			can_change_composition = no
+			can_change_leader = yes	
+		}
+		effect = {
+			while = {
+				count = root.f93_fleet_size
+				while = {
+					count = 3
+					create_ship = {
+						name = random
+						random_existing_design = crisis_corvette
+					}
+				}
+				while = {
+					count = 1
+					create_ship = {
+						name = random
+						random_existing_design = crisis_frigate
+					}
+				}
+				while = {
+					count = 2
+					create_ship = {
+						name = random
+						random_existing_design = crisis_destroyer
+					}
+				}
+				while = {
+					count = 3
+					create_ship = {
+						name = random
+						random_existing_design = crisis_cruiser
+					}
+				}
+				while = {
+					count = 1
+					create_ship = {
+						name = random
+						random_existing_design = battleship
+					}
+				}
+			}
+		}
+	}
+}
