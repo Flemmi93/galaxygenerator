@@ -36,6 +36,13 @@
  f93_galcom_admin_SUBTITLE: "Peaceful Administration"
  f93_galcom_admin_SUBTITLE_desc: "The Galactic Community quickly established this pseudo government. They are tasked with making the galaxy whole again."
 
+#Personality
+ fanatic_purifiers_f93_shrouded_region_crisis: "$fanatic_purifiers$"
+ became_the_crisis_f93_shrouded_region_crisis: "$became_the_crisis$"
+#Government
+ f93_gov_ralis_crisis: "Galactic Nemesis"
+ f93_gov_ralis_crisis_desc: "Is back for a second round against the galaxy."
+
 #"Star"
  sc_hyper_relay_star: "Almost Empty System"
  sc_hyper_relay_star_desc: "This system contains no star, it might have been artificially connected to the Hyperlane Network."
@@ -49,6 +56,7 @@
 #Shrouded Region
  Shrouded_Region_NAME: " " #Shrouded Region
 #above is empty on purpose, these are the purple neublae and would cover the entire map in this string if it was not a space.
+
  f93_shrouded_region_star: "Shrouded Star"
  f93_shrouded_region_star2: "$f93_shrouded_region_star$"
  f93_shrouded_region_star_desc: "This Star is deep within the shrouded regions, long ago unbelievable forces tore reality apart, the lack of hyperlanes in this area makes ship logistics challenging."
@@ -92,7 +100,7 @@
  f93_megastructure_build_speed_mult: "$mod_megastructure_build_speed_mult$"
  f93_naval_cap_mod_ralis: "$mod_country_naval_cap_mult$"
  f93_ship_fire_rate_mult: "$MOD_SHIP_FIRE_RATE_MULT$"
- f93_artificial_ship_naval_cap_usage_mult: "$mod_artificial_ship_naval_cap_usage_mult$"
+ f93_artificial_ship_naval_cap_usage_mult: "$MOD_ARTIFICIAL_SHIP_NAVAL_CAP_USAGE_MULT$"
  f93_pre_midgame_stabalisation: "Stabilisation Buff"
  mod_country_ruler_minerals_produces_add: "Ruler Produces Minerals"
  f93_job_creating_modifier: "$black_hole_energy$"

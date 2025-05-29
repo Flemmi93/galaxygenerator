@@ -16,7 +16,8 @@ f93_building_crisis_capital = {
 	potential = {
 		exists = owner
 		owner = {
-			is_country_type = f93_shrouded_region_crisis
+			# is_country_type = f93_shrouded_region_crisis
+			has_country_flag = ralis_country_flag
 		}
 	}
 
@@ -39,7 +40,25 @@ f93_building_crisis_capital = {
 		planet_amenities_add = 2000
 		planet_max_branch_office_buildings_add = 4
 		planet_defense_armies_add = 16
-		f93_job_creating_modifier = 1
+	}
+	#modded buff
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = f93_shrouded_region_crisis }
+		}
+		modifier = {
+			f93_job_creating_modifier = 1
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			owner = { is_country_type = default has_country_flag = ralis_country_flag }
+		}
+		modifier = {
+			f93_job_creating_modifier = 0.5
+		}
 	}
 
 	inline_script = {

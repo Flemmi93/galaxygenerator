@@ -455,17 +455,17 @@ country_event = {
 					count < 4
 					limit = { leader_class = scientist }
 				}
-				create_leader = { name = random species = last_created_species class = scientist }
 			}
+			create_leader = { name = random species = last_created_species class = scientist }
 		}
 		if = {
 			limit = {
 				count_owned_leader = {
-					count < 3
+					count < 4
 					limit = { leader_class = official }
 				}
-				create_leader = { name = random species = last_created_species class = official }
 			}
+			create_leader = { name = random species = last_created_species class = official }
 		}
 		if = {
 			limit = {
@@ -473,8 +473,8 @@ country_event = {
 					count < 4
 					limit = { leader_class = commander }
 				}
-				create_leader = { name = random species = last_created_species class = commander }
 			}
+			create_leader = { name = random species = last_created_species class = commander }
 		}
 		if = {
 			limit = {
@@ -652,7 +652,7 @@ country_event = {
 	# mean_time_to_happen = 360
 	is_triggered_only = yes
 	trigger = {
-		years_passed >= 50
+		mid_game_years_passed >= value:halfway_to_mid_game_year
 		is_ai = yes
 		NOR = {
 			has_global_flag = galactic_community_founded
@@ -691,6 +691,27 @@ event = {
 		}
 	}
 }
+
+#somehow move enclaves out of the shrouded regions
+# event = {
+# 	id = f93_galactic_crossing.16
+# 	hide_window = yes
+# 	# mean_time_to_happen = 360
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
+
+# 	immediate = {
+# 		every_system = {
+# 			limit = {
+# 				has_star_flag = f93_shroud_region_flag
+# 				exists = any_fleet_in_system
+# 			}
+# 			every_fleet_in_system = {
+# 				limit = { is_ai = yes owner = { is_country_type = enclave } }
+# 			}
+# 		}
+# 	}
+# }
 
 # hardcore debugger
 country_event = {

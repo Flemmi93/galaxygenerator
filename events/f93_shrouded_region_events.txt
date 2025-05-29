@@ -114,16 +114,23 @@ system_event = { #creating ralis cluster
 		save_global_event_target_as = f93_ralis_system
 		set_star_flag = f93_ralis_empire_cluster
 		# set_name = changed
-		if = {
-			limit = { num_planets_in_system = 0 }
-			spawn_planet = {
-				name = ralis_planet_NAME
-				class = pc_city
-				orbit_location = yes
-				orbit_distance_offset = 32
-				orbit_angle_offset = 291
-				size = 28
-			}
+		
+		every_system_planet = {
+			limit = { is_star = no }
+			remove_planet = yes
+		}
+		spawn_planet = {
+			name = ralis_planet_NAME
+			class = pc_city
+			orbit_location = yes
+			orbit_distance_offset = 32
+			orbit_angle_offset = 291
+			size = 28
+		}
+		every_system_planet = {
+			limit = { is_star = no }
+			planet_event = { id = f93_shroud.6 days = 1 }
+			set_planet_flag = has_orbital_debris
 		}
 		every_system_megastructure = {
 			remove_megastructure = this
@@ -155,31 +162,6 @@ system_event = { #creating ralis cluster
 				set_star_flag = f93_ralis_empire_cluster
 			}
 		}
-		random_system_planet = {
-			limit = {
-				NOR = {
-					is_star = yes
-					is_moon = yes
-					is_planet_class = pc_asteroid
-					is_planet_class = pc_ice_asteroid
-				}
-			}
-			change_pc = pc_city
-			set_name = ralis_planet_NAME
-			set_planet_size = 28
-			planet_event = { id = f93_shroud.6 days = 1 }
-			set_planet_flag = has_orbital_debris
-		}
-		every_system_planet = {
-			limit = {
-				NOR = {
-					is_star = yes
-					is_planet_class = pc_city
-				}
-			}
-			remove_planet = yes
-		}
-
 	}
 }
 system_event = { #creating ralis cluster backup
@@ -194,17 +176,25 @@ system_event = { #creating ralis cluster backup
 	}
 	immediate = {
 		save_global_event_target_as = f93_ralis_system
+		set_star_flag = f93_ralis_empire_cluster
 		# set_name = changed
-		if = {
-			limit = { num_planets_in_system = 0 }
-			spawn_planet = {
-				name = ralis_planet_NAME
-				class = pc_city
-				orbit_location = yes
-				orbit_distance_offset = 32
-				orbit_angle_offset = 291
-				size = 28
-			}
+		
+		every_system_planet = {
+			limit = { is_star = no }
+			remove_planet = yes
+		}
+		spawn_planet = {
+			name = ralis_planet_NAME
+			class = pc_city
+			orbit_location = yes
+			orbit_distance_offset = 32
+			orbit_angle_offset = 291
+			size = 28
+		}
+		every_system_planet = {
+			limit = { is_star = no }
+			planet_event = { id = f93_shroud.6 days = 1 }
+			set_planet_flag = has_orbital_debris
 		}
 		every_system_megastructure = {
 			remove_megastructure = this
@@ -219,37 +209,22 @@ system_event = { #creating ralis cluster backup
 		while = {
 			count = 3
 			random_neighbor_system_euclidean = {
-				limit = { NOT = { has_star_flag = star_cracked } }
-				destroy_star_system = yes	
+				limit = {
+					NOT = {
+						has_star_flag = empire_cluster
+					}
+					distance = {
+						source = root
+						max_distance <= 120
+						type = euclidean
+					}
+				}
+				destroy_star_system = yes
 				every_system_megastructure = {
 					remove_megastructure = this
 				}
 				set_star_flag = f93_ralis_empire_cluster
 			}
-		}
-		random_system_planet = {
-			limit = {
-				NOR = {
-					is_star = yes
-					is_moon = yes
-					is_planet_class = pc_asteroid
-					is_planet_class = pc_ice_asteroid
-				}
-			}
-			change_pc = pc_city
-			set_name = ralis_planet_NAME
-			set_planet_size = 28
-			planet_event = { id = f93_shroud.6 days = 1 }
-		}
-		
-		every_system_planet = {
-			limit = {
-				NOR = {
-					is_star = yes
-					is_planet_class = pc_city
-				}
-			}
-			remove_planet = yes
 		}
 	}
 }
@@ -271,8 +246,8 @@ planet_event = {
 					size = starbase_citadel
 					module = shipyard
 					module = shipyard
-					module = missile_battery
-					module = missile_battery
+					module = hangar_bay
+					module = hangar_bay
 					module = gun_battery
 					module = gun_battery
 					
@@ -289,12 +264,12 @@ planet_event = {
 					}
 				}
 			}
-			owner = {
-				random_system_within_border = {
-					limit = { NOT = { is_same_value = event_target:f93_ralis_system } }
-					save_global_event_target_as = f93_ralis_matter_decompressor_system
-				}
-			}
+			# owner = {
+			# 	random_system_within_border = {
+			# 		limit = { NOT = { is_same_value = event_target:f93_ralis_system } }
+			# 		save_global_event_target_as = f93_ralis_matter_decompressor_system
+			# 	}
+			# }
 			else = {
 				event_target:f93_ralis_country = {
 					add_resource = {
@@ -395,7 +370,6 @@ country_event = {
 		has_country_flag = ralis_country_flag
 	}
 	immediate = {
-		set_ai_personality = fanatic_purifiers
 		add_resource = {
 			sr_dark_matter = 1
 			alloys = 2
@@ -416,6 +390,7 @@ country_event = {
 	give_technology = { tech = tech_wormhole_stabilization }
 	give_technology = { tech = tech_ascension_theory }
 	add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
+	set_ai_personality = became_the_crisis_f93_shrouded_region_crisis
 
 	random_system_within_border = {
 		limit = { has_megastructure = crisis_sphere_ruined }

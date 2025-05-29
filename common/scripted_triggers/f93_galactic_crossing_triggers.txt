@@ -2,6 +2,10 @@ f93_system_has_ancient_relay = {
 	OR = {
 		has_megastructure = dandelion_relay
 		has_megastructure = dandelion_relay_star
+		AND = {
+			has_global_flag = f82_button_2_1_off
+			has_star_flag = f93_ancient_relay_system
+		}
 	}
 }
 

@@ -92,7 +92,7 @@
  f93_megastructure_build_speed_mult: "$mod_megastructure_build_speed_mult$"
  f93_naval_cap_mod_ralis: "$mod_country_naval_cap_mult$"
  f93_ship_fire_rate_mult: "$MOD_SHIP_FIRE_RATE_MULT$"
- f93_artificial_ship_naval_cap_usage_mult: "$mod_artificial_ship_naval_cap_usage_mult$"
+ f93_artificial_ship_naval_cap_usage_mult: "$MOD_ARTIFICIAL_SHIP_NAVAL_CAP_USAGE_MULT$"
  f93_pre_midgame_stabalisation: "Stabilisation Buff"
  mod_country_ruler_minerals_produces_add: "Ruler Produces Minerals"
  f93_job_creating_modifier: "$black_hole_energy$"

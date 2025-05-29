@@ -35,6 +35,7 @@ f93_credits_menu = {
 # Button 1_1 #
 ##############
 #Story mode on / Off
+#default: flag NOT set.
 f93_gc_1_1_on = {
 	potential = {
 		NOT = { has_global_flag = f82_button_1_1_off }
@@ -69,6 +70,7 @@ f93_gc_1_1_onoff = {
 # Button 1_2 #
 ##############
 #Unfair Events can his the player (inverted)
+#default: flag IS set.
 f93_gc_1_2_on = {
 	potential = {
 		has_global_flag = f82_button_1_2_on
@@ -215,6 +217,7 @@ f93_gc_1_5_onoff = {
 # Button 2_1 #
 ##############
 #Ancient Relay Yes / No
+#default: flag NOT set.
 f93_gc_2_1_on = {
 	potential = {
 		NOT = { has_global_flag = f82_button_2_1_off }
@@ -249,6 +252,7 @@ f93_gc_2_1_onoff = {
 # Button 2_2 #
 ##############
 #Unclaimable GalCro Systems
+#default: flag NOT set.
 f93_gc_2_2_on = {
 	potential = { 
 		NOR = {
@@ -406,6 +410,7 @@ f93_gc_2_5_onoff = {
 ##############
 #difficulty
 #Easy
+#default: flag NOT set.
 f93_gc_3_1_on = {
 	potential = {
 		has_global_flag = f82_button_3_1_on
@@ -452,6 +457,7 @@ f93_gc_3_1_onoff = {
 # Button 3_2 #
 ##############
 #default
+#default: flag IS set.
 f93_gc_3_2_on = {
 	potential = {
 		has_global_flag = f82_button_3_2_on
@@ -488,6 +494,7 @@ f93_gc_3_2_onoff = {
 # Button 3_3 #
 ##############
 #hard
+#default: flag NOT set.
 f93_gc_3_3_on = {
 	potential = {
 		has_global_flag = f82_button_3_3_on

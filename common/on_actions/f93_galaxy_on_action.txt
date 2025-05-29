@@ -132,3 +132,15 @@ on_entering_system_fleet = {
 		f93_ralis_crisis_event.0702
 	}
 }
+
+
+
+# A country is created via create_country or create_rebels
+# This = created country
+# From = root of context where create_country/create_rebels happens
+on_country_created = {
+	events = {
+		f93_galcro_copy_events.1
+		f93_galcro_copy_events.2
+	}
+}

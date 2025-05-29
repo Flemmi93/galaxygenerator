@@ -13,13 +13,13 @@ f93_shrouded_region_crisis = {
 	share_communications = no				#default yes, decides if they share communciations with anyone you have contact with
 	destroys_starbases = no					#if this is set to yes, country will destroy starbases instead of disabling them
 	observable = yes						#Fairly self explanatory. Will not show up in list of observable countries, and cannot be tagged to as observer.
-	mid_game_crisis = yes
+	mid_game_crisis = no
 	# can_use_invalid_technology = yes
 
 	ai = {
 		enabled = yes
 		declare_war = no
-		colonizer = yes
+		colonizer = no
 		construction = yes
 		min_navy_for_wars = 0.75
 		min_assault_armies_for_wars = @armies_for_declaring_war
@@ -35,33 +35,30 @@ f93_shrouded_region_crisis = {
 			interior_minister_module
 		}
 	}
-	trade_routes_available = {
-		is_ai = no
-	}
-
+	
 	modules = {
 		standard_event_module = {}
 		standard_economy_module = {}
 		standard_leader_module = {}
-		# standard_diplomacy_module = { contact_rule = does_first_contact_sites }
+		standard_diplomacy_module = { contact_rule = does_first_contact_sites }
 		standard_technology_module = {}
 		standard_pop_factions_module = {}
 		standard_expansion_module = {}
 		standard_species_rights_module = {}
 		standard_grand_archive_module = {}
-		exclusive_diplomacy_module = {
-			contact_rule = does_first_contact_sites
-			can_receive = {
-				action_build_spy_network
-				action_manage_spy_network
-			}
-		}
+		# exclusive_diplomacy_module = {
+		# 	contact_rule = does_first_contact_sites
+		# 	can_receive = {
+		# 		action_build_spy_network
+		# 		action_manage_spy_network
+		# 	}
+		# }
 	}
 
 	faction = {
 		hostile = no
 		needs_border_access = no
-		generate_borders = no
+		generate_borders = yes
 		needs_colony = no
 	}
 	# custom_diplomacy = yes
@@ -70,7 +67,7 @@ f93_shrouded_region_crisis = {
 	resources = {
 		category = country_base
 		produces = {
-			energy = 20
+			energy = 200
 			minerals = 20
 			food = 20
 			physics_research = 10
@@ -80,14 +77,6 @@ f93_shrouded_region_crisis = {
 			unity = 5
 			alloys = 5
 			consumer_goods = 15
-		}
-		produces = {
-			trigger = {
-				OR = {
-					is_gestalt = no
-					has_valid_civic = civic_machine_servitor
-				}
-			}
 		}
 	}
 }

@@ -4,7 +4,7 @@ f93_ralis_plan_resolution = {
 	harmful = yes
 	valid_target = {
 		NOT = { is_same_value = from }
-		is_country_type = default
+		# is_country_type = default
 		has_country_flag = ralis_country_flag
 	}
 
@@ -61,7 +61,7 @@ f93_ralis_plan_resolution = {
 	}
 
 	ai_weight = {
-		factor = 8
+		factor = 7
 	#self serving empires should oppose it.
 		modifier = {
 			factor = 10

@@ -24,6 +24,7 @@ country_event = {
 	}
 
 	immediate = {
+		set_variable = { which = stars_destroyed value = 0 }
 		save_global_event_target_as = crisis_country
 		set_global_flag = f93_ralis_awoken
 		# set_country_type = default
@@ -38,7 +39,6 @@ country_event = {
 			country_event = { id = f93_ralis_crisis_event.0002 }
 		}
 		event_target:f93_ralis_country = {
-			set_ai_personality = fanatic_purifiers
 			add_resource = {
 				sr_dark_matter = 5
 				alloys = 2
@@ -58,6 +58,7 @@ country_event = {
 			add_tradition = tr_supremacy_finish
 			# give_technology = { tech = tech_wormhole_stabilization } 
 			add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
+			set_ai_personality = became_the_crisis_f93_shrouded_region_crisis
 			# force_remove_civic = 2
 			# force_add_civic = civic_fanatic_purifiers
 			# force_add_civic = civic_heroic_tales
@@ -118,16 +119,16 @@ country_event = {
 					f93_place_shroud_gate_nexus = yes
 				}
 			}
-			event_target:f93_ralis_matter_decompressor_system = {
-				random_system_megastructure = {
-					limit = { is_megastructure_type = matter_decompressor_1 }
-					remove_megastructure = this
-				}
-				spawn_megastructure = {
-					type = matter_decompressor_ruined
-					planet = star
-				}
-			}
+			# event_target:f93_ralis_matter_decompressor_system = {
+			# 	random_system_megastructure = {
+			# 		limit = { is_megastructure_type = matter_decompressor_1 }
+			# 		remove_megastructure = this
+			# 	}
+			# 	spawn_megastructure = {
+			# 		type = matter_decompressor_ruined
+			# 		planet = star
+			# 	}
+			# }
 		}
 	}
 	option = {
@@ -172,7 +173,7 @@ country_event = {
 			}
 			add_modifier = {
 				modifier = f93_artificial_ship_naval_cap_usage_mult
-				mult = 6
+				mult = 1.25
 			}
 			if = {
 				limit = { mid_game_years_passed < 1 }
@@ -181,22 +182,30 @@ country_event = {
 					mult = 250	
 				}
 			}
-
-			event_target:f93_ralis_matter_decompressor_system = {
-				if = {
-					limit = { has_star_flag = f93_matter_decompressort_active }
-					every_owned_megastructure = {
-						limit = {
-							OR = {
-								is_megastructure_type = matter_decompressor_1
-								is_megastructure_type = matter_decompressor_2
-								is_megastructure_type = matter_decompressor_3
-								is_megastructure_type = matter_decompressor_4
-							}
-						}
-						remove_megastructure = this
+			if = {
+				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.75 NOT = { has_country_flag = f93_recent_reinforcments } }
+				set_timed_country_flag = {
+					flag = f93_recent_reinforcments
+					days = 360
+				}
+				random_list = {
+					10 = {
+						create_fleet_from_naval_cap = 0.05
 					}
-					remove_star_flag = f93_matter_decompressort_active
+					5 = {
+						create_fleet_from_naval_cap = 0.075
+					}
+					2 = {
+						create_fleet_from_naval_cap = 0.1
+					}
+				}
+				random_system_within_border = {
+					limit = { is_capital_system = no }
+					random_system_planet = {
+						last_created_fleet = {
+							set_location = prev
+						}
+					}
 				}
 			}
 		}
@@ -214,11 +223,6 @@ country_event = {
 				modifier = f93_ship_fire_rate_mult
 				mult = -0.2
 			}
-			add_modifier = {
-				modifier = f93_artificial_ship_naval_cap_usage_mult
-				mult = 5
-			}
-			
 			if = {
 				limit = { mid_game_years_passed < 1 }
 				add_modifier = {
@@ -226,21 +230,41 @@ country_event = {
 					mult = 300
 				}
 			}
-			event_target:f93_ralis_matter_decompressor_system = {
-				if = {
-					limit = { has_star_flag = f93_matter_decompressort_active }
-					every_owned_megastructure = {
-						limit = {
-							OR = {
-								is_megastructure_type = matter_decompressor_1
-								is_megastructure_type = matter_decompressor_2
-								is_megastructure_type = matter_decompressor_3
-								is_megastructure_type = matter_decompressor_4
-							}
-						}
-						remove_megastructure = this
+			
+			if = {
+				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }
+				set_timed_country_flag = {
+					flag = f93_recent_reinforcments
+					days = 360
+				}
+				random_list = {
+					10 = {
+						create_fleet_from_naval_cap = 0.05
 					}
-					remove_star_flag = f93_matter_decompressort_active
+					5 = {
+						create_fleet_from_naval_cap = 0.075
+					}
+					2 = {
+						create_fleet_from_naval_cap = 0.1
+					}
+					1 = {
+						create_fleet_from_naval_cap = 0.125
+					}
+					10 = {
+						create_fleet_from_naval_cap = 0.2
+						modifier = {
+							factor = 0
+							used_naval_capacity_percent > 0.4
+						}
+					}
+				}
+				random_system_within_border = {
+					limit = { is_capital_system = no }
+					random_system_planet = {
+						last_created_fleet = {
+							set_location = prev
+						}
+					}
 				}
 			}
 		}
@@ -260,7 +284,7 @@ country_event = {
 			}
 			add_modifier = {
 				modifier = f93_artificial_ship_naval_cap_usage_mult
-				mult = 4
+				mult = 0.85
 			}
 			if = {
 				limit = { mid_game_years_passed < 1 }
@@ -269,16 +293,33 @@ country_event = {
 					mult = 350
 				}
 			}
-			event_target:f93_ralis_matter_decompressor_system = {
-				if = {
-					limit = { NOT = { has_star_flag = f93_matter_decompressort_active } }
-					spawn_megastructure = {
-						type = matter_decompressor_1
-						owner = last_created_country
-						planet = star
-						graphical_culture = root.owner
+			if = {
+				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }
+				set_timed_country_flag = {
+					flag = f93_recent_reinforcments
+					days = 360
+				}
+				random_list = {
+					5 = {
+						create_fleet_from_naval_cap = 0.075
 					}
-					set_star_flag = f93_matter_decompressort_active
+					2 = {
+						create_fleet_from_naval_cap = 0.1
+					}
+					10 = {
+						create_fleet_from_naval_cap = 0.25
+						modifier = {
+							factor = 0
+							used_naval_capacity_percent > 0.5
+						}
+					}
+				}
+				random_system_within_border = {
+					random_system_planet = {
+						last_created_fleet = {
+							set_location = prev
+						}
+					}
 				}
 			}
 		}
@@ -393,6 +434,9 @@ country_event = {
 					}
 					destroy_star_system = yes
 					every_system_planet = { reroll_deposits = yes }
+					event_target:f93_ralis_country = {
+						change_variable = { which = stars_destroyed value = 1 }
+					}
 				}
 				100 = {}
 			}
@@ -615,6 +659,7 @@ country_event = {
 				is_materialist = yes
 				is_xenophile = yes
 				is_megacorp = yes
+				is_gestalt = yes
 			}
 		}
 		name = f93_ralis_crisis_event.0601.a

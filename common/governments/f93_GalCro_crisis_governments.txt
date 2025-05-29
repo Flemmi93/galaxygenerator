@@ -1,0 +1,22 @@
+f93_gov_ralis_crisis = {
+	ruler_title = RT_HIGH_EXECUTIONER
+	ruler_title_female = RT_HIGH_EXECUTIONER_FEMALE
+	heir_title = HT_SENIOR_EXECUTIONER
+	heir_title_female = HT_SENIOR_EXECUTIONER_FEMALE
+
+	use_regnal_names = yes
+	dynastic_last_names = yes
+
+	should_force_rename = yes
+
+	possible = {
+		OR = {
+			has_country_flag = ralis_country_flag
+			is_country_type = f93_shrouded_region_crisis
+		}
+	}
+
+	weight = {
+		base = 400000
+	}
+}

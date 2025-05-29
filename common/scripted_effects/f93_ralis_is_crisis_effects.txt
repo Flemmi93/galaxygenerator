@@ -13,11 +13,11 @@ create_ralis_country = { #target a valid planet with this
 	create_country = {
 		name = ralis_system_NAME
 		adjective = ralis_ADJ
-		type = primitive
+		type = primitive #f93_shrouded_region_crisis
 		name_list = AVI4
 		ship_prefix = ralis_ship_prefix
 		authority = "auth_imperial"
-		civics = { civic = civic_fanatic_purifiers civic = civic_heroic_tales }
+		civics = { civic = civic_heroic_tales }
 		species = last_created_species
 		flag = {
 			icon = { category = "union_state" file = ralis_banner.dds }
@@ -26,10 +26,18 @@ create_ralis_country = { #target a valid planet with this
 		}
 		ethos = { ethic = ethic_fanatic_xenophobe ethic = ethic_militarist }
 		effect = {
-			set_country_type = f93_shrouded_region_crisis
+			set_country_type = f93_shrouded_region_crisis #default
+			if = {
+				limit = { host_has_dlc = "Utopia" }
+				force_add_civic = civic_fanatic_purifiers
+			}
+			else = { force_add_civic = civic_imperial_cult }
 			save_global_event_target_as = f93_ralis_country
 			set_country_flag = ralis_country_flag
 			set_country_flag = galcom_form_nay
+			set_country_flag = use_default_ships
+			set_country_flag = voidworms_bombardment_disabled
+			set_ai_personality = fanatic_purifiers_f93_shrouded_region_crisis
 			add_resource = {
 				alloys = 2
 				minerals = 5
@@ -44,7 +52,7 @@ create_ralis_country = { #target a valid planet with this
 				multiplier = 1
 				days = -1
 			}
-			unlock_council_slots = 3
+			unlock_council_slots = 1
 			while = {
 				count = 4
 				create_leader = {
@@ -63,6 +71,17 @@ create_ralis_country = { #target a valid planet with this
 					class = scientist
 				}
 			}
+			give_technology = { tech = tech_space_construction }
+			give_technology = { tech = tech_starbase_1 }
+			give_technology = { tech = tech_starbase_2 }
+			give_technology = { tech = tech_starbase_3 }
+			give_technology = { tech = tech_starbase_4 }
+			give_technology = { tech = tech_starbase_5 }
+			give_technology = { tech = tech_corvettes }
+			give_technology = { tech = tech_destroyers }
+			give_technology = { tech = tech_cruisers }
+			# give_technology = { tech = tech_battleships }
+			give_technology = { tech = tech_strike_craft_1 }
 		}
 	}
 	create_colony = {
@@ -78,11 +97,31 @@ create_ralis_country = { #target a valid planet with this
 		ethos = last_created_country
 	}
 	event_target:f93_ralis_country = {
+		create_fleet_from_naval_cap = 1
 		capital_scope = {
 			save_global_event_target_as = f93_ralis_planet
 		}
 	}
-	
+	create_fleet = {
+		effect = {
+			set_owner = last_created_country
+			set_location = event_target:f93_ralis_planet
+			create_ship = {
+				name = random
+				random_existing_design = constructor
+			}
+		}
+	}
+	create_fleet = {
+		effect = {
+			set_owner = last_created_country
+			set_location = event_target:f93_ralis_planet
+			create_ship = {
+				name = random
+				random_existing_design = science
+			}
+		}
+	}
 	# add_modifier = {
 	# 	modifier = ruler_savior
 	# 	multiplier = 100
@@ -121,7 +160,14 @@ create_ralis_country = { #target a valid planet with this
 
 create_ralis_planet = {
 	remove_all_buildings = yes
-
+	clear_blockers = yes
+	# if = {
+	# 	limit = { owner = { is_country_type = f93_shrouded_region_crisis } }
+	# 	add_building = f93_building_crisis_capital
+	# }
+	# else = {
+	# 	add_building = building_capital
+	# }
 	add_building = f93_building_crisis_capital
 	add_building = building_hydroponics_farm
 	add_building = building_fortress
@@ -136,23 +182,22 @@ create_ralis_planet = {
 	}
 	add_zone = {
 		# district = district_arcology_housing
-		zone = zone_default
+		zone = zone_urban
 		zone_slot = 1
 		replace = yes
 	}
-	# add_zone = {
-	# 	# district = district_arcology_housing
-	# 	zone = zone_trade
-	# 	zone_slot = 2
-	# 	replace = yes
-	# }
+	add_zone = {
+		# district = district_arcology_housing
+		zone = zone_urban
+		zone_slot = 2
+		replace = yes
+	}
 	while = {
 		count = 150
 		create_pop = {
 			species = root.ower.species
 		}
 	}
-	owner = { set_country_type = f93_shrouded_region_crisis }
 }
 
 create_galcom_admin_planet = {
@@ -252,6 +297,7 @@ f93_create_community_ralis_admin = {
 		ignore_initial_colony_error = yes
 		effect = {
 			save_global_event_target_as = f93_community_ralis_admin_country
+			set_country_flag = voidworms_bombardment_disabled
 			every_playable_country = {
 				establish_communications = prev
 			}
