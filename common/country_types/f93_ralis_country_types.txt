@@ -14,18 +14,20 @@ f93_shrouded_region_crisis = {
 	destroys_starbases = no					#if this is set to yes, country will destroy starbases instead of disabling them
 	observable = yes						#Fairly self explanatory. Will not show up in list of observable countries, and cannot be tagged to as observer.
 	mid_game_crisis = yes
+	# can_use_invalid_technology = yes
 
 	ai = {
 		enabled = yes
 		declare_war = no
-		min_navy_for_wars = 0.5
+		colonizer = yes
+		construction = yes
+		min_navy_for_wars = 0.75
 		min_assault_armies_for_wars = @armies_for_declaring_war
 		internal_policies = no
 		modification = no
 		government = yes
 		traditions = yes
 		ascension_perks = no
-		follow = yes
 		can_use_market = yes
 		modules = {
 			military_minister_module
@@ -41,16 +43,23 @@ f93_shrouded_region_crisis = {
 		standard_event_module = {}
 		standard_economy_module = {}
 		standard_leader_module = {}
-		standard_diplomacy_module = { contact_rule = does_first_contact_sites }
+		# standard_diplomacy_module = { contact_rule = does_first_contact_sites }
 		standard_technology_module = {}
 		standard_pop_factions_module = {}
 		standard_expansion_module = {}
 		standard_species_rights_module = {}
 		standard_grand_archive_module = {}
+		exclusive_diplomacy_module = {
+			contact_rule = does_first_contact_sites
+			can_receive = {
+				action_build_spy_network
+				action_manage_spy_network
+			}
+		}
 	}
 
 	faction = {
-		hostile = yes
+		hostile = no
 		needs_border_access = no
 		generate_borders = no
 		needs_colony = no
@@ -89,7 +98,8 @@ f93_galcom_administration = {
 	playable = no							#if this type is available for players. used when listing countries for hot-joining players
 	has_pulse_events = yes					#if this type gets checked for country-specific pulse events from on_action
 	has_deficits = no						#if this type suffers from resource deficits
-	randomize_ethos = no					#does this empire have a randomly generated ethos?
+	randomize_ethos = no	
+	enforces_borders = no					#does this empire have a randomly generated ethos?
 	shuffle_pop_ethos = no					#if pops belonging to this country type should mutate their ethos every now and then
 	sub_title = "f93_galcom_admin_SUBTITLE"	#sub title that will be shown for this empire. Like "Example Federation - Fallen Empire"
 	sub_title_desc = "f93_galcom_admin_SUBTITLE_DESC" #description for the sub title. used in tooltips
@@ -116,7 +126,7 @@ f93_galcom_administration = {
 	}
 
 	faction = {
-		neutral = no
+		neutral = yes
 		needs_border_access = no
 		generate_borders = no
 		needs_colony = no

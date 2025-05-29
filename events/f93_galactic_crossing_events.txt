@@ -50,13 +50,12 @@ country_event = {
 			set_variable = { which = f93_gal_size value = 4 }
 			f93_set_galaxy_size = yes
 			#Should someone play with 0 fallen empires, this would generate random GalCro Endpoints
+			get_galaxy_setup_value = { which = num_fallen_empires setting = num_fallen_empires }
 			if = {
 				limit = {
-					count_country = {
-						count = 0
-						limit = { is_country_type = fallen_empire }
-					}
+					check_variable = { which = num_fallen_empires value = 0 }
 				}
+				f93_set_galaxy_size = yes
 				while = {
 					count = galaxy_size
 					random_system = { set_star_flag = f93_used_in_case_of_0_less_FE }
@@ -450,6 +449,33 @@ country_event = {
 
 	immediate = {
 		remove_modifier = f93_megastructure_build_speed_mult
+		if = {
+			limit = {
+				count_owned_leader = {
+					count < 4
+					limit = { leader_class = scientist }
+				}
+				create_leader = { name = random species = last_created_species class = scientist }
+			}
+		}
+		if = {
+			limit = {
+				count_owned_leader = {
+					count < 3
+					limit = { leader_class = official }
+				}
+				create_leader = { name = random species = last_created_species class = official }
+			}
+		}
+		if = {
+			limit = {
+				count_owned_leader = {
+					count < 4
+					limit = { leader_class = commander }
+				}
+				create_leader = { name = random species = last_created_species class = commander }
+			}
+		}
 		if = {
 			limit = {
 				NOT = { has_global_flag = f93_ralis_awoken }

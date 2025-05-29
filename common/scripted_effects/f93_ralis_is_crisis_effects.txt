@@ -44,6 +44,25 @@ create_ralis_country = { #target a valid planet with this
 				multiplier = 1
 				days = -1
 			}
+			unlock_council_slots = 3
+			while = {
+				count = 4
+				create_leader = {
+					name = random
+					species = last_created_species
+					class = commander
+				}
+				create_leader = {
+					name = random
+					species = last_created_species
+					class = official
+				}
+				create_leader = {
+					name = random
+					species = last_created_species
+					class = scientist
+				}
+			}
 		}
 	}
 	create_colony = {
@@ -112,21 +131,21 @@ create_ralis_planet = {
 	add_building = building_foundry_3
 	add_building = building_factory_3
 	while = {
-		count = 10
+		count = 11
 		add_district = district_arcology_housing
 	}
 	add_zone = {
 		# district = district_arcology_housing
-		zone = zone_industrial
+		zone = zone_default
 		zone_slot = 1
 		replace = yes
 	}
-	add_zone = {
-		# district = district_arcology_housing
-		zone = zone_trade
-		zone_slot = 2
-		replace = yes
-	}
+	# add_zone = {
+	# 	# district = district_arcology_housing
+	# 	zone = zone_trade
+	# 	zone_slot = 2
+	# 	replace = yes
+	# }
 	while = {
 		count = 150
 		create_pop = {
