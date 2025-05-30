@@ -394,6 +394,13 @@ f93_first_handover_to_ralis_admin = {
 			set_owner = event_target:f93_community_ralis_admin_country
 		}
 	}
+	every_system = {
+		exists = space_owner
+		space_owner = { is_country_type = fallen_empire }
+		has_star_flag = f93_ralis_took_it_from_someone
+		set_owner = event_target:f93_community_ralis_admin_country
+
+	}
 }
 
 f93_final_handover_to_ralis_admin = {
