@@ -213,6 +213,25 @@ country_event = {
 			}
 			system_event = { id = f93_shroud.1 }
 		}
+		
+		if = {
+			limit = { has_global_flag = f82_button_2_3_on }
+			every_system = {
+				limit = {
+					f93_system_has_ancient_relay = no
+					closest_system = {
+						limit = { f93_system_has_ancient_relay = yes }
+						max_steps = 5
+						exists = this
+					}
+				}
+				random_neighbor_system_euclidean = {
+					limit = { f93_system_has_ancient_relay = no }
+					add_hyperlane = { from = this to = prev }
+					remove_star_flag = f93_shroud_region_flag
+				}
+			}
+		}
 	}
 }
 country_event = {
@@ -270,11 +289,7 @@ country_event = {
 				}
 				NOR = {
 					any_system_within_border = {
-						closest_system = {
-							limit = { f93_system_has_ancient_relay = yes }
-							max_steps = 20
-							exists = this
-						}
+						f93_system_winthin_20_steps_of_galcro = yes
 					}
 					has_country_flag = chosen_empire
 				}

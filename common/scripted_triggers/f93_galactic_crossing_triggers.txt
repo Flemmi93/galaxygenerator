@@ -38,25 +38,13 @@ is_shrouded_ai = {
 		has_country_flag = chosen_empire
 	}
 	capital_scope = {
-		NOT = {
-			closest_system = {
-				limit = { f93_system_has_ancient_relay = yes }
-				max_steps = 20
-				exists = this
-			}
-		}
+		f93_system_winthin_20_steps_of_galcro = no
 	}
 }
 is_shrouded_player = {
 	is_ai = no
 	capital_scope = {
-		NOT = {
-			closest_system = {
-				limit = { f93_system_has_ancient_relay = yes }
-				max_steps = 20
-				exists = this
-			}
-		}
+		f93_system_winthin_20_steps_of_galcro = no
 	}
 }
 
@@ -69,7 +57,13 @@ f93_is_close_to_highway = {
 		}
 	}
 }
-
+f93_system_winthin_20_steps_of_galcro = {
+	closest_system = {
+		limit = { f93_system_has_ancient_relay = yes }
+		max_steps = 20
+		exists = this
+	}
+}
 f93_has_zro_cartel = {
 	OR = {
 		has_modifier = f93_zro_cartel

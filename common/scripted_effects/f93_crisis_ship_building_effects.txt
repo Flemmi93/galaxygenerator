@@ -155,8 +155,8 @@ f93_create_destryoer_fleet = {
 		}
 	}
 }
-#Cruiser Fleet
-f93_create_cruiser_fleet = {
+#Fleet 1
+f93_create_fleet_1 = {
 	create_fleet =  {
 		settings = {
 			can_upgrade = yes
@@ -164,35 +164,97 @@ f93_create_cruiser_fleet = {
 			can_change_leader = yes	
 		}
 		effect = {
+			owner = { change_variable = { which = f93_fleet_size value = 0.5 } }
+			set_variable = { which = emergency_fleet value = root.emergency_fleet }
+			floor_variable = f93_fleet_size
+			set_variable = { which = halfway_passed_midgame value = value:halfway_to_mid_game_year }
+			multiply_variable = { which = halfway_passed_midgame value = -1 }
+			set_variable = { which = quarterway_passed_midgame value = halfway_passed_midgame }
+			divide_variable = { which = quarterway_passed_midgame value = 2 }
+			set_fleet_flag = ralis_fleet_1
 			set_owner = root
 			while = {
 				count = root.f93_fleet_size
 				while = {
-					count = 2
-					create_ship = {
-						name = random
-						random_existing_design = corvette
+					count = 11 #number of possible corvettes
+					random_list = {
+						1 = {
+							create_ship = {
+								name = random
+								random_existing_design = corvette
+							}
+						}
+						1 = {}
 					}
 				}
 				while = {
-					count = 2
-					create_ship = {
-						name = random
-						random_existing_design = frigate
+					count = 7 #number of possible frigates
+					random_list = {
+						1 = {
+							create_ship = {
+								name = random
+								random_existing_design = frigate
+							}
+						}
+						2 = {}
 					}
 				}
 				while = {
-					count = 2
-					create_ship = {
-						name = random
-						random_existing_design = destroyer
+					count = 4 #number of possible destroyers
+					random_list = {
+						1 = {
+							create_ship = {
+								name = random
+								random_existing_design = destroyer
+							}
+						}
+						1 = {}
 					}
 				}
-				while = {
-					count = 1
-					create_ship = {
-						name = random
-						random_existing_design = cruiser
+				if = {
+					limit = { mid_game_years_passed >= quarterway_passed_midgame }
+					while = {
+						count = 1 #number of possible cruiser
+						random_list = {
+							1 = {
+								create_ship = {
+									name = random
+									random_existing_design = cruiser
+								}
+							}
+							10 = {
+								modifier = {
+									factor = 0
+									count_controlled_ship = {
+										count > 3
+										limit = { is_ship_size = battleship }
+									}
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = { mid_game_years_passed >= halfway_passed_midgame }
+					while = {
+						count = 1 #number of possible battleship
+						random_list = {
+							1 = {
+								create_ship = {
+									name = random
+									random_existing_design = battleship
+								}
+							}
+							10 = {
+								modifier = {
+									factor = 0
+									count_controlled_ship = {
+										count > 2
+										limit = { is_ship_size = battleship }
+									}
+								}
+							}
+						}
 					}
 				}
 			}

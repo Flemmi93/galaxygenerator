@@ -213,6 +213,10 @@ f93_gc_1_5_onoff = {
 	}
 }
 
+#############################
+# Galactic Crossing Setting #
+#############################
+
 ##############
 # Button 2_1 #
 ##############
@@ -297,27 +301,25 @@ f93_gc_2_2_onoff = {
 ##############
 # Button 2_3 #
 ##############
+#additional density near galactic crossing
 f93_gc_2_3_on = {
 	potential = {
-		always = no
-		NOT = { has_global_flag = f82_button_2_3_off }
+		has_global_flag = f82_button_2_3_on
 	}
 	allow = {}
 	effect = {}
 }
 f93_gc_2_3_off = {
 	potential = {
-		always = no
-		has_global_flag = f82_button_2_3_off
+		NOT = { has_global_flag = f82_button_2_3_on }
 	}
 	allow = {}
 	effect = {}
 }
 f93_gc_2_3_onoff = {
 	potential = {
-		always = no
 	}
-	allow = {}
+	allow = { NOT = { has_global_flag = f93_game_start_menu_done } }
 	effect = {
 		if = {
 			limit = {

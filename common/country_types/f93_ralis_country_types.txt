@@ -21,7 +21,7 @@ f93_shrouded_region_crisis = {
 		enabled = yes
 		declare_war = no
 		colonizer = no
-		construction = yes
+		construction = no
 		min_navy_for_wars = 0.75
 		min_assault_armies_for_wars = @armies_for_declaring_war
 		internal_policies = no
@@ -227,7 +227,7 @@ f93_galcom_administration = {
 #	}
 #
 #	modules = {							#List of modules countries of this should have.
-#										#A module controls what code a country will use for a specific system, for instance we can decide to run a completely different economy module that uses cats as main currency ( if such a module exists, that is )
+#										#A module controls what code a country will use for a specific system, for instance we can decide to run a completely different economy module that uses cats as main currency ( if such a module exists , that is )
 #										#Only one module per module type is allowed
 #		standard_event_module = {}
 #		standard_economy_module = {}

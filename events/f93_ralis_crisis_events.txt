@@ -213,14 +213,16 @@ country_event = {
 			}
 			
 			if = {
-				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }
+				limit = {
+					is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments }
+					count_owned_fleet = { count < 4 limit = { has_fleet_flag = ralis_fleet_1 } }
+				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
 					days = 360
 				}
 				set_variable = { which = f93_fleet_size value = 3 }
-				
-				capital_scope = { f93_create_cruiser_fleet = yes }
+				capital_scope = { f93_create_fleet_1 = yes }
 				random_system_within_border = {
 					limit = { is_capital_system = no }
 					random_system_planet = {
@@ -291,8 +293,217 @@ country_event = {
 	option = {
 		name = f93_ralis_crisis_event.0101.a
 		country_event = { id = f93_ralis_crisis_event.0201 days = 30 }
-		hidden_effect = {
-			random_country = {
+	}
+}
+country_event = {
+	id = f93_ralis_crisis_event.0102
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		every_system = {
+			limit = {
+				any_neighbor_system = { any_neighbor_system = { f93_system_has_ancient_relay = yes } }
+				NOR = {
+					AND = {
+						exists = space_owner
+						space_owner = {
+							OR = {
+								is_country_type = fallen_empire
+								is_country_type = dormant_marauders
+							}
+						}
+					}
+					AND = {
+						exists = space_owner
+						space_owner = {
+							OR = {
+								is_ai = no
+								NOT = { has_global_flag = f82_button_1_2_on }
+							}
+						}
+					}
+				}
+			}
+			random_list = {
+				45 = {
+					system_event = { id = f93_ralis_crisis_event.0103 days = 2 random = 2 }
+				}
+				100 = {}
+			}
+		}
+	}
+}
+
+system_event = {
+	id = f93_ralis_crisis_event.0103
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = { f93_should_not_be_destroyed = no any_neighbor_system = { exists = space_owner space_owner = { is_country_type = fallen_empire } } }
+	immediate = {
+		set_name = "DESTROYED"
+		if = {
+			limit = { exists = space_owner space_owner = { is_country_type = default } }
+			every_system_colony = {
+				every_owned_pop_group = {	
+					limit = { is_valid_refugee_pop = yes }
+					save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
+					refugee_pop_effect = yes
+				}
+			}
+		}
+		# destroy_star_system = yes
+		set_star_flag = star_cracked
+		set_star_class = sc_black_hole
+		every_system_ambient_object = {
+			ambient_object = this
+		}
+		every_system_planet = {
+			limit = { is_star = yes }
+			create_ambient_object = {
+				type = "star_explosion"
+				play_animation_once = yes
+				location = this
+			}
+			last_created_ambient_object = {
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+			change_pc = pc_black_hole
+		}
+		every_system_planet = {
+			limit = {
+				is_star = no
+				is_asteroid = no
+				NOR = {
+					is_planet_class = pc_shattered
+					is_planet_class = pc_shattered_2
+					is_planet_class = pc_shielded
+					is_planet_class = pc_ringworld_habitable_damaged
+					is_planet_class = pc_ringworld_tech_damaged
+					is_planet_class = pc_ringworld_seam_damaged
+				}
+			}
+			if = {
+				limit = { is_planet_class = pc_habitat } # uncolonized
+				spawn_habitat_cracker_effect = yes
+			}
+			if = {
+				limit = { is_colony = yes }
+				if = {
+					limit = {
+						exists = orbital_defence
+					}
+					destroy_fleet = orbital_defence
+				}
+				remove_all_buildings = yes
+				destroy_colony = yes
+				if = {
+					limit = { is_planet_class = pc_habitat }
+					spawn_habitat_cracker_effect = yes
+				}
+				else_if = {
+					limit = { is_ringworld = yes }
+					spawn_ringworld_cracker_effect = yes
+					change_pc = pc_ringworld_habitable_damaged
+				}
+				else = {
+					change_pc = pc_shattered
+				}
+			}
+			else_if = {
+				limit = { is_ringworld = yes }
+				spawn_ringworld_cracker_effect = yes
+				change_pc = pc_ringworld_habitable_damaged
+			}
+			else_if = {
+				limit = { is_planet_class = pc_ringworld_tech }
+				spawn_ringworld_cracker_effect = yes
+				change_pc = pc_ringworld_tech_damaged
+			}
+			else_if = {
+				limit = { is_planet_class = pc_ringworld_seam }
+				spawn_ringworld_cracker_effect = yes
+				change_pc = pc_ringworld_seam_damaged
+			}
+			else = {
+				change_pc = pc_shattered
+			}
+		}
+		every_system_planet = {
+			limit = {
+				exists = orbital_station
+			}
+			orbital_station = { dismantle = yes }
+		}
+		every_system_planet = {
+			clear_deposits = yes
+			clear_planet_modifiers = yes
+			prevent_anomaly = yes
+		}
+		every_system_planet = {
+			limit = { is_asteroid = yes }
+			clear_deposits = yes
+		}
+		every_fleet_in_system = {
+			limit = {
+				NOR = {
+					is_same_value = from
+					# except Extradimensionals
+					AND = {
+						exists = owner
+						owner = {
+							OR = {
+								is_country_type = portal_holder
+								is_country_type = extradimensional
+								is_country_type = extradimensional_2
+								is_country_type = extradimensional_3
+							}
+						}
+					}
+					# except biggest monsters
+					any_owned_ship = {
+						OR = {
+							is_ship_size = behemoth_04
+							is_ship_size = voidspawn_boss
+						}
+					}
+				}
+			}
+			destroy_fleet = this
+		}
+		every_system_megastructure = {
+			set_ruined_megastructure = yes
+		}
+		star = {
+			create_ambient_object = {
+				type = "destroyed_system"
+				location = this
+			}
+			last_created_ambient_object = {
+				set_ambient_object_flag = destroyed_system_effect
+				set_location = {
+					target = prev
+					distance = 0
+					angle = random
+				}
+			}
+		}
+		remove_system_terraforming_candidates = yes
+
+		every_system_planet = { reroll_deposits = yes }
+		event_target:f93_ralis_country = {
+			change_variable = { which = stars_destroyed value = 1 }
+		}
+		closest_system = {
+			limit = { exists = space_owner space_owner = { is_country_type = default } }
+			set_star_flag = f93_ralis_crisis_event_got_hit_flag
+		}
+		random_country = {
 				limit = {
 					is_ai = yes
 					is_country_type = default
@@ -326,68 +537,23 @@ country_event = {
 				random_country = {
 					limit = {
 						is_country_type = default
+						f93_is_close_to_highway = yes
 					}
 				save_global_event_target_as = f93_to_be_killed_by_ralis
 				}
 			}
-		}
+			else_if = {
+				limit = { NOT = { exists = event_target:f93_to_be_killed_by_ralis } }
+				random_country = {
+					limit = {
+						is_country_type = default
+					}
+				save_global_event_target_as = f93_to_be_killed_by_ralis
+				}
+			}
 	}
 }
-country_event = {
-	id = f93_ralis_crisis_event.0102
-	hide_window = yes
-	is_triggered_only = yes
-	fire_only_once = yes
 
-	immediate = {
-		every_system = {
-			limit = {
-				any_neighbor_system = { f93_system_has_ancient_relay = yes }
-				NOR = {
-					f93_should_not_be_destroyed = yes
-					AND = {
-						exists = space_owner
-						space_owner = {
-							OR = {
-								is_country_type = fallen_empire
-								is_country_type = dormant_marauders
-							}
-						}
-					}
-					AND = {
-						exists = space_owner
-						space_owner = {
-							OR = {
-								is_ai = no
-								NOT = { has_global_flag = f82_button_1_2_on }
-							}
-						}
-					}
-				}
-			}
-			random_list = {
-				25 = {
-					if = {
-						limit = { exists = space_owner space_owner = { is_country_type = default } }
-						every_system_colony = {
-							every_owned_pop_group = {	
-								limit = { is_valid_refugee_pop = yes }
-								save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
-								refugee_pop_effect = yes
-							}
-						}
-					}
-					destroy_star_system = yes
-					every_system_planet = { reroll_deposits = yes }
-					event_target:f93_ralis_country = {
-						change_variable = { which = stars_destroyed value = 1 }
-					}
-				}
-				100 = {}
-			}
-		}
-	}
-}
 #Senate Report
 country_event = {
 	id = f93_ralis_crisis_event.0201
@@ -408,12 +574,63 @@ country_event = {
 			event_target:f93_to_be_killed_by_ralis = {
 				every_system_within_border = {
 					limit = { NOT = { f93_should_not_be_destroyed = yes } }
-					destroy_star_system = yes
-					# every_planet_within_border = {
-					# 	limit = { is_colonizable = yes }
-					# 	change_pc = pc_shattered
-					# }
-					every_system_planet = { reroll_deposits = yes }
+					random_list = {
+						2 = {
+							modifier = {
+								factor = 0.25
+								NOT = { any_neighbor_system = { f93_system_has_ancient_relay = yes } }
+							}
+							destroy_star_system = yes
+							every_system_planet = { reroll_deposits = yes }
+						}
+						1 = {
+							modifier = {
+								factor = 0
+								NOT = { any_system_planet = { is_colony = yes } }
+							}
+							create_country = {
+								name = random
+								type = default
+								origin = origin_default
+								ethos = random
+								authority = random
+								civics = random
+								flag = random
+								name_list = random
+								ignore_initial_colony_error = yes
+								effect = {
+									add_resource = {
+										minerals = 50
+										energy = 150
+										alloys = 10
+										consumer_goods = 10
+										food = 10
+										trade = 450
+										mult = trigger:years_passed
+									}
+									copy_techs_from = { target = event_target:f93_ralis_liberator }
+									add_to_galactic_community = yes
+								}
+							}
+							every_system_colony = {
+								set_owner = last_created_country
+								create_galcom_admin_planet = yes
+							}
+							starbase = { set_owner = last_created_country }
+							every_neighbor_system = {
+								limit = {
+									has_star_flag = f93_ralis_took_it_from_someone
+								}
+								starbase = { set_owner = last_created_country }
+								every_system_colony = { set_owner = last_created_country }
+								remove_star_flag = f93_ralis_took_it_from_someone
+							}
+							every_country = {
+								limit = { is_galactic_community_member = yes }
+								establish_communications_no_message = last_created_country
+							}
+						}
+					}
 					
 				}
 				destroy_country = yes
@@ -1729,7 +1946,7 @@ country_event = {
 								alloys = 10
 								consumer_goods = 10
 								food = 10
-								trade = 1000
+								trade = 450
 								mult = trigger:years_passed
 							}
 							copy_techs_from = { target = event_target:f93_ralis_liberator }

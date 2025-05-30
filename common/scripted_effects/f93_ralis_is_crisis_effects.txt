@@ -90,11 +90,11 @@ create_ralis_country = { #target a valid planet with this
 		species = last_created_species
 	}
 	create_pop = {
-		species = last_created_species
+		species = root.owner.species
 		ethos = last_created_country
 	}
 	create_pop = {
-		species = last_created_species
+		species = root.owner.species
 		ethos = last_created_country
 	}
 	create_fleet = {
@@ -148,7 +148,7 @@ create_ralis_planet = {
 	while = {
 		count = 150
 		create_pop = {
-			species = root.ower.species
+			species = root.owner.species
 		}
 	}
 }
