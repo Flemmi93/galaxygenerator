@@ -1,21 +1,20 @@
 f93_shrouded_region_crisis = {
 	counts_for_victory = yes
 	pop_growth = yes
-	playable = yes							#if this type is available for players. used when listing countries for hot-joining players
-	has_pulse_events = yes					#if this type gets checked for country-specific pulse events from on_action
-	has_deficits = yes						#if this type suffers from resource deficits
-	randomize_ethos = no					#does this empire have a randomly generated ethos?
-	shuffle_pop_ethos = no					#if pops belonging to this country type should mutate their ethos every now and then
-	sub_title = "f93_ralis_crisis_SUBTITLE"	#sub title that will be shown for this empire. Like "Example Federation - Fallen Empire"
-	sub_title_desc = "f93_ralis_crisis_SUBTITLE_DESC" #description for the sub title. used in tooltips
-	needs_survey = yes						#default no, if yes then planets must be surveyed before they can be colonized, also if yes a science ship is needed for exploration.
-	ship_disengagement = yes				#default no, decides if the country's ships can flee from battle instead of fighting to the death
-	share_communications = no				#default yes, decides if they share communciations with anyone you have contact with
-	destroys_starbases = no				#if this is set to yes, country will destroy starbases instead of disabling them
-	observable = yes						#Fairly self explanatory. Will not show up in list of observable countries, and cannot be tagged to as observer.
+	playable = yes		
+	has_pulse_events = yes
+	has_deficits = yes	
+	randomize_ethos = no
+	shuffle_pop_ethos = no
+	sub_title = "f93_ralis_crisis_SUBTITLE"
+	sub_title_desc = "f93_ralis_crisis_SUBTITLE_DESC"
+	needs_survey = yes		
+	ship_disengagement = yes
+	share_communications = no
+	destroys_starbases = no	
+	observable = yes		
 	mid_game_crisis = no
 	ownership_limits = default
-	# can_use_invalid_technology = yes
 
 	ai = {
 		enabled = yes
@@ -58,14 +57,11 @@ f93_shrouded_region_crisis = {
 	}
 
 	faction = {
-		hostile = no
+		hostile = yes
 		needs_border_access = no
 		generate_borders = yes
 		needs_colony = no
 	}
-	# custom_diplomacy = yes
-	# custom_opinion = yes
-
 	resources = {
 		category = country_base
 		produces = {

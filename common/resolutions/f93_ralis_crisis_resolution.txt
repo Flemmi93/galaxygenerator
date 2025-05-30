@@ -45,7 +45,7 @@ f93_ralis_plan_resolution = {
 			event_target:f93_ralis_planet = {
 				set_planet_flag = f93_galactic_community_claim
 			}
-			# set_country_flag = crisis_sphere_revealed
+			country_event = { id = f93_ralis_crisis_event.0006 days = 60 random = 30 }
 		}
 		every_country = { country_event = { id = f93_ralis_crisis_event.0601 } }
 		every_country = { country_event = { id = f93_ralis_crisis_event.0603 } }

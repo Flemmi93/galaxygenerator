@@ -24,6 +24,7 @@ country_event = {
 	}
 
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0001 } }
 		set_variable = { which = stars_destroyed value = 0 }
 		save_global_event_target_as = crisis_country
 		set_global_flag = f93_ralis_awoken
@@ -130,6 +131,7 @@ country_event = {
 			# 	}
 			# }
 		}
+		
 	}
 	option = {
 		name = WORRYING
@@ -143,6 +145,7 @@ country_event = {
 	picture = GFX_evt_ongoing_disaster
 	show_sound = event_whispering
 	is_triggered_only = yes
+	immediate = { observer = { observer_event = { id = f93_ralis_observer_event.0002 } } }
 	option = {
 		name = WORRYING
 	}
@@ -330,6 +333,35 @@ starbase_event = {
 		# }
 	}
 }
+
+country_event = {
+	id = f93_ralis_crisis_event.0006
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_4 OR = { has_global_flag = f93_community_claim_made has_global_flag = f93_community_claim_never_made } }
+			complete_special_project = { type =CRISIS_SPECIAL_PROJECT_4 }
+			country_event = { id = f93_ralis_crisis_event.0006 days = 60 random = 30 }
+		}
+		if = {
+			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_3 }
+			complete_special_project = { type =CRISIS_SPECIAL_PROJECT_3 }
+			country_event = { id = f93_ralis_crisis_event.0006 days = 60 random = 30 }
+		}
+		if = {
+			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_2 }
+			complete_special_project = { type =CRISIS_SPECIAL_PROJECT_2 }
+			country_event = { id = f93_ralis_crisis_event.0006 days = 60 random = 30 }
+		}
+		else = {
+			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_1 }
+			complete_special_project = { type =CRISIS_SPECIAL_PROJECT_1 }
+			country_event = { id = f93_ralis_crisis_event.0006 days = 60 random = 30 }
+		}
+	}
+}
 #A galaxy holds its breath
 country_event = {
 	id = f93_ralis_crisis_event.0101
@@ -341,6 +373,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0101 } }
 		if = {
 			limit = { NOT = { has_global_flag = f93_ralis_crisis_event0101_happened } }
 			set_global_flag = f93_ralis_crisis_event0101_happened
@@ -624,6 +657,8 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0201 } }
+		
 		if = {
 			limit = {
 				exists = event_target:f93_to_be_killed_by_ralis
@@ -697,7 +732,7 @@ country_event = {
 					add_resource = {
 						menace = 10000
 					}
-					country_event = { id = f93_ralis_crisis_event.0202 days = 90 random = 90 }
+					country_event = { id = f93_ralis_crisis_event.0006 days = 90 random = 90 }
 				}
 				capital_scope = { set_name = ralis_planet_NAME }
 				every_playable_country = {
@@ -713,26 +748,26 @@ country_event = {
 	}
 }
 
-country_event = {
-	id = f93_ralis_crisis_event.0202
-	hide_window = yes
-	fire_only_once = yes
-	is_triggered_only = yes
+# country_event = {
+# 	id = f93_ralis_crisis_event.0202
+# 	hide_window = yes
+# 	fire_only_once = yes
+# 	is_triggered_only = yes
 
-	immediate = {
-		random_system = {
-			limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
-			spawn_megastructure = {
-				type = think_tank_4
-				owner = root
-				planet = star
-				graphical_culture = root
-			}
-			save_global_event_target_as = f93_ralis_think_tank_system
-			add_hyperlane = { from = this to = event_target:f93_ralis_system }
-		}
-	}
-}
+# 	immediate = {
+# 		random_system = {
+# 			limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
+# 			spawn_megastructure = {
+# 				type = think_tank_4
+# 				owner = root
+# 				planet = star
+# 				graphical_culture = root
+# 			}
+# 			save_global_event_target_as = f93_ralis_think_tank_system
+# 			add_hyperlane = { from = this to = event_target:f93_ralis_system }
+# 		}
+# 	}
+# }
 
 #Receding of the Abyss
 country_event = {
@@ -744,6 +779,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0301 } }
 		event_target:f93_ralis_country = {
 			establish_contact = { who = root }
 			set_country_flag = f93_ralis_arms_race_active
@@ -793,7 +829,9 @@ country_event = {
 	show_sound = event_mystic_reveal
 	
 	is_triggered_only = yes
-	immediate = {}
+	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0401 } }
+	}
 	option = {
 		name = f93_ralis_crisis_event.0401.a
 		country_event = { id = f93_ralis_crisis_event.0501 days = 90 }
@@ -814,6 +852,7 @@ country_event = {
 	trigger = {
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0501 } }
 		event_target:f93_ralis_country = {
 			add_modifier = {
 				modifier = f93_ralis_science_stop
@@ -855,6 +894,7 @@ country_event = {
 	}
 	is_triggered_only = yes
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0601 } }
 		event_target:f93_ralis_country = {
 			remove_modifier = f93_ralis_science_stop
 			add_modifier = {
@@ -926,6 +966,7 @@ country_event = {
 	}
 	is_triggered_only = yes
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0602 } }
 		event_target:f93_ralis_country = {
 			remove_modifier = f93_ralis_science_stop
 			add_modifier = {
@@ -949,7 +990,9 @@ country_event = {
 		is_galactic_community_member = no
 	}
 	is_triggered_only = yes
-
+	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0603 } }
+	}
 	option = {
 		name = OK
 	}
@@ -1016,32 +1059,32 @@ country_event = {
 }
 
 
-country_event = {
-	id = f93_ralis_crisis_event.0605
-	hide_window = yes
-	# mean_time_to_happen = 180
-	is_triggered_only = yes
-	fire_only_once = yes
+# country_event = {
+# 	id = f93_ralis_crisis_event.0605
+# 	hide_window = yes
+# 	# mean_time_to_happen = 180
+# 	is_triggered_only = yes
+# 	fire_only_once = yes
 
-	trigger = {
-		NOT = { has_global_flag = f82_button_1_1_off }
-		exists = event_target:f93_ralis_country
-		event_target:f93_ralis_country = {
-			is_level_5_player_crisis = yes
-		}
-	}
+# 	trigger = {
+# 		NOT = { has_global_flag = f82_button_1_1_off }
+# 		exists = event_target:f93_ralis_country
+# 		event_target:f93_ralis_country = {
+# 			is_level_5_player_crisis = yes
+# 		}
+# 	}
 
-	immediate = {
-		remove_modifier = f93_ralis_science_stop
-		event_target:f93_ralis_think_tank_system = {
-			every_system_megastructure = {
-				limit = { is_megastructure_type = think_tank_4 }
-				remove_megastructure = this
-			}
-			# spawn_megastructure = { type = think_tank_ruined }
-		}
-	}
-}
+# 	immediate = {
+# 		remove_modifier = f93_ralis_science_stop
+# 		event_target:f93_ralis_think_tank_system = {
+# 			every_system_megastructure = {
+# 				limit = { is_megastructure_type = think_tank_4 }
+# 				remove_megastructure = this
+# 			}
+# 			# spawn_megastructure = { type = think_tank_ruined }
+# 		}
+# 	}
+# }
 
 #anyone entering ralis system for the first time
 ship_event = {
@@ -1153,7 +1196,9 @@ country_event = {
 	# show_sound = event_mystic_reveal
 
 	is_triggered_only = yes
-
+	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0801 } }
+	}
 	option = {
 		name = f93_ralis_crisis_event.0801.a
 	}
@@ -1180,6 +1225,7 @@ planet_event = {
 		NOT = { has_planet_flag = f93_recently_conquered }
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0802 } }
 		owner = { save_global_event_target_as = f93_ralis_liberator }
 		event_target:f93_ralis_country = {
 			set_name = ralis_remnant_NAME
@@ -1271,6 +1317,9 @@ country_event = {
 			owner = { is_same_value = event_target:f93_ralis_liberator }
 		}
 		has_country_flag = f93_com_mandate_can_happen
+	}
+	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0901 } }
 	}
 	#hand systems over to administration
 	option = { 
@@ -1381,6 +1430,7 @@ country_event = {
 		}
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0902 } }
 		country_event = { id = f93_ralis_crisis_event.1100 days = 360 }
 		every_playable_country = {
 			set_country_flag = f93_com_mandate_can_happen
@@ -1434,6 +1484,7 @@ country_event = {
 		}
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0903 } }
 		country_event = { id = f93_ralis_crisis_event.1100 days = 360 }
 		every_playable_country = {
 			set_country_flag = f93_com_mandate_can_happen
@@ -1480,6 +1531,7 @@ country_event = {
 		has_country_flag = f93_com_mandate_can_happen
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.0905 } }
 		country_event = { id = f93_ralis_crisis_event.1100 days = 360 }
 	}
 	option = {
@@ -1511,7 +1563,9 @@ country_event = {
 	picture = GFX_evt_f93_galactic_crossing_deal
 	# show_sound = event_mystic_reveal
 	is_triggered_only = yes
-
+	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1001 } }
+	}
 	option = {
 		name = OK
 	}
@@ -1557,6 +1611,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1101 } }
 		if = {
 			limit = { exists = event_target:f93_community_ralis_admin_country }
 			f93_first_handover_to_ralis_admin = yes
@@ -1634,7 +1689,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-
+		observer = { observer_event = { id = f93_ralis_observer_event.1102 } }
 		#the legendary gesture
 		if = {
 			limit = { has_global_flag = f93_community_gifted }
@@ -1707,6 +1762,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = has_seen_f93_ralis_crisis_event1201 } }
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1201 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1201
 	}
 	option = {
@@ -1728,6 +1784,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = has_seen_f93_ralis_crisis_event1202 } }
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1202 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1202
 		set_global_flag = f93_community_claim_never_made # it did, but the liberator left the community to conquer ralis on their own
 	}
@@ -1758,6 +1815,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = has_seen_f93_ralis_crisis_event1203 } }
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1203 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1203
 	}
 	option = {
@@ -1774,6 +1832,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = has_seen_f93_ralis_crisis_event1204 } }
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1204 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1204
 	}
 	option = {
@@ -1790,6 +1849,9 @@ country_event = {
 	picture = GFX_evt_f93_galactic_crossing_city_world_2
 	is_triggered_only = yes
 	fire_only_once = yes
+	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1205 } }
+	}
 	option = {
 		name = f93_ralis_crisis_event.1205.a
 		custom_tooltip = f93_ralis_crisis_event.1205.effect
@@ -1862,6 +1924,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = has_seen_f93_ralis_crisis_event1206 } }
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1206 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1206
 	}
 	option = {
@@ -1881,7 +1944,7 @@ country_event = {
 		has_country_flag = f93_conquered_and_kept_ralis
 	}
 	immediate = {
-		
+		observer = { observer_event = { id = f93_ralis_observer_event.1207 } }
 	}
 	option = {
 		name = f93_ralis_crisis_event.1207.a
@@ -1902,7 +1965,6 @@ country_event = {
 	}
 }
 
-
 #Ralis Admin collapses
 country_event = {
 	id = f93_ralis_crisis_event.1208
@@ -1912,6 +1974,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = has_seen_f93_ralis_crisis_event1208 } }
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1208 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1208
 	}
 	option = {
@@ -1930,6 +1993,9 @@ country_event = {
 	picture = GFX_evt_alien_segregation
 	is_triggered_only = yes
 	fire_only_once = yes
+	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1209 } }
+	}
 	option = {
 		name = f93_ralis_crisis_event.1209.a
 		every_playable_country = {
@@ -2081,6 +2147,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1301 } }
 		set_global_flag = f93_ralis_crisis_event1300_active
 	}
 	option = {
@@ -2106,6 +2173,9 @@ planet_event = {
 	desc = f93_ralis_crisis_event.1302.desc
 	picture = GFX_evt_happy_reunion
 	is_triggered_only = yes
+	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1302 } }
+	}
 	option = {
 		name = f93_ralis_crisis_event.1302.a
 	}
@@ -2152,6 +2222,7 @@ country_event = {
 		NOT = { has_country_flag = has_seen_f93_ralis_crisis_event1401 }
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1401 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1401
 		set_global_flag = f93_gal_cartel_cant_happen
 		country_event = { id = f93_ralis_crisis_event.1503 days = 960 }
@@ -2187,6 +2258,7 @@ country_event = {
 	}
 
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1402 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1402
 		country_event = { id = f93_ralis_crisis_event.1501 days = 960 }
 		set_global_flag = f93_gal_cartel_cant_happen
@@ -2255,6 +2327,7 @@ country_event = {
 		}
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1403 } }
 		set_country_flag = has_seen_f93_ralis_crisis_event1403
 		set_global_flag = f93_galactic_cartel_ralis_happened
 		country_event = { id = f93_ralis_crisis_event.1502 days = 960 }
@@ -2361,6 +2434,7 @@ country_event = {
 	trigger = {
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1501 } }
 		country_event = { id = f93_galactic_crossing.10 }
 	}
 	option = {
@@ -2377,6 +2451,7 @@ country_event = {
 	trigger = {
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1502 } }
 		country_event = { id = f93_galactic_crossing.10 }
 	}
 	option = {
@@ -2396,6 +2471,7 @@ country_event = {
 	trigger = {
 	}
 	immediate = {
+		observer = { observer_event = { id = f93_ralis_observer_event.1503 } }
 		country_event = { id = f93_galactic_crossing.10 }
 	}
 	option = {

@@ -1,0 +1,494 @@
+namespace = f93_ralis_observer_event
+
+# Ralis Crisis 
+#################################
+# numbers						#
+# first 2 digits are level		#
+# 2nd two digits are variance	#
+#################################
+
+#Anomalies along the Galactic Crossing
+observer_event = {
+	id = f93_ralis_observer_event.0001
+	title = f93_ralis_crisis_event.0001.name
+	desc = f93_ralis_crisis_event.0001.desc
+	picture = GFX_evt_ongoing_disaster
+	show_sound = event_whispering
+	is_triggered_only = yes
+	option = {
+		name = WORRYING
+	}
+}
+#Anomalies along the Galactic Crossing
+observer_event = {
+	id = f93_ralis_observer_event.0002
+	title = f93_ralis_crisis_event.0001.name
+	desc = f93_ralis_crisis_event.0001.desc
+	picture = GFX_evt_ongoing_disaster
+	show_sound = event_whispering
+	is_triggered_only = yes
+	option = {
+		name = WORRYING
+	}
+}
+#A galaxy holds its breath
+observer_event = {
+	id = f93_ralis_observer_event.0101
+	title = f93_ralis_crisis_event.0101.name
+	desc = f93_ralis_crisis_event.0101.desc
+	picture = GFX_evt_supernova
+	show_sound = event_screams
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0101.a
+	}
+}
+#Senate Report
+observer_event = {
+	id = f93_ralis_observer_event.0201
+	title = f93_ralis_crisis_event.0201.name
+	desc = f93_ralis_crisis_event.0201.desc
+	picture = GFX_evt_astral_rift_ancient_battlegrounds
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0201.a
+	}
+}
+#Receding of the Abyss
+observer_event = {
+	id = f93_ralis_observer_event.0301
+	title = f93_ralis_crisis_event.0301.name
+	desc = f93_ralis_crisis_event.0301.desc
+	picture = GFX_evt_treasure_trove_pirate_fleet
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0301.a
+	}
+	option = {
+		name = f93_ralis_crisis_event.0301.b
+	}
+}
+#Secrets of Ralis
+observer_event = {
+	id = f93_ralis_observer_event.0401
+	title = f93_ralis_crisis_event.0401.name
+	desc = f93_ralis_crisis_event.0401.desc
+	picture = GFX_evt_cosmic_storms_the_storm_speaks
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0401.a
+	}
+}
+#The War Plan Debate
+observer_event = {
+	id = f93_ralis_observer_event.0501
+	title = f93_ralis_crisis_event.0501.name
+	desc = f93_ralis_crisis_event.0501.desc
+	picture = GFX_evt_civil_action
+	show_sound = event_mystic_reveal
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0501.a
+		custom_tooltip = f93_ralis_crisis_event.0501.a_desc
+	}
+	option = {
+		name = f93_ralis_crisis_event.0501.b
+		custom_tooltip = f93_ralis_crisis_event.0501.b_desc
+	}
+}
+observer_event = {
+	id = f93_ralis_observer_event.0601
+	title = f93_ralis_crisis_event.0601.name
+	desc = f93_ralis_crisis_event.0601.desc
+	picture = GFX_evt_one_sided_deal
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0601.a
+	}
+	option = {
+		name = f93_ralis_crisis_event.0601.b
+	}
+	option = {
+		name = f93_ralis_crisis_event.0601.c
+	}
+}
+#The War plan treaty failed
+observer_event = {
+	id = f93_ralis_observer_event.0602
+	title = f93_ralis_crisis_event.0602.name
+	desc = f93_ralis_crisis_event.0602.desc
+	picture = GFX_evt_two_sided_deal
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0602.a
+	}
+}
+#The War plan treaty passed and tells everyone else about it
+observer_event = {
+	id = f93_ralis_observer_event.0603
+	title = f93_ralis_crisis_event.0603.name
+	desc = f93_ralis_crisis_event.0603.desc
+	picture = GFX_evt_one_sided_deal
+	option = {
+		name = OK
+	}
+}
+#ralis is destroyed
+#nothing happens, the story ends here.
+observer_event = {
+	id = f93_ralis_observer_event.0801
+	title = f93_ralis_crisis_event.0801.name
+	desc = f93_ralis_crisis_event.0801.desc
+	picture = GFX_evt_large_explosion
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0801.a
+	}
+}
+
+# This = Planet scope
+# From = Country scope (new owner)
+# FromFrom = Former Owner
+#ralis is conquered
+observer_event = {
+	id = f93_ralis_observer_event.0802
+	title = f93_ralis_crisis_event.0802.name
+	desc = f93_ralis_crisis_event.0802.desc
+	picture = GFX_evt_burning_city
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0802.a 
+	}
+}
+#Treaty Path
+#The Community's Mandate, shown to all but the Ralis Liberator
+observer_event = {
+	id = f93_ralis_observer_event.0901
+	title = f93_ralis_crisis_event.0901.name
+	desc = f93_ralis_crisis_event.0901.desc
+	picture = GFX_evt_striking_a_deal
+	is_triggered_only = yes
+	#hand systems over to administration
+	option = { 
+		name = f93_ralis_crisis_event.0901.a
+	}
+	option = {
+		name = f93_ralis_crisis_event.0901.d
+	}
+	option = {
+		name = f93_ralis_crisis_event.0901.b
+	}
+	option = {
+		name = f93_ralis_crisis_event.0901.c
+	}	
+}
+#The Community's Claim, shown only to the liberator of ralis
+observer_event = {
+	id = f93_ralis_observer_event.0902
+	title = f93_ralis_crisis_event.0902.name
+	desc = f93_ralis_crisis_event.0902.desc
+	picture = GFX_evt_striking_a_deal
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0902.a # keep the plan
+	}
+	option = {
+		name = f93_ralis_crisis_event.0902.b #keep ralis
+		custom_tooltip = f93_ralis_crisis_event.0902.b_desc
+	}
+
+}
+#The Community's Request, shown only to the liberator of ralis
+observer_event = {
+	id = f93_ralis_observer_event.0903
+	title = f93_ralis_crisis_event.0903.name
+	desc = f93_ralis_crisis_event.0903.desc
+	picture = GFX_evt_striking_a_deal
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0903.a # keep the plan
+	}
+	option = {
+		name = f93_ralis_crisis_event.0903.b #keep ralis
+	}
+}
+#no treaty path
+#The Community's Plea, shown to all but the Ralis Liberator
+observer_event = {
+	id = f93_ralis_observer_event.0905
+	title = f93_ralis_crisis_event.0905.name
+	desc = f93_ralis_crisis_event.0905.desc
+	picture = GFX_evt_striking_a_deal
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.0905.a # keep the plan
+	}
+	option = {
+		name = f93_ralis_crisis_event.0905.b #keep ralis
+	}
+}
+
+# Paper Promises
+observer_event = {
+	id = f93_ralis_observer_event.1001
+	title = f93_ralis_crisis_event.1001.name
+	desc = f93_ralis_crisis_event.1001.desc
+	picture = GFX_evt_f93_galactic_crossing_deal
+	is_triggered_only = yes
+	option = {
+		name = OK
+	}
+}
+# Postwar Reconstruction	
+observer_event = {
+	id = f93_ralis_observer_event.1101
+	title = f93_ralis_crisis_event.1101.name
+	desc = f93_ralis_crisis_event.1101.desc
+	picture = GFX_evt_three_sided_deal
+	is_triggered_only = yes
+	option = {
+		name = OK
+	}
+}
+# a divided recovery
+observer_event = {
+	id = f93_ralis_observer_event.1102
+	title = f93_ralis_crisis_event.1102.name
+	desc = f93_ralis_crisis_event.1102.desc
+	picture = GFX_evt_f93_galactic_crossing_refugees
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1102.a
+	}
+	option = {
+		name = f93_ralis_crisis_event.1102.b
+	}
+}
+#The Legendary Gesture
+observer_event = {
+	id = f93_ralis_observer_event.1201
+	title = f93_ralis_crisis_event.1201.name
+	desc = f93_ralis_crisis_event.1201.desc
+	picture = GFX_evt_f93_galactic_crossing_city_world_2
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1201.a
+	}
+}
+#No Law, No Obligation
+observer_event = {
+	id = f93_ralis_observer_event.1202
+	title = f93_ralis_crisis_event.1202.name
+	desc = f93_ralis_crisis_event.1202.desc
+	picture = GFX_evt_f93_galactic_crossing_city_world
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1202.a
+	}
+}
+#The Flag of Freedom
+observer_event = {
+	id = f93_ralis_observer_event.1203
+	title = f93_ralis_crisis_event.1203.name
+	desc = f93_ralis_crisis_event.1203.desc
+	picture = GFX_evt_f93_galactic_crossing_city_world_2
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1203.a
+	}
+}
+#a new banner on ralis
+observer_event = {
+	id = f93_ralis_observer_event.1204
+	title = f93_ralis_crisis_event.1204.name
+	desc = f93_ralis_crisis_event.1204.desc
+	picture = GFX_evt_f93_galactic_crossing_city_world
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1204.a
+	}
+}
+#treaty fulfilled
+observer_event = {
+	id = f93_ralis_observer_event.1205
+	title = f93_ralis_crisis_event.1205.name
+	desc = f93_ralis_crisis_event.1205.desc
+	picture = GFX_evt_f93_galactic_crossing_city_world_2
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1205.a
+	}
+}
+#the last handover
+observer_event = {
+	id = f93_ralis_observer_event.1206
+	title = f93_ralis_crisis_event.1206.name
+	desc = f93_ralis_crisis_event.1206.desc
+	picture = GFX_evt_f93_galactic_crossing_city_world_2
+	is_triggered_only = yes
+	option = {
+		name = OK
+	}	
+}
+#a Cold Coup, only seen my liberatore once
+observer_event = {
+	id = f93_ralis_observer_event.1207
+	title = f93_ralis_crisis_event.1207.name
+	desc = f93_ralis_crisis_event.1207.desc
+	picture = GFX_evt_f93_galactic_crossing_city_world
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1207.a
+	}
+}
+#Ralis Admin collapses
+observer_event = {
+	id = f93_ralis_observer_event.1208
+	title = f93_ralis_crisis_event.1208.name
+	desc = f93_ralis_crisis_event.1208.desc
+	picture = GFX_evt_f93_galactic_crossing_city_world
+	is_triggered_only = yes
+	option = {
+		name = OK
+	}
+}
+#a quiet verdicts
+observer_event = {
+	id = f93_ralis_observer_event.1209
+	title = f93_ralis_crisis_event.1209.name
+	desc = f93_ralis_crisis_event.1209.desc
+	picture = GFX_evt_alien_segregation
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1209.a
+	}
+}
+#First Referendums begin
+observer_event = {
+	id = f93_ralis_observer_event.1301
+	title = f93_ralis_crisis_event.1301.name
+	desc = f93_ralis_crisis_event.1301.desc
+	picture = GFX_evt_f93_galactic_crossing_senate
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1301.a
+	}
+	option = {
+		name = f93_ralis_crisis_event.1301.b
+	}
+}
+#community admin system joins someone else
+#systems united
+observer_event = {
+	id = f93_ralis_observer_event.1302
+	title = f93_ralis_crisis_event.1302.name
+	desc = f93_ralis_crisis_event.1302.desc
+	picture = GFX_evt_happy_reunion
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1302.a
+	}
+}
+#the zro must flow
+observer_event = {
+	id = f93_ralis_observer_event.1401
+	title = f93_ralis_crisis_event.1401.name
+	desc = f93_ralis_crisis_event.1401.desc
+	picture = GFX_evt_f93_galactic_crossing_party
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1401.a
+		allow = { any_system_within_border = { is_same_value = event_target:f93_ralis_system } }
+		tooltip = { event_target:f93_community_ralis_admin_country = { add_modifier = { modifier = f93_the_zro_must_flow multiplier = 8 } } 
+		event_target:target_planet = { add_modifier = { modifier = f93_the_zro_must_flow multiplier = 2 } } }
+	}
+	option = {
+		name = f93_ralis_crisis_event.1401.b
+		tooltip = { event_target:target_planet = { add_modifier = { modifier = f93_the_zro_must_flow multiplier = 2 } } }
+	}
+	option = {
+		name = f93_ralis_crisis_event.1401.c
+	}
+}
+#The Republic of Ralis
+observer_event = {
+	id = f93_ralis_observer_event.1402
+	title = f93_ralis_crisis_event.1402.name
+	desc = f93_ralis_crisis_event.1402.desc
+	picture = GFX_evt_f93_galactic_crossing_public_announcment
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1402.a
+		tooltip = {
+			every_country = {
+				limit = { is_galactic_community_member = yes }
+				add_modifier = { modifier = f93_the_zro_must_flow multiplier = 2 }
+			}
+			event_target:f93_community_ralis_admin_country = {
+				add_to_galactic_community = yes
+			}
+		}
+	}
+}
+#A Galactic Cartel
+observer_event = {
+	id = f93_ralis_observer_event.1403
+	title = f93_ralis_crisis_event.1403.name
+	desc = f93_ralis_crisis_event.1403.desc
+	picture = GFX_evt_f93_galactic_crossing_cat_walk
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1403.a
+		tooltip = {
+			event_target:f93_ralis_planet = {
+				f93_add_zro_cartel = yes
+			}
+		}
+	}
+	option = {
+		name = f93_ralis_crisis_event.1403.b
+		tooltip = {
+			event_target:f93_ralis_planet = {
+				f93_add_zro_cartel = yes
+			}
+		}
+	}
+}
+#Beyond the Lighthouse
+observer_event = {
+	id = f93_ralis_observer_event.1501
+	title = f93_ralis_crisis_event.1501.name
+	desc = f93_ralis_crisis_event.1501.desc
+	picture = GFX_evt_f93_galactic_crossing_storm_world
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1501.a
+	}
+}
+#Into the Shadows
+observer_event = {
+	id = f93_ralis_observer_event.1502
+	title = f93_ralis_crisis_event.1502.name
+	desc = f93_ralis_crisis_event.1502.desc
+	picture = GFX_evt_shroud_tunnel
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1502.a
+	}
+	option = {
+		name = f93_ralis_crisis_event.1502.b
+	}
+}
+#The Eyes that cannot blink.
+observer_event = {
+	id = f93_ralis_observer_event.1503
+	title = f93_ralis_crisis_event.1503.name
+	desc = f93_ralis_crisis_event.1503.desc
+	picture = GFX_evt_f93_galactic_crossing_dark_eyes
+	is_triggered_only = yes
+	option = {
+		name = f93_ralis_crisis_event.1503.a
+	}
+}

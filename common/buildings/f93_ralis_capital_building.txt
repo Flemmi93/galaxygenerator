@@ -44,20 +44,26 @@ f93_building_crisis_capital = {
 	#modded buff
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = { is_country_type = f93_shrouded_region_crisis }
+			has_global_flag = f82_button_3_1_on
 		}
 		modifier = {
-			f93_job_creating_modifier = 1
+			f93_job_creating_modifier = 0.25
 		}
 	}
 	triggered_planet_modifier = {
 		potential = {
-			exists = owner
-			owner = { is_country_type = default has_country_flag = ralis_country_flag }
+			has_global_flag = f82_button_3_2_on
 		}
 		modifier = {
 			f93_job_creating_modifier = 0.5
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_global_flag = f82_button_3_3_on
+		}
+		modifier = {
+			f93_job_creating_modifier = 0.75
 		}
 	}
 

@@ -850,7 +850,7 @@ country_event = {
 	option = {
 		name = f93_galactic_crossing.99.l
 		every_country = {
-			limit = { NOT = { is_country_type = f93_shrouded_region_crisis } }
+			limit = { NOT = { has_country_flag = ralis_country_flag } }
 			destroy_country = yes
 		}
 	}
