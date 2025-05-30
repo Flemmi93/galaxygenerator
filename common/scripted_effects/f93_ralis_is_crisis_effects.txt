@@ -74,17 +74,7 @@ create_ralis_country = { #target a valid planet with this
 					class = scientist
 				}
 			}
-			# give_technology = { tech = tech_space_construction }
-			# give_technology = { tech = tech_starbase_1 }
-			# give_technology = { tech = tech_starbase_2 }
-			# give_technology = { tech = tech_starbase_3 }
-			# give_technology = { tech = tech_starbase_4 }
-			# give_technology = { tech = tech_starbase_5 }
-			# give_technology = { tech = tech_corvettes }
-			# give_technology = { tech = tech_destroyers }
-			# give_technology = { tech = tech_cruisers }
-			# give_technology = { tech = tech_battleships }
-			# give_technology = { tech = tech_strike_craft_1 }
+			f93_set_ralis_designs = yes
 			set_variable = { which = f93_fleet_size value = 1 }
 		}
 	}

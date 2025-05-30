@@ -1,171 +1,34 @@
-#Corvette
-f93_create_corvettes = {
-	while = {
-		count = 8
-		limit = { owner = { has_resource = { type = alloys amount < 1500 } } }
-		owner = { add_resource = { alloys = -100 } }
-		create_fleet = {
-			settings = {
-				can_upgrade = yes
-				can_change_composition = yes
-				can_change_leader = yes	
-			}
-			effect = {
-				create_ship = {
-					name = random
-					random_existing_design = corvette
-				}
-			}
-		}
-	}
-}
-#frigate
-f93_create_frigates = {
-	while = {
-		count = 6
-		limit = { owner = { has_technology = tech_torpedoes_1 has_resource = { type = alloys amount < 1500 } } }
-		owner = { add_resource = { alloys = -125 } }
-		create_fleet = {
-			settings = {
-				can_upgrade = yes
-				can_change_composition = yes
-				can_change_leader = yes	
-			}
-			effect = {
-				create_ship = {
-					name = random
-					random_existing_design = frigate
-				}
-			}
-		}
-	}
-}
-#destroyer
-f93_create_destroyers = {
-	while = {
-		count = 4
-		limit = { owner = { has_technology = tech_destroyers has_resource = { type = alloys amount < 1500 } } }
-		owner = { add_resource = { alloys = -200 } }
-		create_fleet = {
-			settings = {
-				can_upgrade = yes
-				can_change_composition = yes
-				can_change_leader = yes	
-			}
-			effect = {
-				create_ship = {
-					name = random
-					random_existing_design = destroyer
-				}
-			}
-		}
-	}
-}
-
-#cruiser
-f93_create_cruisers = {
-	while = {
-		count = 2
-		limit = { owner = { has_technology = tech_cruisers has_resource = { type = alloys amount < 1500 } } }
-		owner = { add_resource = { alloys = -400 } }
-		create_fleet = {
-			settings = {
-				can_upgrade = yes
-				can_change_composition = yes
-				can_change_leader = yes	
-			}
-			effect = {
-				create_ship = {
-					name = random
-					random_existing_design = cruiser
-				}
-			}
-		}
-	}
-}
-
-#battleship
-f93_create_battleship = {
-	while = {
-		count = 1
-		limit = { owner = { has_resource = { type = alloys amount < 1500 } } }
-		owner = { add_resource = { alloys = -800 } }
-		create_fleet = {
-			settings = {
-				can_upgrade = yes
-				can_change_composition = yes
-				can_change_leader = yes	
-			}
-			effect = {
-				create_ship = {
-					name = random
-					random_existing_design = destroyer
-				}
-			}
-		}
-	}
-}
-
-#Corvette Fleet
-f93_create_corvette_fleet = {
-	create_fleet =  {
-		settings = {
-			can_upgrade = yes
-			can_change_composition = no
-			can_change_leader = yes	
-		}
-		effect = {
-			while = {
-				count = root.f93_fleet_size
-				create_ship = {
-					name = random
-					random_existing_design = corvette
-				}
-			}
-		}
-	}
-}
-
-#Destroyer Fleet
-f93_create_destryoer_fleet = {
-	create_fleet =  {
-		settings = {
-			can_upgrade = yes
-			can_change_composition = no
-			can_change_leader = yes	
-		}
-		effect = {
-			while = {
-				count = root.f93_fleet_size
-				while = {
-					count = 3
-					create_ship = {
-						name = random
-						random_existing_design = corvette
-					}
-				}
-				while = {
-					count = 2
-					create_ship = {
-						name = random
-						random_existing_design = destroyer
-					}
-				}
-			}
-		}
-	}
+f93_set_ralis_designs = {
+	create_ship_design = { design = "NAME_ralis_corvette_brawl" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_corvette_picket" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_frigate_torpedo" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_frigate_energy" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_destroyer_line" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_destroyer_arty" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_cruiser_carrier" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_battleship_carrier" }
+	add_ship_design = last_created_design
 }
 #Fleet 1
 f93_create_ralis_fleet = {
 	if = {
 		limit = {
 			any_owned_fleet = {
+				is_variable_set = num_ships_original_halfed
 				num_ships < num_ships_original_halfed
 				has_fleet_flag = ralis_fleet_1
 			}
 		}
 		random_owned_fleet = {
 			limit = {
+				is_variable_set = num_ships_original_halfed
 				num_ships < num_ships_original_halfed
 				has_fleet_flag = ralis_fleet_1
 			}
@@ -177,9 +40,10 @@ f93_create_ralis_fleet = {
 		}
 		random_system_within_border = {
 				limit = { is_capital_system = no }
-				starbase = {
+				star = {
 					last_created_fleet = {
 						set_location = prev
+						set_timed_fleet_flag = { flag = recently_made days = 720 }
 					}
 				}
 			}
@@ -188,13 +52,15 @@ f93_create_ralis_fleet = {
 	change_variable = { which = f93_fleet_size value = 0.25 }
 	random_system_within_border = {
 		limit = { is_capital_system = no }
-		starbase = {
+		star = {
 			last_created_fleet = {
 				set_location = prev
+				set_timed_fleet_flag = { flag = recently_made days = 720 }
 			}
 		}
 	}
 }
+
 f93_create_fleet_1 = {
 	create_fleet =  {
 		settings = {
@@ -204,8 +70,6 @@ f93_create_fleet_1 = {
 		}
 		effect = {
 			set_variable = { which = num_ships_original value = 1 }
-			owner = { change_variable = { which = f93_fleet_size value = 0.5 } }
-			set_variable = { which = emergency_fleet value = root.emergency_fleet }
 			set_variable = { which = halfway_passed_midgame value = value:halfway_to_mid_game_year }
 			multiply_variable = { which = halfway_passed_midgame value = -1 }
 			set_variable = { which = quarterway_passed_midgame value = halfway_passed_midgame }
@@ -220,11 +84,18 @@ f93_create_fleet_1 = {
 						1 = {
 							create_ship = {
 								name = random
-								random_existing_design = corvette
+								design = NAME_ralis_corvette_brawl
 							}
 							change_variable = { which = num_ships_original value = 1 }
 						}
-						1 = {}
+						1 = {
+							create_ship = {
+								name = random
+								design = NAME_ralis_corvette_picket
+							}
+							change_variable = { which = num_ships_original value = 1 }
+						}
+						2 = {}
 					}
 				}
 				while = {
@@ -233,11 +104,18 @@ f93_create_fleet_1 = {
 						1 = {
 							create_ship = {
 								name = random
-								random_existing_design = frigate
+								design = NAME_ralis_frigate_torpedo
 							}
 							change_variable = { which = num_ships_original value = 1 }
 						}
-						2 = {}
+						1 = {
+							create_ship = {
+								name = random
+								design = NAME_ralis_frigate_energy
+							}
+							change_variable = { which = num_ships_original value = 1 }
+						}
+						4 = {}
 					}
 				}
 				while = {
@@ -246,11 +124,18 @@ f93_create_fleet_1 = {
 						1 = {
 							create_ship = {
 								name = random
-								random_existing_design = destroyer
+								design = NAME_ralis_destroyer_line
 							}
 							change_variable = { which = num_ships_original value = 1 }
 						}
-						1 = {}
+						1 = {
+							create_ship = {
+								name = random
+								design = NAME_ralis_destroyer_arty
+							}
+							change_variable = { which = num_ships_original value = 1 }
+						}
+						2 = {}
 					}
 				}
 				if = {
@@ -260,7 +145,7 @@ f93_create_fleet_1 = {
 							1 = {
 								create_ship = {
 									name = random
-									random_existing_design = cruiser
+									design = NAME_ralis_cruiser_carrier
 								}
 							change_variable = { which = num_ships_original value = 1 }
 							}
@@ -268,8 +153,8 @@ f93_create_fleet_1 = {
 								modifier = {
 									factor = 0
 									count_controlled_ship = {
-										count > 3
-										limit = { is_ship_size = battleship }
+										count > 6
+										limit = { is_ship_size = cruiser }
 									}
 								}
 							}
@@ -284,7 +169,7 @@ f93_create_fleet_1 = {
 							1 = {
 								create_ship = {
 									name = random
-									random_existing_design = battleship
+									design = NAME_ralis_battleship_carrier
 								}
 							change_variable = { which = num_ships_original value = 1 }
 							}
@@ -292,7 +177,7 @@ f93_create_fleet_1 = {
 								modifier = {
 									factor = 0
 									count_controlled_ship = {
-										count > 2
+										count > 4
 										limit = { is_ship_size = battleship }
 									}
 								}
@@ -322,35 +207,35 @@ f93_create_crisis_cruiser_fleet = {
 					count = 3
 					create_ship = {
 						name = random
-						random_existing_design = crisis_corvette
+						design = crisis_corvette
 					}
 				}
 				while = {
 					count = 1
 					create_ship = {
 						name = random
-						random_existing_design = crisis_frigate
+						design = crisis_frigate
 					}
 				}
 				while = {
 					count = 2
 					create_ship = {
 						name = random
-						random_existing_design = crisis_destroyer
+						design = crisis_destroyer
 					}
 				}
 				while = {
 					count = 3
 					create_ship = {
 						name = random
-						random_existing_design = crisis_cruiser
+						design = crisis_cruiser
 					}
 				}
 				while = {
 					count = 1
 					create_ship = {
 						name = random
-						random_existing_design = battleship
+						design = battleship
 					}
 				}
 			}

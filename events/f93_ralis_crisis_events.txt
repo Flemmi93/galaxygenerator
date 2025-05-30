@@ -212,7 +212,17 @@ country_event = {
 					mult = 300
 				}
 			}
-			
+			if = {
+				limit = { any_owned_fleet = { fleet_power < 2000 has_fleet_flag = recently_made } }
+				every_owned_fleet = {
+					limit = { fleet_power < 2000 has_fleet_flag = recently_made }
+					if = {
+						limit = { exists = leader }
+						leader = { unassign_leader = this }
+					}
+					destroy_fleet = this
+				}
+			}
 			if = {
 				limit = {
 					is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments }
@@ -222,6 +232,13 @@ country_event = {
 					days = 270
 				}
 				f93_create_ralis_fleet = yes
+			}
+			
+			random_owned_starbase = {
+				if = {
+					limit = { used_defense_platform_capacity_percent < 1 }
+					spawn_free_defense_platform = yes
+				}
 			}
 		}
 
@@ -247,6 +264,17 @@ country_event = {
 				add_modifier = {
 					modifier = f93_pre_midgame_stabalisation
 					mult = 350
+				}
+			}
+			if = {
+				limit = { any_owned_fleet = { fleet_power < 5000 has_fleet_flag = recently_made } }
+				every_owned_fleet = {
+					limit = { fleet_power < 5000 has_fleet_flag = recently_made }
+					if = {
+						limit = { exists = leader }
+						leader = { unassign_leader = this }
+					}
+					destroy_fleet = this
 				}
 			}
 			if = {
@@ -286,7 +314,7 @@ starbase_event = {
 			from = { owner = { is_same_value = event_target:f93_ralis_country } }
 			owner = { is_same_value = event_target:f93_ralis_country }
 		}
-		NOT = { has_fleet_flag = f93_recently_conquered }
+		# NOT = { has_fleet_flag = f93_recently_conquered }
 	}
 	immediate = {
 		if = {
@@ -296,10 +324,10 @@ starbase_event = {
 		else = {
 			set_owner = event_target:f93_ralis_country
 		}
-		set_timed_fleet_flag = {
-			flag = f93_recently_conquered
-			days = 30
-		}
+		# set_timed_fleet_flag = {
+		# 	flag = f93_recently_conquered
+		# 	days = 30
+		# }
 	}
 }
 #A galaxy holds its breath

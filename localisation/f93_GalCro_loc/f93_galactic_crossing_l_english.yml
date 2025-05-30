@@ -4,7 +4,8 @@
  f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proves difficult.\nWithout solid data, the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of the first report, the artifact was transferred into a private collection. It is unknown who orchestrated this. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notably none of the creatures could be identified as §Y[Root.GetSpeciesName]§!"
 
  f93_galactic_crossing.8.name: "Game Start Quality"
- f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! systems: §Y[root.f93_num_shrouded_systems]§! Systems are shrouded systems.\n\nIt is up to you if this is good or bad." #\n\n§RThe Crisis country can cause crashes by renting fleets, we are trying to suppress this. §!§GMercenary enclaves are enabled again§!."
+ f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! systems: §Y[root.f93_num_shrouded_systems]§! Systems are shrouded systems.\n\nIt is up to you if this is good or bad."
+#\n\n§RThe Crisis country can cause crashes by renting fleets, we are trying to suppress this. §!§GMercenary enclaves are enabled again§!.
  f93_galactic_crossing.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§MIsolated§!.\n\n§GHave fun!§!\n\n$f93_galactic_crossing.8.desc$"
@@ -29,6 +30,15 @@
 #Building
  f93_building_crisis_capital: "$building_system_capital$"
  f93_building_crisis_capital_desc: "$building_system_capital_desc$"
+# Ship Design
+ NAME_ralis_corvette_brawl: "Brawler"
+ NAME_ralis_corvette_picket: "Picket"
+ NAME_ralis_frigate_torpedo: "Ywing"
+ NAME_ralis_frigate_energy: "Enterprise"
+ NAME_ralis_destroyer_line: "Destiny's end"
+ NAME_ralis_destroyer_arty: "Deliver"
+ NAME_ralis_cruiser_carrier: "Assault Carrier"
+ NAME_ralis_battleship_carrier: "Fleet Carrier"
 
 #Diplomatic Subtitle
  f93_ralis_crisis_SUBTITLE: "Bringer of the End"

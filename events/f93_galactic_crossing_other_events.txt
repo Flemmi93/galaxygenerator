@@ -174,7 +174,7 @@ country_event = {
 	id = f93_oe_event.6
 	title = f93_oe_event.6.name
 	desc = f93_oe_event.6.desc
-	picture = GFX_evt_star_chart
+	picture = GFX_evt_hyper_relay_conjunction
 
 	# mean_time_to_happen = { days = 30 }
 	is_triggered_only = yes

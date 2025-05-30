@@ -227,7 +227,10 @@ country_event = {
 				}
 				random_neighbor_system_euclidean = {
 					limit = { f93_system_has_ancient_relay = no }
-					add_hyperlane = { from = this to = prev }
+					if = {
+						limit = { NOT = { has_hyperlane_to = prev } }
+						add_hyperlane = { from = this to = prev }
+					}
 					remove_star_flag = f93_shroud_region_flag
 				}
 			}
