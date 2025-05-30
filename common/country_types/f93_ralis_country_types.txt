@@ -11,7 +11,7 @@ f93_shrouded_region_crisis = {
 	needs_survey = yes						#default no, if yes then planets must be surveyed before they can be colonized, also if yes a science ship is needed for exploration.
 	ship_disengagement = yes				#default no, decides if the country's ships can flee from battle instead of fighting to the death
 	share_communications = no				#default yes, decides if they share communciations with anyone you have contact with
-	destroys_starbases = no					#if this is set to yes, country will destroy starbases instead of disabling them
+	destroys_starbases = no				#if this is set to yes, country will destroy starbases instead of disabling them
 	observable = yes						#Fairly self explanatory. Will not show up in list of observable countries, and cannot be tagged to as observer.
 	mid_game_crisis = no
 	ownership_limits = default
@@ -51,8 +51,8 @@ f93_shrouded_region_crisis = {
 			contact_rule = does_first_contact_sites
 		}
 		tiered_technology_module = {
-			tier = 2
-			rare = yes
+			tier = 3
+			rare = no
 		}
 	}
 

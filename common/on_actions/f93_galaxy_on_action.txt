@@ -144,3 +144,11 @@ on_country_created = {
 		f93_galcro_copy_events.2
 	}
 }
+
+# This = starbase being disabled (not ship!)
+# From = fleet that disabled the starbase
+on_starbase_disabled = {
+	events = {
+		f93_ralis_crisis_event.0005
+	}
+}

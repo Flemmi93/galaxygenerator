@@ -60,6 +60,9 @@ create_ralis_country = { #target a valid planet with this
 					species = last_created_species
 					class = commander
 				}
+				last_created_leader = {
+					add_skill = 5
+				}
 				create_leader = {
 					name = random
 					species = last_created_species
@@ -71,17 +74,17 @@ create_ralis_country = { #target a valid planet with this
 					class = scientist
 				}
 			}
-			give_technology = { tech = tech_space_construction }
-			give_technology = { tech = tech_starbase_1 }
-			give_technology = { tech = tech_starbase_2 }
-			give_technology = { tech = tech_starbase_3 }
-			give_technology = { tech = tech_starbase_4 }
-			give_technology = { tech = tech_starbase_5 }
-			give_technology = { tech = tech_corvettes }
-			give_technology = { tech = tech_destroyers }
-			give_technology = { tech = tech_cruisers }
+			# give_technology = { tech = tech_space_construction }
+			# give_technology = { tech = tech_starbase_1 }
+			# give_technology = { tech = tech_starbase_2 }
+			# give_technology = { tech = tech_starbase_3 }
+			# give_technology = { tech = tech_starbase_4 }
+			# give_technology = { tech = tech_starbase_5 }
+			# give_technology = { tech = tech_corvettes }
+			# give_technology = { tech = tech_destroyers }
+			# give_technology = { tech = tech_cruisers }
 			# give_technology = { tech = tech_battleships }
-			give_technology = { tech = tech_strike_craft_1 }
+			# give_technology = { tech = tech_strike_craft_1 }
 			set_variable = { which = f93_fleet_size value = 1 }
 		}
 	}
@@ -601,5 +604,16 @@ f93_add_zro_cartel = {
 	}
 	else = {
 		add_modifier = { modifier = f93_zro_cartel mult = 1 }
+	}
+}
+
+f93_unlock_fleet = {
+	set_event_locked = no
+	remove_fleet_flag = f93_fleet_attacking
+	if = {
+		limit = { exists = space_owner  }
+		space_owner = {
+			country_event = { id = f93_ralis_crisis_event.0004 days = 480 }
+		}
 	}
 }

@@ -323,12 +323,12 @@ f93_gc_2_3_onoff = {
 	effect = {
 		if = {
 			limit = {
-				has_global_flag = f82_button_2_3_off
+				has_global_flag = f82_button_2_3_on
 			}
-			remove_global_flag = f82_button_2_3_off
+			remove_global_flag = f82_button_2_3_on
 		}
 		else = {
-			set_global_flag = f82_button_2_3_off
+			set_global_flag = f82_button_2_3_on
 		}
 	}
 }

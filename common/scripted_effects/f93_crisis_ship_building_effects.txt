@@ -156,6 +156,45 @@ f93_create_destryoer_fleet = {
 	}
 }
 #Fleet 1
+f93_create_ralis_fleet = {
+	if = {
+		limit = {
+			any_owned_fleet = {
+				num_ships < num_ships_original_halfed
+				has_fleet_flag = ralis_fleet_1
+			}
+		}
+		random_owned_fleet = {
+			limit = {
+				num_ships < num_ships_original_halfed
+				has_fleet_flag = ralis_fleet_1
+			}
+			owner = { capital_scope = { f93_create_fleet_1 = yes } change_variable = { which = f93_fleet_size value = 0.25 } }
+			auto_follow_fleet = last_created_fleet
+			remove_fleet_flag = ralis_fleet_1
+			limit = { exists = leader }
+			leader = { unassign_leader = this last_created_fleet = { assign_leader = this } }
+		}
+		random_system_within_border = {
+				limit = { is_capital_system = no }
+				starbase = {
+					last_created_fleet = {
+						set_location = prev
+					}
+				}
+			}
+	}
+	capital_scope = { f93_create_fleet_1 = yes }
+	change_variable = { which = f93_fleet_size value = 0.25 }
+	random_system_within_border = {
+		limit = { is_capital_system = no }
+		starbase = {
+			last_created_fleet = {
+				set_location = prev
+			}
+		}
+	}
+}
 f93_create_fleet_1 = {
 	create_fleet =  {
 		settings = {
@@ -164,9 +203,9 @@ f93_create_fleet_1 = {
 			can_change_leader = yes	
 		}
 		effect = {
+			set_variable = { which = num_ships_original value = 1 }
 			owner = { change_variable = { which = f93_fleet_size value = 0.5 } }
 			set_variable = { which = emergency_fleet value = root.emergency_fleet }
-			floor_variable = f93_fleet_size
 			set_variable = { which = halfway_passed_midgame value = value:halfway_to_mid_game_year }
 			multiply_variable = { which = halfway_passed_midgame value = -1 }
 			set_variable = { which = quarterway_passed_midgame value = halfway_passed_midgame }
@@ -183,6 +222,7 @@ f93_create_fleet_1 = {
 								name = random
 								random_existing_design = corvette
 							}
+							change_variable = { which = num_ships_original value = 1 }
 						}
 						1 = {}
 					}
@@ -195,6 +235,7 @@ f93_create_fleet_1 = {
 								name = random
 								random_existing_design = frigate
 							}
+							change_variable = { which = num_ships_original value = 1 }
 						}
 						2 = {}
 					}
@@ -207,12 +248,12 @@ f93_create_fleet_1 = {
 								name = random
 								random_existing_design = destroyer
 							}
+							change_variable = { which = num_ships_original value = 1 }
 						}
 						1 = {}
 					}
 				}
 				if = {
-					limit = { mid_game_years_passed >= quarterway_passed_midgame }
 					while = {
 						count = 1 #number of possible cruiser
 						random_list = {
@@ -221,6 +262,7 @@ f93_create_fleet_1 = {
 									name = random
 									random_existing_design = cruiser
 								}
+							change_variable = { which = num_ships_original value = 1 }
 							}
 							10 = {
 								modifier = {
@@ -235,7 +277,7 @@ f93_create_fleet_1 = {
 					}
 				}
 				if = {
-					limit = { mid_game_years_passed >= halfway_passed_midgame }
+					limit = { mid_game_years_passed >= quarterway_passed_midgame }
 					while = {
 						count = 1 #number of possible battleship
 						random_list = {
@@ -244,6 +286,7 @@ f93_create_fleet_1 = {
 									name = random
 									random_existing_design = battleship
 								}
+							change_variable = { which = num_ships_original value = 1 }
 							}
 							10 = {
 								modifier = {
@@ -258,6 +301,8 @@ f93_create_fleet_1 = {
 					}
 				}
 			}
+			set_variable = { which = num_ships_original_halfed value = num_ships_original }
+			divide_variable = { which = num_ships_original_halfed value = 2 }
 		}
 	}
 }

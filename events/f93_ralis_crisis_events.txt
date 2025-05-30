@@ -188,6 +188,7 @@ country_event = {
 					flag = f93_recent_reinforcments
 					days = 360
 				}
+				f93_create_ralis_fleet = yes
 			}
 		}
 
@@ -205,7 +206,7 @@ country_event = {
 				mult = -0.2
 			}
 			if = {
-				limit = { mid_game_years_passed < 0 }
+				limit = { mid_game_years_passed < 1 NOT = { any_owned_fleet = { has_fleet_flag = f93_fleet_attacking } } }
 				add_modifier = {
 					modifier = f93_pre_midgame_stabalisation
 					mult = 300
@@ -215,22 +216,12 @@ country_event = {
 			if = {
 				limit = {
 					is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments }
-					count_owned_fleet = { count < 4 limit = { has_fleet_flag = ralis_fleet_1 } }
 				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
-					days = 360
+					days = 270
 				}
-				set_variable = { which = f93_fleet_size value = 3 }
-				capital_scope = { f93_create_fleet_1 = yes }
-				random_system_within_border = {
-					limit = { is_capital_system = no }
-					random_system_planet = {
-						last_created_fleet = {
-							set_location = prev
-						}
-					}
-				}
+				f93_create_ralis_fleet = yes
 			}
 		}
 
@@ -266,13 +257,51 @@ country_event = {
 				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
-					days = 360
+					days = 180
 				}
+			f93_create_ralis_fleet = yes
 			}
 		}
 	}
 }
 
+country_event = {
+	id = f93_ralis_crisis_event.0004
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:f93_ralis_country = { set_faction_hostility = { target = root set_hostile = no set_neutral = yes set_friendly = no } }
+	}
+}
+
+# This = starbase being disabled (not ship!)
+# From = fleet that disabled the starbase
+starbase_event = {
+	id = f93_ralis_crisis_event.0005
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		or = {
+			from = { owner = { is_same_value = event_target:f93_ralis_country } }
+			owner = { is_same_value = event_target:f93_ralis_country }
+		}
+		NOT = { has_fleet_flag = f93_recently_conquered }
+	}
+	immediate = {
+		if = {
+			limit = { owner = { is_same_value = event_target:f93_ralis_country } }
+			set_owner = from.owner
+		}
+		else = {
+			set_owner = event_target:f93_ralis_country
+		}
+		set_timed_fleet_flag = {
+			flag = f93_recently_conquered
+			days = 30
+		}
+	}
+}
 #A galaxy holds its breath
 country_event = {
 	id = f93_ralis_crisis_event.0101
@@ -295,6 +324,7 @@ country_event = {
 		country_event = { id = f93_ralis_crisis_event.0201 days = 30 }
 	}
 }
+
 country_event = {
 	id = f93_ralis_crisis_event.0102
 	hide_window = yes
@@ -336,13 +366,14 @@ country_event = {
 	}
 }
 
+#our system destroy event, much narrower
 system_event = {
 	id = f93_ralis_crisis_event.0103
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = { f93_should_not_be_destroyed = no any_neighbor_system = { exists = space_owner space_owner = { is_country_type = fallen_empire } } }
 	immediate = {
-		set_name = "DESTROYED"
+		# set_name = "DESTROYED"
 		if = {
 			limit = { exists = space_owner space_owner = { is_country_type = default } }
 			every_system_colony = {
@@ -357,7 +388,7 @@ system_event = {
 		set_star_flag = star_cracked
 		set_star_class = sc_black_hole
 		every_system_ambient_object = {
-			ambient_object = this
+			destroy_ambient_object = this
 		}
 		every_system_planet = {
 			limit = { is_star = yes }
@@ -590,7 +621,7 @@ country_event = {
 							}
 							create_country = {
 								name = random
-								type = default
+								type = primitive
 								origin = origin_default
 								ethos = random
 								authority = random
@@ -599,6 +630,9 @@ country_event = {
 								name_list = random
 								ignore_initial_colony_error = yes
 								effect = {
+									set_country_flag = early_space_age
+									set_pre_ftl_age = early_space_age
+									set_awareness = 100
 									add_resource = {
 										minerals = 50
 										energy = 150
@@ -608,13 +642,7 @@ country_event = {
 										trade = 450
 										mult = trigger:years_passed
 									}
-									copy_techs_from = { target = event_target:f93_ralis_liberator }
-									add_to_galactic_community = yes
 								}
-							}
-							every_system_colony = {
-								set_owner = last_created_country
-								create_galcom_admin_planet = yes
 							}
 							starbase = { set_owner = last_created_country }
 							every_neighbor_system = {

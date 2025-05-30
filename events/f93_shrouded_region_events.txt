@@ -261,9 +261,18 @@ planet_event = {
 							count = 10
 							spawn_free_defense_platform = yes
 						}
+						
+						owner = {
+							random_owned_design = {
+								limit = {
+									is_ship_size = military_station_small
+								}
+								save_event_target_as = ion_canon
+							}
+						}
 						create_ship = {
 							name = random
-							design = ion_cannon
+							design = event_target:ion_canon
 							graphical_culture = owner
 						}
 					}
