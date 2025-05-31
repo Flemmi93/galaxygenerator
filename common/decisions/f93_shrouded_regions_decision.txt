@@ -1,0 +1,74 @@
+f93_buy_more_shrouded_region_access = {
+	owned_planets_only = yes				#default: no
+	sound = event_administrative_work		#this is a sound
+	icon = decision_colony_settlement		#icon found in gfx/interface/icons/decisions/
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 500
+			trade = 20000
+		}
+	}
+
+	enactment_time = 30 					#enactment time in days, default is instant
+
+	prerequisites = {
+	}
+
+	show_tech_unlock_if = {
+		#triggers for whether the decision should show in the tech
+	}
+
+	potential = {
+		is_capital = yes
+		# NOT = { exists = event_target:f93_ralis_country }
+	}
+
+	allow = {
+		any_system = {
+			has_star_flag = f93_shroud_region_flag
+			NOR = {
+				any_neighbor_system = { has_hyperlane_to = prev }
+				has_natural_wormhole = yes
+			}
+		}
+	}
+
+	on_queued = {
+		#effect when queuing decision here
+	}
+
+	on_unqueued = {
+		#effect when manually unqueuing decision here
+	}
+
+	abort_trigger = {
+		#triggers for aborting the queued decision here
+	}
+
+	abort_effect = {
+		#effect when aborting queued decision (via abort_trigger) here
+	}
+
+	effect = {
+		random_system = {
+			limit = {
+				has_star_flag = f93_shroud_region_flag
+				NOR = {
+					any_neighbor_system = { has_hyperlane_to = prev }
+					has_natural_wormhole = yes
+				}
+			}
+			f93_place_shroud_gate_node_and_cluster = yes
+		}
+	}
+
+	ai_weight = {
+		weight = 5
+
+		modifier = {
+			#stuff
+		}
+	}
+}

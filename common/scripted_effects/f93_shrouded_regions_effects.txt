@@ -1,0 +1,232 @@
+f93_random_cluster_generator = {
+	random_list = {
+		50 = { # up to 4 systems
+			while = {
+				count = 4
+				random_neighbor_system_euclidean = {
+					limit = {
+						has_star_flag = f93_shroud_region_flag
+						NOR = {
+							has_star_flag = f93_ralisgate_cluster
+							has_star_flag = f93_ralisgate
+							any_neighbor_system = { has_hyperlane_to = prev }
+						}
+					}
+					add_hyperlane = { from = this to = prev }
+					set_star_flag = f93_ralisgate_cluster
+				}
+			}
+		}
+		25 = { #up to 6 systems
+			while = {
+				count = 3
+				random_neighbor_system_euclidean = {
+					limit = {
+						has_star_flag = f93_shroud_region_flag
+						NOR = {
+							has_star_flag = f93_ralisgate_cluster
+							has_star_flag = f93_ralisgate
+							any_neighbor_system = { has_hyperlane_to = prev }
+						}
+					}
+					set_star_flag = f93_current_nexus
+					add_hyperlane = { from = this to = prev }
+					set_star_flag = f93_ralisgate_cluster
+					random_neighbor_system_euclidean = {
+						limit = {
+							has_star_flag = f93_shroud_region_flag
+							calc_true_if = {
+								amount = 1
+								NOT = { has_star_flag = f93_ralisgate_cluster }
+								has_star_flag = f93_current_nexus
+							}
+						}
+						set_star_flag = f93_current_nexus
+						add_hyperlane = { from = this to = prev }
+						set_star_flag = f93_ralisgate_cluster
+					}
+				}
+			}
+		}
+		25 = { #up to 5 systems
+			while = {
+				count = 5
+				random_neighbor_system_euclidean = {
+					limit = {
+						has_star_flag = f93_shroud_region_flag
+						NOR = {
+							has_star_flag = f93_ralisgate_cluster
+							has_star_flag = f93_ralisgate
+							any_neighbor_system = { has_hyperlane_to = prev }
+						}
+					}
+					add_hyperlane = { from = this to = prev }
+					set_star_flag = f93_ralisgate_cluster
+				}
+			}
+		}
+		20 = { #up to 8 systems
+			while = {
+				count = 2
+				random_neighbor_system_euclidean = {
+					limit = {
+						has_star_flag = f93_shroud_region_flag
+						NOR = {
+							has_star_flag = f93_ralisgate_cluster
+							has_star_flag = f93_ralisgate
+							any_neighbor_system = { has_hyperlane_to = prev }
+						}
+					}
+					set_star_flag = f93_current_nexus
+					add_hyperlane = { from = this to = prev }
+					set_star_flag = f93_ralisgate_cluster
+					while = {
+						count = 2
+						random_neighbor_system_euclidean = {
+							limit = {
+								has_star_flag = f93_shroud_region_flag
+								calc_true_if = {
+									amount = 1
+									NOT = { has_star_flag = f93_ralisgate_cluster }
+									has_star_flag = f93_current_nexus
+								}
+							}
+							set_star_flag = f93_current_nexus
+							add_hyperlane = { from = this to = prev }
+							set_star_flag = f93_ralisgate_cluster
+						}
+					}
+					random_neighbor_system_euclidean = {
+						limit = {
+							has_star_flag = f93_shroud_region_flag
+							calc_true_if = {
+								amount = 1
+								NOT = { has_star_flag = f93_ralisgate_cluster }
+								has_star_flag = f93_current_nexus
+							}
+						}
+						set_star_flag = f93_current_nexus
+						add_hyperlane = { from = this to = prev }
+						set_star_flag = f93_ralisgate_cluster
+						random_neighbor_system_euclidean = {
+							limit = {
+								has_star_flag = f93_shroud_region_flag
+								calc_true_if = {
+									amount = 1
+									NOT = { has_star_flag = f93_ralisgate_cluster }
+									has_star_flag = f93_current_nexus
+								}
+							}
+							set_star_flag = f93_current_nexus
+							add_hyperlane = { from = this to = prev }
+							set_star_flag = f93_ralisgate_cluster
+						}
+					}
+				}
+			}
+		}
+	}
+}
+f93_place_shroud_gate_node = {
+	spawn_natural_wormhole = {
+		bypass_type = ralisgate
+		random_pos = yes
+		orbit_angle = 360
+	}
+	set_star_flag = f93_ralisgate
+	set_star_flag = f93_got_shroud_nexus_node
+}
+f93_place_shroud_gate_nexus = {
+	spawn_natural_wormhole = {
+		bypass_type = ralisgate
+		random_pos = yes
+		orbit_angle = 360
+	}
+	set_star_flag = f93_raliscluster1
+	set_star_flag = f93_got_shroud_nexus_node
+}
+
+f93_place_shroud_gate_node_and_cluster = {
+	set_star_flag = f93_ralisgate
+	f93_random_cluster_generator = yes
+	random_system = {
+		limit = { has_star_flag = f93_current_nexus }
+		spawn_natural_wormhole = {
+			bypass_type = ralisgate
+			random_pos = yes
+			orbit_angle = 360
+		}
+	}		
+}
+
+f93_place_shroud_hyperlane_in_isolated_wormhole_region = {
+	every_system = {
+		limit = {
+			has_star_flag = f93_shroud_region_flag
+			has_star_flag = f93_ralis_empire_cluster
+			NOT = { has_star_flag = f93_ralisgate_cluster }
+			has_natural_wormhole = yes
+		}
+		set_star_flag = f93_current_nexus
+		random_neighbor_system_euclidean = {
+			f93_place_shroud_gate_node_and_cluster = yes
+			if = {
+				limit = { NOT = { has_hyperlane_to = prev } }
+				add_hyperlane = { from = this to = prev }
+			}
+		}
+	}
+}
+
+f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = {
+	set_star_flag = f93_ralisgate
+	f93_random_cluster_generator = yes
+	random_system = {
+		limit = { has_star_flag = f93_current_nexus }
+		random_system = {
+			limit = {
+				NOT = { exists = owner }
+				f93_system_winthin_20_steps_of_galcro = yes
+				has_natural_wormhole = no
+			}
+			prev = {
+				spawn_natural_wormhole = {
+					bypass_type = wormhole
+					random_pos = yes
+					orbit_angle = 360
+				}
+			}
+			spawn_natural_wormhole = {
+				bypass_type = wormhole
+				random_pos = yes
+				orbit_angle = 360
+			}
+			link_wormholes = prev
+		}
+	}
+	every_system = { remove_star_flag = f93_current_nexus }
+}
+
+f93_connect_SPECIFIC_system_with_GalCro_within_20_steps_and_generate_cluster = {
+	set_star_flag = f93_ralisgate
+	f93_random_cluster_generator = yes
+	random_system = {
+		limit = { has_star_flag = f93_current_nexus }
+		event_target:connection_origin = {
+			prev = {
+				spawn_natural_wormhole = {
+					bypass_type = wormhole
+					random_pos = yes
+					orbit_angle = 360
+				}
+			}
+			spawn_natural_wormhole = {
+				bypass_type = wormhole
+				random_pos = yes
+				orbit_angle = 360
+			}
+			link_wormholes = prev
+		}
+	}
+	every_system = { remove_star_flag = f93_current_nexus }
+}

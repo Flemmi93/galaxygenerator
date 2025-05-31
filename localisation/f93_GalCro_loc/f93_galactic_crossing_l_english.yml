@@ -30,6 +30,10 @@
 #Building
  f93_building_crisis_capital: "$building_system_capital$"
  f93_building_crisis_capital_desc: "$building_system_capital_desc$"
+
+#Decision
+ f93_buy_more_shrouded_region_access: "Open a new Shrouded Hyperlane"
+ f93_buy_more_shrouded_region_access_desc: "With the Ralis Crisis over we can make use of the technology found on $ralis_planet_NAME$ to create a Shrouded Hyperlane, everyone will have access, but we have forewarning."
 # Ship Design
  NAME_ralis_corvette_brawl: "Brawler"
  NAME_ralis_corvette_picket: "Picket"
@@ -159,6 +163,7 @@
  f93_shroud.7b.desc: "It is your job now, to be the horror the universe deserves!"
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
+ f93_shroud_region_flag: "Shrouded Region"
 
 	#resolution
  ralis_focus: "Ralis War Plans"
