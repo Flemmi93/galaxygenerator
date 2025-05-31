@@ -194,7 +194,7 @@ country_event = {
 						}
 					}
 					has_star_flag = chosen_system
-					has_star_flag = crisis_sapwn_exclude
+					has_star_flag = crisis_spawn_exclude
 					has_star_flag = lcluster
 					has_star_flag = surveillance_supercomputer_system
 					has_star_flag = unplugged_machine_legacy_flag

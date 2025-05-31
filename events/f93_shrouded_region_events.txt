@@ -8,7 +8,7 @@ system_event = {
 	trigger = {
 		NOR = {
 			has_star_flag = chosen_system
-			has_star_flag = crisis_sapwn_exclude
+			has_star_flag = crisis_spawn_exclude
 			has_star_flag = empire_cluster
 			has_natural_wormhole = yes
 		}
@@ -308,7 +308,7 @@ planet_event = {
 		}
 		every_system = {
 			limit = { has_star_flag = f93_shroud_region_flag }
-			set_star_flag = crisis_sapwn_exclude
+			set_star_flag = crisis_spawn_exclude
 		}
 	}
 }
