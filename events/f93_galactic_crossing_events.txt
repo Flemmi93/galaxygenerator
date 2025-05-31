@@ -44,7 +44,7 @@ country_event = {
 					}
 					highway_connect_relay_only = yes
 					save_global_event_target_as = system_highway_start
-					set_star_flag = enigmatic_cache_system # dirty trick to stpo cach form ctd when spawning in shroud region
+					set_star_flag = enigmatic_cache_system # dirty trick to stop crash from ctd when spawning in shroud region
 				}
 			}
 			set_variable = { which = f93_gal_size value = 4 }
@@ -535,7 +535,7 @@ country_event = {
 				limit = {
 					OR = {
 						has_country_flag = mercenary_enclave_country
-						has_country_flag = enclanve
+						has_country_flag = enclave
 					}
 				}
 				remove_communications = event_target:f93_ralis_country
@@ -701,7 +701,7 @@ event = {
 				f93_system_has_ancient_relay = no
 				has_star_flag = f93_ancient_relay_system
 			}
-			f93_sapwn_ancient_relay = yes
+			f93_spawn_ancient_relay = yes
 			# if = {
 			# 	limit = { exists = space_owner }
 			# 	space_owner = { country_event = { } }

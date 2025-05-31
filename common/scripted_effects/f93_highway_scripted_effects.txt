@@ -15,7 +15,7 @@ f93_set_galaxy_size = {
 	}
 }
 
-f93_sapwn_ancient_relay = { #spawn ancient relay
+f93_spawn_ancient_relay = { #spawn ancient relay
 	if = {
 		limit = {
 			NOT = { has_megastructure = dandelion_relay }
@@ -43,10 +43,10 @@ f93_replace_relay_with_relay_star = {
 
 highway_connect_relay_only = {
 	set_star_flag = dd_highway_system_flag@this
-	f93_sapwn_ancient_relay = yes
+	f93_spawn_ancient_relay = yes
 }
 highway_connect = {
-	f93_sapwn_ancient_relay = yes
+	f93_spawn_ancient_relay = yes
 	if = {
 		limit = { exists = event_target:new_highway_system exists = event_target:old_highway_system }
 		event_target:new_highway_system = {
