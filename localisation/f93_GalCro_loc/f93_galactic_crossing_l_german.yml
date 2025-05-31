@@ -4,7 +4,8 @@
  f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proves difficult.\nWithout solid data, the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of the first report, the artifact was transferred into a private collection. It is unknown who orchestrated this. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notably none of the creatures could be identified as §Y[Root.GetSpeciesName]§!"
 
  f93_galactic_crossing.8.name: "Game Start Quality"
- f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! systems: §Y[root.f93_num_shrouded_systems]§! Systems are shrouded systems.\n\nIt is up to you if this is good or bad." #\n\n§RThe Crisis country can cause crashes by renting fleets, we are trying to suppress this. §!§GMercenary enclaves are enabled again§!."
+ f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! systems: §Y[root.f93_num_shrouded_systems]§! Systems are shrouded systems.\n\nIt is up to you if this is good or bad."
+#\n\n§RThe Crisis country can cause crashes by renting fleets, we are trying to suppress this. §!§GMercenary enclaves are enabled again§!.
  f93_galactic_crossing.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§MIsolated§!.\n\n§GHave fun!§!\n\n$f93_galactic_crossing.8.desc$"
@@ -29,12 +30,28 @@
 #Building
  f93_building_crisis_capital: "$building_system_capital$"
  f93_building_crisis_capital_desc: "$building_system_capital_desc$"
+# Ship Design
+ NAME_ralis_corvette_brawl: "Brawler"
+ NAME_ralis_corvette_picket: "Picket"
+ NAME_ralis_frigate_torpedo: "Ywing"
+ NAME_ralis_frigate_energy: "Enterprise"
+ NAME_ralis_destroyer_line: "Destiny's end"
+ NAME_ralis_destroyer_arty: "Deliver"
+ NAME_ralis_cruiser_carrier: "Assault Carrier"
+ NAME_ralis_battleship_carrier: "Fleet Carrier"
 
 #Diplomatic Subtitle
  f93_ralis_crisis_SUBTITLE: "Bringer of the End"
  f93_ralis_crisis_SUBTITLE_desc: "This Empire is attempting to end existence as we know it."
  f93_galcom_admin_SUBTITLE: "Peaceful Administration"
  f93_galcom_admin_SUBTITLE_desc: "The Galactic Community quickly established this pseudo government. They are tasked with making the galaxy whole again."
+
+#Personality
+ fanatic_purifiers_f93_shrouded_region_crisis: "$fanatic_purifiers$"
+ became_the_crisis_f93_shrouded_region_crisis: "$became_the_crisis$"
+#Government
+ f93_gov_ralis_crisis: "Galactic Nemesis"
+ f93_gov_ralis_crisis_desc: "Is back for a second round against the galaxy."
 
 #"Star"
  sc_hyper_relay_star: "Almost Empty System"
@@ -49,6 +66,7 @@
 #Shrouded Region
  Shrouded_Region_NAME: " " #Shrouded Region
 #above is empty on purpose, these are the purple neublae and would cover the entire map in this string if it was not a space.
+
  f93_shrouded_region_star: "Shrouded Star"
  f93_shrouded_region_star2: "$f93_shrouded_region_star$"
  f93_shrouded_region_star_desc: "This Star is deep within the shrouded regions, long ago unbelievable forces tore reality apart, the lack of hyperlanes in this area makes ship logistics challenging."
@@ -138,7 +156,7 @@
  f93_ralis_liberator: "§Y[f93_ralis_liberator.GetName]§!"
  f93_shroud.7.name: "The Galactic Crossing"
  f93_shroud.7.desc: "The Galactic Crossing is the academic name for a region in space where an ancient civilisation has constructed a mighty trade empire. Only the Hyper Relays left behind by them tell of their story... or so we thought, A feeling of unease spreads across the galaxy"
- f93_shroud.8.desc: "It is your job now, to be the source the universe deserves!"
+ f93_shroud.7b.desc: "It is your job now, to be the horror the universe deserves!"
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
 

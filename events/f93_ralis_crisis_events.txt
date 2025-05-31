@@ -57,12 +57,8 @@ country_event = {
 			add_tradition = tr_supremacy_overwhelming_force
 			add_tradition = tr_supremacy_great_game
 			add_tradition = tr_supremacy_finish
-			# give_technology = { tech = tech_wormhole_stabilization } 
 			add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
 			set_ai_personality = became_the_crisis_f93_shrouded_region_crisis
-			# force_remove_civic = 2
-			# force_add_civic = civic_fanatic_purifiers
-			# force_add_civic = civic_heroic_tales
 			create_fleet = {
 				effect = {
 					set_owner = event_target:f93_ralis_country
@@ -103,10 +99,6 @@ country_event = {
 					limit = { is_megastructure_type = crisis_sphere_ruined }
 					remove_megastructure = this
 				}
-				random_system_megastructure = {
-					limit = { is_megastructure_type = crisis_sphere_0 }
-					set_megastructure_flag = crisis_sphere
-				}
 				set_global_flag = f93_shroud_gate_active
 				random_system = {
 					limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
@@ -120,18 +112,7 @@ country_event = {
 					f93_place_shroud_gate_nexus = yes
 				}
 			}
-			# event_target:f93_ralis_matter_decompressor_system = {
-			# 	random_system_megastructure = {
-			# 		limit = { is_megastructure_type = matter_decompressor_1 }
-			# 		remove_megastructure = this
-			# 	}
-			# 	spawn_megastructure = {
-			# 		type = matter_decompressor_ruined
-			# 		planet = star
-			# 	}
-			# }
 		}
-		
 	}
 	option = {
 		name = WORRYING
@@ -349,8 +330,7 @@ country_event = {
 	immediate = {
 		set_timed_country_flag = {
 			flag = f93_recently_advanced_crisis
-			days = 60
-			random = 30
+			days = 90
 		}
 		if = {
 			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_4 OR = { has_global_flag = f93_community_claim_made has_global_flag = f93_community_claim_never_made } }
@@ -744,8 +724,7 @@ country_event = {
 					set_country_flag = f93_ralis_crisis_event0006active
 					set_timed_country_flag = {
 						flag = f93_recently_advanced_crisis
-						days = 60
-						random = 30
+						days = 90
 					}
 				}
 				capital_scope = { set_name = ralis_planet_NAME }

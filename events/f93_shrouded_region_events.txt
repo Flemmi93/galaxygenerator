@@ -33,7 +33,9 @@ system_event = {
 		
 		# set_name = "Shrouded"
 		set_star_flag = f93_shroud_periphery_flag
-		system_event = { id = f93_shroud.2 days = 1 }
+		system_event = { id = f93_shroud.2 }
+		#events depending on the srhoud and ralis cluster being formed should fire on the 4th day
+		system_event = { id = f93_shroud.8 days = 4 }
 	}
 
 }
@@ -54,8 +56,8 @@ system_event = {
 		# set_name = "core"
 		remove_star_flag = f93_shroud_periphery_flag
 		set_star_flag = f93_shroud_core_flag
-		system_event = { id = f93_shroud.3 days = 1 }
-		system_event = { id = f93_shroud.4 days = 2 } 
+		system_event = { id = f93_shroud.3 }
+		system_event = { id = f93_shroud.4 days = 1 } 
 		random_list = {
 			250 = {}
 			100 = { if = { limit = { is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
@@ -90,8 +92,8 @@ system_event = {
 		# set_name = "core core"
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
-		system_event = { id = f93_shroud.4 days = 1 }
-		system_event = { id = f93_shroud.5 days = 2 }
+		system_event = { id = f93_shroud.4 }
+		system_event = { id = f93_shroud.5 days = 1 }
 	}
 
 }
@@ -314,9 +316,8 @@ country_event = { #midgame trigger
 	id = f93_shroud.7
 	title = f93_shroud.7.name
 	picture = GFX_evt_fallen_empire
-
 	is_triggered_only = yes
-	
+
 	desc = {
 		trigger = {
 			NOT = { has_country_flag = ralis_country_flag }
@@ -328,7 +329,7 @@ country_event = { #midgame trigger
 		trigger = {
 			has_country_flag = ralis_country_flag
 		}
-		text = f93_shroud.8.desc
+		text = f93_shroud.7b.desc
 	}
 	
 	immediate = {
@@ -349,94 +350,87 @@ country_event = { #midgame trigger
 	option = {
 		trigger = { has_country_flag = ralis_country_flag }
 		name = f93_shroud.7.b
-		hidden_effect = {
-			country_event = { id = f93_shroud.8 }
-		}
 	}
 }
-
-country_event = {
+#reconnects voidworms systems to the galactic crossing, so this event chain is not impossible.
+system_event = {
 	id = f93_shroud.8
 	hide_window = yes
 	is_triggered_only = yes
-	fire_only_once = yes
+
 	trigger = {
-		has_country_flag = ralis_country_flag
+		OR ={ #maybe not too many?
+			has_star_flag = voidworms_system
+			has_star_flag = guardians_of_zanaam
+			has_star_flag = space_critter_system
+			has_star_flag = abandoned_gateway
+			has_star_flag = lgate
+		}
+		f93_system_winthin_20_steps_of_galcro = no
+		NOT = {
+			any_neighbor_system = {
+				has_hyperlane_to = root
+			}
+		}
 	}
 	immediate = {
-		add_resource = {
-			sr_dark_matter = 1
-			alloys = 2
-			minerals = 0.5
-			energy = 3
-			food = 0.01
-			consumer_goods = 0.25
-			unity = 0.1
-			mult = 30000
-		}
-	add_tradition = tr_supremacy_adopt
-	add_tradition = tr_supremacy_fleet_logistical_corps
-	add_tradition = tr_supremacy_master_shipwrights
-	add_tradition = tr_supremacy_war_games
-	add_tradition = tr_supremacy_overwhelming_force
-	add_tradition = tr_supremacy_great_game
-	add_tradition = tr_supremacy_finish
-	give_technology = { tech = tech_wormhole_stabilization }
-	give_technology = { tech = tech_ascension_theory }
-	add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
-	set_ai_personality = became_the_crisis_f93_shrouded_region_crisis
-
-	random_system_within_border = {
-		limit = { has_megastructure = crisis_sphere_ruined }
-		random_system_megastructure = {
-			limit = { is_megastructure_type = crisis_sphere_ruined }
-			remove_megastructure = this
-		}
-		spawn_megastructure = {
-			type = crisis_sphere_0
-		}
-		random_system_megastructure = {
-			limit = { is_megastructure_type = crisis_sphere_0 }
-			set_megastructure_flag = crisis_sphere
-		}
-		star = {
-			create_ambient_object = {
-				type = "crisis_sphere_1"
-				location = this
-			}
-			last_created_ambient_object = {
-				set_ambient_object_flag = crisis_sphere_1_system_effect
-				set_location = {
-					target = prev
-					distance = 0
-					angle = random
+		while = {
+			count = 3
+			random_neighbor_system_euclidean = {
+				limit = {
+					NOR = {
+						has_star_flag = f93_ralisgate_cluster
+						has_star_flag = f93_ralisgate
+						has_star_flag = f93_ralis_empire_cluster
+					}
+				}
+				set_star_flag = f93_current_nexus
+				if = {
+					limit = { NOT = { has_hyperlane_to = prev } }
+					add_hyperlane = { from = this to = prev }
+				}
+				set_star_flag = f93_ralisgate_cluster
+				random_neighbor_system_euclidean = {
+					limit = {
+						NOT = { has_star_flag = f93_ralis_empire_cluster }
+						calc_true_if = {
+							amount = 1
+							NOT = { has_star_flag = f93_ralisgate_cluster }
+							has_star_flag = f93_current_nexus
+						}
+					}
+					set_star_flag = f93_current_nexus
+					if = {
+						limit = { NOT = { has_hyperlane_to = prev } }
+						add_hyperlane = { from = this to = prev }
+					}
+					set_star_flag = f93_ralisgate_cluster
 				}
 			}
 		}
-	
-		every_playable_country =  {
-			event_target:f93_ralis_system = {
-				remove_claims = { who = prev num_of_claims = 100 }
-			}
-		
-		}
-		
 		random_system = {
-			limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes }
-			prev = {
+			limit = { NOT = { has_star_flag = voidworms_system } has_star_flag = f93_current_nexus }
+			random_system = {
+				limit = {
+					NOT = { exists = owner }
+					f93_system_winthin_20_steps_of_galcro = yes
+					has_natural_wormhole = no
+				}
+				prev = {
+					spawn_natural_wormhole = {
+						bypass_type = wormhole
+						random_pos = yes
+						orbit_angle = 360
+					}
+				}
 				spawn_natural_wormhole = {
 					bypass_type = wormhole
 					random_pos = yes
 					orbit_angle = 360
 				}
+				link_wormholes = prev
 			}
-			spawn_natural_wormhole = {
-				bypass_type = wormhole
-				random_pos = yes
-				orbit_angle = 360
-			}
-			link_wormholes = prev
 		}
-	}
+		every_system = { remove_star_flag = f93_current_nexus }
 	}
 }

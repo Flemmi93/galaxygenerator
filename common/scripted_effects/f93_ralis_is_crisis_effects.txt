@@ -315,21 +315,30 @@ f93_create_community_ralis_admin_with_station = {
 
 
 f93_create_community_admin_station = {
-	event_target:f93_community_ralis_admin_country = {
-		create_fleet = {
-			name = galcom_admin_station_NAME
-			settings = { spawn_debris = no }
-			effect = {
-				set_owner = prev
-				create_ship = {
-					name = random
-					design = "NAME_Curator_Enclave_Station"
-					graphical_culture = prev
+	if = {
+		limit = {
+			star_systen = {
+				NOT = {
+					any_ship_in_system = { is_ship_size = enclave_station }
 				}
-				set_location = {
-					target = prevprev
-					angle = random
-					distance = 100
+			}
+		}
+		event_target:f93_community_ralis_admin_country = {
+			create_fleet = {
+				name = galcom_admin_station_NAME
+				settings = { spawn_debris = no }
+				effect = {
+					set_owner = prev
+					create_ship = {
+						name = random
+						design = "NAME_Curator_Enclave_Station"
+						graphical_culture = prev
+					}
+					set_location = {
+						target = prevprev
+						angle = random
+						distance = 100
+					}
 				}
 			}
 		}
@@ -395,11 +404,13 @@ f93_first_handover_to_ralis_admin = {
 		}
 	}
 	every_system = {
-		exists = space_owner
-		space_owner = { is_country_type = fallen_empire }
-		has_star_flag = f93_ralis_took_it_from_someone
-		set_owner = event_target:f93_community_ralis_admin_country
-
+		limit = {
+			exists = space_owner
+			space_owner = { is_country_type = fallen_empire }
+			has_star_flag = f93_ralis_took_it_from_someone
+		}
+		starbase = { set_owner = event_target:f93_community_ralis_admin_country }
+		every_system_colony = {set_owner = event_target:f93_community_ralis_admin_country }
 	}
 }
 

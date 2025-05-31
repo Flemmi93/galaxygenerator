@@ -29,6 +29,7 @@ f93_should_not_be_destroyed = {
 		has_star_flag = empire_home_system
 		has_star_flag = hostile_system
 		has_star_flag = unique_system
+		has_star_flag = voidworms_system
 		#Exlcluding a bunch of mods, feel free to add your own or request me to add it.
 		has_star_flag = jupitwo_system
 		has_star_flag = pouchkinn_system
