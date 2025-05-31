@@ -32,30 +32,21 @@ f93_create_ralis_fleet = {
 				num_ships < num_ships_original_halfed
 				has_fleet_flag = ralis_fleet_1
 			}
-			owner = { capital_scope = { f93_create_fleet_1 = yes } change_variable = { which = f93_fleet_size value = 0.25 } }
+			owner = { capital_scope = { f93_create_fleet_1 = yes } }
 			auto_follow_fleet = last_created_fleet
 			remove_fleet_flag = ralis_fleet_1
 			limit = { exists = leader }
 			leader = { unassign_leader = this last_created_fleet = { assign_leader = this } }
 		}
-		random_system_within_border = {
-				limit = { is_capital_system = no }
-				star = {
-					last_created_fleet = {
-						set_location = prev
-						set_timed_fleet_flag = { flag = recently_made days = 720 }
-					}
-				}
-			}
 	}
-	capital_scope = { f93_create_fleet_1 = yes }
+	else = { capital_scope = { f93_create_fleet_1 = yes } }
 	change_variable = { which = f93_fleet_size value = 0.25 }
 	random_system_within_border = {
 		limit = { is_capital_system = no }
 		star = {
 			last_created_fleet = {
 				set_location = prev
-				set_timed_fleet_flag = { flag = recently_made days = 720 }
+				set_timed_fleet_flag = { flag = recently_made days = 1080 }
 			}
 		}
 	}

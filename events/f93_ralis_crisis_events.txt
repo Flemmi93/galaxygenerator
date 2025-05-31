@@ -172,7 +172,7 @@ country_event = {
 				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.75 NOT = { has_country_flag = f93_recent_reinforcments } }
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
-					days = 360
+					days = 720
 				}
 				f93_create_ralis_fleet = yes
 			}
@@ -215,7 +215,7 @@ country_event = {
 				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
-					days = 270
+					days = 480
 				}
 				f93_create_ralis_fleet = yes
 			}
@@ -271,7 +271,7 @@ country_event = {
 				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
-					days = 180
+					days = 360
 				}
 			f93_create_ralis_fleet = yes
 			}
