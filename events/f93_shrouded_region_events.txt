@@ -376,64 +376,6 @@ system_event = {
 	}
 	immediate = {
 		f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = yes
-		# while = {
-		# 	count = 3
-		# 	random_neighbor_system_euclidean = {
-		# 		limit = {
-		# 			NOR = {
-		# 				has_star_flag = f93_ralisgate_cluster
-		# 				has_star_flag = f93_ralisgate
-		# 				has_star_flag = f93_ralis_empire_cluster
-		# 			}
-		# 		}
-		# 		set_star_flag = f93_current_nexus
-		# 		if = {
-		# 			limit = { NOT = { has_hyperlane_to = prev } }
-		# 			add_hyperlane = { from = this to = prev }
-		# 		}
-		# 		set_star_flag = f93_ralisgate_cluster
-		# 		random_neighbor_system_euclidean = {
-		# 			limit = {
-		# 				NOT = { has_star_flag = f93_ralis_empire_cluster }
-		# 				calc_true_if = {
-		# 					amount = 1
-		# 					NOT = { has_star_flag = f93_ralisgate_cluster }
-		# 					has_star_flag = f93_current_nexus
-		# 				}
-		# 			}
-		# 			set_star_flag = f93_current_nexus
-		# 			if = {
-		# 				limit = { NOT = { has_hyperlane_to = prev } }
-		# 				add_hyperlane = { from = this to = prev }
-		# 			}
-		# 			set_star_flag = f93_ralisgate_cluster
-		# 		}
-		# 	}
-		# }
-		# random_system = {
-		# 	limit = { NOT = { has_star_flag = voidworms_system } has_star_flag = f93_current_nexus }
-		# 	random_system = {
-		# 		limit = {
-		# 			NOT = { exists = owner }
-		# 			f93_system_winthin_20_steps_of_galcro = yes
-		# 			has_natural_wormhole = no
-		# 		}
-		# 		prev = {
-		# 			spawn_natural_wormhole = {
-		# 				bypass_type = wormhole
-		# 				random_pos = yes
-		# 				orbit_angle = 360
-		# 			}
-		# 		}
-		# 		spawn_natural_wormhole = {
-		# 			bypass_type = wormhole
-		# 			random_pos = yes
-		# 			orbit_angle = 360
-		# 		}
-		# 		link_wormholes = prev
-		# 	}
-		# }
-		# every_system = { remove_star_flag = f93_current_nexus }
 	}
 }
 
