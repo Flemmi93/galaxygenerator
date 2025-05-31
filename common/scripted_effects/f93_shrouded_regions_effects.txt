@@ -12,7 +12,7 @@ f93_random_cluster_generator = {
 							any_neighbor_system = { has_hyperlane_to = prev }
 						}
 						distance = {
-							source = this
+							source = prev
 							max_distance <= 80
 							type = euclidean
 						}
@@ -35,7 +35,7 @@ f93_random_cluster_generator = {
 							any_neighbor_system = { has_hyperlane_to = prev }
 						}
 						distance = {
-							source = this
+							source = prev
 							max_distance <= 80
 							type = euclidean
 						}
@@ -52,7 +52,7 @@ f93_random_cluster_generator = {
 								has_star_flag = f93_current_nexus
 							}
 							distance = {
-								source = this
+								source = prev
 								max_distance <= 80
 								type = euclidean
 							}
@@ -76,7 +76,7 @@ f93_random_cluster_generator = {
 							any_neighbor_system = { has_hyperlane_to = prev }
 						}
 						distance = {
-							source = this
+							source = prev
 							max_distance <= 80
 							type = euclidean
 						}
@@ -99,7 +99,7 @@ f93_random_cluster_generator = {
 							any_neighbor_system = { has_hyperlane_to = prev }
 						}
 						distance = {
-							source = this
+							source = prev
 							max_distance <= 80
 							type = euclidean
 						}
@@ -118,7 +118,7 @@ f93_random_cluster_generator = {
 									has_star_flag = f93_current_nexus
 								}
 								distance = {
-									source = this
+									source = prev
 									max_distance <= 80
 									type = euclidean
 								}
@@ -137,7 +137,7 @@ f93_random_cluster_generator = {
 								has_star_flag = f93_current_nexus
 							}
 							distance = {
-								source = this
+								source = prev
 								max_distance <= 80
 								type = euclidean
 							}
@@ -154,7 +154,7 @@ f93_random_cluster_generator = {
 									has_star_flag = f93_current_nexus
 								}
 								distance = {
-									source = this
+									source = prev
 									max_distance <= 80
 									type = euclidean
 								}
@@ -213,7 +213,7 @@ f93_place_shroud_hyperlane_in_isolated_wormhole_region = {
 		random_neighbor_system_euclidean = {
 			limit = {
 				distance = {
-					source = this
+					source = prev
 					max_distance <= 80
 					type = euclidean
 				}
