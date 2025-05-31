@@ -365,6 +365,7 @@ system_event = {
 			has_star_flag = space_critter_system
 			has_star_flag = abandoned_gateway
 			has_star_flag = lgate
+			has_star_flag = enclave
 		}
 		f93_system_winthin_20_steps_of_galcro = no
 		NOT = {
