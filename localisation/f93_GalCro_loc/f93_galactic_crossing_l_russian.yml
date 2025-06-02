@@ -34,6 +34,8 @@
 #Decision
  f93_buy_more_shrouded_region_access: "Open a new Shrouded Hyperlane"
  f93_buy_more_shrouded_region_access_desc: "With the Ralis Crisis over we can make use of the technology found on $ralis_planet_NAME$ to create a Shrouded Hyperlane, everyone will have access, but we have forewarning."
+ f93_join_the_crisis_war_edict: "Join the Galactic Community's War against the Crisis"
+ f93_join_the_crisis_war_edict_desc: "We Will join the Galactic Community in their struggle against this Crisis, we sorty also live in this galaxy."
 # Ship Design
  NAME_ralis_corvette_brawl: "Brawler"
  NAME_ralis_corvette_picket: "Picket"

@@ -1,0 +1,50 @@
+f93_join_the_crisis_war = {
+	length = 0
+    icon = "GFX_edict_type_policy"
+    resources = {
+		category = edicts
+		cost = {
+			influence = 100
+		}
+    }
+
+    potential = {
+		is_country_type = default
+		is_galactic_community_member = no
+        event_target:f93_ralis_country = {
+			is_at_war = yes
+		}
+    }
+    
+    effect = {
+		random_playable_country = {
+			limit = {
+				is_galactic_community_member = yes
+				any_war = {
+					using_war_goal = {
+						type = wg_declared_crisis
+						owner = prev
+					}
+				}
+			}
+			save_event_target_as = community_war_leader
+			random_war = {
+				limit = {
+					using_war_goal = {
+						type = wg_declared_crisis
+						owner = event_target:community_war_leader
+					}
+				}
+				save_event_target_as = crisis_war
+			}
+		}
+		join_war_on_side = {
+			war = event_target:crisis_war
+			side = event_target:community_war_leader
+		}
+    }
+    
+    ai_weight = {
+		weight = 10000
+    }
+}
