@@ -22,7 +22,8 @@ f93_buy_more_shrouded_region_access = {
 
 	potential = {
 		is_capital = yes
-		# NOT = { exists = event_target:f93_ralis_country }
+		has_global_flag = f93_shroud_gate_active
+		NOT = { exists = event_target:f93_ralis_country }
 	}
 
 	allow = {

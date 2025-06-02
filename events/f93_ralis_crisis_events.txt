@@ -20,96 +20,115 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
-		NOT = { has_global_flag = f82_button_1_1_off }
+
 	}
 
 	immediate = {
-		#observer_event = { id = f93_ralis_observer_event.0001 }
-		set_variable = { which = stars_destroyed value = 0 }
-		save_global_event_target_as = crisis_country
-		set_global_flag = f93_ralis_awoken
-		# set_country_type = default
-		every_playable_country = {
-			country_event = {
-				id = f93_ralis_crisis_event.0101
-				days = 120
-			}
-		}
-		every_playable_country = {
-			limit = { NOR = { is_same_value = root has_country_flag = ralis_country_flag } }
-			country_event = { id = f93_ralis_crisis_event.0002 }
-		}
-		event_target:f93_ralis_country = {
-			add_resource = {
-				sr_dark_matter = 5
-				alloys = 2
-				minerals = 0.5
-				energy = 3
-				food = 0.01
-				consumer_goods = 0.25
-				unity = 0.1
-				mult = 30000
-			}
-			add_tradition = tr_supremacy_adopt
-			add_tradition = tr_supremacy_fleet_logistical_corps
-			add_tradition = tr_supremacy_master_shipwrights
-			add_tradition = tr_supremacy_war_games
-			add_tradition = tr_supremacy_overwhelming_force
-			add_tradition = tr_supremacy_great_game
-			add_tradition = tr_supremacy_finish
-			add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
-			set_ai_personality = became_the_crisis_f93_shrouded_region_crisis
-			create_fleet = {
-				effect = {
-					set_owner = event_target:f93_ralis_country
-					set_location = event_target:f93_ralis_country.capital_scope
-					create_ship = {
-						name = random
-						random_existing_design = science
-					}
-				}
-			}
-			create_fleet = {
-				effect = {
-					set_owner = event_target:f93_ralis_country
-					set_location = event_target:f93_ralis_country.capital_scope
-					create_ship = {
-						name = random
-						random_existing_design = science
-					}
-				}
-			}
-			if = {
-				limit = { NOT = { has_modifier = f93_ralis_country_buff } }
-				add_modifier = {
-					modifier = f93_ralis_country_buff
-					multiplier = 1
-					days = -1
-				}
-			}
-			
-			every_playable_country =  {
-				event_target:f93_ralis_system = {
-					remove_claims = { who = prev num_of_claims = 100 }
-				}
-			
-			}
+		if = {
+			limit = { has_global_flag = f82_button_1_1_off }
+			set_global_flag = f93_shroud_gate_active
 			event_target:f93_ralis_system = {
-				random_system_megastructure = {
-					limit = { is_megastructure_type = crisis_sphere_ruined }
-					remove_megastructure = this
-				}
-				set_global_flag = f93_shroud_gate_active
 				random_system = {
-					limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+					limit = { NOT = { exists = owner } f93_system_winthin_20_steps_of_galcro = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
 					prev = {
 						f93_place_shroud_gate_node = yes
 					}
 					f93_place_shroud_gate_nexus = yes
 				}
 				random_system = {
-					limit = { NOT = { exists = owner } f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+					limit = { NOT = { exists = owner } f93_system_winthin_20_steps_of_galcro = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
 					f93_place_shroud_gate_nexus = yes
+				}
+			}
+		}
+		else = {
+			#observer_event = { id = f93_ralis_observer_event.0001 }
+			set_variable = { which = stars_destroyed value = 0 }
+			save_global_event_target_as = crisis_country
+			set_global_flag = f93_ralis_awoken
+			# set_country_type = default
+			every_playable_country = {
+				country_event = {
+					id = f93_ralis_crisis_event.0101
+					days = 120
+				}
+			}
+			every_playable_country = {
+				limit = { NOR = { is_same_value = root has_country_flag = ralis_country_flag } }
+				country_event = { id = f93_ralis_crisis_event.0002 }
+			}
+			event_target:f93_ralis_country = {
+				add_resource = {
+					sr_dark_matter = 5
+					alloys = 2
+					minerals = 0.5
+					energy = 3
+					food = 0.01
+					consumer_goods = 0.25
+					unity = 0.1
+					mult = 30000
+				}
+				add_tradition = tr_supremacy_adopt
+				add_tradition = tr_supremacy_fleet_logistical_corps
+				add_tradition = tr_supremacy_master_shipwrights
+				add_tradition = tr_supremacy_war_games
+				add_tradition = tr_supremacy_overwhelming_force
+				add_tradition = tr_supremacy_great_game
+				add_tradition = tr_supremacy_finish
+				add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
+				set_ai_personality = became_the_crisis_f93_shrouded_region_crisis
+				create_fleet = {
+					effect = {
+						set_owner = event_target:f93_ralis_country
+						set_location = event_target:f93_ralis_country.capital_scope
+						create_ship = {
+							name = random
+							random_existing_design = science
+						}
+					}
+				}
+				create_fleet = {
+					effect = {
+						set_owner = event_target:f93_ralis_country
+						set_location = event_target:f93_ralis_country.capital_scope
+						create_ship = {
+							name = random
+							random_existing_design = science
+						}
+					}
+				}
+				if = {
+					limit = { NOT = { has_modifier = f93_ralis_country_buff } }
+					add_modifier = {
+						modifier = f93_ralis_country_buff
+						multiplier = 1
+						days = -1
+					}
+				}
+				
+				every_playable_country =  {
+					event_target:f93_ralis_system = {
+						remove_claims = { who = prev num_of_claims = 100 }
+					}
+				
+				}
+				event_target:f93_ralis_system = {
+					random_system_megastructure = {
+						limit = { is_megastructure_type = crisis_sphere_ruined }
+						remove_megastructure = this
+					}
+					set_global_flag = f93_shroud_gate_active
+					random_system = {
+						limit = { NOR = { exists = owner has_star_flag = f93_got_shroud_nexus_node any_neighbor_system = { exists = space_owner space_owner = { is_country_type = fallen_empire } } } f93_system_has_ancient_relay = yes }
+						prev = {
+							f93_place_shroud_gate_node = yes
+						}
+						f93_place_shroud_gate_nexus = yes
+					}
+					random_system = {
+						limit = { NOR = { exists = owner has_star_flag = f93_got_shroud_nexus_node any_neighbor_system = { exists = space_owner space_owner = { is_country_type = fallen_empire } } } f93_system_has_ancient_relay = yes }
+						f93_place_shroud_gate_nexus = yes
+					}
 				}
 			}
 		}

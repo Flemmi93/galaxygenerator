@@ -57,6 +57,7 @@ f93_ralis_plan_resolution = {
 			set_planet_flag = f93_galactic_community_claim_faild
 		}
 		every_country = { country_event = { id = f93_ralis_crisis_event.0602 } }
+		country_event = { id = f93_ralis_crisis_event.0006 days = 60 random = 30 }
 		set_global_flag = f93_community_claim_never_made
 	}
 

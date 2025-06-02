@@ -4,7 +4,7 @@ tags={
 	"Galaxy Generation"
 	"Overhaul"
 }
-name="Shrouded Regions WIP Version"
+name="Shrouded Regions"
 thumbnail="thumbnail.png"
 supported_version="v4.0.*"
-remote_file_id="3490329566"
+remote_file_id="3483853399"
