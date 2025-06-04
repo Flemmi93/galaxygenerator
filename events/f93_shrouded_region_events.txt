@@ -242,7 +242,7 @@ planet_event = {
 			create_ralis_country = yes
 			create_ralis_planet = yes
 			every_system = {
-				limit = { has_star_flag = f93_ralis_empire_cluster  }
+				limit = { has_star_flag = f93_ralis_empire_cluster }
 				create_starbase = {
 					owner = last_created_country
 					size = starbase_citadel

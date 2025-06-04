@@ -48,9 +48,8 @@ create_ralis_country = { #target a valid planet with this
 				mult = 3000
 			}
 			add_modifier = {
-				modifier = f93_ralis_country_buff
+				modifier = f93_ralis_difficulty_buff
 				multiplier = 1
-				days = -1
 			}
 			unlock_council_slots = 1
 			while = {
@@ -426,7 +425,7 @@ f93_unlock_fleet = {
 	set_event_locked = no
 	remove_fleet_flag = f93_fleet_attacking
 	if = {
-		limit = { exists = space_owner  }
+		limit = { exists = space_owner }
 		space_owner = {
 			country_event = { id = f93_ralis_crisis_event.0004 days = 480 }
 		}

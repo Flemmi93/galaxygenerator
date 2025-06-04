@@ -53,7 +53,7 @@ f93_create_ralis_fleet = {
 }
 
 f93_create_fleet_1 = {
-	create_fleet =  {
+	create_fleet = {
 		settings = {
 			can_upgrade = yes
 			can_change_composition = no
@@ -185,7 +185,7 @@ f93_create_fleet_1 = {
 
 #Cruiser Fleet crisis
 f93_create_crisis_cruiser_fleet = {
-	create_fleet =  {
+	create_fleet = {
 		settings = {
 			can_upgrade = yes
 			can_change_composition = no

@@ -1,22 +1,22 @@
 f93_join_the_crisis_war = {
 	length = 0
-    icon = "GFX_edict_type_policy"
-    resources = {
+	icon = "GFX_edict_type_policy"
+	resources = {
 		category = edicts
 		cost = {
 			influence = 100
 		}
-    }
+	}
 
-    potential = {
+	potential = {
 		is_country_type = default
 		is_galactic_community_member = no
-        event_target:f93_ralis_country = {
+		event_target:f93_ralis_country = {
 			is_at_war = yes
 		}
-    }
-    
-    effect = {
+	}
+	
+	effect = {
 		random_playable_country = {
 			limit = {
 				is_galactic_community_member = yes
@@ -42,9 +42,9 @@ f93_join_the_crisis_war = {
 			war = event_target:crisis_war
 			side = event_target:community_war_leader
 		}
-    }
-    
-    ai_weight = {
+	}
+	
+	ai_weight = {
 		weight = 10000
-    }
+	}
 }

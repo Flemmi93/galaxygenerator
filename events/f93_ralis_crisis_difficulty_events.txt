@@ -1,0 +1,112 @@
+namespace = f93_ralis_diffculty
+# initial difficulty setting
+country_event = {
+	id = f93_ralis_diffculty.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:f93_ralis_country
+		is_same_value = event_target:f93_ralis_country
+	}
+}
+
+
+
+#Monthly Difficulty Adjustment Event
+country_event = {
+	id = f93_ralis_diffculty.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:f93_ralis_country
+		is_same_value = event_target:f93_ralis_country
+	}
+	immediate = {
+		remove_modifier = fe_ship_cost_modifier
+		remove_modifier = f93_pre_midgame_stabalisation
+
+		remove_modifier = f93_ralis_difficulty_debuff
+		remove_modifier = f93_ralis_difficulty_buff
+		#easy
+		if = {
+			limit = {
+				has_global_flag = f82_button_3_1_on
+			}
+			get_galaxy_setup_value = {
+				which = crisis_strength_cale_variable
+				setting = crisis_strength_scale
+				scale_by = 0.05
+			}
+			add_modifier = {
+				modifier = f93_ralis_difficulty_buff
+				mult = crisis_strength_cale_variable
+			}
+			add_modifier = {
+				modifier = f93_ralis_difficulty_debuff
+				mult = 0.5
+			}
+			if = {
+				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.75 NOT = { has_country_flag = f93_recent_reinforcments } }
+				set_timed_country_flag = {
+					flag = f93_recent_reinforcments
+					days = 500
+				}
+				f93_create_ralis_fleet = yes
+			}
+		}
+		#default
+		if = {
+			limit = {
+				has_global_flag = f82_button_3_2_on
+			}
+			get_galaxy_setup_value = {
+				which = crisis_strength_cale_variable
+				setting = crisis_strength_scale
+				scale_by = 0.1
+			}
+			add_modifier = {
+				modifier = f93_ralis_difficulty_buff
+				mult = crisis_strength_cale_variable
+			}
+			add_modifier = {
+				modifier = f93_ralis_difficulty_debuff
+				mult = 0.4
+			}
+			if = {
+				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }
+				set_timed_country_flag = {
+					flag = f93_recent_reinforcments
+					days = 375
+				}
+				f93_create_ralis_fleet = yes
+			}
+		}
+		#default
+		if = {
+			limit = {
+				has_global_flag = f82_button_3_3_on
+			}
+			get_galaxy_setup_value = {
+				which = crisis_strength_cale_variable
+				setting = crisis_strength_scale
+				scale_by = 0.15
+			}
+			add_modifier = {
+				modifier = f93_ralis_difficulty_buff
+				mult = crisis_strength_cale_variable
+			}
+			add_modifier = {
+				modifier = f93_ralis_difficulty_debuff
+				mult = 0.35
+			}
+			if = {
+				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }
+				set_timed_country_flag = {
+					flag = f93_recent_reinforcments
+					days = 250
+				}
+				f93_create_ralis_fleet = yes
+			}
+		}
+	}
+}

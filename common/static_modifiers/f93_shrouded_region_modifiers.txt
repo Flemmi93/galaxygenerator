@@ -1,3 +1,11 @@
+
+f93_ralis_difficulty_buff = {
+	country_naval_cap_mult = 1
+}
+f93_ralis_difficulty_debuff = {
+	relay_bypass_empire_windup_mult = -1
+}
+
 f93_shrouded_region_star = {
 	ship_speed_reduction = 0.5
 	ship_shield_reduction = 0.5
@@ -14,7 +22,7 @@ f93_shrouded_region_star2 = {
 f93_ralis_true_liberator = {
 	diplo_weight_mult = 0.2
 }
-f93_ralis_country_buff = {
+f93_ralis_country_buff = { #decrepit
 	planet_crime_add = -1000
 	country_hostile_claim_influence_cost_mult = 100
 	pop_demotion_time_mult = -1
@@ -85,20 +93,15 @@ f93_megastructure_build_speed_mult = {
 	megastructure_build_speed_mult = 1
 }
 
-
-f93_naval_cap_mod_ralis = {
-	country_naval_cap_mult = 1
-}
-
 f93_ship_fire_rate_mult = {
 	ship_fire_rate_mult = 1
 }
 
 f93_pre_midgame_stabalisation = {
 	country_ruler_minerals_produces_add = 1
-	# country_ruler_energy_produces_add = 10
-	# country_ruler_alloys_produces_add = 10
-	# country_ruler_consumer_goods_produces_add = 10
+	# country_ruler_energy_produces_add = 1
+	# country_ruler_alloys_produces_add = 1
+	# country_ruler_consumer_goods_produces_add = 1
 }
 
 f93_job_creating_modifier = {
