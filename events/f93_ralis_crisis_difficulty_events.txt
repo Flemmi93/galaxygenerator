@@ -12,6 +12,21 @@ country_event = {
 
 
 
+#Max out ralis fleets
+country_event = {
+	id = f93_ralis_diffculty.3
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:f93_ralis_country
+		is_same_value = event_target:f93_ralis_country
+		used_naval_capacity_percent < 1
+	}
+	immediate = {
+		f93_create_ralis_fleet = yes
+		country_event = { id = f93_ralis_diffculty.3 days = 1 }
+	}
+}
 #Monthly Difficulty Adjustment Event
 country_event = {
 	id = f93_ralis_diffculty.2
@@ -24,6 +39,10 @@ country_event = {
 	immediate = {
 		remove_modifier = fe_ship_cost_modifier
 		remove_modifier = f93_pre_midgame_stabalisation
+		remove_modifier = f93_artificial_ship_naval_cap_usage_mult
+		remove_modifier = f93_ship_fire_rate_mult
+		remove_modifier = f93_ralis_country_buff
+		remove_modifier = f93_ralis_science_stop
 
 		remove_modifier = f93_ralis_difficulty_debuff
 		remove_modifier = f93_ralis_difficulty_buff

@@ -97,6 +97,7 @@ country_event = {
 						}
 					}
 				}
+				country_event = { id = f93_ralis_diffculty.3 days = 100 }
 				if = {
 					limit = { NOT = { has_modifier = f93_ralis_difficulty_buff } }
 					add_modifier = {
@@ -868,12 +869,12 @@ country_event = {
 	}
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.0501 }
-		event_target:f93_ralis_country = {
-			add_modifier = {
-				modifier = f93_ralis_science_stop
-				multiplier = 1
-			}
-		}
+		# event_target:f93_ralis_country = {
+		# 	add_modifier = {
+		# 		modifier = f93_ralis_science_stop
+		# 		multiplier = 1
+		# 	}
+		# }
 		set_global_flag = f93_activate_ralis_resolution_1
 	}
 	option = {
@@ -910,13 +911,13 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.0601 }
-		event_target:f93_ralis_country = {
-			remove_modifier = f93_ralis_science_stop
-			add_modifier = {
-				modifier = f93_ralis_science_stop
-				multiplier = -1
-			}
-		}
+		# event_target:f93_ralis_country = {
+		# 	remove_modifier = f93_ralis_science_stop
+		# 	add_modifier = {
+		# 		modifier = f93_ralis_science_stop
+		# 		multiplier = -1
+		# 	}
+		# }
 		every_playable_country = {
 			limit = { NOT = { has_country_flag = ralis_country_flag } }
 			every_system_within_border = {
@@ -982,13 +983,13 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.0602 }
-		event_target:f93_ralis_country = {
-			remove_modifier = f93_ralis_science_stop
-			add_modifier = {
-				modifier = f93_ralis_science_stop
-				multiplier = -1
-			}
-		}
+		# event_target:f93_ralis_country = {
+		# 	remove_modifier = f93_ralis_science_stop
+		# 	add_modifier = {
+		# 		modifier = f93_ralis_science_stop
+		# 		multiplier = -1
+		# 	}
+		# }
 	}
 	option = {
 		name = f93_ralis_crisis_event.0602.a

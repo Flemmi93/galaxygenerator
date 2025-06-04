@@ -1,6 +1,6 @@
 f93_shrouded_region_crisis = {
 	counts_for_victory = yes
-	scaled_difficulty_bonuses = 3.0	# scales to setting
+	# scaled_difficulty_bonuses = 3.0	# scales to setting
 	pop_growth = yes
 	playable = yes		
 	has_pulse_events = yes

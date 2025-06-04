@@ -91,6 +91,8 @@
  f93_kept_ralis_treaty: "Kept the treaty of $ralis_NAME$"
  f93_ralis_true_liberator: "True Liberator of $ralis_NAME$"
  f93_ralis_country_buff: "Bringer of endtimes"
+ f93_ralis_difficulty_buff: "$f93_ralis_country_buff$"
+ f93_ralis_difficulty_debuff: "$f93_ralis_country_buff$"
  f93_country_is_connected: "Greater Crossing"
  f93_ralis_science_stop: "Awaiting developments"
  f93_the_zro_must_flow: "The Zro must flow"
@@ -165,6 +167,7 @@
  f93_shroud.7b.desc: "It is your job now, to be the horror the universe deserves!"
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
+ f93_shroud_region_flag: "Shrouded Region"
 
 	#resolution
  ralis_focus: "Ralis War Plans"
