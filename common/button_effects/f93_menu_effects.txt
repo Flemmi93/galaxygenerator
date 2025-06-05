@@ -221,24 +221,33 @@ f93_gc_1_5_onoff = {
 # Button 2_1 #
 ##############
 #Ancient Relay Yes / No
-#default: flag NOT set.
+#default: flag NOT set. #when overlord DLC not enabled, forced off!
 f93_gc_2_1_on = {
 	potential = {
-		NOT = { has_global_flag = f82_button_2_1_off }
+		NOT = {
+			has_global_flag = f82_button_2_1_off
+		}
 	}
-	allow = {}
+	allow = {
+		has_overlord_dlc = yes
+	}
 	effect = {}
 }
 f93_gc_2_1_off = {
 	potential = {
 		has_global_flag = f82_button_2_1_off
 	}
-	allow = {}
+	allow = {
+		has_overlord_dlc = yes
+	}
 	effect = {}
 }
 f93_gc_2_1_onoff = {
 	potential = {}
-	allow = { NOT = { has_global_flag = f93_game_start_menu_done } }
+	allow = {
+		NOT = { has_global_flag = f93_game_start_menu_done }
+		has_overlord_dlc = yes
+	}
 	effect = {
 		if = {
 			limit = {
@@ -264,7 +273,9 @@ f93_gc_2_2_on = {
 			has_global_flag = f82_button_2_1_off
 		}
 	}
-	allow = {}
+	allow = {
+		has_overlord_dlc = yes
+	}
 	effect = {}
 }
 f93_gc_2_2_off = {
@@ -274,12 +285,15 @@ f93_gc_2_2_off = {
 			has_global_flag = f82_button_2_1_off
 		}
 	}
-	allow = {}
+	allow = {
+		has_overlord_dlc = yes
+	}
 	effect = {}
 }
 f93_gc_2_2_onoff = {
 	potential = {}
 	allow = {
+		has_overlord_dlc = yes
 		NOR = {
 			has_global_flag = f93_game_start_menu_done
 			has_global_flag = f82_button_2_1_off

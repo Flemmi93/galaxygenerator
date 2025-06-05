@@ -75,8 +75,15 @@ country_event = {
 				add_tradition = tr_supremacy_overwhelming_force
 				add_tradition = tr_supremacy_great_game
 				add_tradition = tr_supremacy_finish
-				add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
-				set_ai_personality = became_the_crisis_f93_shrouded_region_crisis
+				if = {
+					limit = { has_nemesis = yes }
+					add_ascension_perk = ap_become_the_crisis #only works on 4.0 and up
+					set_ai_personality = became_the_crisis_f93_shrouded_region_crisis
+				}
+				else = {
+					set_ai_personality = fanatic_purifiers_f93_shrouded_region_crisis
+				}
+				event_target:f93_ralis_country = { every_playable_country = { prev = { set_closed_borders = { who = prev status = no } } } }
 				create_fleet = {
 					effect = {
 						set_owner = event_target:f93_ralis_country
@@ -97,7 +104,7 @@ country_event = {
 						}
 					}
 				}
-				country_event = { id = f93_ralis_diffculty.3 days = 100 }
+				country_event = { id = f93_ralis_diffculty.1 days = 100 }
 				if = {
 					limit = { NOT = { has_modifier = f93_ralis_difficulty_buff } }
 					add_modifier = {
@@ -319,13 +326,8 @@ starbase_event = {
 			from = { owner = { is_same_value = event_target:f93_ralis_country } }
 			owner = { is_same_value = event_target:f93_ralis_country }
 		}
-		# NOT = { has_fleet_flag = f93_recently_conquered }
 	}
 	immediate = {
-		# from = {
-		# 	owner = { save_event_target_as = new_owner }
-		# }
-		# set_owner = event_target:new_owner
 		if = {
 			limit = { owner = { is_same_value = event_target:f93_ralis_country } }
 			set_owner = from.owner
@@ -333,10 +335,6 @@ starbase_event = {
 		else = {
 			set_owner = event_target:f93_ralis_country
 		}
-		# set_timed_fleet_flag = {
-		# 	flag = f93_recently_conquered
-		# 	days = 30
-		# }
 	}
 }
 
@@ -351,26 +349,33 @@ country_event = {
 		NOT = { has_country_flag = f93_recently_advanced_crisis }
 	}
 	immediate = {
-		set_timed_country_flag = {
-			flag = f93_recently_advanced_crisis
-			days = 90
-		}
 		if = {
-			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_4 OR = { has_global_flag = f93_community_claim_made has_global_flag = f93_community_claim_never_made } }
-			complete_special_project = { type =CRISIS_SPECIAL_PROJECT_4 }
-			remove_country_flag = f93_ralis_crisis_event0006active
-		}
-		if = {
-			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_3 }
-			complete_special_project = { type =CRISIS_SPECIAL_PROJECT_3 }
-		}
-		if = {
-			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_2 }
-			complete_special_project = { type =CRISIS_SPECIAL_PROJECT_2 }
+			limit = { has_nemesis = yes }
+			set_timed_country_flag = {
+				flag = f93_recently_advanced_crisis
+				days = 90
+			}
+			if = {
+				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_4 OR = { has_global_flag = f93_community_claim_made has_global_flag = f93_community_claim_never_made } }
+				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_4 }
+				remove_country_flag = f93_ralis_crisis_event0006active
+			}
+			if = {
+				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_3 }
+				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_3 }
+			}
+			if = {
+				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_2 }
+				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_2 }
+			}
+			else = {
+				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_1 }
+				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_1 }
+			}
 		}
 		else = {
-			limit = { has_special_project = CRISIS_SPECIAL_PROJECT_1 }
-			complete_special_project = { type =CRISIS_SPECIAL_PROJECT_1 }
+			save_event_target_as = new_galactic_threat
+			f93_threat_war_effect = yes
 		}
 	}
 }
@@ -687,6 +692,7 @@ country_event = {
 								NOT = { any_neighbor_system = { f93_system_has_ancient_relay = yes } }
 							}
 							destroy_star_system = yes
+							# system_event = { id = f93_ralis_crisis_event.0103 }
 							every_system_planet = { reroll_deposits = yes }
 						}
 						1 = {
@@ -764,27 +770,6 @@ country_event = {
 	}
 }
 
-# country_event = {
-# 	id = f93_ralis_crisis_event.0202
-# 	hide_window = yes
-# 	fire_only_once = yes
-# 	is_triggered_only = yes
-
-# 	immediate = {
-# 		random_system = {
-# 			limit = { has_star_flag = f93_ralis_empire_cluster NOT = { is_same_value = event_target:f93_ralis_system } }
-# 			spawn_megastructure = {
-# 				type = think_tank_4
-# 				owner = root
-# 				planet = star
-# 				graphical_culture = root
-# 			}
-# 			save_global_event_target_as = f93_ralis_think_tank_system
-# 			add_hyperlane = { from = this to = event_target:f93_ralis_system }
-# 		}
-# 	}
-# }
-
 #Receding of the Abyss
 country_event = {
 	id = f93_ralis_crisis_event.0301
@@ -821,12 +806,21 @@ country_event = {
 	trigger = {
 		NOT = { has_global_flag = f82_button_1_1_off }
 		exists = event_target:f93_ralis_country
-		event_target:f93_ralis_country = {
-			OR = {
-				has_crisis_level = crisis_level_2
-				has_crisis_level = crisis_level_3
-				has_crisis_level = crisis_level_4
-				has_crisis_level = crisis_level_5
+		OR = {
+			AND = {
+				has_nemesis = yes
+				event_target:f93_ralis_country = {
+					OR = {
+						has_crisis_level = crisis_level_2
+						has_crisis_level = crisis_level_3
+						has_crisis_level = crisis_level_4
+						has_crisis_level = crisis_level_5
+					}
+				}
+			}
+			AND = {
+				has_nemesis = no
+				mid_game_years_passed > 3
 			}
 		}
 	}
@@ -868,13 +862,6 @@ country_event = {
 	trigger = {
 	}
 	immediate = {
-		#observer_event = { id = f93_ralis_observer_event.0501 }
-		# event_target:f93_ralis_country = {
-		# 	add_modifier = {
-		# 		modifier = f93_ralis_science_stop
-		# 		multiplier = 1
-		# 	}
-		# }
 		set_global_flag = f93_activate_ralis_resolution_1
 	}
 	option = {
@@ -1073,34 +1060,6 @@ country_event = {
 		}
 	}
 }
-
-
-# country_event = {
-# 	id = f93_ralis_crisis_event.0605
-# 	hide_window = yes
-# 	# mean_time_to_happen = 180
-# 	is_triggered_only = yes
-# 	fire_only_once = yes
-
-# 	trigger = {
-# 		NOT = { has_global_flag = f82_button_1_1_off }
-# 		exists = event_target:f93_ralis_country
-# 		event_target:f93_ralis_country = {
-# 			is_level_5_player_crisis = yes
-# 		}
-# 	}
-
-# 	immediate = {
-# 		remove_modifier = f93_ralis_science_stop
-# 		event_target:f93_ralis_think_tank_system = {
-# 			every_system_megastructure = {
-# 				limit = { is_megastructure_type = think_tank_4 }
-# 				remove_megastructure = this
-# 			}
-# 			# spawn_megastructure = { type = think_tank_ruined }
-# 		}
-# 	}
-# }
 
 #anyone entering ralis system for the first time
 ship_event = {

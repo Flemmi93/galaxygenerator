@@ -224,7 +224,7 @@ country_event = {
 						max_steps = 5
 						exists = this
 					}
-				}
+				} 
 				random_neighbor_system_euclidean = {
 					limit = { f93_system_has_ancient_relay = no }
 					if = {
@@ -250,14 +250,15 @@ country_event = {
 			if = {
 				limit = { has_global_flag = f82_button_2_1_off }
 				every_system = {
-					limit = { f93_system_has_ancient_relay = yes }
+					limit = { f93_system_has_ancient_relay = yes  }
 					every_system_megastructure = {
 						limit = { is_megastructure_type = dandelion_relay }
 						remove_megastructure = this
 					}
 				}
 			}
-			else = {
+			else_if = {
+				limit = { has_overlord_dlc = yes }
 				every_system = {
 					limit = {
 						f93_system_has_ancient_relay = yes
@@ -376,6 +377,10 @@ country_event = {
 			trigger = count_system
 			variable = f93_num_systems
 		}
+		set_variable = { which = f93_star_ration_percent value = f93_num_shrouded_systems }
+		divide_variable = { which = f93_star_ration_percent value = f93_num_systems }
+		multiply_variable = { which = f93_star_ration_percent value = 100 }
+		round_variable = f93_star_ration_percent
 		
 	}
 	option = {

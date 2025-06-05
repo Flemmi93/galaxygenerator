@@ -1,20 +1,7 @@
 namespace = f93_ralis_diffculty
-# initial difficulty setting
-country_event = {
-	id = f93_ralis_diffculty.1
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		exists = event_target:f93_ralis_country
-		is_same_value = event_target:f93_ralis_country
-	}
-}
-
-
-
 #Max out ralis fleets
 country_event = {
-	id = f93_ralis_diffculty.3
+	id = f93_ralis_diffculty.1
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
@@ -24,7 +11,7 @@ country_event = {
 	}
 	immediate = {
 		f93_create_ralis_fleet = yes
-		country_event = { id = f93_ralis_diffculty.3 days = 1 }
+		country_event = { id = f93_ralis_diffculty.1 days = 1 }
 	}
 }
 #Monthly Difficulty Adjustment Event

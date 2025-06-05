@@ -60,12 +60,12 @@ system_event = {
 		system_event = { id = f93_shroud.4 days = 1 } 
 		random_list = {
 			250 = {}
-			100 = { if = { limit = { is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
-			10 = { spawn_megastructure = { type = mega_shipyard_ruined } }
-			10 = { spawn_megastructure = { type = mega_art_installation_ruined } }
-			3 = { spawn_megastructure = { type = dyson_sphere_ruined planet = star } }
-			8 = { spawn_megastructure = { type = think_tank_ruined } }
-			1 = { spawn_megastructure = { type = spy_orb_ruined } }
+			100 = { if = { limit = { has_megacorp = yes is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
+			10 = { if = { limit = { has_federations_dlc = yes } spawn_megastructure = { type = mega_shipyard_ruined } } }
+			10 = { if = { limit = { has_megacorp = yes } spawn_megastructure = { type = mega_art_installation_ruined } } }
+			3 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = dyson_sphere_ruined planet = star } } }
+			8 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = think_tank_ruined } } }
+			1 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = spy_orb_ruined } } }
 		}
 	}
 
@@ -140,9 +140,12 @@ system_event = { #creating ralis cluster
 		every_fleet_in_system = {
 			destroy_fleet = this
 		}
-		spawn_megastructure = {
-			type = crisis_sphere_ruined
-			planet = star
+		if = {
+			limit = { has_nemesis = yes }
+			spawn_megastructure = {
+				type = crisis_sphere_ruined
+				planet = star
+			}
 		}
 		while = {
 			count = 3
@@ -158,6 +161,7 @@ system_event = { #creating ralis cluster
 					}
 				}
 				destroy_star_system = yes
+				# system_event = { id = f93_ralis_crisis_event.0103 }
 				every_system_megastructure = {
 					remove_megastructure = this
 				}
@@ -204,9 +208,12 @@ system_event = { #creating ralis cluster backup
 		every_fleet_in_system = {
 			destroy_fleet = this
 		}
-		spawn_megastructure = {
-			type = crisis_sphere_ruined
-			planet = star
+		if = {
+			limit = { has_nemesis = yes }
+			spawn_megastructure = {
+				type = crisis_sphere_ruined
+				planet = star
+			}
 		}
 		while = {
 			count = 3
@@ -222,6 +229,7 @@ system_event = { #creating ralis cluster backup
 					}
 				}
 				destroy_star_system = yes
+				# system_event = { id = f93_ralis_crisis_event.0103 }
 				every_system_megastructure = {
 					remove_megastructure = this
 				}

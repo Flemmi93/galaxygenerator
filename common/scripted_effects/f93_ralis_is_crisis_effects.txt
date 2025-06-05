@@ -28,7 +28,7 @@ create_ralis_country = { #target a valid planet with this
 		effect = {
 			set_country_type = f93_shrouded_region_crisis #default
 			if = {
-				limit = { host_has_dlc = "Utopia" }
+				limit = { has_utopia = yes }
 				force_add_civic = civic_fanatic_purifiers
 			}
 			else = { force_add_civic = civic_imperial_cult }
@@ -428,6 +428,55 @@ f93_unlock_fleet = {
 		limit = { exists = space_owner }
 		space_owner = {
 			country_event = { id = f93_ralis_crisis_event.0004 days = 480 }
+		}
+	}
+}
+
+
+# Called from galcom resolutions. Needs event_target:new_galactic_threat and event_target:community_war_leader
+f93_threat_war_effect = {
+	# community opens internal borders and ceases pre-existing wars with the Crisis
+	ordered_playable_country = {
+		position = 0
+		order_by = trigger:fleet_power
+		limit = {
+			is_galactic_community_member = yes
+		}
+		save_event_target_as = community_war_leader
+	}
+	every_playable_country = {
+		limit = {
+			is_galactic_community_member = yes
+		}
+		every_playable_country = {
+			limit = {
+				is_galactic_community_member = yes
+			}
+			set_closed_borders = {
+				who = prev
+				status = no
+			}
+		}
+	}
+	event_target:community_war_leader = {
+		declare_war = {
+			target = event_target:new_galactic_threat
+			attacker_war_goal = "wg_end_threat"
+			effect = { save_event_target_as = galactic_threat }
+		}
+	}
+	every_playable_country = {
+		limit = {
+			is_galactic_community_member = yes
+			NOR = {
+				is_same_value = event_target:community_war_leader
+				is_in_federation_with = event_target:new_galactic_threat
+			}
+		}
+
+		join_war_on_side = {
+			war = event_target:galactic_threat
+			side = event_target:community_war_leader
 		}
 	}
 }
