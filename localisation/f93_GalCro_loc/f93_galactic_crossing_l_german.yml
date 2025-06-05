@@ -337,6 +337,10 @@
  f93_oe_event.7.name: "Connection to Galactic Crossing lost"
  f93_oe_event.7.desc: ""
  f93_oe_event.7.a: "Darn it"
+ f93_oe_event.8.name: "Standing up for their creation"
+ f93_oe_event.8.desc: "The §Y[f93_repaired_ancient_relay.GetName]§! has sent out a construction fleet to rebuild the ruined Hyper Relay in §Y[f93_repaired_system.GetName]§! along the Galactic Crossing. They still seem to have a great enough interest in maintaining the Galactic Crossing by themselves."
+ f93_oe_event.8.a: "How nice of them"
+ f93_oe_event.8.b: "Unusual behavior"
 
  f93_oe_event.15.name: "Rethinking our Strategy"
  f93_oe_event.15.desc: "§Y[f93_evt_com_target.GetNane]§! has submitted a detailed strategic report to our defense department. According to their projections, continuing our current approach will doom the empire by the mid-century.\n\nInstead, they urge change: abandon most defense efforts, outmaneuver their much slower fleets, and strike directly at the crisis's heart. There's no future in holding the line - they believe only a rapid counteroffensive can save us. $ralis_NAME$ needs to fall, dozens of millions are already enlisting to the cause"

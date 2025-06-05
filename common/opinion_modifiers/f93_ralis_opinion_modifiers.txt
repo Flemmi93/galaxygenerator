@@ -54,3 +54,14 @@ f93_legendary_friendship = {
 		base = 0
 	}
 }
+
+f93_ralis_republic_is_nice = {
+	opinion = {
+		base = 50
+	}
+	accumulative = yes
+
+	decay = {
+		base = 10
+	}
+}

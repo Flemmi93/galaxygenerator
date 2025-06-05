@@ -17,30 +17,60 @@ f93_join_the_crisis_war = {
 	}
 	
 	effect = {
-		random_playable_country = {
-			limit = {
-				is_galactic_community_member = yes
-				any_war = {
-					using_war_goal = {
-						type = wg_declared_crisis
-						owner = prev
+		if = {
+			limit = { has_nemesis = yes }
+			random_playable_country = {
+				limit = {
+					is_galactic_community_member = yes
+					any_war = {
+						using_war_goal = {
+							type = wg_declared_crisis
+							owner = prev
+						}
 					}
+				}
+				save_event_target_as = community_war_leader
+				random_war = {
+					limit = {
+						using_war_goal = {
+							type = wg_declared_crisis
+							owner = event_target:community_war_leader
+						}
+					}
+					save_event_target_as = crisis_war
 				}
 			}
-			save_event_target_as = community_war_leader
-			random_war = {
-				limit = {
-					using_war_goal = {
-						type = wg_declared_crisis
-						owner = event_target:community_war_leader
-					}
-				}
-				save_event_target_as = crisis_war
+			join_war_on_side = {
+				war = event_target:crisis_war
+				side = event_target:community_war_leader
 			}
 		}
-		join_war_on_side = {
-			war = event_target:crisis_war
-			side = event_target:community_war_leader
+		else = {
+			random_playable_country = {
+				limit = {
+					is_galactic_community_member = yes
+					any_war = {
+						using_war_goal = {
+							type = wg_end_threat
+							owner = prev
+						}
+					}
+				}
+				save_event_target_as = community_war_leader
+				random_war = {
+					limit = {
+						using_war_goal = {
+							type = wg_end_threat
+							owner = event_target:community_war_leader
+						}
+					}
+					save_event_target_as = new_galactic_threat_war
+				}
+			}
+			join_war_on_side = {
+				war = event_target:new_galactic_threat_war
+				side = event_target:community_war_leader
+			}
 		}
 	}
 	

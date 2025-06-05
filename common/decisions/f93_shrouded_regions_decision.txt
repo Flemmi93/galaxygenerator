@@ -8,10 +8,11 @@ f93_buy_more_shrouded_region_access = {
 		cost = {
 			energy = 500
 			trade = 20000
+			sr_dark_matter = 150
 		}
 	}
 
-	enactment_time = 30 					#enactment time in days, default is instant
+	enactment_time = 360 					#enactment time in days, default is instant
 
 	prerequisites = {
 	}
@@ -66,10 +67,11 @@ f93_buy_more_shrouded_region_access = {
 	}
 
 	ai_weight = {
-		weight = 5
+		weight = 6
 
 		modifier = {
-			#stuff
+			factor = 0
+			has_resource = { type = trade amount > 80000 }
 		}
 	}
 }

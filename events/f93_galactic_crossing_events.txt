@@ -707,10 +707,15 @@ event = {
 				has_star_flag = f93_ancient_relay_system
 			}
 			f93_spawn_ancient_relay = yes
-			# if = {
-			# 	limit = { exists = space_owner }
-			# 	space_owner = { country_event = { } }
-			# }
+			if = {
+				limit = { exists = space_owner space_owner = { NOT = { has_country_flag = f93_recently_saw_oe_8 } } }
+				closest_system = {
+					limit = { exists = space_owner space_owner = { is_fallen_empire = yes } }
+					space_owner = { save_event_target_as = f93_repaired_ancient_relay }
+				}
+				save_event_target_as = f93_repaired_system
+				space_owner = { country_event = { id = f93_oe_event.8 } set_timed_country_flag = { flag = f93_recently_saw_oe_8 days = 360 } }
+			}
 		}
 	}
 }

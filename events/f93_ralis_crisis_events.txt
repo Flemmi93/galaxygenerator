@@ -1568,8 +1568,11 @@ country_event = {
 			}
 		}
 		country_event = { id = f93_ralis_crisis_event.1103 days = 10 }
-		#event 13 happens 12 years after event 12
 		every_playable_country = {
+		#event 13 happens 6 years after event 12
+			country_event = { id = f93_ralis_crisis_event.1301 days = 2160 }
+		#event OE9 post war event 10 years after event 12
+			every_playable_country = { country_event = { id = f93_oe_event.9 days = 3960 } }
 			country_event = { id = f93_ralis_crisis_event.1301 days = 2160 }
 		}
 	}
@@ -1977,7 +1980,6 @@ country_event = {
 			add_opinion_modifier = { modifier = f93_false_liberator_of_ralis who = root }
 		}
 		remove_from_galactic_community = yes
-		
 	}
 }
 
@@ -2251,6 +2253,7 @@ country_event = {
 				country_add_ethic = ethic_egalitarian
 				country_add_ethic = ethic_xenophile
 				set_name = ralis_republic_NAME
+				save_global_event_target_as = f93_republic_of_ralis
 				copy_techs_from = { target = event_target:f93_ralis_liberator }
 				add_opinion_modifier = {
 					modifier = f93_legendary_friendship
@@ -2410,6 +2413,7 @@ country_event = {
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.1501 }
 		country_event = { id = f93_galactic_crossing.10 }
+		country_event = { id = f93_oe_event.11 days = 1800 }
 	}
 	option = {
 		name = f93_ralis_crisis_event.1501.a
@@ -2427,6 +2431,7 @@ country_event = {
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.1502 }
 		country_event = { id = f93_galactic_crossing.10 }
+		country_event = { id = f93_oe_event.13 days = 1800 }
 	}
 	option = {
 		name = f93_ralis_crisis_event.1502.a
@@ -2447,6 +2452,7 @@ country_event = {
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.1503 }
 		country_event = { id = f93_galactic_crossing.10 }
+		country_event = { id = f93_oe_event.12 days = 1800 }
 	}
 	option = {
 		name = f93_ralis_crisis_event.1503.a
