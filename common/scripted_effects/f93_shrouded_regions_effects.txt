@@ -189,7 +189,7 @@ f93_place_shroud_gate_nexus = {
 }
 
 f93_place_shroud_gate_node_and_cluster = {
-	set_star_flag = f93_ralisgate
+	set_star_flag = f93_ralisgate_cluster
 	f93_random_cluster_generator = yes
 	random_system = {
 		limit = { has_star_flag = f93_current_nexus }
@@ -198,7 +198,12 @@ f93_place_shroud_gate_node_and_cluster = {
 			random_pos = yes
 			orbit_angle = 360
 		}
-	}		
+		set_star_flag = f93_ralisgate
+		set_star_flag = f93_ralisgate_cluster
+	}
+	every_system = {
+		remove_star_flag = f93_current_nexus
+	}
 }
 
 f93_place_shroud_hyperlane_in_isolated_wormhole_region = {
@@ -229,6 +234,7 @@ f93_place_shroud_hyperlane_in_isolated_wormhole_region = {
 
 f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = {
 	set_star_flag = f93_ralisgate
+	set_star_flag = f93_ralisgate_cluster
 	f93_random_cluster_generator = yes
 	random_system = {
 		limit = { has_star_flag = f93_current_nexus }
@@ -258,6 +264,7 @@ f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = {
 
 f93_connect_SPECIFIC_system_with_GalCro_within_20_steps_and_generate_cluster = {
 	set_star_flag = f93_ralisgate
+	set_star_flag = f93_ralisgate_cluster
 	f93_random_cluster_generator = yes
 	random_system = {
 		limit = { has_star_flag = f93_current_nexus }

@@ -606,6 +606,7 @@ country_event = {
 					NOR = {
 						has_star_flag = f93_ralisgate_cluster
 						has_star_flag = f93_ralisgate
+						any_neighbor_system = { has_hyperlane_to = prev }
 					}
 				}
 				f93_place_shroud_gate_node_and_cluster = yes

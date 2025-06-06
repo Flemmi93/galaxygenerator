@@ -229,7 +229,8 @@ country_event = {
 	desc = f93_oe_event.8.desc
 	picture = GFX_evt_f93_galactic_crossing_map
 	is_triggered_only = yes
-
+	trigger = { NOT = { has_country_flag = f93_seen_oe_event8 } }
+	immediate = { set_country_flag = f93_seen_oe_event8 }
 	option = {
 		name = f93_oe_event.8.a
 	}
@@ -245,7 +246,8 @@ country_event = {
 	desc = f93_oe_event.9.desc
 	picture = GFX_evt_f93_galactic_crossing_map
 	is_triggered_only = yes
-
+	trigger = { NOT = { has_country_flag = f93_seen_oe_event9 } }
+	immediate = { set_country_flag = f93_seen_oe_event9 }
 	option = {
 		name = f93_oe_event.9.a
 	}
@@ -265,6 +267,8 @@ country_event = {
 	desc = f93_oe_event.10.desc
 	picture = GFX_evt_weather_manipulators
 	is_triggered_only = yes
+	trigger = { NOT = { has_country_flag = f93_seen_oe_event10 } }
+	immediate = { set_country_flag = f93_seen_oe_event10 }
 
 	option = {
 		name = f93_oe_event.10.a
@@ -289,6 +293,8 @@ country_event = {
 	desc = f93_oe_event.12.desc.a
 	picture = GFX_evt_tradestation_interior
 	is_triggered_only = yes
+	trigger = { NOT = { has_country_flag = f93_seen_oe_event11 } }
+	immediate = { set_country_flag = f93_seen_oe_event11 }
 	option = {
 		name = f93_oe_event.12.a
 	}
@@ -300,6 +306,8 @@ country_event = {
 	desc = f93_oe_event.12.desc.b
 	picture = GFX_evt_announcement
 	is_triggered_only = yes
+	trigger = { NOT = { has_country_flag = f93_seen_oe_event12 } }
+	immediate = { set_country_flag = f93_seen_oe_event12 }
 	option = {
 		name = f93_oe_event.12.b
 	}
@@ -311,6 +319,8 @@ country_event = {
 	desc = f93_oe_event.12.desc.c
 	picture = GFX_evt_cyberization_1
 	is_triggered_only = yes
+	trigger = { NOT = { has_country_flag = f93_seen_oe_event13 } }
+	immediate = { set_country_flag = f93_seen_oe_event13 }
 	option = {
 		name = f93_oe_event.12.c
 	}

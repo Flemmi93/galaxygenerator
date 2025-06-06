@@ -58,6 +58,8 @@ f93_buy_more_shrouded_region_access = {
 			limit = {
 				has_star_flag = f93_shroud_region_flag
 				NOR = {
+					has_star_flag = f93_ralisgate_cluster
+					has_star_flag = f93_ralisgate
 					any_neighbor_system = { has_hyperlane_to = prev }
 					has_natural_wormhole = yes
 				}
@@ -90,16 +92,58 @@ f93_lock_the_ralisgate = {
 	}
 	
 	potential = {
-		solar_system = { has_star_flag = f93_ralisgate }
+		or = {
+			solar_system = { has_star_flag = f93_ralisgate }
+			solar_system = { has_star_flag = f93_ralisgate_cluster }
+			closest_system = { has_star_flag = f93_ralisgate }
+		}
 	}
 
 	allow = {
-		solar_system = { NOT = { has_star_flag = f93_ralisgate_locked } }
+		hidden_trigger = {
+			OR = {
+				any_system = {
+					distance = {
+						source = prev
+						type = hyperlane
+						max_jumps = 5
+					}
+					has_star_flag = f93_ralisgate
+					NOT = { has_star_flag = f93_ralisgate_locked }
+				}
+				solar_system = { has_star_flag = f93_ralisgate }
+			}
+		}
+		NOT = { solar_system = { has_star_flag = f93_ralisgate_locked } }
 	}
 
-
 	effect = {
-		solar_system = { set_timed_star_flag = { flag = f93_ralisgate_locked days = 1800 } }
+		hidden_effect = {
+			solar_system = { set_timed_star_flag = { flag = f93_ralisgate_locked days = 1800 } }
+			closest_system = {
+				limit = { has_star_flag = f93_ralisgate }
+				set_timed_star_flag = { flag = f93_ralisgate_locked days = 1800 }
+			}
+		}
 		custom_tooltip = f93_lock_the_ralisgate_effect
+	}
+
+	ai_weight = {
+		factor = 1
+		modifier = {
+			owner = { is_at_war = no }
+			factor = 0
+		}
+		modifier = {
+			factor = 100
+			owner = {
+				is_at_war = yes
+				any_war = {
+					any_war_participant = {
+						relative_power = { who = prevprev category = fleet value >= superior }
+					}
+				}
+			}
+		}
 	}
 }
