@@ -11,6 +11,7 @@ f93_join_the_crisis_war = {
 	potential = {
 		is_country_type = default
 		is_galactic_community_member = no
+		exists = event_target:f93_ralis_country
 		event_target:f93_ralis_country = {
 			is_at_war = yes
 		}
