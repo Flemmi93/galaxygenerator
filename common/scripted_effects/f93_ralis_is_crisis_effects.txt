@@ -219,67 +219,49 @@ create_capital_to_acient_relay_lane = {
 	}
 }
 
-f93_create_community_ralis_admin = {
-	create_country = {
-		name = f93_community_ralis_admin_NAME
-		adjective = f93_community_ralis_admin_ADJ
-		type = f93_galcom_administration
-		auto_delete = no
-		name_list = random
-		origin = "origin_default"
-		ship_prefix = "GalCom"
-		ethos = {
-			ethic = ethic_fanatic_egalitarian
-			ethic = ethic_pacifist
-		}
-		flag = {
-			icon = { category = "union_state" file = cra_flag.dds }
-			background = { category = "backgrounds" file = "00_solid.dds" }
-			colors = {"blue" "dark_blue" "null" "null" }
-		}
-		ignore_initial_colony_error = yes
-		effect = {
-			save_global_event_target_as = f93_community_ralis_admin_country
-			set_country_flag = voidworms_bombardment_disabled
-			every_playable_country = {
-				establish_communications = prev
-			}
-		}
-		# graphical_culture = root.owner
-	}
-}
-
 f93_create_community_ralis_admin_with_station = {
-	create_country = {
-		name = "f93_community_ralis_admin_NAME"
-		adjective = "f93_community_ralis_admin_ADJ"
-		type = f93_galcom_administration
-		authority = "auth_democratic"
-		auto_delete = no
-		civics = {
-			civic = civic_heroic_tales
-		}
-		origin = "origin_default"
-		flag = {
-			icon = { category = "union_state" file = cra_flag.dds }
-			background = { category = "backgrounds" file = "00_solid.dds" }
-			colors = {"blue" "dark_blue" "null" "null" }
-		}
-		ethos = {
-			ethic = ethic_fanatic_egalitarian
-			ethic = ethic_pacifist
-		}
-		ignore_initial_colony_error = yes
-		effect = {
-			every_playable_country = {
-				establish_communications = prev
+	if = {
+		limit = { NOT = { exists = event_target:f93_community_ralis_admin_country } }
+		create_country = {
+			name = "f93_community_ralis_admin_NAME"
+			adjective = "f93_community_ralis_admin_ADJ"
+			type = f93_galcom_administration
+			authority = "auth_democratic"
+			auto_delete = no
+			civics = {
+				civic = civic_heroic_tales
+			}
+			origin = "origin_default"
+			flag = {
+				icon = { category = "union_state" file = cra_flag.dds }
+				background = { category = "backgrounds" file = "00_solid.dds" }
+				colors = {"blue" "dark_blue" "null" "null" }
+			}
+			ethos = {
+				ethic = ethic_fanatic_egalitarian
+				ethic = ethic_pacifist
+			}
+			ignore_initial_colony_error = yes
+			effect = {
+				save_global_event_target_as = f93_community_ralis_admin_country
+				set_country_flag = f93_community_ralis_admin_country
+				set_graphical_culture = mammalian_01
+				every_playable_country = {
+					establish_communications = prev
+				}
 			}
 		}
+		last_created_country = {
+			create_leader = {
+				class = official
+				species = this
+				name = random
+				skill = 5
+			}
+			set_leader = last_created_leader
+		}
 	}
-	last_created_country = {
-		set_country_flag = f93_community_ralis_admin_country
-		set_graphical_culture = mammalian_01
-		save_global_event_target_as = f93_community_ralis_admin_country
+	event_target:f93_community_ralis_admin_country = {
 		create_fleet = {
 			name = galcom_admin_station_NAME
 			settings = { spawn_debris = no }
@@ -301,14 +283,6 @@ f93_create_community_ralis_admin_with_station = {
 				}
 			}
 		}
-		create_leader = {
-			class = official
-			species = this
-			name = random
-			skill = 5
-		}
-		set_leader = last_created_leader
-		
 	}
 }
 
