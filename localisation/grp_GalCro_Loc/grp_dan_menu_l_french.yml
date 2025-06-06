@@ -1,4 +1,4 @@
-﻿l_french:
+﻿l_french:l_english:
  edict_edict_open_test_menu: "Open $f82_open_menu$"
  grp_dan_menu_evt.1.name: ""
  grp_dan_menu_evt.1.desc: ""
@@ -30,7 +30,8 @@
 #Galactic Crossing Settings
  grp_dan_menubutton_2.1: "Galactic Crossing"
  grp_dan_menubutton_2.2: "Unclaimable Relay Systems"
- grp_dan_menubutton_2.3: "2_3"
+ grp_dan_menubutton_2.3: "Additional Hylerpane Density"
+ grp_dan_menubutton_2.3_desc: "This will increase the Hyperlane Density around the Galactic Crossing."
  grp_dan_menubutton_2.4: "2_4"
  grp_dan_menubutton_2.5: "2_5"
 

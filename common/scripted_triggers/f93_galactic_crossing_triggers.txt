@@ -3,7 +3,10 @@ f93_system_has_ancient_relay = {
 		has_megastructure = dandelion_relay
 		has_megastructure = dandelion_relay_star
 		AND = {
-			has_global_flag = f82_button_2_1_off
+			OR ={
+				has_global_flag = f82_button_2_1_off
+				has_overlord_dlc = no
+			}
 			has_star_flag = f93_ancient_relay_system
 		}
 	}
