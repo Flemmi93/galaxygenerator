@@ -75,3 +75,31 @@ f93_buy_more_shrouded_region_access = {
 		}
 	}
 }
+
+f93_lock_the_ralisgate = {
+	owned_planets_only = yes
+	enactment_time = 10
+	icon = decision_exploding_planet
+	
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1500
+			sr_dark_matter = 10
+		}
+	}
+	
+	potential = {
+		solar_system = { has_star_flag = f93_ralisgate }
+	}
+
+	allow = {
+		solar_system = { NOT = { has_star_flag = f93_ralisgate_locked } }
+	}
+
+
+	effect = {
+		solar_system = { set_timed_star_flag = { flag = f93_ralisgate_locked days = 1800 } }
+		custom_tooltip = f93_lock_the_ralisgate_effect
+	}
+}

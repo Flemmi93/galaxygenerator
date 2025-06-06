@@ -301,25 +301,56 @@ country_event = {
 			random_system_within_border = {
 				closest_system = {
 					min_steps = 2
-					random_system = {
+					if = {
 						limit = {
-							NOT = { exists = owner }
-							f93_system_has_ancient_relay = yes
-							has_natural_wormhole = no
+							any_system = {
+								NOT = { exists = owner }
+								f93_system_has_ancient_relay = yes
+								has_natural_wormhole = no
+							}
 						}
-						prev = {
+						random_system = {
+							limit = {
+								NOT = { exists = owner }
+								f93_system_has_ancient_relay = yes
+								has_natural_wormhole = no
+							}
+							prev = {
+								spawn_natural_wormhole = {
+									bypass_type = wormhole
+									random_pos = yes
+									orbit_angle = 360
+								}
+							}
 							spawn_natural_wormhole = {
 								bypass_type = wormhole
 								random_pos = yes
 								orbit_angle = 360
 							}
+							link_wormholes = prev
 						}
-						spawn_natural_wormhole = {
-							bypass_type = wormhole
-							random_pos = yes
-							orbit_angle = 360
+					}
+					else = {
+						random_system = {
+							limit = {
+								NOT = { exists = owner }
+								f93_system_winthin_20_steps_of_galcro = yes
+								has_natural_wormhole = no
+							}
+							prev = {
+								spawn_natural_wormhole = {
+									bypass_type = wormhole
+									random_pos = yes
+									orbit_angle = 360
+								}
+							}
+							spawn_natural_wormhole = {
+								bypass_type = wormhole
+								random_pos = yes
+								orbit_angle = 360
+							}
+							link_wormholes = prev
 						}
-						link_wormholes = prev
 					}
 				}
 				owner = {
@@ -599,7 +630,7 @@ country_event = {
 		}
 		if = {
 			limit = { is_ai = yes NOT = { has_country_flag = chosen_empire } }
-			give_technology = { tech = tech_wormhole_stabilization message = yes }
+			give_technology = { tech = tech_wormhole_stabilization message = no }
 		}
 		if = {
 			limit = { has_origin = origin_void_dwellers }
@@ -651,19 +682,19 @@ country_event = {
 		else = {
 			capital_scope.solar_system = {
 				random_neighbor_system = {
-				limit = {
-					NOR = {
-						has_star_flag = neighbor_t1_first_colony
-						has_star_flag = neighbor_t2_second_colony
+					limit = {
+						NOR = {
+							has_star_flag = neighbor_t1_first_colony
+							has_star_flag = neighbor_t2_second_colony
+						}
+						any_system_planet = { is_planet_class = pc_barren }
 					}
-					any_system_planet = { is_planet_class = pc_barren }
+					random_system_planet = {
+						limit = { is_planet_class = pc_barren }
+						change_pc = root.owner_species
+						reroll_deposits = yes
+					}
 				}
-				random_system_planet = {
-					limit = { is_planet_class = pc_barren }
-					change_pc = root.owner_species
-					reroll_deposits = yes
-				}
-			}
 			}
 		}
 	}

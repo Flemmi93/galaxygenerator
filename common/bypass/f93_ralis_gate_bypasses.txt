@@ -69,6 +69,7 @@ ralisgate = {
 		node = {
 			# system scope
 			has_star_flag = f93_ralisgate
+			NOT = { has_star_flag = f93_ralisgate_locked }
 		}
 
 		# defines endpoint(s) that can reach all "nodes" (but not other nexuses)

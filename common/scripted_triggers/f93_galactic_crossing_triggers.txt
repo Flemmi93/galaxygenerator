@@ -78,13 +78,15 @@ f93_is_zro_cartel_lord = {
 f93_country_is_connected_to_gal_crossing = {
 	any_system_within_border = {
 		OR = {
+			f93_system_has_ancient_relay = yes
 			AND = {
 				has_megastructure = hyper_relay
-				any_neighbor_system = {
-					f93_system_has_ancient_relay = yes
+				closest_system = {
+					limit = { f93_system_has_ancient_relay = yes }
+					max_steps = 1
+					use_bypasses = yes
 				}
 			}
-			f93_system_has_ancient_relay = yes
 		}
 		is_system_connected_to_relay_network = yes
 	}

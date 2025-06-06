@@ -1,11 +1,10 @@
 ﻿l_spanish:
 #Events
  f93_galactic_crossing.2.name: "Real or Hoax?"
- f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating it or deriving good data from it in any way proves difficult.\nWithout solid data, the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of the first report, the artifact was transferred into a private collection. It is unknown who orchestrated this. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notably none of the creatures could be identified as §Y[Root.GetSpeciesName]§!"
+ f93_galactic_crossing.2.desc: "§LAn allegedly ancient and alien §Ytablet§! was found, it is highly controversial due to dating or deriving good data from it, in any way, proves difficult.\nWithout solid data, the scientific community is unwilling to make any definitive statement. Is it §Greal?§! or §Rnot?§!. Shortly after the publication of the first report, the artifact was transferred into a private collection. It is unknown who orchestrated this. Despite best efforts the §Ytablet§! could not be found anymore.\n\nThe few images we have display a scene of unity among many strange creatures. Notably none of the creatures could be identified as §Y[Root.GetSpeciesName]§!"
 
  f93_galactic_crossing.8.name: "Game Start Quality"
- f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! systems: §Y[root.f93_num_shrouded_systems]§! Systems are shrouded systems.\n\nIt is up to you if this is good or bad."
-#\n\n§RThe Crisis country can cause crashes by renting fleets, we are trying to suppress this. §!§GMercenary enclaves are enabled again§!.
+ f93_galactic_crossing.8.desc: "Out of §G[root.f93_num_systems]§! systems: §Y[root.f93_num_shrouded_systems]§! Systems are shrouded systems. ~§Y[root.f93_star_ration_percent]%§!.\n\nIt is up to you if this is good or bad."
  f93_galactic_crossing.8.green: "We have run the numbers and your game start seems\n\n§GGood§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.yellow: "We have run the numbers and your game start seems\n\n§YOk§!.\n\nHave fun!\n\n$f93_galactic_crossing.8.desc$"
  f93_galactic_crossing.8.red: "We have run the numbers and your game start seems\n\n§MIsolated§!.\n\n§GHave fun!§!\n\n$f93_galactic_crossing.8.desc$"
@@ -31,11 +30,15 @@
  f93_building_crisis_capital: "$building_system_capital$"
  f93_building_crisis_capital_desc: "$building_system_capital_desc$"
 
-#Decision
- f93_buy_more_shrouded_region_access: "Open a new Shrouded Hyperlane"
- f93_buy_more_shrouded_region_access_desc: "With the Ralis Crisis over we can make use of the technology found on $ralis_planet_NAME$ to create a Shrouded Hyperlane, everyone will have access, but we have forewarning."
+#Decisions
+ f93_buy_more_shrouded_region_access: "Open a new $ralisgate_gate$"
+ f93_buy_more_shrouded_region_access_desc: "With the Ralis Crisis over we can make use of the technology found on $ralis_planet_NAME$ to create a $ralisgate_gate$, everyone will have access, but we have forewarning."
  f93_join_the_crisis_war_edict: "Join the Galactic Community's War against the Crisis"
  f93_join_the_crisis_war_edict_desc: "We Will join the Galactic Community in their struggle against this Crisis, we sorty also live in this galaxy."
+ f93_lock_the_ralisgate: "Lock the Gate!"
+ f93_lock_the_ralisgate_desc: "We will catapult, using mass accelerators, a device near the $ralisgate_gate$ in this system."
+ f93_lock_the_ralisgate_effect: "This will make travel through the $ralisgate_gate$ §Rimpossible§! for §Y5§! years."
+ f93_ralisgate_locked: "Shroueded Hyperlane Locked"
 # Ship Design
  NAME_ralis_corvette_brawl: "Brawler"
  NAME_ralis_corvette_picket: "Picket"
@@ -131,6 +134,7 @@
  BYPASS_DESC_INACTIVE_RALISGATE: ""
  f93_promised_to_ralis_admin: "To be handed over to the GalCom Administration"
  f93_legendary_friendship: "Historical Friends"
+ f93_ralis_republic_is_nice: "President paid respect"
 
 #Zro Cartel
  f93_zro_cartel: "The Zro Cartel"
@@ -308,7 +312,7 @@
  f93_ralis_crisis_event.1502.a: "The Cartel didn't inform us about these maps, these Liars!"
  f93_ralis_crisis_event.1502.b: "It's a new space race!"
  f93_ralis_crisis_event.1503.name: "The Eyes that cannot blink."
- f93_ralis_crisis_event.1503.desc: "Scientists have proven the parallel hyperlane network!\nBut no one did it with maps, and no one calculated anything. It was all felt and seen by one single mind.\nIt was grown in isolation and designed to endure extreme psionic awareness. and sealed in a tank filled with life-supporting fluids. There was a body before, but the swelling brain slowly burst free from the skull and pushed outwards. The remains of the spinal cord have been tethered to a feeding-tube ever since, rhythmically pumping Zro into the brainstem.\nThe synapses, bloated and tortured, finally ignited - and the mind cracked open. It stretched into the far fabric of space itself and was widened beyond recognition. It saw what could not be seen.\nCloning is impossible and recreating the procedure only works on $ralis_NAME$, as otherworldly attempts ended in the collapse of the minds. Maybe it's a gift from the other side of the opened veil...\nThose few, who seek to have their minds ignited, are called the Psionic Striders and their lifespans are less than a handful of years.\nNow, every ship that intends to traverse the Shrouded Regions carries a Strider, attached to the board computer in its hull. Any empire, whether in secret or shame, turns to $ralis_NAME$ for both the Psionic Striders and the Zro to keep them functioning."
+ f93_ralis_crisis_event.1503.desc: "Scientists have proven the parallel hyperlane network!\nBut no one did it with maps, and no one calculated anything. It was all felt and seen by one single mind.\nIt was grown in isolation and designed to endure extreme psionic awareness and sealed in a tank filled with life-supporting fluids. There was a body before, but the swelling brain slowly burst free from the skull and pushed outwards. The remains of the spinal cord have been tethered to a feeding-tube ever since, rhythmically pumping Zro into the brainstem.\nThe synapses, bloated and tortured, finally ignited - and the mind cracked open. It stretched into the far fabric of space itself and was widened beyond recognition. It saw what could not be seen.\nCloning is impossible and recreating the procedure only works on $ralis_NAME$, as otherworldly attempts ended in the collapse of the minds. Maybe it's a gift from the other side of the opened veil...\nThose few, who seek to have their minds ignited, are called the Psionic Striders and their lifespans are less than a handful of years.\nNow, every ship that intends to traverse the Shrouded Regions carries a Strider, attached to the board computer in its hull. Any empire, whether in secret or shame, turns to $ralis_NAME$ for both the Psionic Striders and the Zro to keep them functioning."
  f93_ralis_crisis_event.1503.a: "The star are opening but the eyes that lead us there are not our."
 
 #OE Events
@@ -337,7 +341,29 @@
  f93_oe_event.7.name: "Connection to Galactic Crossing lost"
  f93_oe_event.7.desc: ""
  f93_oe_event.7.a: "Darn it"
-
+ f93_oe_event.8.name: "Standing up for their creation"
+ f93_oe_event.8.desc: "The §Y[f93_repaired_ancient_relay.GetName]§! has sent out a construction fleet to rebuild the ruined Hyper Relay in §Y[f93_repaired_system.GetName]§! along the Galactic Crossing. They still seem to have a great enough interest in maintaining the Galactic Crossing by themselves."
+ f93_oe_event.8.a: "How nice of them"
+ f93_oe_event.8.b: "Unusual behavior"
+ f93_oe_event.9.name: "Memorial Lights"
+ f93_oe_event.9.desc: "For twelve hours, movement along the Galactic Crossing comes to a hold.\nEvery vessel - Military fleets, trade convoys and civilian ships alike - activates its beacon. Billions watch the memorial tribute to those lost in the great war as it is televised across the Hypernet."
+ f93_oe_event.9.a: "We must remember"
+ f93_oe_event.9.b: "Yeah yeah, reeeeally tragic"
+ f93_oe_event.10.name: "Kneeling of a President"
+ f93_oe_event.10.desc: "The first, and recently elected President of Ralis has visited the annihilated capital of one of the fallen nations during the great war.\nOn one of the dead frozen fragments of their shattered homeworld, he has sunken to his knees and prayed for the lost souls of the genocide that took place there."
+ f93_oe_event.10.a: "A great symbol of remembrance."
+ f93_oe_event.10.b: "We cannot forgive"
+ f93_oe_event.11.name: "Galactic Crossing Security Committee"
+ f93_oe_event.11.desc: "Senators have opened a new committee to expand safety measures and to further enforce GalCom law along the Galactic Crossing. We are being asked if we would join the committee and provide strike crafts for newly trained pilots."
+ f93_oe_event.11.a: "Of course!"
+ f93_oe_event.11.b: "here is not much left to keep safe, this is not worth the resources."
+ f93_oe_event.12.name: "Life on Ralis"
+ f93_oe_event.12.desc.a: "Since the rebuilding, Ralis has developed quite fast. The average citizen lives in a comfortable apartment on the 106th floor. They have either a roommate or a partner and work in construction or finance. They own an average speeder in the underground garage and can afford to pay their bills and take a yearly vacation on a nice planet - maybe not one along the Galactic Crossing, but still a nice one. They mostly encounter tourists and businessmen from other worlds in their daily routine but have local friends they regularly meet too. They're happy to be a citizen, but sometimes have to push back a small sense of guilt - that they live such a normal life on the same planet that once inflicted so much pain and sadness on the galaxy. But that won't stop them from living life to the fullest."
+ f93_oe_event.12.desc.b: "Since the rebuilding, Ralis has become wealthier than ever. The average citizen lives in a high-rise dome complex on the 112th floor, assigned a unit by housing authorities. They share the space with a vetted cohabitant and work in logistics, administration, or resource management. Their vehicle is a government-issued air-cruiser, kept in one of the tower's private garages.\nThey can afford everything they need - with enough left over for an annual holiday on an internal resort arcology. Most of the people they meet are dignitaries, bureaucrats, or corporate elitists, but they have a small circle of approved friends to spend their off-hours with.\nThey are proud to serve the empire and enjoy their privileges, but sometimes they feel a quiet unease - knowing that the shining towers of Ralis were built on a legacy of war and domination. Still, they carry on, convinced that peace is best preserved through order."
+ f93_oe_event.12.desc.c: "Since the rebuilding, Ralis never really stood back up - it just kept going. The average citizen rents an old unit in a leaning block somewhere between districts, maybe on the 23rd floor if the elevator works that week. They share it with whoever pays their half on time and make credits doing whatever pays the bills - deliveries, repairs, security gigs, or moving product for one of the big names. Their ride is a patched-up gravbike. They can barely afford a living, not daring to look up at the skyline and dream about leaving.\nMost of their time is spent dodging patrol drones, pushing past other shadowy figures looking for trouble, and trying to keep their circle close.\nThey don't believe in the system - they only see who has the most. And even with the gunfire in the distance and the smell of ozone in the vents, they move."
+ f93_oe_event.12.a: "A good life"
+ f93_oe_event.12.b: "What a life to have."
+ f93_oe_event.12.c: "What a life..."
  f93_oe_event.15.name: "Rethinking our Strategy"
  f93_oe_event.15.desc: "§Y[f93_evt_com_target.GetNane]§! has submitted a detailed strategic report to our defense department. According to their projections, continuing our current approach will doom the empire by the mid-century.\n\nInstead, they urge change: abandon most defense efforts, outmaneuver their much slower fleets, and strike directly at the crisis's heart. There's no future in holding the line - they believe only a rapid counteroffensive can save us. $ralis_NAME$ needs to fall, dozens of millions are already enlisting to the cause"
  f93_oe_event.15.a: "We need to bring the war to them!"
