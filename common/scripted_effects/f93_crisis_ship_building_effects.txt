@@ -15,6 +15,45 @@ f93_set_ralis_designs = {
 	add_ship_design = last_created_design
 	create_ship_design = { design = "NAME_ralis_battleship_carrier" }
 	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_platform_carrier" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_platform_arty" }
+	add_ship_design = last_created_design
+	create_ship_design = { design = "NAME_ralis_citadel" }
+	add_ship_design = last_created_design
+}
+f93_spawn_ralis_defense_platform = {
+	fleet = {
+		random_list = {
+			1 = {
+				owner = {
+					random_owned_design = {
+						limit = {
+							is_ship_size = military_station_small
+							has_role = carrier
+						}
+						save_event_target_as = target_platform
+					}
+				}
+			}
+			1 = {
+				owner = {
+					random_owned_design = {
+						limit = {
+							is_ship_size = military_station_small
+							has_role = artillery
+						}
+						save_event_target_as = target_platform
+					}
+				}
+			}
+		}
+		create_ship = {
+			name = random
+			design = event_target:target_platform
+			graphical_culture = owner
+		}
+	}
 }
 #Fleet 1
 f93_create_ralis_fleet = {

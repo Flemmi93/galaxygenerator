@@ -48,6 +48,7 @@
  NAME_ralis_destroyer_arty: "Deliver"
  NAME_ralis_cruiser_carrier: "Assault Carrier"
  NAME_ralis_battleship_carrier: "Fleet Carrier"
+ NAME_ralis_citadel: "Citadel"
 
 #Diplomatic Subtitle
  f93_ralis_crisis_SUBTITLE: "Bringer of the End"
@@ -391,3 +392,4 @@
  f93_galactic_crossing.99.j: "Random ai Country"
  f93_galactic_crossing.99.k: "All Fleets in shrouded regions"
  f93_galactic_crossing.99.l: "The Shrouded Region Crisis"
+ f93_galactic_crossing.99.m: "Crisis Fleets in Combat"

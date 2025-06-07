@@ -102,3 +102,13 @@ invalid_shrouded_system = {
 		has_star_flag = surveillance_supercomputer_system
 	}
 }
+
+f93_is_in_a_cluster = {
+	OR = {
+		has_star_flag = f93_shrouded_cluster
+		has_star_flag = f93_ralisgate_cluster
+		has_star_flag = f93_ralisgate
+		has_star_flag = f93_ralis_empire_cluster
+		any_neighbor_system = { has_hyperlane_to = prev }
+	}
+}

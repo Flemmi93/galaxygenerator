@@ -462,7 +462,7 @@ system_event = {
 				}
 			}
 		}
-		# destroy_star_system = yes
+		# the following replaces destroy_star_system only bolowing up planets, leaving fleets
 		set_star_flag = star_cracked
 		set_star_class = sc_black_hole
 		every_system_ambient_object = {
@@ -691,8 +691,8 @@ country_event = {
 								factor = 0.25
 								NOT = { any_neighbor_system = { f93_system_has_ancient_relay = yes } }
 							}
-							destroy_star_system = yes
-							# system_event = { id = f93_ralis_crisis_event.0103 }
+							# destroy_star_system = yes
+							system_event = { id = f93_ralis_crisis_event.0103 }
 							every_system_planet = { reroll_deposits = yes }
 						}
 						1 = {

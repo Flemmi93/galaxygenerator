@@ -1,3 +1,7 @@
+#This Effect generates A Cluster of Stars totaly isolated from any other cluster.
+#It marks every system in the clusster with the star flag f93_current_cluster.
+#use this flag to target the systems for additional effects then remove it from all systems.
+#
 f93_random_cluster_generator = {
 	random_list = {
 		50 = { # up to 4 systems
@@ -6,11 +10,7 @@ f93_random_cluster_generator = {
 				random_neighbor_system_euclidean = {
 					limit = {
 						has_star_flag = f93_shroud_region_flag
-						NOR = {
-							has_star_flag = f93_ralisgate_cluster
-							has_star_flag = f93_ralisgate
-							any_neighbor_system = { has_hyperlane_to = prev }
-						}
+						f93_is_in_a_cluster = no
 						distance = {
 							source = prev
 							max_distance <= 80
@@ -21,8 +21,8 @@ f93_random_cluster_generator = {
 						limit = { NOT = { has_hyperlane_to = prev } }
 						add_hyperlane = { from = this to = prev }
 					}
-					set_star_flag = f93_ralisgate_cluster
-					set_star_flag = f93_current_nexus
+					set_star_flag = f93_shrouded_cluster
+					set_star_flag = f93_current_cluster
 				}
 			}
 		}
@@ -32,30 +32,26 @@ f93_random_cluster_generator = {
 				random_neighbor_system_euclidean = {
 					limit = {
 						has_star_flag = f93_shroud_region_flag
-						NOR = {
-							has_star_flag = f93_ralisgate_cluster
-							has_star_flag = f93_ralisgate
-							any_neighbor_system = { has_hyperlane_to = prev }
-						}
+						f93_is_in_a_cluster = no
 						distance = {
 							source = prev
-							max_distance <= 80
+							max_distance <= 120
 							type = euclidean
 						}
 					}
-					set_star_flag = f93_current_nexus
 					if = {
 						limit = { NOT = { has_hyperlane_to = prev } }
 						add_hyperlane = { from = this to = prev }
 					}
-					set_star_flag = f93_ralisgate_cluster
+					set_star_flag = f93_current_cluster
+					set_star_flag = f93_shrouded_cluster
 					random_neighbor_system_euclidean = {
 						limit = {
 							has_star_flag = f93_shroud_region_flag
 							calc_true_if = {
 								amount = 1
-								NOT = { has_star_flag = f93_ralisgate_cluster }
-								has_star_flag = f93_current_nexus
+								NOT = { has_star_flag = f93_shrouded_cluster }
+								has_star_flag = f93_current_cluster
 							}
 							distance = {
 								source = prev
@@ -63,12 +59,12 @@ f93_random_cluster_generator = {
 								type = euclidean
 							}
 						}
-						set_star_flag = f93_current_nexus
 						if = {
 							limit = { NOT = { has_hyperlane_to = prev } }
 							add_hyperlane = { from = this to = prev }
 						}
-						set_star_flag = f93_ralisgate_cluster
+						set_star_flag = f93_current_cluster
+						set_star_flag = f93_shrouded_cluster
 					}
 				}
 			}
@@ -79,11 +75,7 @@ f93_random_cluster_generator = {
 				random_neighbor_system_euclidean = {
 					limit = {
 						has_star_flag = f93_shroud_region_flag
-						NOR = {
-							has_star_flag = f93_ralisgate_cluster
-							has_star_flag = f93_ralisgate
-							any_neighbor_system = { has_hyperlane_to = prev }
-						}
+						f93_is_in_a_cluster = no
 						distance = {
 							source = prev
 							max_distance <= 80
@@ -94,8 +86,8 @@ f93_random_cluster_generator = {
 						limit = { NOT = { has_hyperlane_to = prev } }
 						add_hyperlane = { from = this to = prev }
 					}
-					set_star_flag = f93_ralisgate_cluster
-					set_star_flag = f93_current_nexus
+					set_star_flag = f93_shrouded_cluster
+					set_star_flag = f93_current_cluster
 				}
 			}
 		}
@@ -105,23 +97,19 @@ f93_random_cluster_generator = {
 				random_neighbor_system_euclidean = {
 					limit = {
 						has_star_flag = f93_shroud_region_flag
-						NOR = {
-							has_star_flag = f93_ralisgate_cluster
-							has_star_flag = f93_ralisgate
-							any_neighbor_system = { has_hyperlane_to = prev }
-						}
+						f93_is_in_a_cluster = no
 						distance = {
 							source = prev
-							max_distance <= 80
+							max_distance <= 120
 							type = euclidean
 						}
 					}
-					set_star_flag = f93_current_nexus
 					if = {
 						limit = { NOT = { has_hyperlane_to = prev } }
 						add_hyperlane = { from = this to = prev }
 					}
-					set_star_flag = f93_ralisgate_cluster
+					set_star_flag = f93_current_cluster
+					set_star_flag = f93_shrouded_cluster
 					while = {
 						count = 2
 						random_neighbor_system_euclidean = {
@@ -129,8 +117,8 @@ f93_random_cluster_generator = {
 								has_star_flag = f93_shroud_region_flag
 								calc_true_if = {
 									amount = 1
-									NOT = { has_star_flag = f93_ralisgate_cluster }
-									has_star_flag = f93_current_nexus
+									NOT = { has_star_flag = f93_shrouded_cluster }
+									has_star_flag = f93_current_cluster
 								}
 								distance = {
 									source = prev
@@ -138,12 +126,12 @@ f93_random_cluster_generator = {
 									type = euclidean
 								}
 							}
-							set_star_flag = f93_current_nexus
 							if = {
 								limit = { NOT = { has_hyperlane_to = prev } }
 								add_hyperlane = { from = this to = prev }
 							}
-							set_star_flag = f93_ralisgate_cluster
+							set_star_flag = f93_current_cluster
+							set_star_flag = f93_shrouded_cluster
 						}
 					}
 					random_neighbor_system_euclidean = {
@@ -151,8 +139,8 @@ f93_random_cluster_generator = {
 							has_star_flag = f93_shroud_region_flag
 							calc_true_if = {
 								amount = 1
-								NOT = { has_star_flag = f93_ralisgate_cluster }
-								has_star_flag = f93_current_nexus
+								NOT = { has_star_flag = f93_shrouded_cluster }
+								has_star_flag = f93_current_cluster
 							}
 							distance = {
 								source = prev
@@ -160,19 +148,19 @@ f93_random_cluster_generator = {
 								type = euclidean
 							}
 						}
-						set_star_flag = f93_current_nexus
 						if = {
 							limit = { NOT = { has_hyperlane_to = prev } }
 							add_hyperlane = { from = this to = prev }
 						}
-						set_star_flag = f93_ralisgate_cluster
+						set_star_flag = f93_current_cluster
+						set_star_flag = f93_shrouded_cluster
 						random_neighbor_system_euclidean = {
 							limit = {
 								has_star_flag = f93_shroud_region_flag
 								calc_true_if = {
 									amount = 1
-									NOT = { has_star_flag = f93_ralisgate_cluster }
-									has_star_flag = f93_current_nexus
+									NOT = { has_star_flag = f93_shrouded_cluster }
+									has_star_flag = f93_current_cluster
 								}
 								distance = {
 									source = prev
@@ -180,12 +168,12 @@ f93_random_cluster_generator = {
 									type = euclidean
 								}
 							}
-							set_star_flag = f93_current_nexus
 							if = {
 								limit = { NOT = { has_hyperlane_to = prev } }
 								add_hyperlane = { from = this to = prev }
 							}
-							set_star_flag = f93_ralisgate_cluster
+							set_star_flag = f93_current_cluster
+							set_star_flag = f93_shrouded_cluster
 						}
 					}
 				}
@@ -213,10 +201,9 @@ f93_place_shroud_gate_nexus = {
 }
 
 f93_place_shroud_gate_node_and_cluster = {
-	set_star_flag = f93_ralisgate_cluster
 	f93_random_cluster_generator = yes
 	random_system = {
-		limit = { has_star_flag = f93_current_nexus }
+		limit = { has_star_flag = f93_current_cluster }
 		spawn_natural_wormhole = {
 			bypass_type = ralisgate
 			random_pos = yes
@@ -226,19 +213,20 @@ f93_place_shroud_gate_node_and_cluster = {
 		set_star_flag = f93_ralisgate_cluster
 	}
 	every_system = {
-		remove_star_flag = f93_current_nexus
+		limit = { has_star_flag = f93_current_cluster }
+		remove_star_flag = f93_current_cluster
+		remove_star_flag = f93_shrouded_cluster
+		set_star_flag = f93_ralisgate_cluster
 	}
 }
 
 f93_place_shroud_hyperlane_in_isolated_wormhole_region = {
 	every_system = {
 		limit = {
-			has_star_flag = f93_shroud_region_flag
-			has_star_flag = f93_ralis_empire_cluster
-			NOT = { has_star_flag = f93_ralisgate_cluster }
+			f93_is_in_a_cluster = no
 			has_natural_wormhole = yes
 		}
-		set_star_flag = f93_current_nexus
+		set_star_flag = f93_current_cluster
 		random_neighbor_system_euclidean = {
 			limit = {
 				distance = {
@@ -257,11 +245,10 @@ f93_place_shroud_hyperlane_in_isolated_wormhole_region = {
 }
 
 f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = {
-	set_star_flag = f93_ralisgate
-	set_star_flag = f93_ralisgate_cluster
+	set_star_flag = f93_shrouded_cluster
 	f93_random_cluster_generator = yes
 	random_system = {
-		limit = { has_star_flag = f93_current_nexus }
+		limit = { has_star_flag = f93_current_cluster }
 		random_system = {
 			limit = {
 				NOT = { exists = owner }
@@ -283,15 +270,14 @@ f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = {
 			link_wormholes = prev
 		}
 	}
-	every_system = { remove_star_flag = f93_current_nexus }
+	every_system = { remove_star_flag = f93_current_cluster }
 }
 
 f93_connect_SPECIFIC_system_with_GalCro_within_20_steps_and_generate_cluster = {
-	set_star_flag = f93_ralisgate
-	set_star_flag = f93_ralisgate_cluster
+	set_star_flag = f93_shrouded_cluster
 	f93_random_cluster_generator = yes
 	random_system = {
-		limit = { has_star_flag = f93_current_nexus }
+		limit = { has_star_flag = f93_current_cluster }
 		event_target:connection_origin = {
 			prev = {
 				spawn_natural_wormhole = {
@@ -308,5 +294,5 @@ f93_connect_SPECIFIC_system_with_GalCro_within_20_steps_and_generate_cluster = {
 			link_wormholes = prev
 		}
 	}
-	every_system = { remove_star_flag = f93_current_nexus }
+	every_system = { remove_star_flag = f93_current_cluster }
 }

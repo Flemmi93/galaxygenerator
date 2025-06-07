@@ -57,12 +57,7 @@ f93_buy_more_shrouded_region_access = {
 		random_system = {
 			limit = {
 				has_star_flag = f93_shroud_region_flag
-				NOR = {
-					has_star_flag = f93_ralisgate_cluster
-					has_star_flag = f93_ralisgate
-					any_neighbor_system = { has_hyperlane_to = prev }
-					has_natural_wormhole = yes
-				}
+				f93_is_in_a_cluster = no
 			}
 			f93_place_shroud_gate_node_and_cluster = yes
 		}
@@ -92,16 +87,23 @@ f93_lock_the_ralisgate = {
 	}
 	
 	potential = {
-		or = {
+		OR = {
 			solar_system = { has_star_flag = f93_ralisgate }
-			solar_system = { has_star_flag = f93_ralisgate_cluster }
-			closest_system = { has_star_flag = f93_ralisgate }
+			any_system = {
+				distance = {
+					source = prev
+					type = hyperlane
+					max_jumps = 5
+				}
+				has_star_flag = f93_ralisgate
+			}
 		}
 	}
 
 	allow = {
 		hidden_trigger = {
 			OR = {
+				solar_system = { has_star_flag = f93_ralisgate }
 				any_system = {
 					distance = {
 						source = prev
@@ -111,7 +113,6 @@ f93_lock_the_ralisgate = {
 					has_star_flag = f93_ralisgate
 					NOT = { has_star_flag = f93_ralisgate_locked }
 				}
-				solar_system = { has_star_flag = f93_ralisgate }
 			}
 		}
 		NOT = { solar_system = { has_star_flag = f93_ralisgate_locked } }

@@ -540,43 +540,15 @@ country_event = {
 				solar_system = { set_name = ralis_system_NAME }
 			}
 		}
-		if = {
-			limit = { exists = event_target:f93_ralis_country NOT = { has_global_flag = f93_ralis_awoken } }
-			every_country = {
-				remove_communications = event_target:f93_ralis_country
-			}
-		}
-		#can be cleaned away soon
-		every_country = {
-			limit = {
-				has_country_flag = mercenary_enclave_country
-				has_country_flag = created_by@root
-			}
-			every_controlled_fleet = {
-				set_owner = root
-			}
-			destroy_country = yes
-		}
-		#can be removed soon
-		every_country = {
-			limit = {
-				is_country_type = enclave_mercenary
-				is_country_type = enclave
-			}
-			remove_communications = root
-		}
-		if = {
-			limit = { exists = event_target:f93_ralis_country }
-			every_country = {
-				limit = {
-					OR = {
-						has_country_flag = mercenary_enclave_country
-						has_country_flag = enclave
-					}
-				}
-				remove_communications = event_target:f93_ralis_country
-			}
-		}
+		# if = {
+		# 	limit = {
+		# 		exists = event_target:f93_ralis_country
+		# 		NOT = { has_global_flag = f93_ralis_awoken }
+		# 	}
+		# 	every_country = {
+		# 		remove_communications = event_target:f93_ralis_country
+		# 	}
+		# }
 		if = {
 			limit = { is_at_war = yes }
 			every_war = {
@@ -894,6 +866,15 @@ country_event = {
 		every_country = {
 			limit = { NOT = { has_country_flag = ralis_country_flag } }
 			destroy_country = yes
+		}
+	}
+	option = {
+		name = f93_galactic_crossing.99.m
+		event_target:f93_ralis_country = {
+			every_controlled_fleet = {
+				limit = { is_in_combat = yes }
+				delete_fleet = this
+			}
 		}
 	}
 }
