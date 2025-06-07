@@ -320,6 +320,12 @@ planet_event = {
 			limit = { has_star_flag = f93_shroud_region_flag }
 			set_star_flag = crisis_spawn_exclude
 		}
+		every_system = {
+			limit = { NOT = { exists = space_owner } any_neighbor_system = { has_star_flag = f93_ralis_empire_cluster } }
+			every_neighbor_system = {
+				remove_hyperlane = { from = this to = prev }
+			}
+		}
 	}
 }
 country_event = { #midgame trigger
@@ -372,10 +378,11 @@ system_event = {
 		OR ={ #maybe not too many?
 			has_star_flag = voidworms_system
 			has_star_flag = guardians_of_zanaam
-			has_star_flag = space_critter_system
-			has_star_flag = abandoned_gateway
-			has_star_flag = lgate
+			# has_star_flag = space_critter_system
+			has_star_flag = sealed_entry_system
 			has_star_flag = enclave
+			has_star_flag = lgate
+			has_star_flag = abandoned_gateway
 		}
 		f93_system_winthin_20_steps_of_galcro = no
 		NOT = {
@@ -385,7 +392,27 @@ system_event = {
 		}
 	}
 	immediate = {
-		f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = yes
+		if = {
+			limit = {
+				OR = {
+					has_star_flag = enclave
+					has_star_flag = voidworms_system
+					has_star_flag = guardians_of_zanaam
+					has_star_flag = sealed_entry_system
+					# has_star_flag = space_critter_system
+				}
+			}
+			f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = yes
+		}
+		if = {
+			limit = {
+				OR = {
+					has_star_flag = lgate
+					has_star_flag = abandoned_gateway
+				}
+			}
+			f93_random_cluster_generator = yes
+		}
 	}
 }
 

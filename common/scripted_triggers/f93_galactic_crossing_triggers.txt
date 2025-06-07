@@ -109,6 +109,7 @@ f93_is_in_a_cluster = {
 		has_star_flag = f93_ralisgate_cluster
 		has_star_flag = f93_ralisgate
 		has_star_flag = f93_ralis_empire_cluster
+		has_star_flag = sealed_entry_system # avoid connecting this system
 		any_neighbor_system = { has_hyperlane_to = prev }
 	}
 }

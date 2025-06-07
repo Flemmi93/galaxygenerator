@@ -4,6 +4,28 @@
 #
 f93_random_cluster_generator = {
 	random_list = {
+		50 = { # up to 3 systems
+			while = {
+				count = 3
+				random_neighbor_system_euclidean = {
+					limit = {
+						has_star_flag = f93_shroud_region_flag
+						f93_is_in_a_cluster = no
+						distance = {
+							source = prev
+							max_distance <= 80
+							type = euclidean
+						}
+					}
+					if = {
+						limit = { NOT = { has_hyperlane_to = prev } }
+						add_hyperlane = { from = this to = prev }
+					}
+					set_star_flag = f93_shrouded_cluster
+					set_star_flag = f93_current_cluster
+				}
+			}
+		}
 		50 = { # up to 4 systems
 			while = {
 				count = 4
@@ -26,7 +48,7 @@ f93_random_cluster_generator = {
 				}
 			}
 		}
-		25 = { #up to 6 systems
+		15 = { #up to 6 systems
 			while = {
 				count = 3
 				random_neighbor_system_euclidean = {
@@ -91,7 +113,7 @@ f93_random_cluster_generator = {
 				}
 			}
 		}
-		20 = { #up to 8 systems
+		10 = { #up to 8 systems
 			while = {
 				count = 2
 				random_neighbor_system_euclidean = {
