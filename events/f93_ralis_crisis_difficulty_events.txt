@@ -68,7 +68,7 @@ country_event = {
 			get_galaxy_setup_value = {
 				which = crisis_strength_cale_variable
 				setting = crisis_strength_scale
-				scale_by = 0.1
+				scale_by = 0.34
 			}
 			add_modifier = {
 				modifier = f93_ralis_difficulty_buff
@@ -95,15 +95,17 @@ country_event = {
 			get_galaxy_setup_value = {
 				which = crisis_strength_cale_variable
 				setting = crisis_strength_scale
-				scale_by = 0.15
+				scale_by = 1
 			}
+			#this value buffs their fleet cap
 			add_modifier = {
 				modifier = f93_ralis_difficulty_buff
 				mult = crisis_strength_cale_variable
 			}
+			#this value slows the crisis down along the galactic crossing
 			add_modifier = {
 				modifier = f93_ralis_difficulty_debuff
-				mult = 0.35
+				mult = 0.3
 			}
 			if = {
 				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }

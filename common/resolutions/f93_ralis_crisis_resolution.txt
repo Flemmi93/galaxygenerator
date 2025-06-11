@@ -63,13 +63,13 @@ f93_ralis_plan_resolution = {
 
 	ai_weight = {
 		factor = 7
-	#self serving empires should oppose it.
 		modifier = {
 			factor = 10
 			has_global_flag = f93_activate_ralis_resolution_1
 			NOT = { is_voting_on_resolution = f93_ralis_plan_resolution }
 			desc = f93_time_running_out
 		}
+		#self serving empires should oppose it.
 		modifier = {
 			factor = 0.75
 			is_authoritarian = yes

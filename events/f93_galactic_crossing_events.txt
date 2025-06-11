@@ -47,21 +47,30 @@ country_event = {
 					set_star_flag = enigmatic_cache_system # dirty trick to stop crash from ctd when spawning in shroud region
 				}
 			}
-			set_variable = { which = f93_gal_size value = 4 }
-			f93_set_galaxy_size = yes
+			# set_variable = { which = f93_gal_size value = 4 }
+			# f93_set_galaxy_size = yes
 			#Should someone play with 0 fallen empires, this would generate random GalCro Endpoints
 			get_galaxy_setup_value = { which = num_fallen_empires setting = num_fallen_empires }
 			if = {
 				limit = {
 					check_variable = { which = num_fallen_empires value = 0 }
 				}
-				f93_set_galaxy_size = yes
 				while = {
-					count = galaxy_size
+					count = f93_gal_size
 					random_system = { set_star_flag = f93_used_in_case_of_0_less_FE }
 				}
 			}
-
+			else_if = {
+				limit = {
+					has_global_flag = f82_button_2_4_on
+				}
+				divide_variable = { which = f93_gal_size value = 2 }
+				while = {
+					count = f93_gal_size
+					random_system = { set_star_flag = f93_used_in_case_of_really_big_galaxy }
+				}
+				multiply_variable = { which = f93_gal_size value = 2 }
+			}
 			while = {
 				count = f93_gal_size
 				limit = {

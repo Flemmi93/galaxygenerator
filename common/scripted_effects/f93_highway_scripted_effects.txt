@@ -1,9 +1,10 @@
 f93_set_galaxy_size = {
-	if = { limit = { galaxy_size = tiny } set_variable = { which = f93_gal_size value = 3 } }
-	if = { limit = { galaxy_size = small } set_variable = { which = f93_gal_size value = 3 } }
-	if = { limit = { galaxy_size = medium } set_variable = { which = f93_gal_size value = 4 } }
-	if = { limit = { galaxy_size = large } set_variable = { which = f93_gal_size value = 5 } }
-	if = { limit = { galaxy_size = huge } set_variable = { which = f93_gal_size value = 6 } }
+	set_variable = { which = f93_gal_size value = 4 }
+	# if = { limit = { galaxy_size = tiny } set_variable = { which = f93_gal_size value = 3 } }
+	# if = { limit = { galaxy_size = small } set_variable = { which = f93_gal_size value = 3 } }
+	# if = { limit = { galaxy_size = medium } set_variable = { which = f93_gal_size value = 4 } }
+	# if = { limit = { galaxy_size = large } set_variable = { which = f93_gal_size value = 5 } }
+	# if = { limit = { galaxy_size = huge } set_variable = { which = f93_gal_size value = 6 } }
 	else = {
 		export_trigger_value_to_variable = {
 			trigger = count_system

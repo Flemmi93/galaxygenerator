@@ -350,36 +350,37 @@ f93_gc_2_3_onoff = {
 ##############
 # Button 2_4 #
 ##############
+#in case of really big galaxies this is visible (more than 3k stars)
 f93_gc_2_4_on = {
 	potential = {
-		always = no
-		NOT = { has_global_flag = f82_button_2_4_off }
+		has_global_flag = f82_button_2_4_on
+		check_variable = { which = f93_gal_size value >= 8 }
 	}
 	allow = {}
 	effect = {}
 }
 f93_gc_2_4_off = {
 	potential = {
-		always = no
-		has_global_flag = f82_button_2_4_off
+		NOT = { has_global_flag = f82_button_2_4_on }
+		check_variable = { which = f93_gal_size value >= 8 }
 	}
 	allow = {}
 	effect = {}
 }
 f93_gc_2_4_onoff = {
 	potential = {
-		always = no
+		check_variable = { which = f93_gal_size value >= 8 }
 	}
 	allow = {}
 	effect = {
 		if = {
 			limit = {
-				has_global_flag = f82_button_2_4_off
+				has_global_flag = f82_button_2_4_on
 			}
-			remove_global_flag = f82_button_2_4_off
+			remove_global_flag = f82_button_2_4_on
 		}
 		else = {
-			set_global_flag = f82_button_2_4_off
+			set_global_flag = f82_button_2_4_on
 		}
 	}
 }

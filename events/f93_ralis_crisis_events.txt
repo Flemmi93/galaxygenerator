@@ -355,6 +355,10 @@ country_event = {
 				flag = f93_recently_advanced_crisis
 				days = 90
 			}
+			if ={
+				limit = { NOT = { has_ascension_perk = ap_become_the_crisis } }
+				set_country_flag = crisis_sphere_revealed
+			}
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_4 OR = { has_global_flag = f93_community_claim_made has_global_flag = f93_community_claim_never_made } }
 				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_4 }
