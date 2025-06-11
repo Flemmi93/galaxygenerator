@@ -1,5 +1,6 @@
 namespace = f93_ralis_diffculty
 #Max out ralis fleets
+# effect event_target:f93_ralis_country = { country_event = { id = f93_ralis_diffculty.1 } }
 country_event = {
 	id = f93_ralis_diffculty.1
 	hide_window = yes
@@ -58,6 +59,10 @@ country_event = {
 					days = 500
 				}
 				f93_create_ralis_fleet = yes
+				random_list = {
+					5 = {}
+					1 = { f93_create_ralis_subject_fleet = yes }
+				}
 			}
 		}
 		#default
@@ -85,9 +90,13 @@ country_event = {
 					days = 375
 				}
 				f93_create_ralis_fleet = yes
+				random_list = {
+					5 = {}
+					1 = { f93_create_ralis_subject_fleet = yes }
+				}
 			}
 		}
-		#default
+		#hard
 		if = {
 			limit = {
 				has_global_flag = f82_button_3_3_on
@@ -114,6 +123,10 @@ country_event = {
 					days = 250
 				}
 				f93_create_ralis_fleet = yes
+				random_list = {
+					5 = {}
+					1 = { f93_create_ralis_subject_fleet = yes }
+				}
 			}
 		}
 	}

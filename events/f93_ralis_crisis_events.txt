@@ -456,16 +456,16 @@ system_event = {
 	trigger = { f93_should_not_be_destroyed = no any_neighbor_system = { exists = space_owner space_owner = { is_country_type = fallen_empire } } }
 	immediate = {
 		# set_name = "DESTROYED"
-		if = {
-			limit = { exists = space_owner space_owner = { is_country_type = default } }
-			every_system_colony = {
-				every_owned_pop_group = {	
-					limit = { is_valid_refugee_pop = yes }
-					save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
-					refugee_pop_effect = yes
-				}
-			}
-		}
+		# if = {
+		# 	limit = { exists = space_owner space_owner = { is_country_type = default } }
+		# 	every_system_colony = {
+		# 		every_owned_pop_group = {	
+		# 			limit = { is_valid_refugee_pop = yes }
+		# 			save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
+		# 			refugee_pop_effect = yes
+		# 		}
+		# 	}
+		# }
 		# the following replaces destroy_star_system only bolowing up planets, leaving fleets
 		set_star_flag = star_cracked
 		set_star_class = sc_black_hole
@@ -474,19 +474,12 @@ system_event = {
 		}
 		every_system_planet = {
 			limit = { is_star = yes }
-			create_ambient_object = {
-				type = "star_explosion"
-				play_animation_once = yes
-				location = this
-			}
-			last_created_ambient_object = {
-				set_location = {
-					target = prev
-					distance = 0
-					angle = random
-				}
-			}
 			change_pc = pc_black_hole
+			random_list = {
+				5 = { add_deposit = random }
+				3 = { }
+				1 = { add_deposit = random add_deposit = random }
+			}
 		}
 		every_system_planet = {
 			limit = {
@@ -561,6 +554,11 @@ system_event = {
 		every_system_planet = {
 			limit = { is_asteroid = yes }
 			clear_deposits = yes
+			random_list = {
+				5 = { add_deposit = random }
+				3 = { }
+				1 = { add_deposit = random add_deposit = random }
+			}
 		}
 		every_fleet_in_system = {
 			limit = {
@@ -2008,14 +2006,12 @@ country_event = {
 			save_event_target_as = f93_return_system
 			random_list = {
 				50 = {
-					every_playable_country = {
+					random_playable_country = {
+						limit = { prev = { has_star_flag = f93_ralis_took_it_from@prevprev } }
 						event_target:f93_return_system = {
-							if = {
-								limit = { has_star_flag = f93_ralis_took_it_from@prev }
-								starbase = { set_owner = prevprev }
-								every_system_colony = { set_owner = prevprev planet_event = { id = f93_ralis_crisis_event.1302 days = 1 } }
-								remove_star_flag = f93_ralis_took_it_from_someone
-							}
+							starbase = { set_owner = prevprev }
+							every_system_colony = { set_owner = prevprev planet_event = { id = f93_ralis_crisis_event.1302 days = 1 } }
+							remove_star_flag = f93_ralis_took_it_from_someone
 						}
 					}
 				}
@@ -2057,7 +2053,7 @@ country_event = {
 					}
 					every_system_colony = {
 						set_owner = last_created_country
-						create_galcom_admin_planet = yes
+						f93_create_galcom_admin_planet = yes
 					}
 					starbase = { set_owner = last_created_country }
 					every_neighbor_system = {

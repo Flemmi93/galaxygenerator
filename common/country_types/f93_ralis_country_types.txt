@@ -37,14 +37,14 @@ f93_shrouded_region_crisis = {
 	
 	modules = {
 		standard_event_module = {}
-		standard_economy_module = {}
-		standard_leader_module = {}
+		# standard_economy_module = {}
+		# standard_leader_module = {}
 		# standard_diplomacy_module = { contact_rule = does_first_contact_sites }
 		# standard_technology_module = {}
-		standard_pop_factions_module = {}
-		standard_expansion_module = {}
-		standard_species_rights_module = {}
-		standard_grand_archive_module = {}
+		# standard_pop_factions_module = {}
+		# standard_expansion_module = {}
+		# standard_species_rights_module = {}
+		# standard_grand_archive_module = {}
 		exclusive_diplomacy_module = {
 			contact_rule = does_first_contact_sites
 		}
@@ -74,6 +74,29 @@ f93_shrouded_region_crisis = {
 			alloys = 5
 			consumer_goods = 15
 		}
+	}
+}
+
+f93_ralis_support_fleet = {
+	show_in_contacts_list = no
+	government = no
+	observable = no
+	ai = {
+		enabled = no
+	}
+	faction = {
+		neutral = yes
+		needs_border_access = no
+		generate_borders = no
+		needs_colony = no
+	}
+	modules = {
+		tiered_technology_module = {
+			tier = 3
+			rare = no
+		}
+		standard_event_module = {}
+		exclusive_diplomacy_module = {}
 	}
 }
 

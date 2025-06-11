@@ -57,16 +57,44 @@ f93_spawn_ralis_defense_platform = {
 }
 #Fleet 1
 f93_create_ralis_fleet = {
-	capital_scope = { f93_create_fleet_1 = yes } 
 	change_variable = { which = f93_fleet_size value = 0.25 }
 	random_system_within_border = {
 		limit = { is_capital_system = no }
 		star = {
+			f93_create_fleet_1 = yes
 			last_created_fleet = {
 				set_location = prev
-				set_timed_fleet_flag = { flag = recently_made days = 1080 }
 			}
 		}
+	}
+}
+#creates a subject fleet, spawns it in a random place, sends it to Ralis to defend it
+f93_create_ralis_subject_fleet = {
+	event_target:f93_ralis_country = {
+		random_system_within_border = {
+			limit = { is_capital_system = no }
+			star = {
+				f93_create_fleet_1 = yes
+				last_created_fleet = {
+					set_location = prev
+					set_owner = event_target:f93_ralis_subject
+					auto_move_to_planet = {
+						target = event_target:f93_ralis_planet
+						clear_auto_move_on_arrival = yes
+						arrival_effect = f93_set_seubject_fleets_position
+					}
+				}
+			}
+		}
+	}
+}
+
+
+f93_set_seubject_fleets_position = {
+	set_location = {
+		target = event_target:f93_ralis_planet
+		distance = { min = 50 max = 150 }
+		angle = random
 	}
 }
 
@@ -85,6 +113,7 @@ f93_create_fleet_1 = {
 			divide_variable = { which = quarterway_passed_midgame value = 2 }
 			set_fleet_flag = ralis_fleet_1
 			set_owner = root
+			set_timed_fleet_flag = { flag = recently_made days = 1080 }
 			while = {
 				count = root.f93_fleet_size
 				while = {
@@ -197,57 +226,6 @@ f93_create_fleet_1 = {
 			}
 			set_variable = { which = num_ships_original_halfed value = num_ships_original }
 			divide_variable = { which = num_ships_original_halfed value = 2 }
-		}
-	}
-}
-
-#Cruiser Fleet crisis
-f93_create_crisis_cruiser_fleet = {
-	create_fleet = {
-		settings = {
-			can_upgrade = yes
-			can_change_composition = no
-			can_change_leader = yes	
-		}
-		effect = {
-			while = {
-				count = root.f93_fleet_size
-				while = {
-					count = 3
-					create_ship = {
-						name = random
-						design = crisis_corvette
-					}
-				}
-				while = {
-					count = 1
-					create_ship = {
-						name = random
-						design = crisis_frigate
-					}
-				}
-				while = {
-					count = 2
-					create_ship = {
-						name = random
-						design = crisis_destroyer
-					}
-				}
-				while = {
-					count = 3
-					create_ship = {
-						name = random
-						design = crisis_cruiser
-					}
-				}
-				while = {
-					count = 1
-					create_ship = {
-						name = random
-						design = battleship
-					}
-				}
-			}
 		}
 	}
 }

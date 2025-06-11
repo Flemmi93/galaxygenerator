@@ -1,4 +1,4 @@
-create_ralis_country = { #target a valid planet with this
+f93_create_ralis_country = { #target a valid planet with this
 	create_species = {
 		name = esear_NAME
 		plural = esear_NAME_plural
@@ -7,13 +7,15 @@ create_ralis_country = { #target a valid planet with this
 		homeworld = root
 		traits = random
 		sapient = yes
-		effect = {}
+		effect = {
+			save_global_event_target_as = f93_ralis_species
+		}
 	}
 
 	create_country = {
 		name = ralis_system_NAME
 		adjective = ralis_ADJ
-		type = primitive #f93_shrouded_region_crisis
+		type = f93_shrouded_region_crisis #f93_shrouded_region_crisis
 		name_list = AVI4
 		ship_prefix = ralis_ship_prefix
 		authority = "auth_imperial"
@@ -26,7 +28,6 @@ create_ralis_country = { #target a valid planet with this
 		}
 		ethos = { ethic = ethic_fanatic_xenophobe ethic = ethic_militarist }
 		effect = {
-			set_country_type = f93_shrouded_region_crisis #default
 			if = {
 				limit = { has_utopia = yes }
 				force_add_civic = civic_fanatic_purifiers
@@ -110,8 +111,33 @@ create_ralis_country = { #target a valid planet with this
 		}
 	}
 }
-
-create_ralis_planet = {
+f93_create_ralis_vassael_country = {
+	create_country = {
+		auto_delete = no
+		name = ralis_system_NAME
+		adjective = ralis_ADJ
+		type = f93_ralis_support_fleet #f93_shrouded_region_crisis
+		name_list = AVI4
+		ship_prefix = ralis_ship_prefix
+		authority = "auth_imperial"
+		civics = { civic = civic_heroic_tales }
+		species = event_target:f93_ralis_species
+		flag = {
+			icon = { category = "union_state" file = ralis_banner.dds }
+			background = { category = "backgrounds" file = "00_solid.dds" }
+			colors = {"purple" "dark_purple" "null" "null" }
+		}
+		ethos = { ethic = ethic_fanatic_xenophobe ethic = ethic_militarist }
+		effect = {
+			save_global_event_target_as = f93_ralis_subject
+			establish_communications = event_target:f93_ralis_country
+			set_subject_of = {
+				who = event_target:f93_ralis_country
+			}
+		}
+	}
+}
+f93_create_ralis_planet = {
 	save_global_event_target_as = f93_ralis_planet
 	remove_all_buildings = yes
 	clear_blockers = yes
@@ -145,7 +171,7 @@ create_ralis_planet = {
 	}
 }
 
-create_galcom_admin_planet = {
+f93_create_galcom_admin_planet = {
 	remove_all_buildings = yes
 	
 	add_building = building_capital
@@ -181,7 +207,7 @@ create_galcom_admin_planet = {
 	}
 }
 
-create_capital_to_acient_relay_lane = {
+f93_create_capital_to_acient_relay_lane = {
 	if = {
 		limit = {
 			exists = event_target:system_capital
@@ -405,7 +431,6 @@ f93_unlock_fleet = {
 		}
 	}
 }
-
 
 # Called from galcom resolutions. Needs event_target:new_galactic_threat and event_target:community_war_leader
 f93_threat_war_effect = {
