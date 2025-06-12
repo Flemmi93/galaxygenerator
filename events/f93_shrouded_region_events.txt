@@ -145,6 +145,10 @@ system_event = { #creating ralis cluster
 		every_system = {
 			limit = { has_star_flag = f93_current_cluster has_natural_wormhole = yes }
 			remove_star_flag = f93_current_cluster
+			every_neighbor_system = {
+				limit = { has_star_flag = f93_current_cluster }
+				remove_hyperlane = { from = this to = prev }
+			}
 		}
 		every_system = {
 			limit = { has_star_flag = f93_current_cluster has_natural_wormhole = no }

@@ -15,7 +15,61 @@ country_event = {
 		country_event = { id = f93_ralis_diffculty.1 days = 1 }
 	}
 }
-#Monthly Difficulty Adjustment Event
+#moves ralis vassal fleets around
+country_event = {
+	id = f93_ralis_diffculty.3
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:f93_ralis_subject
+		is_same_value = event_target:f93_ralis_subject
+	}
+	immediate = {
+		every_owned_fleet = {
+			limit = { 
+				is_in_combat = no
+				exists = solar_system
+				NOT = { has_fleet_flag = f93_recently_moved3 }
+			}
+			set_timed_fleet_flag = { flag = f93_recently_moved3 days = 360 }
+			solar_system = {
+				random_system_planet = { save_event_target_as = f93_ralis_target }
+			}
+			remove_auto_move_target = yes
+			auto_move_to_planet = {
+				target = event_target:f93_ralis_target
+				clear_auto_move_on_arrival = yes
+			}
+		}
+		every_owned_fleet = {
+			limit = {
+				has_fleet_flag = ralis_fleet_attack_gal_cro
+				exists = orbit
+			}
+			f93_pick_random_gal_cro_system = yes
+			remove_auto_move_target = yes
+			auto_move_to_planet = {
+				target = event_target:f93_ralis_target
+				clear_auto_move_on_arrival = yes
+			}
+		}
+		every_owned_fleet = {
+			limit = {
+				has_fleet_flag = ralis_fleet_attack
+				exists = orbit
+			}
+			random_playable_country = {
+				capital_scope = { save_event_target_as = f93_ralis_target }
+			}
+			remove_auto_move_target = yes
+			auto_move_to_planet = {
+				target = event_target:f93_ralis_target
+				clear_auto_move_on_arrival = yes
+			}
+		}
+	}
+}
+
 country_event = {
 	id = f93_ralis_diffculty.2
 	hide_window = yes
@@ -25,6 +79,7 @@ country_event = {
 		is_same_value = event_target:f93_ralis_country
 	}
 	immediate = {
+		#this happens every month
 		remove_modifier = fe_ship_cost_modifier
 		remove_modifier = f93_pre_midgame_stabalisation
 		remove_modifier = f93_artificial_ship_naval_cap_usage_mult
@@ -59,10 +114,6 @@ country_event = {
 					days = 500
 				}
 				f93_create_ralis_fleet = yes
-				random_list = {
-					5 = {}
-					1 = { f93_create_ralis_subject_fleet = yes }
-				}
 			}
 		}
 		#default
@@ -90,10 +141,6 @@ country_event = {
 					days = 375
 				}
 				f93_create_ralis_fleet = yes
-				random_list = {
-					5 = {}
-					1 = { f93_create_ralis_subject_fleet = yes }
-				}
 			}
 		}
 		#hard
@@ -123,10 +170,6 @@ country_event = {
 					days = 250
 				}
 				f93_create_ralis_fleet = yes
-				random_list = {
-					5 = {}
-					1 = { f93_create_ralis_subject_fleet = yes }
-				}
 			}
 		}
 	}

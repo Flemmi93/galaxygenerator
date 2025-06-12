@@ -1,5 +1,5 @@
 
-f93_should_not_be_destroyed = {
+f93_ok_to_be_destroyed = {
 	OR = {
 		any_system_planet = {
 			OR = {

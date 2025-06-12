@@ -280,7 +280,7 @@ country_event = {
 								NOT = { is_megastructure_type = dandelion_relay }
 								exists = this
 							}
-							f93_should_not_be_destroyed = yes
+							f93_ok_to_be_destroyed = yes
 						}
 					}
 					set_star_class = sc_hyper_relay_star

@@ -45,9 +45,7 @@ f93_shrouded_region_crisis = {
 		# standard_expansion_module = {}
 		# standard_species_rights_module = {}
 		# standard_grand_archive_module = {}
-		exclusive_diplomacy_module = {
-			contact_rule = does_first_contact_sites
-		}
+		exclusive_diplomacy_module = {}
 		tiered_technology_module = {
 			tier = 3
 			rare = no
@@ -55,7 +53,7 @@ f93_shrouded_region_crisis = {
 	}
 
 	faction = {
-		hostile = yes
+		# hostile = yes
 		needs_border_access = no
 		generate_borders = yes
 		needs_colony = no
@@ -85,7 +83,7 @@ f93_ralis_support_fleet = {
 		enabled = no
 	}
 	faction = {
-		neutral = yes
+		# hostile = yes
 		needs_border_access = no
 		generate_borders = no
 		needs_colony = no

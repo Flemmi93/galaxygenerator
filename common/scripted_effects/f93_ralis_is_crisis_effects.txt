@@ -134,6 +134,7 @@ f93_create_ralis_vassael_country = {
 			set_subject_of = {
 				who = event_target:f93_ralis_country
 			}
+			f93_set_ralis_designs = yes
 		}
 	}
 }
@@ -418,17 +419,6 @@ f93_add_zro_cartel = {
 	}
 	else = {
 		add_modifier = { modifier = f93_zro_cartel mult = 1 }
-	}
-}
-
-f93_unlock_fleet = {
-	set_event_locked = no
-	remove_fleet_flag = f93_fleet_attacking
-	if = {
-		limit = { exists = space_owner }
-		space_owner = {
-			country_event = { id = f93_ralis_crisis_event.0004 days = 480 }
-		}
 	}
 }
 

@@ -8,6 +8,7 @@ namespace = f93_ralis_crisis_event
 #################################
 
 #Anomalies along the Galactic Crossing
+#Happens on midgame trigger
 country_event = {
 	id = f93_ralis_crisis_event.0001
 	title = f93_ralis_crisis_event.0001.name
@@ -44,7 +45,6 @@ country_event = {
 		else = {
 			#observer_event = { id = f93_ralis_observer_event.0001 }
 			set_variable = { which = stars_destroyed value = 0 }
-			save_global_event_target_as = crisis_country
 			set_global_flag = f93_ralis_awoken
 			# set_country_type = default
 			every_playable_country = {
@@ -57,7 +57,23 @@ country_event = {
 				limit = { NOR = { is_same_value = root has_country_flag = ralis_country_flag } }
 				country_event = { id = f93_ralis_crisis_event.0002 }
 			}
+			if = {
+				limit = { NOT = { exists = event_target:f93_ralis_subject } }
+				f93_create_ralis_vassael_country = yes
+			}
+			
+			event_target:f93_ralis_subject = {
+				every_playable_country = {
+					limit = { NOT = { is_same_value = event_target:f93_ralis_country } }
+					set_hostile = prev
+				}
+				country_event = { id = f93_ralis_crisis_event.0004 }
+			}
 			event_target:f93_ralis_country = {
+				every_playable_country = {
+					limit = { NOR = { is_same_value = event_target:f93_ralis_subject is_same_value = event_target:f93_ralis_country } }
+					set_hostile = prev
+				}
 				add_resource = {
 					sr_dark_matter = 5
 					alloys = 2
@@ -112,13 +128,6 @@ country_event = {
 						multiplier = 1
 					}
 				}
-				
-				every_playable_country = {
-					event_target:f93_ralis_system = {
-						remove_claims = { who = prev num_of_claims = 100 }
-					}
-				
-				}
 				event_target:f93_ralis_system = {
 					random_system_megastructure = {
 						limit = { is_megastructure_type = crisis_sphere_ruined }
@@ -138,6 +147,27 @@ country_event = {
 					}
 				}
 			}
+			
+			get_galaxy_setup_value = {
+				which = crisis_strength_cale_variable
+				setting = crisis_strength_scale
+				scale_by = 1
+			}
+			change_variable = { which = crisis_strength_scale value = 10 }
+			while = {
+				count = crisis_strength_scale
+				random_system = {
+					limit = { f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_recently_visist@prev } }
+					set_timed_star_flag = { flag = f93_recently_visist@prev days = 720 }
+					if = {
+						limit = { exists = space_owner space_owner = { is_country_type = fallen_empire }  }
+					}
+					else = {
+						star = { save_event_target_as = f93_ralis_target }
+					}
+				}
+				f93_create_ralis_subject_fleet_attack_galcro = yes
+			}
 		}
 	}
 	option = {
@@ -154,6 +184,7 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.0002 }
+		#for every country a small attack fleet is generated and patrols the galactic crossing.
 	}
 	option = {
 		name = WORRYING
@@ -311,7 +342,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
-		event_target:f93_ralis_country = { set_faction_hostility = { target = root set_hostile = no set_neutral = yes set_friendly = no } }
+		event_target:f93_ralis_country = { set_faction_hostility = { target = root set_hostile = no set_neutral = no set_friendly = yes } }
 	}
 }
 
@@ -338,6 +369,31 @@ starbase_event = {
 	}
 }
 
+# This = starbase being disabled (not ship!)
+# From = fleet that disabled the starbase
+starbase_event = {
+	id = f93_ralis_crisis_event.00052
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		or = {
+			from = { owner = { is_same_value = event_target:f93_ralis_subject } }
+			owner = { is_same_value = event_target:f93_ralis_subject }
+		}
+	}
+	immediate = {
+		if = {
+			limit = { owner = { is_same_value = event_target:f93_ralis_subject } }
+			set_owner = from.owner
+		}
+		else = {
+			set_owner = event_target:f93_ralis_subject
+		}
+	}
+}
+#Happens after the resolution, which unlocks  10.03. 2 years after midgame
+#can take up to a year to conclude
+#Earliest around 3-5 years after midgame
 country_event = {
 	id = f93_ralis_crisis_event.0006
 	hide_window = yes
@@ -345,7 +401,6 @@ country_event = {
 	trigger = {
 		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
-		has_country_flag = f93_ralis_crisis_event0006active
 		NOT = { has_country_flag = f93_recently_advanced_crisis }
 	}
 	immediate = {
@@ -362,7 +417,7 @@ country_event = {
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_4 OR = { has_global_flag = f93_community_claim_made has_global_flag = f93_community_claim_never_made } }
 				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_4 }
-				remove_country_flag = f93_ralis_crisis_event0006active
+				set_country_flag = crisis_sphere_revealed
 			}
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_3 }
@@ -384,6 +439,7 @@ country_event = {
 	}
 }
 #A galaxy holds its breath
+#Happens 120 days after midgame 
 country_event = {
 	id = f93_ralis_crisis_event.0101
 	title = f93_ralis_crisis_event.0101.name
@@ -416,8 +472,9 @@ country_event = {
 	immediate = {
 		every_system = {
 			limit = {
-				any_neighbor_system = { any_neighbor_system = { f93_system_has_ancient_relay = yes } }
+				any_neighbor_system = { f93_system_has_ancient_relay = yes }
 				NOR = {
+					has_star_flag = f93_empty_system_on_galcrossing
 					AND = {
 						exists = space_owner
 						space_owner = {
@@ -440,7 +497,22 @@ country_event = {
 			}
 			random_list = {
 				45 = {
-					system_event = { id = f93_ralis_crisis_event.0103 days = 2 random = 2 }
+					# set_name = "AGHIT"
+					#destroys a system and spawns a in a ralis fleet to guard it
+					# system_event = { id = f93_ralis_crisis_event.0103 }
+					f93_create_ralis_subject_fleet = yes
+					random_system_planet = {
+						save_event_target_as = f93_ralis_target
+					}
+					event_target:f93_ralis_subject = {
+						random_owned_fleet = {
+							limit = { has_auto_move_target = no }
+							auto_move_to_planet = {
+								target = event_target:f93_ralis_target
+								clear_auto_move_on_arrival = yes
+							}
+						}
+					}
 				}
 				100 = {}
 			}
@@ -453,7 +525,7 @@ system_event = {
 	id = f93_ralis_crisis_event.0103
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = { f93_should_not_be_destroyed = no any_neighbor_system = { exists = space_owner space_owner = { is_country_type = fallen_empire } } }
+	trigger = { f93_ok_to_be_destroyed = no any_neighbor_system = { exists = space_owner space_owner = { is_country_type = fallen_empire } } }
 	immediate = {
 		# set_name = "DESTROYED"
 		# if = {
@@ -666,6 +738,7 @@ system_event = {
 }
 
 #Senate Report
+#Happens 150 Days after midgame
 country_event = {
 	id = f93_ralis_crisis_event.0201
 	title = f93_ralis_crisis_event.0201.name
@@ -686,7 +759,7 @@ country_event = {
 			set_global_flag = f93_ralis_crisis_event0201_happened
 			event_target:f93_to_be_killed_by_ralis = {
 				every_system_within_border = {
-					limit = { NOT = { f93_should_not_be_destroyed = yes } }
+					limit = { NOT = { f93_ok_to_be_destroyed = yes } }
 					random_list = {
 						2 = {
 							modifier = {
@@ -725,6 +798,21 @@ country_event = {
 										trade = 450
 										mult = trigger:years_passed
 									}
+									capital_scope = {
+										save_event_target_as = f93_ralis_target
+									}
+								}
+							}
+							f93_create_ralis_subject_fleet = yes
+							last_created_fleet = {
+								set_location = {
+									target = event_target_f93_ralis_target
+									angle = random
+									distance = 300
+								}
+								auto_move_to_planet = {
+									target = event_target:f93_ralis_target
+									clear_auto_move_on_arrival = yes
 								}
 							}
 							starbase = { set_owner = last_created_country }
@@ -752,16 +840,13 @@ country_event = {
 					add_resource = {
 						menace = 10000
 					}
-					set_country_flag = f93_ralis_crisis_event0006active
 					set_timed_country_flag = {
 						flag = f93_recently_advanced_crisis
 						days = 90
 					}
 				}
 				capital_scope = { set_name = ralis_planet_NAME }
-				every_playable_country = {
-					establish_contact = { who = prev location = prev.capital_scope }
-				}
+				
 			}
 		}
 	}
@@ -773,6 +858,7 @@ country_event = {
 }
 
 #Receding of the Abyss
+#Happens 330 days after midgame
 country_event = {
 	id = f93_ralis_crisis_event.0301
 	title = f93_ralis_crisis_event.0301.name
@@ -783,10 +869,7 @@ country_event = {
 
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.0301 }
-		event_target:f93_ralis_country = {
-			establish_contact = { who = root }
-			set_global_flag = f93_ralis_arms_race_active
-		}
+		set_global_flag = f93_ralis_arms_race_active
 	}
 	option = {
 		name = f93_ralis_crisis_event.0301.a
@@ -796,9 +879,9 @@ country_event = {
 	}
 
 	after = {
-
 	}
 }
+#Happens on yearly pulse at least 0.5 year after midgame the 1.1. of 2nd year of midgame
 country_event = {
 	id = f93_ralis_crisis_event.0400
 	hide_window = yes
@@ -807,32 +890,38 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		NOT = { has_global_flag = f82_button_1_1_off }
+		mid_game_years_passed >= 0.5
 		exists = event_target:f93_ralis_country
-		OR = {
-			AND = {
-				has_nemesis = yes
-				event_target:f93_ralis_country = {
-					OR = {
-						has_crisis_level = crisis_level_2
-						has_crisis_level = crisis_level_3
-						has_crisis_level = crisis_level_4
-						has_crisis_level = crisis_level_5
-					}
-				}
-			}
-			AND = {
-				has_nemesis = no
-				mid_game_years_passed > 3
-			}
-		}
+		# OR = {
+		# 	AND = {
+		# 		has_nemesis = yes
+		# 		event_target:f93_ralis_country = {
+		# 			OR = {
+		# 				has_crisis_level = crisis_level_2
+		# 				has_crisis_level = crisis_level_3
+		# 				has_crisis_level = crisis_level_4
+		# 				has_crisis_level = crisis_level_5
+		# 			}
+		# 		}
+		# 	}
+		# 	AND = {
+		# 		has_nemesis = no
+		# 		mid_game_years_passed >= 3
+		# 	}
+		# }
 	}
 	immediate = {
 		every_playable_country = {
-			country_event = { id = f93_ralis_crisis_event.0401 days = 360 }
+			country_event = { id = f93_ralis_crisis_event.0401 days = 370 }
+			capital_scope = {
+				save_event_target_as = f93_ralis_target
+				f93_create_ralis_subject_fleet_attack = yes
+			}
 		}
 	}
 }
 #Secrets of Ralis
+#happens 10.01. 2 years after midgame
 country_event = {
 	id = f93_ralis_crisis_event.0401
 	title = f93_ralis_crisis_event.0401.name
@@ -852,6 +941,7 @@ country_event = {
 }
 
 #The War Plan Debate
+# happens 10.03. 2 years after midgame
 country_event = {
 	id = f93_ralis_crisis_event.0501
 	title = f93_ralis_crisis_event.0501.name
@@ -881,13 +971,12 @@ country_event = {
 		}
 	}
 	after = {
-		every_playable_country = {
-			establish_communications = event_target:f93_ralis_country
-		}
+		establish_communications = event_target:f93_ralis_country
 	}
 }
 
-
+#Happens after the Resolution is passed
+#Resolution unlocks on 10.03. 2 years after midgame
 country_event = {
 	id = f93_ralis_crisis_event.0601
 	title = f93_ralis_crisis_event.0601.name
@@ -960,6 +1049,8 @@ country_event = {
 	
 }
 #The War plan treaty failed
+#Happens after the Resolution is passed
+#Resolution unlocks on 10.03. 2 years after midgame
 country_event = {
 	id = f93_ralis_crisis_event.0602
 	title = f93_ralis_crisis_event.0602.name
@@ -985,6 +1076,8 @@ country_event = {
 	}
 }
 #The War plan treaty passed and tells everyone else about it
+#Happens after the Resolution is passed
+#Resolution unlocks on 10.03. 2 years after midgame
 country_event = {
 	id = f93_ralis_crisis_event.0603
 	title = f93_ralis_crisis_event.0603.name

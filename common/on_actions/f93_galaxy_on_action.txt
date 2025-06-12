@@ -18,10 +18,10 @@ on_monthly_pulse = {
 on_monthly_pulse_country = {
 	events = {
 		f93_galactic_crossing.901
-		f93_ralis_crisis_event.0006
 		# f93_ralis_crisis_event.0605
 		f93_ralis_crisis_event.1300
 		f93_ralis_diffculty.2
+		f93_ralis_diffculty.3
 		f93_oe_event.6
 		f93_oe_event.7
 	}
@@ -150,5 +150,6 @@ on_country_created = {
 on_starbase_disabled = {
 	events = {
 		f93_ralis_crisis_event.0005
+		f93_ralis_crisis_event.00052
 	}
 }

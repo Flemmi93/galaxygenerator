@@ -1,3 +1,4 @@
+#can happen after # 10.03. 2 years after midgame
 f93_ralis_plan_resolution = {
 	icon = "GFX_resolution_emergency_measure"
 	target = yes
