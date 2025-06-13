@@ -259,7 +259,7 @@ country_event = {
 			if = {
 				limit = { has_global_flag = f82_button_2_1_off }
 				every_system = {
-					limit = { f93_system_has_ancient_relay = yes  }
+					limit = { f93_system_has_ancient_relay = yes }
 					every_system_megastructure = {
 						limit = { is_megastructure_type = dandelion_relay }
 						remove_megastructure = this

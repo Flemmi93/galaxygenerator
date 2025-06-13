@@ -68,106 +68,6 @@ f93_create_ralis_fleet = {
 		}
 	}
 }
-#creates a subject fleet, spawns it in a random place, sends it to Ralis to defend it
-f93_create_ralis_subject_fleet_defense = {
-	event_target:f93_ralis_subject = {
-		change_variable = { which = fleets_Created value = 1 }
-	}
-	event_target:f93_ralis_country = {
-		random_system_within_border = {
-			limit = { is_capital_system = no }
-			star = {
-				f93_create_fleet_1 = yes
-				save_event_target_as = f93_fleets_origin
-			}
-		}
-	}
-	last_created_fleet = {
-		remove_fleet_flag = ralis_fleet_1
-		set_fleet_flag = ralis_fleet_defense
-		set_location = event_target:f93_fleets_origin
-		set_owner = event_target:f93_ralis_subject
-		auto_move_to_planet = {
-			target = event_target:f93_ralis_planet
-			clear_auto_move_on_arrival = yes
-			arrival_effect = f93_set_subject_fleets_position
-		}
-	}
-}
-#designates random gal cro system as f93_ralis_target
-f93_pick_random_gal_cro_system = {
-	closest_system = {
-		limit = { f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_recently_visist@prev } }
-		set_timed_star_flag = { flag = f93_recently_visist@prev days = 720 }
-		if = {
-			limit = { exists = space_owner space_owner = { is_country_type = fallen_empire }  }
-		}
-		else = {
-			star = { save_event_target_as = f93_ralis_target }
-		}
-	}
-}
-f93_pick_random_gal_cro_system_loop = {
-	closest_system = {
-		limit = { f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_recently_visist@prev } }
-		set_timed_star_flag = { flag = f93_recently_visist@prev days = 720 }
-		star = { save_event_target_as = f93_ralis_target }
-	}
-	auto_move_to_planet = {
-		target = event_target:f93_ralis_target
-		clear_auto_move_on_arrival = yes
-		arrival_effect = f93_pick_random_gal_cro_system_loop
-	}
-}
-#needs a f93_ralis_target set
-f93_create_ralis_subject_fleet_attack_galcro = {
-	event_target:f93_ralis_subject = {
-		change_variable = { which = fleets_Created value = 1 }
-	}
-	event_target:f93_ralis_country = {
-		random_system_within_border = {
-			star = {
-				f93_create_fleet_1 = yes
-				save_event_target_as = f93_fleets_origin
-			}
-		}
-	}
-	last_created_fleet = {
-		remove_fleet_flag = ralis_fleet_1
-		set_fleet_flag = ralis_fleet_attack_gal_cro
-		set_location = event_target:f93_fleets_origin
-		set_owner = event_target:f93_ralis_subject
-		auto_move_to_planet = {
-			target = event_target:f93_ralis_target
-			clear_auto_move_on_arrival = yes
-			arrival_effect = f93_pick_random_gal_cro_system_loop
-		}
-	}
-}
-#needs a f93_ralis_target set
-f93_create_ralis_subject_fleet_attack = {
-	event_target:f93_ralis_subject = {
-		change_variable = { which = fleets_Created value = 1 }
-	}
-	event_target:f93_ralis_country = {
-		random_system_within_border = {
-			star = {
-				f93_create_fleet_1 = yes
-				save_event_target_as = f93_fleets_origin
-			}
-		}
-	}
-	last_created_fleet = {
-		remove_fleet_flag = ralis_fleet_1
-		set_fleet_flag = ralis_fleet_attack
-		set_location = event_target:f93_fleets_origin
-		set_owner = event_target:f93_ralis_subject
-		auto_move_to_planet = {
-			target = event_target:f93_ralis_target
-			clear_auto_move_on_arrival = yes
-		}
-	}
-}
 #needs a f93_ralis_target set
 f93_create_ralis_subject_fleet = {
 	event_target:f93_ralis_subject = {
@@ -182,21 +82,110 @@ f93_create_ralis_subject_fleet = {
 		}
 	}
 	last_created_fleet = {
+		set_variable = { which = idle_count value = 0 }
 		remove_fleet_flag = ralis_fleet_1
 		set_fleet_flag = ralis_fleet_subject
 		set_location = event_target:f93_fleets_origin
 		set_owner = event_target:f93_ralis_subject
 	}
 }
-
-
-f93_set_subject_fleets_position = {
-	set_location = {
-		target = event_target:f93_ralis_planet
-		distance = { min = 50 max = 150 }
-		angle = random
+#sets f93_ralis_target
+f93_pick_random_attack_target = {
+	random_playable_country = {
+		limit = { any_system_within_border = { NOT = { has_star_flag = f93_recently_attacked } } }
+		random_owned_planet = {
+			limit = {
+				solar_system = { NOT = { has_star_flag = f93_recently_attacked } }
+			}
+			save_event_target_as = f93_ralis_target
+			solar_system = { set_star_flag = f93_recently_attacked }
+		}
 	}
 }
+#designates random gal cro system as f93_ralis_target
+f93_pick_random_gal_cro_system = {
+	closest_system = {
+		limit = {
+			f93_system_has_ancient_relay = yes
+			NOT = { has_star_flag = f93_recently_visist }
+		}
+		set_timed_star_flag = { flag = f93_recently_visist days = 1080 }
+		if = {
+			limit = { exists = space_owner space_owner = { is_country_type = fallen_empire } }
+		}
+		else_if = {
+			limit = { has_star_flag = f93_empty_system_on_galcrossing }
+			set_star_flag = f93_recently_visist
+		}
+		else = {
+			star = { save_event_target_as = f93_ralis_target }
+		}
+	}
+}
+f93_remove_command_flags = {
+	remove_fleet_flag = ralis_subject_fleet_command_0
+	remove_fleet_flag = ralis_subject_fleet_command_1
+	remove_fleet_flag = ralis_subject_fleet_command_2
+	remove_fleet_flag = ralis_subject_fleet_command_3
+	remove_fleet_flag = ralis_subject_fleet_command_4
+	set_variable = { which = idle_count value = 0 }
+}
+f93_pick_random_gal_cro_system_loop = {
+	f93_pick_random_gal_cro_system = yes
+	auto_move_to_planet = {
+		target = event_target:f93_ralis_target
+		clear_auto_move_on_arrival = yes
+		arrival_effect = f93_pick_random_gal_cro_system_loop
+	}
+}
+#needs a f93_ralis_target set
+f93_create_ralis_subject_fleet_attack_galcro = {
+	f93_pick_random_gal_cro_system = yes
+	f93_create_ralis_subject_fleet = yes
+	last_created_fleet = {
+		set_fleet_flag = ralis_fleet_attack_gal_cro
+		set_name = "Voicewing Raiders"
+		auto_move_to_planet = {
+			target = event_target:f93_ralis_target
+			clear_auto_move_on_arrival = yes
+			arrival_effect = f93_pick_random_gal_cro_system_loop
+		}
+	}
+}
+#needs a f93_ralis_target set
+f93_create_ralis_subject_fleet_attack = {
+	f93_pick_random_attack_target = yes
+	f93_create_ralis_subject_fleet = yes
+	last_created_fleet = {
+		set_fleet_flag = ralis_fleet_attack
+		set_name = "Assaultwing"
+		auto_move_to_planet = {
+			target = event_target:f93_ralis_target
+			clear_auto_move_on_arrival = yes
+		}
+	}
+}
+
+#creates a subject fleet, spawns it in a random place, sends it to Ralis to defend it
+f93_create_ralis_subject_fleet_defense = {
+	f93_create_ralis_subject_fleet = yes
+	last_created_fleet = {
+		set_name = "Defenders of Ralis"
+		set_fleet_flag = ralis_fleet_defense
+		auto_move_to_planet = {
+			target = event_target:f93_ralis_planet
+			clear_auto_move_on_arrival = yes
+			# arrival_effect = f93_set_subject_fleets_position
+		}
+	}
+}
+# f93_set_subject_fleets_position = {
+# 	set_location = {
+# 		target = event_target:f93_ralis_planet
+# 		distance = { min = 50 max = 150 }
+# 		angle = random
+# 	}
+# }
 
 f93_create_fleet_1 = {
 	create_fleet = {
@@ -214,6 +203,7 @@ f93_create_fleet_1 = {
 			set_fleet_flag = ralis_fleet_1
 			set_owner = event_target:f93_ralis_country
 			set_timed_fleet_flag = { flag = recently_made days = 1080 }
+			set_home_base = event_target:f93_ralis_system.starbase
 			while = {
 				count = event_target:f93_ralis_country.f93_fleet_size
 				while = {

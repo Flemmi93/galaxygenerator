@@ -42,6 +42,7 @@ country_event = {
 				}
 			}
 		}
+		#this happens when the story is active
 		else = {
 			#observer_event = { id = f93_ralis_observer_event.0001 }
 			set_variable = { which = stars_destroyed value = 0 }
@@ -70,6 +71,7 @@ country_event = {
 				country_event = { id = f93_ralis_crisis_event.0004 }
 			}
 			event_target:f93_ralis_country = {
+				set_country_type = f93_shrouded_region_crisis
 				every_playable_country = {
 					limit = { NOR = { is_same_value = event_target:f93_ralis_subject is_same_value = event_target:f93_ralis_country } }
 					set_hostile = prev
@@ -146,6 +148,16 @@ country_event = {
 						f93_place_shroud_gate_nexus = yes
 					}
 				}
+				capital_scope.solar_system = {
+					owner = {
+						every_system_within_border = {
+							if = {
+								limit = { NOT = { has_hyperlane_to = prevprev } }
+								add_hyperlane = { from = this to = prevprev }
+							}
+						}
+					}
+				}
 			}
 			
 			get_galaxy_setup_value = {
@@ -160,7 +172,7 @@ country_event = {
 					limit = { f93_system_has_ancient_relay = yes NOT = { has_star_flag = f93_recently_visist@prev } }
 					set_timed_star_flag = { flag = f93_recently_visist@prev days = 720 }
 					if = {
-						limit = { exists = space_owner space_owner = { is_country_type = fallen_empire }  }
+						limit = { exists = space_owner space_owner = { is_country_type = fallen_empire } }
 					}
 					else = {
 						star = { save_event_target_as = f93_ralis_target }
@@ -386,12 +398,15 @@ starbase_event = {
 			limit = { owner = { is_same_value = event_target:f93_ralis_subject } }
 			set_owner = from.owner
 		}
-		else = {
-			set_owner = event_target:f93_ralis_subject
+		else_if = {
+			limit = {
+				event_target:f93_ralis_country = { is_at_war = yes } 
+			}
+			set_owner = event_target:f93_ralis_country
 		}
 	}
 }
-#Happens after the resolution, which unlocks  10.03. 2 years after midgame
+#Happens after the resolution, which unlocks 10.03. 2 years after midgame
 #can take up to a year to conclude
 #Earliest around 3-5 years after midgame
 country_event = {
@@ -1944,14 +1959,27 @@ country_event = {
 				}
 			}	
 			if = {
-				limit = { NOT = { has_global_flag = galactic_council_formed } }
+				limit = {
+					OR = {
+						has_federations_dlc = yes
+						has_nemesis = yes
+					}
+					NOT = { has_global_flag = galactic_council_formed }
+					has_galactic_emperor = no
+				}
 				pass_resolution_no_cooldown = resolution_galacticreforms_form_council
+				if = {
+					limit = { is_part_of_galactic_council = no }
+					increase_council_size = yes
+				}
+				add_permanent_councillor = yes
 			}
-			if = {
-				limit = { is_part_of_galactic_council = no }
-				increase_council_size = yes
+			else = {
+				add_resource = {
+					unity = 10000
+					alloys = 15000
+				}
 			}
-			add_permanent_councillor = yes
 			add_resource = {
 				unity = 10000
 			}

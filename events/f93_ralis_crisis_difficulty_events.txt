@@ -22,49 +22,91 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		exists = event_target:f93_ralis_subject
-		is_same_value = event_target:f93_ralis_subject
+		exists = event_target:f93_ralis_country
+		is_same_value = event_target:f93_ralis_country
 	}
+	
 	immediate = {
-		every_owned_fleet = {
-			limit = { 
-				is_in_combat = no
-				exists = solar_system
-				NOT = { has_fleet_flag = f93_recently_moved3 }
-			}
-			set_timed_fleet_flag = { flag = f93_recently_moved3 days = 360 }
-			solar_system = {
-				random_system_planet = { save_event_target_as = f93_ralis_target }
-			}
-			remove_auto_move_target = yes
-			auto_move_to_planet = {
-				target = event_target:f93_ralis_target
-				clear_auto_move_on_arrival = yes
-			}
-		}
-		every_owned_fleet = {
-			limit = {
-				has_fleet_flag = ralis_fleet_attack_gal_cro
-				exists = orbit
-			}
-			f93_pick_random_gal_cro_system = yes
-			remove_auto_move_target = yes
-			auto_move_to_planet = {
-				target = event_target:f93_ralis_target
-				clear_auto_move_on_arrival = yes
-			}
-		}
-		every_owned_fleet = {
-			limit = {
-				has_fleet_flag = ralis_fleet_attack
-				exists = orbit
-			}
-			random_playable_country = {
-				capital_scope = { save_event_target_as = f93_ralis_target }
-			}
-			remove_auto_move_target = yes
-			auto_move_to_planet = {
-				target = event_target:f93_ralis_target
-				clear_auto_move_on_arrival = yes
+		event_target:f93_ralis_subject = {
+			every_owned_fleet = {
+				limit = {
+					NOR = {
+						# has_fleet_flag = f93_recently_moved
+						has_fleet_flag = ralis_fleet_defense
+					}
+				}
+				# set_fleet_flag = ralis_subject_fleet_command_0
+				if = {
+					limit = {
+						exists = solar_system
+						solar_system = {
+							exists = starbase
+							starbase = {
+								fleet = {
+									is_disabled = yes
+								}
+								has_starbase_size > starbase_outpost
+								owner = { has_technology = tech_ftl_inhibitor }
+								NOT = { owner = { is_same_value = event_target:f93_ralis_country } }
+							}
+						}
+					}
+					change_variable = { which = idle_count value = 1 }
+					set_fleet_flag = ralis_subject_fleet_command_1
+					remove_auto_move_target = yes
+					limit = { owner = { is_same_value = event_target:f93_ralis_subject } }
+					# set_timed_fleet_flag = { flag = f93_recently_moved days = 11 }
+					if = {
+						limit = { check_variable = { which = idle_count value = 8 } }
+						set_mia = mia_return_home
+						set_mia_return_delay = 10
+						set_variable = { which = idle_count value = 0 }
+					}
+				}
+				else_if = {
+					limit = {
+						has_fleet_flag = ralis_fleet_attack_gal_cro
+						OR = {
+							has_auto_move_target = no
+							has_fleet_flag = ralis_subject_fleet_command_4
+						}
+					}
+					set_variable = { which = idle_count value = 0 }
+					f93_pick_random_gal_cro_system = yes
+					remove_fleet_flag = ralis_subject_fleet_command_4
+					set_fleet_flag = ralis_subject_fleet_command_2
+					# set_timed_fleet_flag = { flag = f93_recently_moved days = 1080 }
+					
+				}
+				else_if = {
+					limit = {
+						has_fleet_flag = ralis_fleet_attack
+						OR = {
+							has_auto_move_target = no
+							has_fleet_flag = ralis_subject_fleet_command_4
+						}
+					}
+					set_variable = { which = idle_count value = 0 }
+					f93_pick_random_attack_target = yes
+					remove_fleet_flag = ralis_subject_fleet_command_4
+					set_fleet_flag = ralis_subject_fleet_command_3
+					# set_timed_fleet_flag = { flag = f93_recently_moved days = 720 }
+					remove_auto_move_target = yes
+				}
+				else_if = {
+					limit = {
+						has_auto_move_target = no
+					}
+					set_fleet_flag = ralis_subject_fleet_command_4
+					solar_system = {
+						random_system_planet = { save_event_target_as = f93_ralis_target }
+					}
+				}
+				auto_move_to_planet = {
+					target = event_target:f93_ralis_target
+					clear_auto_move_on_arrival = yes
+					arrival_effect = f93_remove_command_flags
+				}
 			}
 		}
 	}
@@ -115,6 +157,30 @@ country_event = {
 				}
 				f93_create_ralis_fleet = yes
 			}
+			if = {
+				limit = {
+					exists = event_target:f93_ralis_subject
+					event_target:f93_ralis_subject = {
+						count_owned_fleet = {
+							count < 2
+							limit = { has_fleet_flag = ralis_fleet_defense }
+						}
+					}
+				}
+				f93_create_ralis_subject_fleet_defense = yes
+			}
+			if = {
+				limit = {
+					exists = event_target:f93_ralis_subject
+					event_target:f93_ralis_subject = {
+						count_owned_fleet = {
+							count < 4
+							limit = { has_fleet_flag = ralis_fleet_attack }
+						}
+					}
+				}
+				f93_create_ralis_subject_fleet_attack = yes 
+			}
 		}
 		#default
 		if = {
@@ -141,6 +207,30 @@ country_event = {
 					days = 375
 				}
 				f93_create_ralis_fleet = yes
+			}
+			if = {
+				limit = {
+					exists = event_target:f93_ralis_subject
+					event_target:f93_ralis_subject = {
+						count_owned_fleet = {
+							count < 4
+							limit = { has_fleet_flag = ralis_fleet_defense }
+						}
+					}
+				}
+				f93_create_ralis_subject_fleet_defense = yes
+			}
+			if = {
+				limit = {
+					exists = event_target:f93_ralis_subject
+					event_target:f93_ralis_subject = {
+						count_owned_fleet = {
+							count < 8
+							limit = { has_fleet_flag = ralis_fleet_attack }
+						}
+					}
+				}
+				f93_create_ralis_subject_fleet_attack = yes 
 			}
 		}
 		#hard
@@ -171,6 +261,31 @@ country_event = {
 				}
 				f93_create_ralis_fleet = yes
 			}
+			if = {
+				limit = {
+					exists = event_target:f93_ralis_subject
+					event_target:f93_ralis_subject = {
+						count_owned_fleet = {
+							count < 10
+							limit = { has_fleet_flag = ralis_fleet_defense }
+						}
+					}
+				}
+				f93_create_ralis_subject_fleet_defense = yes
+			}
+			if = {
+				limit = {
+					exists = event_target:f93_ralis_subject
+					event_target:f93_ralis_subject = {
+						count_owned_fleet = {
+							count < 15
+							limit = { has_fleet_flag = ralis_fleet_attack }
+						}
+					}
+				}
+				f93_create_ralis_subject_fleet_attack = yes 
+			}
+			
 		}
 	}
 }
