@@ -40,6 +40,8 @@
  f93_lock_the_ralisgate_effect: "This will make travel through the $ralisgate_gate$ §Rimpossible§! for §Y5§! years."
  f93_ralisgate_locked: "Shroueded Hyperlane Locked"
 # Ship Design
+ NAME_ralis_platform_carrier: "Hangar Base"
+ NAME_ralis_platform_arty: "Artillery Base"
  NAME_ralis_corvette_brawl: "Brawler"
  NAME_ralis_corvette_picket: "Picket"
  NAME_ralis_frigate_torpedo: "Ywing"

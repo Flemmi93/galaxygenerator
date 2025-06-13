@@ -46,9 +46,10 @@ f93_ralis_plan_resolution = {
 			event_target:f93_ralis_planet = {
 				set_planet_flag = f93_galactic_community_claim
 			}
-			country_event = { id = f93_ralis_crisis_event.0006 days = 60 random = 30 }
+			country_event = { id = f93_ralis_crisis_event.0006 }
 		}
 		every_country = { country_event = { id = f93_ralis_crisis_event.0601 } }
+		country_event = { id = f93_ralis_crisis_event.00062 days = 360 }
 		every_country = { country_event = { id = f93_ralis_crisis_event.0603 } }
 		set_global_flag = f93_community_claim_made
 	}
@@ -58,7 +59,8 @@ f93_ralis_plan_resolution = {
 			set_planet_flag = f93_galactic_community_claim_faild
 		}
 		every_country = { country_event = { id = f93_ralis_crisis_event.0602 } }
-		country_event = { id = f93_ralis_crisis_event.0006 days = 60 random = 30 }
+		country_event = { id = f93_ralis_crisis_event.00062 days = 360 }
+		country_event = { id = f93_ralis_crisis_event.0006 }
 		set_global_flag = f93_community_claim_never_made
 	}
 
