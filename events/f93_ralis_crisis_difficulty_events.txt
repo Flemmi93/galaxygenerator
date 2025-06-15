@@ -24,6 +24,7 @@ country_event = {
 		exists = event_target:f93_ralis_subject
 		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
+		NOT = { exists = event_target:f93_ralis_liberator }
 	}
 	
 	immediate = {
@@ -150,7 +151,12 @@ country_event = {
 				mult = 0.5
 			}
 			if = {
-				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.75 NOT = { has_country_flag = f93_recent_reinforcments } }
+				limit = {
+					is_country_type = f93_shrouded_region_crisis
+					used_naval_capacity_percent < 0.75
+					NOT = { has_country_flag = f93_recent_reinforcments }
+					NOT = { exists = event_target:f93_ralis_liberator }
+				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
 					days = 500
@@ -160,6 +166,7 @@ country_event = {
 			if = {
 				limit = {
 					exists = event_target:f93_ralis_subject
+					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
 							count < 2
@@ -172,6 +179,7 @@ country_event = {
 			if = {
 				limit = {
 					exists = event_target:f93_ralis_subject
+					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
 							count < 4
@@ -201,7 +209,12 @@ country_event = {
 				mult = 0.4
 			}
 			if = {
-				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }
+				limit = {
+					is_country_type = f93_shrouded_region_crisis
+					used_naval_capacity_percent < 0.95
+					NOT = { has_country_flag = f93_recent_reinforcments }
+					NOT = { exists = event_target:f93_ralis_liberator }
+				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
 					days = 375
@@ -211,6 +224,7 @@ country_event = {
 			if = {
 				limit = {
 					exists = event_target:f93_ralis_subject
+					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
 							count < 4
@@ -223,6 +237,7 @@ country_event = {
 			if = {
 				limit = {
 					exists = event_target:f93_ralis_subject
+					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
 							count < 8

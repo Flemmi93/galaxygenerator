@@ -914,7 +914,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		NOT = { has_global_flag = f82_button_1_1_off }
-		mid_game_years_passed >= 0.5
+		mid_game_years_passed > 0
 		exists = event_target:f93_ralis_country
 		# OR = {
 		# 	AND = {
