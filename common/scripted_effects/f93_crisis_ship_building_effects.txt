@@ -67,6 +67,7 @@ f93_create_ralis_fleet = {
 			}
 		}
 	}
+	last_created_fleet = { set_home_base = event_target:f93_ralis_starbase }
 }
 #needs a f93_ralis_target set
 f93_create_ralis_subject_fleet = {
@@ -92,7 +93,7 @@ f93_create_ralis_subject_fleet = {
 #sets f93_ralis_target
 f93_pick_random_attack_target = {
 	random_playable_country = {
-		limit = { any_system_within_border = { NOT = { has_star_flag = f93_recently_attacked } } }
+		limit = { any_system_within_border = { NOR = { has_star_flag = f93_recently_attacked has_star_flag = f93_ralis_wont_go_here } } }
 		random_owned_planet = {
 			limit = {
 				solar_system = { NOT = { has_star_flag = f93_recently_attacked } }
@@ -107,19 +108,11 @@ f93_pick_random_gal_cro_system = {
 	closest_system = {
 		limit = {
 			f93_system_has_ancient_relay = yes
-			NOT = { has_star_flag = f93_recently_visist }
+			NOR = { has_star_flag = f93_recently_visist has_star_flag = f93_ralis_wont_go_here }
 		}
 		set_timed_star_flag = { flag = f93_recently_visist days = 1080 }
-		if = {
-			limit = { exists = space_owner space_owner = { is_country_type = fallen_empire } }
-		}
-		else_if = {
-			limit = { has_star_flag = f93_empty_system_on_galcrossing }
-			set_star_flag = f93_recently_visist
-		}
-		else = {
-			star = { save_event_target_as = f93_ralis_target }
-		}
+		star = { save_event_target_as = f93_ralis_target }
+		set_star_flag = f93_recently_visist
 	}
 }
 f93_remove_command_flags = {
@@ -128,6 +121,7 @@ f93_remove_command_flags = {
 	remove_fleet_flag = ralis_subject_fleet_command_2
 	remove_fleet_flag = ralis_subject_fleet_command_3
 	remove_fleet_flag = ralis_subject_fleet_command_4
+	remove_fleet_flag = ralis_subject_fleet_command_5
 	set_variable = { which = idle_count value = 0 }
 }
 f93_pick_random_gal_cro_system_loop = {
@@ -140,11 +134,11 @@ f93_pick_random_gal_cro_system_loop = {
 }
 #needs a f93_ralis_target set
 f93_create_ralis_subject_fleet_attack_galcro = {
-	f93_pick_random_gal_cro_system = yes
+	# f93_pick_random_gal_cro_system = yes
 	f93_create_ralis_subject_fleet = yes
 	last_created_fleet = {
 		set_fleet_flag = ralis_fleet_attack_gal_cro
-		set_name = "Voicewing Raiders"
+		set_name = "Voidewing Raiders"
 		auto_move_to_planet = {
 			target = event_target:f93_ralis_target
 			clear_auto_move_on_arrival = yes
@@ -203,7 +197,6 @@ f93_create_fleet_1 = {
 			set_fleet_flag = ralis_fleet_1
 			set_owner = event_target:f93_ralis_country
 			set_timed_fleet_flag = { flag = recently_made days = 1080 }
-			set_home_base = event_target:f93_ralis_system.starbase
 			while = {
 				count = event_target:f93_ralis_country.f93_fleet_size
 				while = {

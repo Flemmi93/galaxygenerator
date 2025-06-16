@@ -1,6 +1,6 @@
 
 f93_ok_to_be_destroyed = {
-	OR = {
+	NOR = {
 		any_system_planet = {
 			OR = {
 				is_ringworld = yes

@@ -32,6 +32,11 @@ system_event = {
 		system_event = { id = f93_shroud.2 }
 		#events depending on the srhoud and ralis cluster being formed should fire on the 4th day
 		system_event = { id = f93_shroud.8 days = 4 }
+		
+		every_system = {
+			limit = { has_star_flag = f93_shroud_region_flag }
+			set_star_flag = crisis_spawn_exclude
+		}
 	}
 
 }
@@ -53,7 +58,7 @@ system_event = {
 		remove_star_flag = f93_shroud_periphery_flag
 		set_star_flag = f93_shroud_core_flag
 		system_event = { id = f93_shroud.3 }
-		system_event = { id = f93_shroud.4 days = 1 } 
+		# system_event = { id = f93_shroud.4 days = 1 }
 		random_list = {
 			250 = {}
 			100 = { if = { limit = { has_megacorp = yes is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
@@ -88,7 +93,10 @@ system_event = {
 		# set_name = "core core"
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
-		system_event = { id = f93_shroud.4 }
+		system_event = {
+			id = f93_shroud.4
+			days = value:mid_game_day
+		}
 	}
 
 }
@@ -108,6 +116,9 @@ system_event = { #creating ralis cluster
 		}
 	}
 	immediate = {
+		every_playable_country = {
+			country_event = { id = f93_ralis_crisis_event.0001 days = 1 }
+		}
 		save_global_event_target_as = f93_ralis_system
 		set_star_flag = f93_ralis_empire_cluster
 		# set_star_flag = changed
@@ -134,13 +145,14 @@ system_event = { #creating ralis cluster
 		every_fleet_in_system = {
 			destroy_fleet = this
 		}
-		if = {
-			limit = { has_nemesis = yes }
-			spawn_megastructure = {
-				type = crisis_sphere_ruined
-				planet = star
-			}
-		}
+		# if = {
+		# 	limit = { has_nemesis = yes }
+		# 	spawn_megastructure = {
+		# 		type = crisis_sphere_ruined
+		# 		planet = star
+		# 	}
+		# }
+		every_system = { remove_star_flag = f93_current_cluster }
 		f93_random_cluster_generator = yes
 		every_system = {
 			limit = { has_star_flag = f93_current_cluster has_natural_wormhole = yes }
@@ -151,8 +163,9 @@ system_event = { #creating ralis cluster
 			}
 		}
 		every_system = {
-			limit = { has_star_flag = f93_current_cluster has_natural_wormhole = no }
+			limit = { has_star_flag = f93_current_cluster }
 			set_star_flag = f93_ralis_empire_cluster
+			remove_star_flag = f93_current_cluster
 			every_system_megastructure = {
 				remove_megastructure = this
 			}
@@ -232,13 +245,17 @@ planet_event = {
 			}
 		}
 		solar_system = {
+			starbase = {
+				save_global_event_target_as = f93_ralis_starbase
+			}
 			set_star_class = sc_black_hole
 			star = {
 				set_planet_size = 5
 			}
 			every_neighbor_system_euclidean = {
-				limit = { has_star_flag = f93_ralis_empire_cluster NOT = { has_hyperlane_to = event_target:f93_ralis_system } }
-				add_hyperlane = { from = this to = event_target:f93_ralis_system }
+				limit = {
+					has_star_flag = f93_ralis_empire_cluster
+				}
 				every_system_planet = {
 					random_list = {
 						5 = { add_deposit = random }
@@ -253,10 +270,6 @@ planet_event = {
 		if = {
 			limit = { has_global_flag = f82_button_1_1_off }
 			change_pc = pc_relic
-		}
-		every_system = {
-			limit = { has_star_flag = f93_shroud_region_flag }
-			set_star_flag = crisis_spawn_exclude
 		}
 	}
 }
@@ -344,6 +357,7 @@ system_event = {
 				}
 			}
 			f93_random_cluster_generator = yes
+			every_system = { remove_star_flag = f93_current_cluster }
 		}
 	}
 }

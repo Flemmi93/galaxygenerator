@@ -375,13 +375,13 @@ country_event = {
 	title = f93_galactic_crossing.8.name
 	picture = GFX_evt_alien_hieroglyphics
 	is_triggered_only = yes
-	desc = {
-		trigger = {
-			NOT = { exists = event_target:f93_ralis_country }
-			NOT = { has_global_flag = f82_button_1_1_off }
-		}
-		text = f93_ralis_failed_to_form
-	}
+	# desc = {
+	# 	trigger = {
+	# 		NOT = { exists = event_target:f93_ralis_country }
+	# 		NOT = { has_global_flag = f82_button_1_1_off }
+	# 	}
+	# 	text = f93_ralis_failed_to_form
+	# }
 	desc = {
 		trigger = {
 			OR ={

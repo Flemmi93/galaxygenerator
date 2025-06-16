@@ -45,7 +45,7 @@ f93_shrouded_region_crisis = {
 		# standard_expansion_module = {}
 		# standard_species_rights_module = {}
 		# standard_grand_archive_module = {}
-		exclusive_diplomacy_module = {}
+		exclusive_diplomacy_module = { contact_rule = always }
 		tiered_technology_module = {
 			tier = 3
 			rare = no
@@ -94,7 +94,7 @@ f93_ralis_support_fleet = {
 			rare = no
 		}
 		standard_event_module = {}
-		exclusive_diplomacy_module = {}
+		exclusive_diplomacy_module = { contact_rule = always }
 	}
 }
 

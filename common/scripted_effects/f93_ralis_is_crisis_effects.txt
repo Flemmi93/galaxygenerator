@@ -134,6 +134,7 @@ f93_create_ralis_vassael_country = {
 			set_subject_of = {
 				who = event_target:f93_ralis_country
 			}
+			set_variable = { which = fleet_limit value = 1 }
 			f93_set_ralis_designs = yes
 		}
 	}
