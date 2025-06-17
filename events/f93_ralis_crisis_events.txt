@@ -73,10 +73,10 @@ country_event = {
 			}
 			event_target:f93_ralis_country = {
 				set_country_type = f93_shrouded_region_crisis
-				every_playable_country = {
-					limit = { NOR = { is_same_value = event_target:f93_ralis_subject is_same_value = event_target:f93_ralis_country } }
-					set_hostile = prev
-				}
+				# every_playable_country = {
+				# 	limit = { NOR = { is_same_value = event_target:f93_ralis_subject is_same_value = event_target:f93_ralis_country } }
+				# 	set_hostile = prev
+				# }
 				add_resource = {
 					sr_dark_matter = 5
 					alloys = 2
@@ -301,30 +301,104 @@ country_event = {
 	trigger = {
 		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
+		NOT = { has_country_flag = crisis_special_project_4_complete }
 	}
 	immediate = {
-		country_event = { id = f93_ralis_crisis_event.0006 days = 90 }
+		country_event = { id = f93_ralis_crisis_event.0006 days = 150 random = 60 }
 		if = {
 			limit = { has_nemesis = yes }
+			set_country_flag = crisis_sphere_revealed
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_4 }
 				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_4 }
+				if = {
+					limit = { is_at_war = no }
+					declare_crisis_effect = yes
+				}
+				room_name_override = ""
+				add_event_chain_counter = {
+					event_chain = "become_the_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
+				end_event_chain = become_the_crisis_chain
+				country_event = { id = crisis.6000 days = 5 }
+				country_event = { id = f93_ralis_crisis_event.00063 days = 360 random = 720 }
 			}
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_3 }
 				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_3 }
+				country_event = { id = crisis.4155 }
+				add_event_chain_counter = {
+					event_chain = "become_the_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
 			}
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_2 }
 				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_2 }
+				country_event = { id = crisis.4150 }
+				add_event_chain_counter = {
+					event_chain = "become_the_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
 			}
 			else = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_1 }
 				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_1 }
+				country_event = { id = crisis.4145 }
+				add_event_chain_counter = {
+					event_chain = "become_the_crisis_chain"
+					counter = "crisis_level_reached"
+					amount = 1
+				}
 			}
 		}
 	}
 }
+country_event = {
+	id = f93_ralis_crisis_event.00063
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		exists = event_target:f93_ralis_country
+		is_same_value = event_target:f93_ralis_country
+		is_at_war = yes
+		has_nemesis = yes
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { exists = event_target:f93_ralis_engine } }
+			every_owned_megastructure = {
+				limit = { is_megastructure_type = crisis_sphere_0 }
+				save_global_event_target_as = f93_ralis_engine
+			}
+		}
+		#wait 1-3 years between upgrades
+		country_event = { id = f93_ralis_crisis_event.00063 days = 3960 random = 720 }
+		if = {
+			limit = { event_target:f93_ralis_engine = { is_megastructure_type = crisis_sphere_0 } }
+			event_target:f93_ralis_engine = { upgrade_megastructure_to = crisis_sphere_1 }
+		}
+		if = {
+			limit = { event_target:f93_ralis_engine = { is_megastructure_type = crisis_sphere_1 } }
+			event_target:f93_ralis_engine = { upgrade_megastructure_to = crisis_sphere_2 }
+		}
+		if = {
+			limit = { event_target:f93_ralis_engine = { is_megastructure_type = crisis_sphere_2 } }
+			event_target:f93_ralis_engine = { upgrade_megastructure_to = crisis_sphere_3 }
+		}
+		if = {
+			limit = { event_target:f93_ralis_engine = { is_megastructure_type = crisis_sphere_3 } }
+			event_target:f93_ralis_engine = { upgrade_megastructure_to = crisis_sphere_4 }
+		}
+	}
+}
+#expands the crisis sphere every decade
 country_event = {
 	id = f93_ralis_crisis_event.00062
 	hide_window = yes
@@ -699,59 +773,66 @@ country_event = {
 							system_event = { id = f93_ralis_crisis_event.0103 }
 							every_system_planet = { reroll_deposits = yes }
 						}
-						1 = {
-							modifier = {
-								factor = 0
-								NOT = { any_system_planet = { is_colony = yes } }
-							}
-							create_country = {
-								name = random
-								type = default
-								origin = origin_default
-								ethos = event_target:f93_to_be_killed_by_ralis
-								authority = event_target:f93_to_be_killed_by_ralis
-								civics = event_target:f93_to_be_killed_by_ralis
-								flag = event_target:f93_to_be_killed_by_ralis
-								name_list = event_target:f93_to_be_killed_by_ralis
-								ignore_initial_colony_error = yes
-								effect = {
-									set_awareness = 100
-									add_resource = {
-										minerals = 50
-										energy = 150
-										alloys = 10
-										consumer_goods = 10
-										food = 10
-										trade = 450
-										mult = trigger:years_passed
-									}
-									capital_scope = {
-										save_event_target_as = f93_ralis_target
-									}
-								}
-							}
-							f93_create_ralis_subject_fleet = yes
-							last_created_fleet = {
-								set_location = {
-									target = event_target:f93_ralis_target
-									angle = random
-									distance = 300
-								}
-							}
-							starbase = { set_owner = last_created_country }
-							every_neighbor_system = {
-								limit = {
-									has_star_flag = f93_ralis_took_it_from_someone
-								}
-								starbase = { set_owner = last_created_country }
-								every_system_colony = { set_owner = last_created_country }
-								remove_star_flag = f93_ralis_took_it_from_someone
-							}
-							every_country = {
-								limit = { is_galactic_community_member = yes }
-								establish_communications_no_message = last_created_country
-							}
-						}
+						# 1 = {
+						# 	modifier = {
+						# 		factor = 0
+						# 		NOT = { any_system_planet = { is_colony = yes } }
+						# 	}
+						# 	every_system_colony = {
+						# 		random_owned_pop_group = {
+						# 			save_event_target_as = species
+						# 		}
+						# 		create_country = {
+						# 			name = random
+						# 			type = default
+						# 			origin = event_target:f93_to_be_killed_by_ralis
+						# 			ethos = event_target:f93_to_be_killed_by_ralis
+						# 			authority = event_target:f93_to_be_killed_by_ralis
+						# 			civics = event_target:f93_to_be_killed_by_ralis
+						# 			flag = event_target:f93_to_be_killed_by_ralis
+						# 			species = event_target:species
+						# 			name_list = random
+						# 			ignore_initial_colony_error = yes
+						# 			effect = {
+						# 				set_awareness = 100
+						# 				add_resource = {
+						# 					minerals = 50
+						# 					energy = 150
+						# 					alloys = 10
+						# 					consumer_goods = 10
+						# 					food = 10
+						# 					trade = 450
+						# 					mult = trigger:years_passed
+						# 				}
+						# 			}
+						# 		}
+						# 		create_colony = {
+						# 			owner = last_created_country
+						# 			species = event_target:species
+						# 		}
+						# 		f93_create_ralis_subject_fleet = yes
+						# 		last_created_fleet = {
+						# 			set_location = {
+						# 				target = event_target:f93_ralis_target
+						# 				angle = random
+						# 				distance = 300
+						# 			}
+						# 		}
+						# 	}
+						# 	starbase = { set_owner = last_created_country }
+						# 	every_neighbor_system = {
+						# 		limit = {
+						# 			has_star_flag = f93_ralis_took_it_from_someone
+						# 		}
+						# 		starbase = { set_owner = last_created_country }
+						# 		every_system_colony = { set_owner = last_created_country }
+						# 		remove_star_flag = f93_ralis_took_it_from_someone
+						# 	}
+						# 	every_country = {
+						# 		limit = { is_galactic_community_member = yes }
+						# 		establish_communications_no_message = last_created_country
+						# 	}
+						# }
 					}
 					
 				}

@@ -99,7 +99,7 @@ f93_pick_random_attack_target = {
 				solar_system = { NOT = { has_star_flag = f93_recently_attacked } }
 			}
 			save_event_target_as = f93_ralis_target
-			solar_system = { set_star_flag = f93_recently_attacked }
+			solar_system = { set_timed_star_flag = { flag = f93_recently_attacked years = 4 } }
 		}
 	}
 }

@@ -108,6 +108,12 @@ country_event = {
 						random_system_planet = { save_event_target_as = f93_ralis_target }
 					}
 				}
+				else = {
+					random_system = {
+						limit = { f93_system_winthin_20_steps_of_galcro = yes NOR = { has_star_flag = f93_recently_attacked has_star_flag = f93_empty_system_on_galcrossing } }
+						star = { save_event_target_as = f93_ralis_target }
+					}
+				}
 				auto_move_to_planet = {
 					target = event_target:f93_ralis_target
 					clear_auto_move_on_arrival = yes
