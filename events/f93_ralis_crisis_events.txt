@@ -138,35 +138,85 @@ country_event = {
 					}
 					set_global_flag = f93_shroud_gate_active
 					f93_place_shroud_gate_node = yes
-					random_system = {
+					if = {
 						limit = {
-							NOR = {
-								exists = owner
-								has_star_flag = f93_raliscluster1
-								has_star_flag = enclave
-								any_neighbor_system = {
-									exists = space_owner
-									space_owner = { is_country_type = fallen_empire }
+							count_system = {
+								count = 2
+								limit = {
+									f93_system_has_ancient_relay = yes
+									NOR = {
+										exists = owner
+										has_star_flag = f93_raliscluster1
+										has_star_flag = enclave
+										any_neighbor_system = {
+											exists = space_owner
+											space_owner = { is_country_type = fallen_empire }
+										}
+									}
 								}
 							}
-							f93_system_has_ancient_relay = yes
+							
 						}
-						f93_place_shroud_gate_nexus = yes
+						random_system = {
+							limit = {
+								NOR = {
+									exists = owner
+									has_star_flag = f93_raliscluster1
+									has_star_flag = enclave
+									any_neighbor_system = {
+										exists = space_owner
+										space_owner = { is_country_type = fallen_empire }
+									}
+								}
+								f93_system_has_ancient_relay = yes
+							}
+							f93_place_shroud_gate_nexus = yes
+						}
+						random_system = {
+							limit = {
+								NOR = {
+									exists = owner
+									has_star_flag = f93_raliscluster1
+									has_star_flag = enclave
+									any_neighbor_system = {
+										exists = space_owner
+										space_owner = { is_country_type = fallen_empire }
+									}
+								}
+								f93_system_has_ancient_relay = yes
+							}
+							f93_place_shroud_gate_nexus = yes
+						}
 					}
-					random_system = {
-						limit = {
-							NOR = {
-								exists = owner
-								has_star_flag = f93_raliscluster1
-								has_star_flag = enclave
-								any_neighbor_system = {
-									exists = space_owner
-									space_owner = { is_country_type = fallen_empire }
+					else = {
+						random_system = {
+							limit = {
+								NOR = {
+									has_star_flag = f93_raliscluster1
+									has_star_flag = enclave
+									any_neighbor_system = {
+										exists = space_owner
+										space_owner = { is_country_type = fallen_empire }
+									}
 								}
+								f93_system_has_ancient_relay = yes
 							}
-							f93_system_has_ancient_relay = yes
+							f93_place_shroud_gate_nexus = yes
 						}
-						f93_place_shroud_gate_nexus = yes
+						random_system = {
+							limit = {
+								NOR = {
+									has_star_flag = f93_raliscluster1
+									has_star_flag = enclave
+									any_neighbor_system = {
+										exists = space_owner
+										space_owner = { is_country_type = fallen_empire }
+									}
+								}
+								f93_system_has_ancient_relay = yes
+							}
+							f93_place_shroud_gate_nexus = yes
+						}
 					}
 				}
 			}
