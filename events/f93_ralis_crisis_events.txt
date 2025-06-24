@@ -779,9 +779,6 @@ country_event = {
 						# 		NOT = { any_system_planet = { is_colony = yes } }
 						# 	}
 						# 	every_system_colony = {
-						# 		random_owned_pop_group = {
-						# 			save_event_target_as = species
-						# 		}
 						# 		create_country = {
 						# 			name = random
 						# 			type = default
@@ -794,6 +791,35 @@ country_event = {
 						# 			name_list = random
 						# 			ignore_initial_colony_error = yes
 						# 			effect = {
+						# 				set_awareness = 100
+						# 				add_resource = {
+						# 					minerals = 50
+						# 					energy = 150
+						# 					alloys = 10
+						# 					consumer_goods = 10
+						# 					food = 10
+						# 					trade = 450
+						# 					mult = trigger:years_passed
+						# 				}
+						# 			}
+						# 		}
+						# 		ordered_owned_pop_group = {
+						# 			save_global_event_target_as = species
+						# 		}
+						# 		create_country = { species = event_target:species }
+						# 		create_country = {
+						# 			name = random
+						# 			type = primitive
+						# 			origin = origin_default
+						# 			ethos = random
+						# 			authority = random
+						# 			civics = random
+						# 			flag = random
+						# 			name_list = random
+						# 			ignore_initial_colony_error = yes
+						# 			effect = {
+						# 				set_country_flag = early_space_age
+						# 				set_pre_ftl_age = early_space_age
 						# 				set_awareness = 100
 						# 				add_resource = {
 						# 					minerals = 50
