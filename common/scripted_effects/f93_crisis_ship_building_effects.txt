@@ -67,7 +67,7 @@ f93_create_ralis_fleet = {
 			}
 		}
 	}
-	last_created_fleet = { set_home_base = event_target:f93_ralis_starbase }
+	# last_created_fleet = { set_home_base = event_target:f93_ralis_starbase }
 }
 #needs a f93_ralis_target set
 f93_create_ralis_subject_fleet = {
