@@ -61,7 +61,7 @@ country_event = {
 			}
 			if = {
 				limit = { NOT = { exists = event_target:f93_ralis_subject } }
-				f93_create_ralis_vassael_country = yes
+				f93_create_ralis_vassal_country = yes
 			}
 			
 			event_target:f93_ralis_subject = {

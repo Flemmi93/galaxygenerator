@@ -218,7 +218,7 @@ planet_event = {
 			limit = { NOT = { has_global_flag = f82_button_1_1_off } }
 			f93_create_ralis_country = yes
 			f93_create_ralis_planet = yes
-			solar_system = { f93_create_ralis_vassael_country = yes }
+			solar_system = { f93_create_ralis_vassal_country = yes }
 			every_system = {
 				limit = { has_star_flag = f93_ralis_empire_cluster }
 				create_starbase = {

@@ -111,10 +111,10 @@ f93_create_ralis_country = { #target a valid planet with this
 		}
 	}
 }
-f93_create_ralis_vassael_country = {
+f93_create_ralis_vassal_country = {
 	create_country = {
 		auto_delete = no
-		name = ralis_system_NAME
+		name = ralis_subject_NAME
 		adjective = ralis_ADJ
 		type = f93_ralis_support_fleet #f93_shrouded_region_crisis
 		name_list = AVI4

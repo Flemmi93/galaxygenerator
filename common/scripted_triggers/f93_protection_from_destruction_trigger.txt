@@ -21,6 +21,8 @@ f93_ok_to_be_destroyed = {
 				has_modifier = holy_planet
 				has_planet_flag = earth
 				has_planet_flag = earth_nuked
+				#special system init systems we intent to protect
+				has_planet_flag = star_seddom
 				
 				#If you only have a planet that should be protected add it here and the entire system will be safe from me.
 
@@ -28,12 +30,14 @@ f93_ok_to_be_destroyed = {
 		}
 		AND = {
 			exists = space_owner
-			OR = {
-				space_owner = { is_same_value = event_target:f93_ralis_country }
-				any_system_megastructure = {
-					exists = this
-				}
+			any_system_megastructure = {
+				exists = this
 			}
+		}
+		AND = {
+			exists = space_owner
+			exists = event_target:f93_ralis_country
+			space_owner = { is_same_value = event_target:f93_ralis_country }
 		}
 		is_star_class = sc_black_hole
 		has_star_flag = star_cracked # already destroyed

@@ -275,7 +275,7 @@ country_event = {
 						NOR = {
 							exists = space_owner
 							has_star_flag = empire_cluster
-							# any_fleet_in_system = { exists = this }
+							any_fleet_in_system = { exists = this }
 							any_system_megastructure = {
 								NOT = { is_megastructure_type = dandelion_relay }
 								exists = this
