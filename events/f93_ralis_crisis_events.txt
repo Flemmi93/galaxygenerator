@@ -136,7 +136,7 @@ country_event = {
 						limit = { is_megastructure_type = crisis_sphere_ruined }
 						remove_megastructure = this
 					}
-					set_global_flag = f93_shroud_gate_active
+					# set_global_flag = f93_shroud_gate_active # moved to a later point
 					f93_place_shroud_gate_node = yes
 					if = {
 						limit = {
@@ -306,9 +306,10 @@ starbase_event = {
 		}
 	}
 	immediate = {
+		from = { owner = { save_event_target_as = not_ralis } }
 		if = {
 			limit = { owner = { is_same_value = event_target:f93_ralis_country } }
-			set_owner = from.owner
+			set_owner = event_target:not_ralis
 		}
 		else = {
 			set_owner = event_target:f93_ralis_country
@@ -329,9 +330,10 @@ starbase_event = {
 		}
 	}
 	immediate = {
+		from = { owner = { save_event_target_as = not_ralis } }
 		if = {
 			limit = { owner = { is_same_value = event_target:f93_ralis_subject } }
-			set_owner = from.owner
+			set_owner = event_target:not_ralis
 		}
 		else_if = {
 			limit = {
@@ -408,6 +410,7 @@ country_event = {
 		}
 	}
 }
+
 country_event = {
 	id = f93_ralis_crisis_event.00063
 	hide_window = yes
@@ -461,6 +464,8 @@ country_event = {
 	}
 
 	immediate = {
+		#Activates the Shrouded Hyperlanes
+		country_event = { id = f93_ralis_crisis_event.00064 }
 		if = {
 			limit = { has_nemesis = yes }
 			set_country_flag = crisis_sphere_revealed
@@ -471,6 +476,17 @@ country_event = {
 		}
 	}
 }
+#Activates the Shrouded Hyperlanes (ralisgate bypass)
+country_event = {
+	id = f93_ralis_crisis_event.00064
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_global_flag = f93_shroud_gate_active
+	}
+}
+
 #A galaxy holds its breath
 #Happens 120 days after midgame 
 country_event = {
@@ -1182,31 +1198,32 @@ country_event = {
 # From = system
 # FromFrom = country (new owner)
 # This = country (previous owner)
-country_event = {
-	id = f93_ralis_crisis_event.0606
-	hide_window = yes
-	# mean_time_to_happen = 15
-	is_triggered_only = yes
+# country_event = {
+# 	id = f93_ralis_crisis_event.0606
+# 	hide_window = yes
+# 	# mean_time_to_happen = 15
+# 	is_triggered_only = yes
 	
-	trigger = {
-		exists = event_target:f93_ralis_country
-		exists = space_owner
-		is_same_value = event_target:f93_ralis_country
-		space_owner = { is_same_value = event_target:f93_ralis_country }
-		is_ai = yes
-		event_target:f93_ralis_country = { is_at_war = yes }
-	}
-	immediate = {
-		from = {
-			random_list = {
-				1 = {}
-				2 = { 
-					every_system_colony = { set_owner = event_target:f93_ralis_country }
-				}
-			}
-		}
-	}
-}
+# 	trigger = {
+# 		exists = event_target:f93_ralis_country
+# 		exists = space_owner
+# 		FROMFROM = { is_same_value = event_target:f93_ralis_country }
+# 		is_ai = yes
+# 		event_target:f93_ralis_country = { is_at_war = yes }
+# 	}
+# 	immediate = {
+# 		from = {
+# 			random_list = {
+# 				1 = {}
+# 				2 = { 
+# 					# due to ai missmanagment and no fun factor, disabled for now
+# 					# setting occupation does not work due to wargoal
+# 					# every_system_colony = { set_owner = event_target:f93_ralis_country }
+# 				}
+# 			}
+# 		}
+# 	}
+# }
 
 # From = system
 # FromFrom = country (new owner)
@@ -1220,7 +1237,7 @@ country_event = {
 	trigger = {
 		exists = event_target:f93_ralis_country
 		exists = space_owner
-		is_same_value = event_target:f93_ralis_country
+		FROMFROM = { is_same_value = event_target:f93_ralis_country }
 		event_target:f93_ralis_country = { is_at_war = yes }
 	}
 

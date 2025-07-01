@@ -396,7 +396,7 @@ f93_first_handover_to_ralis_admin = {
 			has_star_flag = f93_ralis_took_it_from_someone
 		}
 		starbase = { set_owner = event_target:f93_community_ralis_admin_country }
-		every_system_colony = {set_owner = event_target:f93_community_ralis_admin_country }
+		every_system_colony = { set_owner = event_target:f93_community_ralis_admin_country }
 	}
 }
 
@@ -454,6 +454,7 @@ f93_threat_war_effect = {
 			attacker_war_goal = "wg_end_threat"
 			effect = { save_event_target_as = galactic_threat }
 		}
+		#Activates the Shrouded Hyperlanes, in case it wasnt done already
 	}
 	every_playable_country = {
 		limit = {

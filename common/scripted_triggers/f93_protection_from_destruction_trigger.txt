@@ -40,6 +40,7 @@ f93_ok_to_be_destroyed = {
 		has_star_flag = f93_empty_system_on_galcrossing #have special star class "no Star"
 		has_star_flag = crisis_spawn_exclude #generally marks special systems
 		has_star_flag = wenkwort_system
+		has_star_flag = holy_system_1
 		has_star_flag = empire_home_system
 		has_star_flag = hostile_system
 		has_star_flag = unique_system

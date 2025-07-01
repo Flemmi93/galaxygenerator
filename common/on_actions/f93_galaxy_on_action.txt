@@ -97,7 +97,7 @@ on_system_gained = {
 on_system_lost = {
 	events = {
 		f93_ralis_crisis_event.0604
-		f93_ralis_crisis_event.0606
+		# f93_ralis_crisis_event.0606
 	}
 }
 

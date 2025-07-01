@@ -133,8 +133,9 @@
  RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"
  ralisgate_gate: "Shrouded Hyperlane"
  ralisgate_gate_desc: "A stable breach point to another hyperlane network inside the galaxy."
- BYPASS_RALISGATE: ""
- BYPASS_DESC_INACTIVE_RALISGATE: ""
+ ralisgate_locked_desc: "We have yet to figure out how their ships travel through here. Some Theorize we lack sufficient Navigational data to reach the other end."
+ BYPASS_RALISGATE: "$BYPASS_DESC_UNKNOWN_WORMHOLE$"
+ BYPASS_DESC_INACTIVE_RALISGATE: "$BYPASS_DESC_INACTIVE_WORMHOLE$"
  f93_promised_to_ralis_admin: "To be handed over to the GalCom Administration"
  f93_legendary_friendship: "Historical Friends"
  f93_ralis_republic_is_nice: "President paid respect"
@@ -175,6 +176,11 @@
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
  f93_shroud_region_flag: "Shrouded Region"
+
+ #Technology
+ #  tech_ralisgate_bypass: "$ralisgate_gate$ Theory"
+ #  tech_ralisgate_bypass_desc: "An advanced study into the unique dimensional properties of $ralisgate_gate$. Could allow for the safe traversal of these new rifts in reality."
+ #  tech_ralisgate_bypass_effect: "§GUnlocks $ralisgate_gate$ traversal§!"
 
 	#resolution
  ralis_focus: "Ralis War Plans"

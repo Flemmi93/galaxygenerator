@@ -271,16 +271,15 @@ country_event = {
 				every_system = {
 					limit = {
 						f93_system_has_ancient_relay = yes
+						f93_ok_to_be_destroyed = yes
 						NOR = {
 							exists = space_owner
 							has_star_flag = empire_cluster
-							has_star_flag = unique_system
-							any_fleet_in_system = { exists = this }
+							# any_fleet_in_system = { exists = this }
 							any_system_megastructure = {
 								NOT = { is_megastructure_type = dandelion_relay }
 								exists = this
 							}
-							f93_ok_to_be_destroyed = yes
 						}
 					}
 					set_star_class = sc_hyper_relay_star
