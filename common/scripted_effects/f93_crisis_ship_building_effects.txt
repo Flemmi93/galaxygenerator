@@ -93,26 +93,53 @@ f93_create_ralis_subject_fleet = {
 #sets f93_ralis_target
 f93_pick_random_attack_target = {
 	random_playable_country = {
-		limit = { any_system_within_border = { NOR = { has_star_flag = f93_recently_attacked has_star_flag = f93_ralis_wont_go_here } } }
+		limit = {
+			any_owned_planet = {
+				solar_system = {
+					NOR = {
+						has_star_flag = f93_recently_attacked
+						has_star_flag = f93_ralis_wont_go_here
+					}
+				}
+			}
+		}
 		random_owned_planet = {
 			limit = {
 				solar_system = { NOT = { has_star_flag = f93_recently_attacked } }
 			}
 			save_event_target_as = f93_ralis_target
-			solar_system = { set_timed_star_flag = { flag = f93_recently_attacked years = 4 } }
+			#short cooldowns for hard, long cool down for easy
+			if = {
+				limit = { has_global_flag = f82_button_3_3_on } 
+				solar_system = { set_timed_star_flag = { flag = f93_recently_attacked years = 4 } }
+			}
+			else_if = {
+				limit = { has_global_flag = f82_button_3_1_on }
+				solar_system = { set_timed_star_flag = { flag = f93_recently_attacked years = 10 } }
+			}
+			else = {
+				solar_system = { set_timed_star_flag = { flag = f93_recently_attacked years = 6 } }
+			}
 		}
 	}
 }
 #designates random gal cro system as f93_ralis_target
 f93_pick_random_gal_cro_system = {
-	closest_system = {
+	random_system = {
 		limit = {
 			f93_system_has_ancient_relay = yes
 			NOR = { has_star_flag = f93_recently_visist has_star_flag = f93_ralis_wont_go_here }
 		}
-		set_timed_star_flag = { flag = f93_recently_visist days = 1080 }
-		star = { save_event_target_as = f93_ralis_target }
-		set_star_flag = f93_recently_visist
+		if = {
+			limit = { has_star_flag = f93_empty_system_on_galcrossing }
+			random_system_megastructure = {
+				save_event_target_as = f93_ralis_target
+			}
+		}
+		else = {
+			set_timed_star_flag = { flag = f93_recently_visist days = 1080 }
+			random_system_planet = { save_event_target_as = f93_ralis_target }
+		}
 	}
 }
 f93_remove_command_flags = {
@@ -124,25 +151,27 @@ f93_remove_command_flags = {
 	remove_fleet_flag = ralis_subject_fleet_command_5
 	set_variable = { which = idle_count value = 0 }
 }
-f93_pick_random_gal_cro_system_loop = {
-	f93_pick_random_gal_cro_system = yes
-	auto_move_to_planet = {
-		target = event_target:f93_ralis_target
-		clear_auto_move_on_arrival = yes
-		arrival_effect = f93_pick_random_gal_cro_system_loop
-	}
-}
-#needs a f93_ralis_target set
+#needs a f93_ralis_target set, these fleets will stay and wont move again
 f93_create_ralis_subject_fleet_attack_galcro = {
-	# f93_pick_random_gal_cro_system = yes
+	f93_pick_random_gal_cro_system = yes
 	f93_create_ralis_subject_fleet = yes
 	last_created_fleet = {
 		set_fleet_flag = ralis_fleet_attack_gal_cro
-		set_name = "Voidewing Raiders"
-		auto_move_to_planet = {
-			target = event_target:f93_ralis_target
-			clear_auto_move_on_arrival = yes
-			arrival_effect = f93_pick_random_gal_cro_system_loop
+		set_name = NAME_ralis_fleet_vr
+		if  = {
+			limit = {
+				event_target:f93_ralis_target = {
+					is_star = yes
+				}
+			}
+			auto_move_to_planet = {
+				target = event_target:f93_ralis_target
+			}
+		}
+		else = {
+			auto_follow_fleet = {
+				target = event_target:f93_ralis_target
+			}
 		}
 	}
 }
@@ -152,7 +181,7 @@ f93_create_ralis_subject_fleet_attack = {
 	f93_create_ralis_subject_fleet = yes
 	last_created_fleet = {
 		set_fleet_flag = ralis_fleet_attack
-		set_name = "Assaultwing"
+		set_name = NAME_ralis_fleet_aw
 		auto_move_to_planet = {
 			target = event_target:f93_ralis_target
 			clear_auto_move_on_arrival = yes
@@ -164,7 +193,7 @@ f93_create_ralis_subject_fleet_attack = {
 f93_create_ralis_subject_fleet_defense = {
 	f93_create_ralis_subject_fleet = yes
 	last_created_fleet = {
-		set_name = "Defenders of Ralis"
+		set_name = NAME_ralis_fleet_dr
 		set_fleet_flag = ralis_fleet_defense
 		auto_move_to_planet = {
 			target = event_target:f93_ralis_planet
@@ -216,7 +245,16 @@ f93_create_fleet_1 = {
 							}
 							change_variable = { which = num_ships_original value = 1 }
 						}
-						2 = {}
+						2 = {
+							modifier = {
+								factor = 1.5
+								has_global_flag = f82_button_3_1_on
+							}
+							modifier = {
+								factor = 0
+								has_global_flag = f82_button_3_3_on
+							}
+						}
 					}
 				}
 				while = {
@@ -236,11 +274,20 @@ f93_create_fleet_1 = {
 							}
 							change_variable = { which = num_ships_original value = 1 }
 						}
-						4 = {}
+						4 = {
+							modifier = {
+								factor = 1.25
+								has_global_flag = f82_button_3_1_on
+							}
+							modifier = {
+								factor = 0.5
+								has_global_flag = f82_button_3_3_on
+							}
+						}
 					}
 				}
 				while = {
-					count = 4 #number of possible destroyers
+					count = 5 #number of possible destroyers
 					random_list = {
 						1 = {
 							create_ship = {
@@ -256,12 +303,21 @@ f93_create_fleet_1 = {
 							}
 							change_variable = { which = num_ships_original value = 1 }
 						}
-						2 = {}
+						2 = {
+							modifier = {
+								factor = 1.75
+								has_global_flag = f82_button_3_1_on
+							}
+							modifier = {
+								factor = 0.25
+								has_global_flag = f82_button_3_3_on
+							}
+						}
 					}
 				}
 				if = {
 					while = {
-						count = 1 #number of possible cruiser
+						count = 2 #number of possible cruiser
 						random_list = {
 							1 = {
 								create_ship = {
@@ -274,7 +330,7 @@ f93_create_fleet_1 = {
 								modifier = {
 									factor = 0
 									count_controlled_ship = {
-										count > 6
+										count > 10
 										limit = { is_ship_size = cruiser }
 									}
 								}
@@ -285,7 +341,7 @@ f93_create_fleet_1 = {
 				if = {
 					limit = { mid_game_years_passed >= quarterway_passed_midgame }
 					while = {
-						count = 1 #number of possible battleship
+						count = 2 #number of possible battleship
 						random_list = {
 							1 = {
 								create_ship = {
@@ -294,11 +350,21 @@ f93_create_fleet_1 = {
 								}
 							change_variable = { which = num_ships_original value = 1 }
 							}
+							1 = {
+								modifier = {
+									factor = 2
+									has_global_flag = f82_button_3_1_on
+								}
+								modifier = {
+									factor = 0
+									has_global_flag = f82_button_3_3_on
+								}
+							}
 							10 = {
 								modifier = {
 									factor = 0
 									count_controlled_ship = {
-										count > 4
+										count > 8
 										limit = { is_ship_size = battleship }
 									}
 								}
