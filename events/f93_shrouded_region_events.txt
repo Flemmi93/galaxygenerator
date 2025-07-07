@@ -97,10 +97,30 @@ system_event = {
 			id = f93_shroud.4
 			days = value:mid_game_day
 		}
+		system_event = {
+			id = f93_shroud.301
+		}
 	}
-
+	
 }
 
+system_event = { #marking ralis cluster
+	id = f93_shroud.301
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOR = {
+			exists = event_target:f93_ralis_system
+			any_neighbor_system_euclidean = {
+				any_neighbor_system = { has_hyperlane_to = prev }
+			}
+			any_system_planet = { is_colony = yes }
+		}
+	}
+	immediate = {
+		set_star_flag = f93_potential_ralis_spawn
+	}
+}
 system_event = { #creating ralis cluster
 	id = f93_shroud.4
 	hide_window = yes
@@ -114,6 +134,11 @@ system_event = { #creating ralis cluster
 			}
 			any_system_planet = { is_colony = yes }
 		}
+		OR = {
+			has_star_flag = f93_potential_ralis_spawn
+			has_star_flag = f93_shroud_core_core_flag # remove this in a future version
+		}
+
 	}
 	immediate = {
 		every_playable_country = {
@@ -128,7 +153,7 @@ system_event = { #creating ralis cluster
 		}
 		spawn_planet = {
 			name = ralis_planet_NAME
-			class = pc_city
+			class = pc_barren
 			orbit_location = yes
 			orbit_distance_offset = 32
 			orbit_angle_offset = 291

@@ -374,13 +374,13 @@ country_event = {
 	title = f93_galactic_crossing.8.name
 	picture = GFX_evt_alien_hieroglyphics
 	is_triggered_only = yes
-	# desc = {
-	# 	trigger = {
-	# 		NOT = { exists = event_target:f93_ralis_country }
-	# 		NOT = { has_global_flag = f82_button_1_1_off }
-	# 	}
-	# 	text = f93_ralis_failed_to_form
-	# }
+	desc = {
+		trigger = {
+			NOT = { any_system = { has_star_flag = f93_potential_ralis_spawn } }
+			NOT = { has_global_flag = f82_button_1_1_off }
+		}
+		text = f93_ralis_failed_to_form
+	}
 	desc = {
 		trigger = {
 			OR ={
@@ -397,12 +397,6 @@ country_event = {
 		}
 		text = f93_galactic_crossing.8.red
 	}
-	# desc = {
-	# 	trigger = {
-	# 		owner = { capital_scope.solar_system = { any_neighbor_system_euclidean = { has_modifier = f93_shrouded_region_star } } }
-	# 	}
-	# 	text = f93_galactic_crossing.8.yellow
-	# }
 	trigger = {
 		is_ai = no
 	}
