@@ -99,6 +99,11 @@ system_event = {
 		}
 		system_event = {
 			id = f93_shroud.301
+			days = 1
+		}
+		system_event = {
+			id = f93_shroud.302
+			days = 3
 		}
 	}
 	
@@ -115,12 +120,39 @@ system_event = { #marking ralis cluster
 				any_neighbor_system = { has_hyperlane_to = prev }
 			}
 			any_system_planet = { is_colony = yes }
+			has_star_flag = f93_shrouded_cluster
 		}
 	}
 	immediate = {
 		set_star_flag = f93_potential_ralis_spawn
 	}
 }
+
+system_event = { #marking ralis cluster
+	id = f93_shroud.302
+	hide_window = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		every_system = {
+			limit = { has_star_flag = f93_shrouded_cluster }
+			remove_star_flag = f93_potential_ralis_spawn
+		}
+		every_system = {
+			limit = { any_system_planet = { is_colony = yes } }
+			remove_star_flag = f93_potential_ralis_spawn
+		}
+		every_system = {
+			limit = {
+				any_neighbor_system_euclidean = {
+					any_neighbor_system = { has_hyperlane_to = prev }
+				}
+			}
+			remove_star_flag = f93_potential_ralis_spawn
+		}
+	}
+}
+
 system_event = { #creating ralis cluster
 	id = f93_shroud.4
 	hide_window = yes
@@ -373,6 +405,7 @@ system_event = {
 				}
 			}
 			f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = yes
+			set_star_flag = f93_shrouded_cluster
 		}
 		if = {
 			limit = {
@@ -382,6 +415,7 @@ system_event = {
 				}
 			}
 			f93_random_cluster_generator = yes
+			set_star_flag = f93_shrouded_cluster
 			every_system = { remove_star_flag = f93_current_cluster }
 		}
 	}

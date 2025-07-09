@@ -44,11 +44,9 @@ country_event = {
 					}
 					highway_connect_relay_only = yes
 					save_global_event_target_as = system_highway_start
-					set_star_flag = enigmatic_cache_system # dirty trick to stop crash from ctd when spawning in shroud region
+					set_star_flag = enigmatic_cache_system # dirty trick to stop crash from ctd when spawning in enigmatic cach at midgame
 				}
 			}
-			# set_variable = { which = f93_gal_size value = 4 }
-			# f93_set_galaxy_size = yes
 			#Should someone play with 0 fallen empires, this would generate random GalCro Endpoints
 			get_galaxy_setup_value = { which = num_fallen_empires setting = num_fallen_empires }
 			if = {
@@ -136,61 +134,21 @@ country_event = {
 			}
 			clear_global_event_target = system_highway_start
 		}
-		country_event = { id = f93_galactic_crossing.6 }
+		country_event = { id = f93_galactic_crossing.3 }
 		country_event = { id = f93_galactic_crossing.7 days = 1 }
 	}
 }
-
-#f93_galactic_crossing.3 is in an addon
-
+#this event causes the major map changes.
+#it sets the flag f93_shroud_region_flag and fires event f93_shroud.1 in valid systems
 country_event = {
-	id = f93_galactic_crossing.4
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		random_system = {
-			limit = {
-				exists = owner
-				owner = { is_country_type = fallen_empire }
-				is_capital_system = yes
-				f93_system_has_ancient_relay = no
-			}
-			save_global_event_target_as = system_highway_end
-			closest_system = {
-				limit = {
-					NOT = { is_same_value = prev }
-					f93_system_has_ancient_relay = yes
-				}
-				save_global_event_target_as = system_highway_start
-				highway_create_system = yes
-			}
-			clear_global_event_target = system_highway_end
-			clear_global_event_target = system_highway_start
-		}
-	}
-}
-country_event = {
-	id = f93_galactic_crossing.5
-	hide_window = yes
-	is_triggered_only = yes
-
-	immediate = {
-		every_owned_megastructure = {
-			limit = { is_megastructure_type = dandelion_relay }
-			remove_megastructure = this
-		}
-	}
-}
-
-country_event = {
-	id = f93_galactic_crossing.6
+	id = f93_galactic_crossing.3
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
 		every_system = {
 			limit = {
+				distance_to_core_percent > 40
 				NOR = {
 					exists = owner
 					any_neighbor_system = { has_star_flag = empire_cluster }
@@ -246,6 +204,47 @@ country_event = {
 		}
 	}
 }
+
+# country_event = {
+# 	id = f93_galactic_crossing.4
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		random_system = {
+# 			limit = {
+# 				exists = owner
+# 				owner = { is_country_type = fallen_empire }
+# 				is_capital_system = yes
+# 				f93_system_has_ancient_relay = no
+# 			}
+# 			save_global_event_target_as = system_highway_end
+# 			closest_system = {
+# 				limit = {
+# 					NOT = { is_same_value = prev }
+# 					f93_system_has_ancient_relay = yes
+# 				}
+# 				save_global_event_target_as = system_highway_start
+# 				highway_create_system = yes
+# 			}
+# 			clear_global_event_target = system_highway_end
+# 			clear_global_event_target = system_highway_start
+# 		}
+# 	}
+# }
+# country_event = {
+# 	id = f93_galactic_crossing.5
+# 	hide_window = yes
+# 	is_triggered_only = yes
+
+# 	immediate = {
+# 		every_owned_megastructure = {
+# 			limit = { is_megastructure_type = dandelion_relay }
+# 			remove_megastructure = this
+# 		}
+# 	}
+# }
+
 country_event = {
 	id = f93_galactic_crossing.7
 	hide_window = yes
