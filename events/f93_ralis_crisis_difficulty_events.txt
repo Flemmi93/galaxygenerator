@@ -183,13 +183,14 @@ country_event = {
 			}
 			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
 			multiply_variable = { which = fleet_limit value = 0.15 }
+			set_variable = { which = fleet_limit_defence value = fleet_limit }
 			if = {
 				limit = {
 					exists = event_target:f93_ralis_subject
 					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
-							count < fleet_limit
+							count < fleet_limit_defence
 							limit = { has_fleet_flag = ralis_fleet_defense }
 						}
 					}
@@ -262,7 +263,8 @@ country_event = {
 				f93_spawn_ralis_defense_platform = yes
 			}
 			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 0.5 }
+			multiply_variable = { which = fleet_limit value = 0.35 }
+			set_variable = { which = fleet_limit_defence value = fleet_limit }
 			if = {
 				limit = {
 					has_global_flag = f93_ralis_crisis_event0101_happened
@@ -270,7 +272,7 @@ country_event = {
 					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
-							count < fleet_limit
+							count < fleet_limit_defence
 							limit = { has_fleet_flag = ralis_fleet_defense }
 						}
 					}
@@ -283,7 +285,7 @@ country_event = {
 				}
 			}
 			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 1 }
+			multiply_variable = { which = fleet_limit value = 0.75 }
 			if = {
 				limit = {
 					exists = event_target:f93_ralis_subject
@@ -339,7 +341,8 @@ country_event = {
 				f93_spawn_ralis_defense_platform = yes
 			}
 			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 1.5 }
+			multiply_variable = { which = fleet_limit value = 0.5 }
+			set_variable = { which = fleet_limit_defence value = fleet_limit }
 			event_target:f93_ralis_subject = {
 				set_variable = { which = fleet_limit value = root.fleet_limit }
 			}
@@ -349,7 +352,7 @@ country_event = {
 					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
-							count < fleet_limit
+							count < fleet_limit_defence
 							limit = { has_fleet_flag = ralis_fleet_defense }
 						}
 					}

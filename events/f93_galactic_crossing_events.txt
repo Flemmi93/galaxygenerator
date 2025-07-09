@@ -148,7 +148,7 @@ country_event = {
 	immediate = {
 		every_system = {
 			limit = {
-				distance_to_core_percent > 40
+				distance_to_core_percent > 0.30
 				NOR = {
 					exists = owner
 					any_neighbor_system = { has_star_flag = empire_cluster }

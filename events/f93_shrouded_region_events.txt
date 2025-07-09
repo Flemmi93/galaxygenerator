@@ -31,7 +31,7 @@ system_event = {
 		set_star_flag = f93_shroud_periphery_flag
 		system_event = { id = f93_shroud.2 }
 		#events depending on the srhoud and ralis cluster being formed should fire on the 4th day
-		system_event = { id = f93_shroud.8 days = 4 }
+		system_event = { id = f93_shroud.8 days = 3 }
 		
 		every_system = {
 			limit = { has_star_flag = f93_shroud_region_flag }
