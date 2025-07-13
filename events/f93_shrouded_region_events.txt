@@ -183,13 +183,26 @@ system_event = { #creating ralis cluster
 			limit = { is_star = no }
 			remove_planet = yes
 		}
-		spawn_planet = {
-			name = ralis_planet_NAME
-			class = pc_barren
-			orbit_location = yes
-			orbit_distance_offset = 32
-			orbit_angle_offset = 291
-			size = 28
+		if = {
+			limit = { NOT = { has_global_flag = f82_button_1_1_off } }
+			spawn_planet = {
+				name = ralis_planet_NAME
+				class = pc_city
+				orbit_location = yes
+				orbit_distance_offset = 32
+				orbit_angle_offset = 291
+				size = 28
+			}
+		}
+		else = {
+			spawn_planet = {
+				name = ralis_planet_NAME
+				class = pc_barren
+				orbit_location = yes
+				orbit_distance_offset = 32
+				orbit_angle_offset = 291
+				size = 28
+			}
 		}
 		every_system_planet = {
 			limit = { is_star = no }

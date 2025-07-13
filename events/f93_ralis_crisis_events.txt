@@ -1400,6 +1400,7 @@ planet_event = {
 			flag = f93_recently_conquered
 			days = 30
 		}
+		#sometimes ralis insatly flips back, this is just ensurance
 		event_target:f93_ralis_planet = {
 			planet_event = { id = f93_ralis_crisis_event.0803 days = 1 }
 			planet_event = { id = f93_ralis_crisis_event.0803 days = 2 }
@@ -1459,13 +1460,26 @@ planet_event = {
 	}
 }
 
+#forces the planet ralis to be given to its proper owner again
 planet_event = {
 	id = f93_ralis_crisis_event.0803
 	hide_window = yes
 	is_triggered_only = yes
 	immediate = {
-		set_owner = event_target:f93_ralis_liberator
-		starbase = { set_owner = event_target:f93_ralis_liberator }
+		if = {
+			#for modders, use this flag to prevent this mod from changing ralis again
+			limit = { NOT = { has_global_flag = f94_ralis_not_pc_city } }
+			change_pc = pc_city
+		}
+		if = {
+			limit = { exists = event_target:f93_ralis_liberator }
+			set_owner = event_target:f93_ralis_liberator
+			starbase = { set_owner = event_target:f93_ralis_liberator }
+		}
+		else = {
+			set_owner = event_target:f93_ralis_country
+			starbase = { set_owner = event_target:f93_ralis_country }
+		}
 	}
 }
 #Treaty Path

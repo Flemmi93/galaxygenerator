@@ -862,10 +862,11 @@ country_event = {
 			}
 		}
 	}
+	
 	option = {
 		name = f93_galactic_crossing.99.l
 		every_country = {
-			limit = { NOT = { has_country_flag = ralis_country_flag } }
+			limit = { or = { has_country_flag = ralis_country_flag has_country_flag = f93_ralis_subject } }
 			destroy_country = yes
 		}
 	}

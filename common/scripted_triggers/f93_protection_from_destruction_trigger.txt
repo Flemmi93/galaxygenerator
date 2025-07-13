@@ -57,6 +57,7 @@ f93_ok_to_be_destroyed = {
 		has_star_flag = giga_system_three
 		has_star_flag = giga_system_two
 		has_star_flag = giga_system_one
+		has_star_flag = ag_ancient_system
 		#Shadowgate, mod by Nardelus
 		has_star_flag = shadowgate_solar_system
 		has_star_flag = shadowgate_shadow_remnant

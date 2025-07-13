@@ -317,7 +317,7 @@ f93_create_fleet_1 = {
 				}
 				if = {
 					while = {
-						count = 2 #number of possible cruiser
+						count = 10 #number of possible cruiser
 						random_list = {
 							1 = {
 								create_ship = {
@@ -330,7 +330,7 @@ f93_create_fleet_1 = {
 								modifier = {
 									factor = 0
 									count_controlled_ship = {
-										count > 10
+										count > 15
 										limit = { is_ship_size = cruiser }
 									}
 								}

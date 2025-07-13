@@ -1,5 +1,6 @@
-f93_create_ralis_country = { #target a valid planet with this
-	create_species = {
+# target a valid planet with this
+f93_create_ralis_country = {
+create_species = {
 		name = esear_NAME
 		plural = esear_NAME_plural
 		class = AVI
@@ -75,7 +76,7 @@ f93_create_ralis_country = { #target a valid planet with this
 				}
 			}
 			f93_set_ralis_designs = yes
-			set_variable = { which = f93_fleet_size value = 1 }
+			set_variable = { which = f93_fleet_size value = 10 }
 		}
 	}
 	create_colony = {
