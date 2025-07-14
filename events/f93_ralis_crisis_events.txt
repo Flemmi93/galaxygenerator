@@ -280,7 +280,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 	}
-	immediate = { country_event = { id = f93_ralis_crisis_event.0001 days = 4  } }
+	immediate = { country_event = { id = f93_ralis_crisis_event.0001 days = 10  } }
 }
 
 country_event = {
