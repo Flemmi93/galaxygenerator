@@ -1647,7 +1647,14 @@ country_event = {
 		}	
 		custom_tooltip = f93_ralis_crisis_event.0902.b_desc
 	}
-
+	after = {
+		if = {
+			limit = { exists = event_target:f93_ralis_subject }
+			event_target:f93_ralis_subject = {
+				destroy_country = yes
+			}
+		}
+	}
 }
 #The Community's Request, shown only to the liberator of ralis
 country_event = {
@@ -1693,6 +1700,14 @@ country_event = {
 		}
 	}
 
+	after = {
+		if = {
+			limit = { exists = event_target:f93_ralis_subject }
+			event_target:f93_ralis_subject = {
+				destroy_country = yes
+			}
+		}
+	}
 }
 #no treaty path
 #The Community's Plea, shown to all but the Ralis Liberator
@@ -1779,7 +1794,6 @@ country_event = {
 			country_event = { id = f93_ralis_crisis_event.1301 days = 2160 }
 		#event OE9 post war event 10 years after event 12
 			every_playable_country = { country_event = { id = f93_oe_event.9 days = 3960 } }
-			country_event = { id = f93_ralis_crisis_event.1301 days = 2160 }
 		}
 	}
 }
@@ -2214,7 +2228,7 @@ country_event = {
 	}
 	immediate = {
 		country_event = { id = f93_ralis_crisis_event.1300 days = 30 random = 30 }
-		country_event = { id = f93_ralis_crisis_event.1303 days = 300 }
+		country_event = { id = f93_ralis_crisis_event.1303 days = 180 }
 		random_system_within_border = {
 			limit = {
 				has_star_flag = f93_ralis_took_it_from_someone
@@ -2349,13 +2363,6 @@ country_event = {
 	option = {
 		name = f93_ralis_crisis_event.1301.b
 	}
-	after = {
-		hidden_effect = {
-			country_event = { id = f93_ralis_crisis_event.1401 days = 360 }
-			country_event = { id = f93_ralis_crisis_event.1402 days = 360 }
-			country_event = { id = f93_ralis_crisis_event.1403 days = 361 }
-		}
-	}
 }
 
 #community admin system joins someone else
@@ -2381,22 +2388,14 @@ country_event = {
 	fire_only_once = yes
 	trigger = {
 		exists = event_target:f93_community_ralis_admin_country
+		NOT = { has_global_flag = f93_ralis_crisis_event1300_active }
 	}
 	immediate = {
-		country_event = { id = f93_ralis_crisis_event.1304 }
-	}
-}
-
-country_event = {
-	id = f93_ralis_crisis_event.1304
-	hide_window = yes
-	is_triggered_only = yes
-	trigger = {
-		exists = event_target:f93_community_ralis_admin_country
-	}
-	immediate = {
-		country_event = { id = f93_ralis_crisis_event.1303 days = 2 }
-		country_event = { id = f93_ralis_crisis_event.1300 }
+		every_country = {
+			country_event = { id = f93_ralis_crisis_event.1401 days = 36 }
+			country_event = { id = f93_ralis_crisis_event.1402 days = 36 }
+			country_event = { id = f93_ralis_crisis_event.1403 days = 37 }
+		}
 	}
 }
 

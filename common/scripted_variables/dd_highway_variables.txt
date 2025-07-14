@@ -8,6 +8,3 @@
 
 #the larger this is the less shrouded region there is, dont go above 19, or other events will break due to limits set in them
 @galactic_crossing_outskirts = 10
-
-#Gigastructures
-@has_gigastructures = 0
