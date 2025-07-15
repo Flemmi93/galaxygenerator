@@ -11,6 +11,7 @@
  f93_galactic_crossing.8.a: "...All statements made without guarantees."
  f93_ralis_failed_to_form: "§RWARNING:§! A planet critical for the campaign failed to form, this will lead to problems down the line.\n\n$f93_galactic_crossing.8.desc$"
 
+
 #Dandelion Megastructures
  dandelion_relay: "Ancient Relay"
  dandelion_relay_plural: "Ancient Relays"
@@ -56,6 +57,7 @@
  NAME_ralis_fleet_aw: "Assaultwing"
  NAME_ralis_fleet_dr: "Defenders of Ralis"
  NAME_ralis_fleet_vr: "Void Raiders"
+
 #Diplomatic Subtitle
  f93_ralis_crisis_SUBTITLE: "Bringer of the End"
  f93_ralis_crisis_SUBTITLE_desc: "This Empire is attempting to end existence as we know it."
@@ -137,7 +139,7 @@
  RALISGATE_GALACTIC_DESC: "$ralisgate_gate_desc$"
  ralisgate_gate: "Shrouded Hyperlane"
  ralisgate_gate_desc: "A stable breach point to another hyperlane network inside the galaxy."
- ralisgate_locked_desc: "$BYPASS_DESC_INACTIVE_WORMHOLE$"
+ ralisgate_locked_desc: "We have yet to figure out how their ships travel through here. Some Theorize we lack sufficient Navigational data to reach the other end."
  BYPASS_RALISGATE: "$BYPASS_DESC_UNKNOWN_WORMHOLE$"
  BYPASS_DESC_INACTIVE_RALISGATE: "$BYPASS_DESC_INACTIVE_WORMHOLE$"
  f93_promised_to_ralis_admin: "To be handed over to the GalCom Administration"
@@ -181,6 +183,11 @@
  f93_shroud.7.a: "What horror has befallen us?"
  f93_shroud.7.b: "Let the galaxy burn!"
  f93_shroud_region_flag: "Shrouded Region"
+
+ #Technology
+ #  tech_ralisgate_bypass: "$ralisgate_gate$ Theory"
+ #  tech_ralisgate_bypass_desc: "An advanced study into the unique dimensional properties of $ralisgate_gate$. Could allow for the safe traversal of these new rifts in reality."
+ #  tech_ralisgate_bypass_effect: "§GUnlocks $ralisgate_gate$ traversal§!"
 
 	#resolution
  ralis_focus: "Ralis War Plans"
@@ -295,7 +302,7 @@
  f93_ralis_crisis_event.1209.desc: "The treaty is finished.\n\n$ralis_NAME$ remains under our control. No formal challenges followed. No sanctions, no ultimatum from the Senate. Just silence. The Community has chosen symbolism over confrontation, quietly marking $ralis_NAME$ and the surrounding systems as 'territories in dispute.' It's a label that lets everyone move forward - without agreeing, without escalating.\nBut diplomatic channels grow cold. Meetings are postponed, messages delayed. No galactic aid arrives, as the referendum ended all Community obligations. No galactic-wide economical integration will begin.\nWhen $ralis_NAME$ is mentioned, the room changes subject.\n$ralis_NAME$ is treated as an afterthought, a stain to be ignored. This is their quiet protest, they don't want to have anything to do with $ralis_NAME$. No major foreign contracts of business arrive and we fear that our current trade deals might not be renewed. This could become a major blow to our state's income.\nIf the galaxy refuses to recognize our claim on $ralis_NAME$, we'll have to rely on those who operate in the shadows."
  f93_ralis_crisis_event.1209.a: "We will make some new arrangements, they will come."
  f93_ralis_crisis_event.1301.name: "First Referendums Begin"
- f93_ralis_crisis_event.1301.desc: "Fifteen years have passed since the first systems were handed over to Community administration after the Crisis War. In the earliest of these systems, the promised referendums are now beginning. Voters will soon decide whether to rejoin their former empires, seek independence, or join their former liberators.\nMost administered systems are reaching their resolution mark within the cycle, and most reconstruction has been finished. Election observers are already in place to oversee the process and ensure legitimacy of the given referendums; this will conclude the rebuilding campaign of the Community."
+ f93_ralis_crisis_event.1301.desc: "Many years have passed since the first systems were handed over to Community administration after the crisis war. Even with the delays along the way, the earliest of these systems are beginning to hold their referendums. Voters will soon decide whether to rejoin their former empires, seek independence, or join their former liberators.\nMost administered systems are reaching their resolution mark within the cycle, and most reconstruction has been finished. Community observers are already in place to oversee the process and ensure legitimacy of the given referendums; this will conclude the rebuilding campaign of the Community."
  f93_ralis_crisis_event.1301.a: "A great year for the galaxy!"
  f93_ralis_crisis_event.1301.b: "Good for them..."
  f93_ralis_crisis_event.1302.name: "System United"

@@ -472,3 +472,88 @@ f93_threat_war_effect = {
 		}
 	}
 }
+
+f93_ralis_admin_returns_a_system = {
+	random_system_within_border = {
+		limit = {
+			has_star_flag = f93_ralis_took_it_from_someone
+			NOT = { has_star_flag = f93_ralis_empire_cluster }
+		}
+		save_event_target_as = f93_return_system
+		random_list = {
+			50 = {
+				random_playable_country = {
+					limit = { prev = { has_star_flag = f93_ralis_took_it_from@event_target:system_receiver } }
+					save_event_target_as = system_receiver
+					event_target:f93_return_system = {
+						starbase = { set_owner = event_target:system_receiver }
+						every_system_colony = {
+							set_owner = event_target:system_receiver
+							planet_event = { id = f93_ralis_crisis_event.1302 days = 1 }
+						}
+						remove_star_flag = f93_ralis_took_it_from_someone
+					}
+				}
+			}
+			10 = {
+				event_target:f93_return_system = {
+					starbase = { set_owner = event_target:f93_ralis_liberator }
+					every_system_colony = { set_owner = event_target:f93_ralis_liberator planet_event = { id = f93_ralis_crisis_event.1302 days = 1 } }
+					remove_star_flag = f93_ralis_took_it_from_someone
+				}
+			}
+			40 = {
+				modifier = {
+					factor = 0
+					NOT = { any_system_planet = { is_colony = yes } }
+				}
+				create_country = {
+					name = random
+					type = default
+					origin = origin_default
+					ethos = random
+					authority = random
+					civics = random
+					flag = random
+					name_list = random
+					ignore_initial_colony_error = yes
+					effect = {
+						add_resource = {
+							minerals = 50
+							energy = 150
+							alloys = 10
+							consumer_goods = 10
+							food = 10
+							trade = 450
+							mult = trigger:years_passed
+						}
+						copy_techs_from = { target = event_target:f93_ralis_liberator }
+						add_to_galactic_community = yes
+					}
+				}
+				every_system_colony = {
+					set_owner = last_created_country
+					f93_create_galcom_admin_planet = yes
+				}
+				starbase = { set_owner = last_created_country }
+				every_neighbor_system = {
+					limit = {
+						has_star_flag = f93_ralis_took_it_from_someone
+					}
+					starbase = { set_owner = last_created_country }
+					every_system_colony = { set_owner = last_created_country }
+					remove_star_flag = f93_ralis_took_it_from_someone
+				}
+				every_country = {
+					limit = { is_galactic_community_member = yes }
+					establish_communications_no_message = last_created_country
+				}
+			}
+		}
+		remove_star_flag = f93_ralis_took_it_from_someone
+		every_fleet_in_system = {
+			limit = { owner = { is_same_value = event_target:f93_community_ralis_admin_country } }
+			delete_fleet = this
+		}
+	}
+}

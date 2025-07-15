@@ -2221,14 +2221,13 @@ country_event = {
 	id = f93_ralis_crisis_event.1300
 	hide_window = yes
 	is_triggered_only = yes
-	trigger = {
-		has_global_flag = f93_ralis_crisis_event1300_active
-		exists = event_target:f93_community_ralis_admin_country
-		is_same_value = event_target:f93_community_ralis_admin_country 
-	}
+	# trigger = {
+	# 	has_global_flag = f93_ralis_crisis_event1300_active
+	# 	exists = event_target:f93_community_ralis_admin_country
+	# 	is_same_value = event_target:f93_community_ralis_admin_country 
+	# }
 	immediate = {
-		country_event = { id = f93_ralis_crisis_event.1300 days = 30 random = 30 }
-		country_event = { id = f93_ralis_crisis_event.1303 days = 180 }
+		# f93_ralis_admin_returns_a_system = yes
 		random_system_within_border = {
 			limit = {
 				has_star_flag = f93_ralis_took_it_from_someone
@@ -2238,10 +2237,14 @@ country_event = {
 			random_list = {
 				50 = {
 					random_playable_country = {
-						limit = { prev = { has_star_flag = f93_ralis_took_it_from@prevprev } }
+						limit = { prev = { has_star_flag = f93_ralis_took_it_from@event_target:system_receiver } }
+						save_event_target_as = system_receiver
 						event_target:f93_return_system = {
-							starbase = { set_owner = prevprev }
-							every_system_colony = { set_owner = prevprev planet_event = { id = f93_ralis_crisis_event.1302 days = 1 } }
+							starbase = { set_owner = event_target:system_receiver }
+							every_system_colony = {
+								set_owner = event_target:system_receiver
+								planet_event = { id = f93_ralis_crisis_event.1302 days = 1 }
+							}
 							remove_star_flag = f93_ralis_took_it_from_someone
 						}
 					}
@@ -2352,19 +2355,48 @@ country_event = {
 	desc = f93_ralis_crisis_event.1301.desc
 	picture = GFX_evt_f93_galactic_crossing_senate
 	is_triggered_only = yes
-
+	
 	immediate = {
 		#observer_event = { id = f93_ralis_observer_event.1301 }
-		set_global_flag = f93_ralis_crisis_event1300_active
+		random_country = {
+			limit = { 
+				has_country_flag = f93_community_ralis_admin_country
+				NOT = { has_global_flag = f93_ralis_crisis_event1300_active }
+			}
+			save_global_event_target_as = f93_community_ralis_admin_country
+		}
 	}
 	option = {
 		name = f93_ralis_crisis_event.1301.a
+		
 	}
 	option = {
 		name = f93_ralis_crisis_event.1301.b
 	}
+	after = {
+		if = {
+			limit = {
+				NOT = { has_global_flag = f93_ralis_crisis_event1300_active }
+			}
+			set_global_flag = f93_ralis_crisis_event1300_active
+			hidden_effect = {
+				event_target:f93_community_ralis_admin_country = {
+					#Balkanization of the ralis admin country
+					every_system_within_border = {
+						prev = { country_event = { id = f93_ralis_crisis_event.1300 days = 60 random = 270 } }
+					}
+					while = {
+						count = 20
+						country_event = { id = f93_ralis_crisis_event.1300 days = 1 random = 59 }
+					}
+					#end of the balkanization
+					country_event = { id = f93_ralis_crisis_event.1303 days = 360 random = 30 }
+				}
+			}
+			
+		}
+	}
 }
-
 #community admin system joins someone else
 #systems united
 planet_event = {
@@ -2391,11 +2423,37 @@ country_event = {
 		NOT = { has_global_flag = f93_ralis_crisis_event1300_active }
 	}
 	immediate = {
+		every_system_within_border = {
+			system_event = { id = f93_ralis_crisis_event.1304 }
+		}
 		every_country = {
 			country_event = { id = f93_ralis_crisis_event.1401 days = 36 }
 			country_event = { id = f93_ralis_crisis_event.1402 days = 36 }
 			country_event = { id = f93_ralis_crisis_event.1403 days = 37 }
 		}
+	}
+}
+#cleaning up whatever is left
+system_event = {
+	id = f93_ralis_crisis_event.1304
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_star_flag = f93_ralis_empire_cluster }
+	}
+	immediate = { 
+		closest_system = {
+			limit = {
+				exists = space_owner
+				space_owner = {
+					NOT = { is_same_value = event_target:f93_community_ralis_admin_country }
+					is_galactic_community_member = yes
+				}
+			}
+			space_owner =  { save_event_target_as = system_receiver }
+		}
+		starbase = { set_owner = event_target:system_receiver }
+		every_system_colony = { set_owner = event_target:system_receiver }
 	}
 }
 
@@ -2464,6 +2522,7 @@ country_event = {
 					background = { category = "backgrounds" file = "00_solid.dds" }
 					colors = {"blue" "dark_blue" "null" "null" }
 				}
+				remove_country_flag = f93_community_ralis_admin_country
 				clear_ethos = yes
 				country_add_ethic = ethic_materialist
 				country_add_ethic = ethic_egalitarian
@@ -2502,6 +2561,7 @@ country_event = {
 			}
 			event_target:f93_community_ralis_admin_country = {
 				add_to_galactic_community = yes
+				clear_global_event_target = f93_community_ralis_admin_country
 			}
 		}
 	}
