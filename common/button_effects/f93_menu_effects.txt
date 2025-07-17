@@ -58,7 +58,7 @@ f93_gc_1_1_off = {
 }
 f93_gc_1_1_onoff = {
 	potential = {}
-	allow = { NOT = { has_global_flag = f93_game_start_menu_done } }
+	allow = { NOT = { has_global_flag = f93_mid_game_done } }
 	effect = {
 		if = {
 			limit = {

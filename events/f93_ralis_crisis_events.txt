@@ -25,20 +25,34 @@ country_event = {
 	}
 
 	immediate = {
+		#the story is off, this happens
 		if = {
 			limit = { has_global_flag = f82_button_1_1_off }
 			set_global_flag = f93_shroud_gate_active
-			event_target:f93_ralis_system = {
-				random_system = {
-					limit = { NOT = { exists = owner } f93_system_winthin_20_steps_of_galcro = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
-					prev = {
-						f93_place_shroud_gate_node = yes
+			event_target:f93_ralis_system = { f93_place_shroud_gate_node = yes }
+			while = {
+				count = 2
+				if = {
+					limit = {
+						count_system = {
+							count > 0 
+							limit = { NOT = { exists = starbase } has_star_flag = f93_empty_system_on_galcrossing NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+						}
 					}
-					f93_place_shroud_gate_nexus = yes
+					event_target:f93_ralis_system = {
+						random_system = {
+							limit = { NOT = { exists = starbase } has_star_flag = f93_empty_system_on_galcrossing NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+							f93_place_shroud_gate_nexus = yes
+						}
+					}
 				}
-				random_system = {
-					limit = { NOT = { exists = owner } f93_system_winthin_20_steps_of_galcro = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
-					f93_place_shroud_gate_nexus = yes
+				else = {
+					event_target:f93_ralis_system = {
+						random_system = {
+							limit = { NOT = { exists = starbase } f93_system_winthin_20_steps_of_galcro = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+							f93_place_shroud_gate_nexus = yes
+						}
+					}
 				}
 			}
 		}
@@ -138,84 +152,29 @@ country_event = {
 					}
 					# set_global_flag = f93_shroud_gate_active # moved to a later point
 					f93_place_shroud_gate_node = yes
-					if = {
-						limit = {
-							count_system = {
-								count = 2
-								limit = {
-									f93_system_has_ancient_relay = yes
-									NOR = {
-										exists = owner
-										has_star_flag = f93_raliscluster1
-										has_star_flag = enclave
-										any_neighbor_system = {
-											exists = space_owner
-											space_owner = { is_country_type = fallen_empire }
-										}
-									}
-								}
-							}
-							
-						}
-						random_system = {
+					while = {
+						count = 2
+						if = {
 							limit = {
-								NOR = {
-									exists = owner
-									has_star_flag = f93_raliscluster1
-									has_star_flag = enclave
-									any_neighbor_system = {
-										exists = space_owner
-										space_owner = { is_country_type = fallen_empire }
-									}
+								count_system = {
+									count > 0 
+									limit = { NOT = { exists = starbase } has_star_flag = f93_empty_system_on_galcrossing NOT = { has_star_flag = f93_got_shroud_nexus_node } }
 								}
-								f93_system_has_ancient_relay = yes
 							}
-							f93_place_shroud_gate_nexus = yes
+							event_target:f93_ralis_system = {
+								random_system = {
+									limit = { NOT = { exists = starbase } has_star_flag = f93_empty_system_on_galcrossing NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+									f93_place_shroud_gate_nexus = yes
+								}
+							}
 						}
-						random_system = {
-							limit = {
-								NOR = {
-									exists = owner
-									has_star_flag = f93_raliscluster1
-									has_star_flag = enclave
-									any_neighbor_system = {
-										exists = space_owner
-										space_owner = { is_country_type = fallen_empire }
-									}
+						else = {
+							event_target:f93_ralis_system = {
+								random_system = {
+									limit = { NOT = { exists = starbase } f93_system_winthin_20_steps_of_galcro = yes NOT = { has_star_flag = f93_got_shroud_nexus_node } }
+									f93_place_shroud_gate_nexus = yes
 								}
-								f93_system_has_ancient_relay = yes
 							}
-							f93_place_shroud_gate_nexus = yes
-						}
-					}
-					else = {
-						random_system = {
-							limit = {
-								NOR = {
-									has_star_flag = f93_raliscluster1
-									has_star_flag = enclave
-									any_neighbor_system = {
-										exists = space_owner
-										space_owner = { is_country_type = fallen_empire }
-									}
-								}
-								f93_system_has_ancient_relay = yes
-							}
-							f93_place_shroud_gate_nexus = yes
-						}
-						random_system = {
-							limit = {
-								NOR = {
-									has_star_flag = f93_raliscluster1
-									has_star_flag = enclave
-									any_neighbor_system = {
-										exists = space_owner
-										space_owner = { is_country_type = fallen_empire }
-									}
-								}
-								f93_system_has_ancient_relay = yes
-							}
-							f93_place_shroud_gate_nexus = yes
 						}
 					}
 				}
@@ -544,10 +503,10 @@ country_event = {
 					}
 				}
 			}
-			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-				multiply_variable = { which = fleet_limit value = 1 }
-			}
+			# event_target:f93_ralis_subject = {
+			# 	set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
+			# 	multiply_variable = { which = fleet_limit value = 1 }
+			# }
 			random_list = {
 				25 = {
 					# set_name = "AGHIB"

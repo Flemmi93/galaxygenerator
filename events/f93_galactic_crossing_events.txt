@@ -274,6 +274,7 @@ country_event = {
 						f93_ok_to_be_destroyed = yes
 						NOR = {
 							exists = space_owner
+							any_system_colony = { exists = this }
 							has_star_flag = empire_cluster
 							any_fleet_in_system = { exists = this }
 							any_system_megastructure = {

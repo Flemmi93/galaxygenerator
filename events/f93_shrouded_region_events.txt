@@ -1,5 +1,6 @@
 namespace = f93_shroud
 #Finding the most isolated systems
+#Flagging All Shrouded Periphery Systems
 system_event = {
 	id = f93_shroud.1
 	hide_window = yes
@@ -34,12 +35,13 @@ system_event = {
 		system_event = { id = f93_shroud.8 days = 3 }
 		
 		every_system = {
-			limit = { has_star_flag = f93_shroud_region_flag }
+			limit = { NOT = { has_star_flag = crisis_spawn_exclude } has_star_flag = f93_shroud_region_flag }
 			set_star_flag = crisis_spawn_exclude
 		}
 	}
 
 }
+#Flagging Core Shrouded Systems
 system_event = {
 	id = f93_shroud.2
 	hide_window = yes
@@ -71,6 +73,7 @@ system_event = {
 	}
 
 }
+#Flagging Deep cores
 system_event = {
 	id = f93_shroud.3
 	hide_window = yes
@@ -94,19 +97,10 @@ system_event = {
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
 		system_event = {
-			id = f93_shroud.4
-			days = value:mid_game_day
-		}
-		system_event = {
 			id = f93_shroud.301
 			days = 1
 		}
-		system_event = {
-			id = f93_shroud.302
-			days = 3
-		}
 	}
-	
 }
 
 system_event = { #marking ralis cluster
@@ -114,10 +108,12 @@ system_event = { #marking ralis cluster
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		NOR = {
-			exists = event_target:f93_ralis_system
+		NAND = {
 			any_neighbor_system_euclidean = {
-				any_neighbor_system = { has_hyperlane_to = prev }
+				or = {
+					any_neighbor_system = { has_hyperlane_to = prev }
+					has_natural_wormhole = yes
+				}
 			}
 			any_system_planet = { is_colony = yes }
 			has_star_flag = f93_shrouded_cluster
@@ -128,45 +124,20 @@ system_event = { #marking ralis cluster
 	}
 }
 
-system_event = { #marking ralis cluster
-	id = f93_shroud.302
-	hide_window = yes
-	is_triggered_only = yes
-	fire_only_once = yes
-	immediate = {
-		every_system = {
-			limit = { has_star_flag = f93_shrouded_cluster }
-			remove_star_flag = f93_potential_ralis_spawn
-		}
-		every_system = {
-			limit = { any_system_planet = { is_colony = yes } }
-			remove_star_flag = f93_potential_ralis_spawn
-		}
-		every_system = {
-			limit = {
-				any_neighbor_system_euclidean = {
-					any_neighbor_system = { has_hyperlane_to = prev }
-				}
-			}
-			remove_star_flag = f93_potential_ralis_spawn
-		}
-	}
-}
-
 system_event = { #creating ralis cluster
 	id = f93_shroud.4
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
 	trigger = {
-		NOR = {
-			exists = event_target:f93_ralis_system
-			any_neighbor_system_euclidean = {
-				any_neighbor_system = { has_hyperlane_to = prev }
-			}
-			any_system_planet = { is_colony = yes }
-		}
 		OR = {
+			NOR = {
+				exists = event_target:f93_ralis_system
+				any_neighbor_system_euclidean = {
+					any_neighbor_system = { has_hyperlane_to = prev }
+				}
+				any_system_planet = { is_colony = yes }
+			}
 			has_star_flag = f93_potential_ralis_spawn
 			has_star_flag = f93_shroud_core_core_flag # remove this in a future version
 		}
@@ -197,7 +168,7 @@ system_event = { #creating ralis cluster
 		else = {
 			spawn_planet = {
 				name = ralis_planet_NAME
-				class = pc_barren
+				class = pc_ruin
 				orbit_location = yes
 				orbit_distance_offset = 32
 				orbit_angle_offset = 291
@@ -267,14 +238,81 @@ system_event = { #creating ralis cluster
 		set_name = ralis_system_NAME
 	}
 }
-
-system_event = {
+#Find a good or at least some place for Ralis to spawn
+event = {
 	id = f93_shroud.5
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
-
+		set_global_flag = f93_mid_game_done
+		if = {
+			limit = { NOT = { has_global_flag = f82_button_1_1_off } }
+			if = {
+				limit = {
+					any_system = {
+						has_star_flag = f93_potential_ralis_spawn
+						count_neighbor_system_euclidean = {
+							count = all
+							limit = {
+								has_star_flag = f93_shroud_core_core_flag
+							}
+						}
+					}
+				}
+				random_system = {
+					limit = {
+						has_star_flag = f93_potential_ralis_spawn
+						count_neighbor_system_euclidean = {
+							count = all
+							limit = {
+								has_star_flag = f93_shroud_core_core_flag
+							}
+						}
+					}
+					system_event = { id = f93_shroud.4 }
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						has_star_flag = f93_potential_ralis_spawn
+						count_neighbor_system_euclidean = {
+							count = all
+							limit = {
+								OR ={
+									has_star_flag = f93_shroud_core_core_flag
+									has_star_flag = f93_shroud_core_flag
+								}
+							}
+						}
+					}
+				}
+				random_system = {
+					limit = {
+						has_star_flag = f93_potential_ralis_spawn
+						count_neighbor_system_euclidean = {
+							count = all
+							limit = {
+								OR ={
+									has_star_flag = f93_shroud_core_core_flag
+									has_star_flag = f93_shroud_core_flag
+								}
+							}
+						}
+					}
+					system_event = { id = f93_shroud.4 }
+				}
+			}
+			else = {
+				random_system = {
+					limit = {
+						has_star_flag = f93_potential_ralis_spawn
+					}
+					system_event = { id = f93_shroud.4 }
+				}
+			}
+		}
 	}
 }
 

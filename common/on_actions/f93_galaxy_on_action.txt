@@ -39,7 +39,13 @@ on_megastructure_built = {
 on_mid_game_pulse_country = {
 	events = {
 		# f93_ralis_crisis_event.0001
+		
 		f93_ralis_crisis_event.0003
+	}
+}
+on_mid_game_pulse = {
+	events = {
+		f93_shroud.5
 	}
 }
 

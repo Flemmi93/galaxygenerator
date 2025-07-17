@@ -57,7 +57,7 @@ f93_spawn_ralis_defense_platform = {
 }
 #Fleet 1
 f93_create_ralis_fleet = {
-	change_variable = { which = f93_fleet_size value = 0.25 }
+	# change_variable = { which = f93_fleet_size value = 0.25 }
 	random_system_within_border = {
 		limit = { is_capital_system = no }
 		star = {
@@ -227,9 +227,9 @@ f93_create_fleet_1 = {
 			set_owner = event_target:f93_ralis_country
 			set_timed_fleet_flag = { flag = recently_made days = 1080 }
 			while = {
-				count = event_target:f93_ralis_country.f93_fleet_size
+				count = value:ralis_vassel_ship_limit
 				while = {
-					count = 11 #number of possible corvettes
+					count = 3 #number of possible corvettes
 					random_list = {
 						1 = {
 							create_ship = {
@@ -245,7 +245,7 @@ f93_create_fleet_1 = {
 							}
 							change_variable = { which = num_ships_original value = 1 }
 						}
-						2 = {
+						3 = {
 							modifier = {
 								factor = 1.5
 								has_global_flag = f82_button_3_1_on
@@ -258,12 +258,20 @@ f93_create_fleet_1 = {
 					}
 				}
 				while = {
-					count = 7 #number of possible frigates
+					count = 3 #number of possible frigates
 					random_list = {
 						1 = {
 							create_ship = {
 								name = random
 								design = NAME_ralis_frigate_torpedo
+							}
+							modifier = {
+								factor = 0.25
+								has_global_flag = f82_button_3_1_on
+							}
+							modifier = {
+								factor = 0.5
+								has_global_flag = f82_button_3_2_on
 							}
 							change_variable = { which = num_ships_original value = 1 }
 						}
@@ -287,7 +295,7 @@ f93_create_fleet_1 = {
 					}
 				}
 				while = {
-					count = 5 #number of possible destroyers
+					count = 2 #number of possible destroyers
 					random_list = {
 						1 = {
 							create_ship = {
@@ -317,7 +325,7 @@ f93_create_fleet_1 = {
 				}
 				if = {
 					while = {
-						count = 10 #number of possible cruiser
+						count = 2 #number of possible cruiser
 						random_list = {
 							1 = {
 								create_ship = {
