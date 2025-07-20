@@ -70,19 +70,19 @@ highway_connect = {
 	save_global_event_target_as = old_highway_system
 }
 
-spawn_highway_system = {	
-	set_spawn_system_batch = begin
-	spawn_system = {
-		min_distance = 20
-		max_distance = 25
-		initializer = random
-		hyperlane = yes
-		is_discovered = no
-		direction = rimwards
-		effect = { save_global_event_target_as = new_highway_system highway_connect = yes }
-	}
-	set_spawn_system_batch = end
-}
+# spawn_highway_system = {	
+# 	set_spawn_system_batch = begin
+# 	spawn_system = {
+# 		min_distance = 20
+# 		max_distance = 25
+# 		initializer = random
+# 		hyperlane = yes
+# 		is_discovered = no
+# 		direction = rimwards
+# 		effect = { save_global_event_target_as = new_highway_system highway_connect = yes }
+# 	}
+# 	set_spawn_system_batch = end
+# }
 
 highway_create_system = {
 	if = {
@@ -112,10 +112,10 @@ highway_create_system = {
 					highway_connect = yes
 				}
 			}
-			if = {
-				limit = { NOT = { exists = event_target:new_highway_system } }
-				spawn_highway_system = yes
-			}
+			# if = {
+			# 	limit = { NOT = { exists = event_target:new_highway_system } }
+			# 	spawn_highway_system = yes
+			# }
 			clear_global_event_target = new_highway_system
 			if = {
 				limit = { exists = event_target:system_highway_end exists = event_target:old_highway_system }
