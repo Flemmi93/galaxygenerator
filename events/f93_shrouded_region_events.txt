@@ -1,5 +1,6 @@
 namespace = f93_shroud
 #Finding the most isolated systems
+#Flagging All Shrouded Periphery Systems
 system_event = {
 	id = f93_shroud.1
 	hide_window = yes
@@ -31,15 +32,16 @@ system_event = {
 		set_star_flag = f93_shroud_periphery_flag
 		system_event = { id = f93_shroud.2 }
 		#events depending on the srhoud and ralis cluster being formed should fire on the 4th day
-		system_event = { id = f93_shroud.8 days = 4 }
+		system_event = { id = f93_shroud.8 days = 3 }
 		
 		every_system = {
-			limit = { has_star_flag = f93_shroud_region_flag }
+			limit = { NOT = { has_star_flag = crisis_spawn_exclude } has_star_flag = f93_shroud_region_flag }
 			set_star_flag = crisis_spawn_exclude
 		}
 	}
 
 }
+#Flagging Core Shrouded Systems
 system_event = {
 	id = f93_shroud.2
 	hide_window = yes
@@ -71,6 +73,7 @@ system_event = {
 	}
 
 }
+#Flagging Deep cores
 system_event = {
 	id = f93_shroud.3
 	hide_window = yes
@@ -94,11 +97,31 @@ system_event = {
 		remove_star_flag = f93_shroud_core_flag
 		set_star_flag = f93_shroud_core_core_flag
 		system_event = {
-			id = f93_shroud.4
-			days = value:mid_game_day
+			id = f93_shroud.301
+			days = 1
 		}
 	}
+}
 
+system_event = { #marking ralis cluster
+	id = f93_shroud.301
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NAND = {
+			any_neighbor_system_euclidean = {
+				or = {
+					any_neighbor_system = { has_hyperlane_to = prev }
+					has_natural_wormhole = yes
+				}
+			}
+			any_system_planet = { is_colony = yes }
+			has_star_flag = f93_shrouded_cluster
+		}
+	}
+	immediate = {
+		set_star_flag = f93_potential_ralis_spawn
+	}
 }
 
 system_event = { #creating ralis cluster
@@ -107,13 +130,18 @@ system_event = { #creating ralis cluster
 	is_triggered_only = yes
 	fire_only_once = yes
 	trigger = {
-		NOR = {
-			exists = event_target:f93_ralis_system
-			any_neighbor_system_euclidean = {
-				any_neighbor_system = { has_hyperlane_to = prev }
+		OR = {
+			NOR = {
+				exists = event_target:f93_ralis_system
+				any_neighbor_system_euclidean = {
+					any_neighbor_system = { has_hyperlane_to = prev }
+				}
+				any_system_planet = { is_colony = yes }
 			}
-			any_system_planet = { is_colony = yes }
+			has_star_flag = f93_potential_ralis_spawn
+			has_star_flag = f93_shroud_core_core_flag # remove this in a future version
 		}
+
 	}
 	immediate = {
 		every_playable_country = {
@@ -126,13 +154,26 @@ system_event = { #creating ralis cluster
 			limit = { is_star = no }
 			remove_planet = yes
 		}
-		spawn_planet = {
-			name = ralis_planet_NAME
-			class = pc_city
-			orbit_location = yes
-			orbit_distance_offset = 32
-			orbit_angle_offset = 291
-			size = 28
+		if = {
+			limit = { NOT = { has_global_flag = f82_button_1_1_off } }
+			spawn_planet = {
+				name = ralis_planet_NAME
+				class = pc_city
+				orbit_location = yes
+				orbit_distance_offset = 32
+				orbit_angle_offset = 291
+				size = 28
+			}
+		}
+		else = {
+			spawn_planet = {
+				name = ralis_planet_NAME
+				class = pc_ruin
+				orbit_location = yes
+				orbit_distance_offset = 32
+				orbit_angle_offset = 291
+				size = 28
+			}
 		}
 		every_system_planet = {
 			limit = { is_star = no }
@@ -197,14 +238,81 @@ system_event = { #creating ralis cluster
 		set_name = ralis_system_NAME
 	}
 }
-
-system_event = {
+#Find a good or at least some place for Ralis to spawn
+event = {
 	id = f93_shroud.5
 	hide_window = yes
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
-
+		set_global_flag = f93_mid_game_done
+		if = {
+			limit = { NOT = { has_global_flag = f82_button_1_1_off } }
+			if = {
+				limit = {
+					any_system = {
+						has_star_flag = f93_potential_ralis_spawn
+						count_neighbor_system_euclidean = {
+							count = all
+							limit = {
+								has_star_flag = f93_shroud_core_core_flag
+							}
+						}
+					}
+				}
+				random_system = {
+					limit = {
+						has_star_flag = f93_potential_ralis_spawn
+						count_neighbor_system_euclidean = {
+							count = all
+							limit = {
+								has_star_flag = f93_shroud_core_core_flag
+							}
+						}
+					}
+					system_event = { id = f93_shroud.4 }
+				}
+			}
+			else_if = {
+				limit = {
+					any_system = {
+						has_star_flag = f93_potential_ralis_spawn
+						count_neighbor_system_euclidean = {
+							count = all
+							limit = {
+								OR ={
+									has_star_flag = f93_shroud_core_core_flag
+									has_star_flag = f93_shroud_core_flag
+								}
+							}
+						}
+					}
+				}
+				random_system = {
+					limit = {
+						has_star_flag = f93_potential_ralis_spawn
+						count_neighbor_system_euclidean = {
+							count = all
+							limit = {
+								OR ={
+									has_star_flag = f93_shroud_core_core_flag
+									has_star_flag = f93_shroud_core_flag
+								}
+							}
+						}
+					}
+					system_event = { id = f93_shroud.4 }
+				}
+			}
+			else = {
+				random_system = {
+					limit = {
+						has_star_flag = f93_potential_ralis_spawn
+					}
+					system_event = { id = f93_shroud.4 }
+				}
+			}
+		}
 	}
 }
 
@@ -218,7 +326,7 @@ planet_event = {
 			limit = { NOT = { has_global_flag = f82_button_1_1_off } }
 			f93_create_ralis_country = yes
 			f93_create_ralis_planet = yes
-			solar_system = { f93_create_ralis_vassael_country = yes }
+			solar_system = { f93_create_ralis_vassal_country = yes }
 			every_system = {
 				limit = { has_star_flag = f93_ralis_empire_cluster }
 				create_starbase = {
@@ -348,6 +456,7 @@ system_event = {
 				}
 			}
 			f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = yes
+			set_star_flag = f93_shrouded_cluster
 		}
 		if = {
 			limit = {
@@ -357,6 +466,7 @@ system_event = {
 				}
 			}
 			f93_random_cluster_generator = yes
+			set_star_flag = f93_shrouded_cluster
 			every_system = { remove_star_flag = f93_current_cluster }
 		}
 	}

@@ -1,4 +1,18 @@
+# This Trigger is specificly to prevent OUR mod's syste mdestruction event from triggering on a system
+# this destruction even is f93_ralis_crisis_event.0103 It is occasionally edited but all calls
+# for this event should include this trigger.
+# Use it as follows
+# Exampl:
+# random_system = {
+# 	limit = { f93_ok_to_be_destroyed = yes }
+# 	system_event = { id = f93_ralis_crisis_event.0103 }
+# }
+# The Example above would destroy a random system except those that are protected by this trigger
+# since it will only choose a random system that is ok to be destryoed.
 
+
+#I can add star and planet flags to this without any issue, if you want any flag added to this
+# let me know via discord or our mod page on steam. 
 f93_ok_to_be_destroyed = {
 	NOR = {
 		any_system_planet = {
@@ -7,6 +21,8 @@ f93_ok_to_be_destroyed = {
 				has_modifier = holy_planet
 				has_planet_flag = earth
 				has_planet_flag = earth_nuked
+				#special system init systems we intent to protect
+				has_planet_flag = star_seddom
 				
 				#If you only have a planet that should be protected add it here and the entire system will be safe from me.
 
@@ -14,18 +30,21 @@ f93_ok_to_be_destroyed = {
 		}
 		AND = {
 			exists = space_owner
-			OR = {
-				space_owner = { is_same_value = event_target:f93_ralis_country }
-				any_system_megastructure = {
-					exists = this
-				}
+			any_system_megastructure = {
+				exists = this
 			}
+		}
+		AND = {
+			exists = space_owner
+			exists = event_target:f93_ralis_country
+			space_owner = { is_same_value = event_target:f93_ralis_country }
 		}
 		is_star_class = sc_black_hole
 		has_star_flag = star_cracked # already destroyed
 		has_star_flag = f93_empty_system_on_galcrossing #have special star class "no Star"
 		has_star_flag = crisis_spawn_exclude #generally marks special systems
 		has_star_flag = wenkwort_system
+		has_star_flag = holy_system_1
 		has_star_flag = empire_home_system
 		has_star_flag = hostile_system
 		has_star_flag = unique_system
@@ -38,5 +57,11 @@ f93_ok_to_be_destroyed = {
 		has_star_flag = giga_system_three
 		has_star_flag = giga_system_two
 		has_star_flag = giga_system_one
+		has_star_flag = ag_ancient_system
+		#Shadowgate, mod by Nardelus
+		has_star_flag = shadowgate_solar_system
+		has_star_flag = shadowgate_shadow_remnant
+		has_star_flag = shadowgate_origin_original_homeworld
+		has_star_flag = shadow_anchor
 	}
 }

@@ -12,3 +12,10 @@ random_list = {
 	trinary_init_01_dd_highway = 3
 	trinary_init_02_dd_highway = 3
 }
+
+# random_list = {
+# 	name = dd_random_shrouded_region_system
+# 	basic_sr_init_01 = 10
+# 	basic_sr_init_02 = 10
+# 	basic_sr_init_03 = 10
+# }

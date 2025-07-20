@@ -8,7 +8,13 @@ f93_close_menu = {
 		if = {
 			limit = { NOT = { has_global_flag = f93_game_start_menu_done } }
 			hidden_effect = {
-				country_event = { id = f93_galactic_crossing.2 }
+				if = {
+					limit = { has_global_flag = giga_game_started }
+					country_event = { id = f93_galactic_crossing.2 days = 8 }
+				}
+				else = {
+					country_event = { id = f93_galactic_crossing.2 days = 1 }
+				}
 			}
 		}
 	}
@@ -52,7 +58,7 @@ f93_gc_1_1_off = {
 }
 f93_gc_1_1_onoff = {
 	potential = {}
-	allow = { NOT = { has_global_flag = f93_game_start_menu_done } }
+	allow = { NOT = { has_global_flag = f93_mid_game_done } }
 	effect = {
 		if = {
 			limit = {

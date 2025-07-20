@@ -55,12 +55,20 @@ ralisgate = {
 	can_bypass_be_locked = yes
 
 	country_can_use = {
-		has_global_flag = f93_shroud_gate_active
-		NOT = { is_country_type = fallen_empire }
-		NOT = {
-			is_country_type = awakened_fallen_empire
-			end_game_years_passed > 25
+		hidden_trigger = {
+			NOT = { is_country_type = fallen_empire }
+			NOT = {
+				is_country_type = awakened_fallen_empire
+				end_game_years_passed > 25
+			}
 		}
+		OR = {
+			has_global_flag = f93_shroud_gate_active
+			is_country_type = f93_shrouded_region_crisis
+			is_country_type = f93_ralis_support_fleet
+			# has_technology = tech_ralisgate_bypass
+		}
+		custom_tooltip = ralisgate_locked_desc
 	}
 
 	scripted_connection = {

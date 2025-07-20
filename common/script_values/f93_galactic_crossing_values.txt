@@ -66,6 +66,19 @@ ralis_vassel_ship_limit = {
 		mode = add
 		mult = 1
 	}
+	complex_trigger_modifier = {
+		trigger = count_system
+		parameters = {
+			limit = { has_star_flag = f93_shroud_region_flag }
+		}
+		mode = add
+		mult = 0.05
+	}
+	complex_trigger_modifier = {
+		trigger = years_passed
+		mode = mult
+		mult = 0.01
+	}
 }
 
 mid_game_day = {

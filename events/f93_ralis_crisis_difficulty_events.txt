@@ -143,19 +143,19 @@ country_event = {
 
 		remove_modifier = f93_ralis_difficulty_debuff
 		remove_modifier = f93_ralis_difficulty_buff
-		#easy
+	#easy
 		if = {
 			limit = {
 				has_global_flag = f82_button_3_1_on
 			}
 			get_galaxy_setup_value = {
-				which = crisis_strength_cale_variable
+				which = crisis_strength_scale_variable
 				setting = crisis_strength_scale
 				scale_by = 0.05
 			}
 			add_modifier = {
 				modifier = f93_ralis_difficulty_buff
-				mult = crisis_strength_cale_variable
+				mult = crisis_strength_scale_variable
 			}
 			add_modifier = {
 				modifier = f93_ralis_difficulty_debuff
@@ -181,23 +181,27 @@ country_event = {
 				}
 				f93_spawn_ralis_defense_platform = yes
 			}
-			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 0.15 }
+			event_target:f93_ralis_subject = {
+				set_variable = { which = fleet_limit_defence value = value:ralis_vassel_ship_limit }
+				multiply_variable = { which = fleet_limit_defence value = 0.25 }
+			}
 			if = {
 				limit = {
 					exists = event_target:f93_ralis_subject
 					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
-							count < fleet_limit
+							count < fleet_limit_defence
 							limit = { has_fleet_flag = ralis_fleet_defense }
 						}
 					}
 				}
 				f93_create_ralis_subject_fleet_defense = yes
 			}
-			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 0.25 }
+			event_target:f93_ralis_subject = {
+				set_variable = { which = fleet_limit_attack value = value:ralis_vassel_ship_limit }
+				multiply_variable = { which = fleet_limit value = 0.5 }
+			}
 			if = {
 				limit = {
 					has_global_flag = f93_ralis_crisis_event0101_happened
@@ -205,7 +209,7 @@ country_event = {
 					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
-							count < fleet_limit
+							count < fleet_limit_attack
 							limit = { has_fleet_flag = ralis_fleet_attack }
 						}
 					}
@@ -213,19 +217,19 @@ country_event = {
 				f93_create_ralis_subject_fleet_attack = yes 
 			}
 		}
-		#default
+	#default
 		if = {
 			limit = {
 				has_global_flag = f82_button_3_2_on
 			}
 			get_galaxy_setup_value = {
-				which = crisis_strength_cale_variable
+				which = crisis_strength_scale_variable
 				setting = crisis_strength_scale
 				scale_by = 0.34
 			}
 			add_modifier = {
 				modifier = f93_ralis_difficulty_buff
-				mult = crisis_strength_cale_variable
+				mult = crisis_strength_scale_variable
 			}
 			add_modifier = {
 				modifier = f93_ralis_difficulty_debuff
@@ -251,8 +255,27 @@ country_event = {
 				}
 				f93_spawn_ralis_defense_platform = yes
 			}
-			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 0.5 }
+			event_target:f93_ralis_subject = {
+				set_variable = { which = fleet_limit_defence value = value:ralis_vassel_ship_limit }
+				multiply_variable = { which = fleet_limit_defence value = 0.75 }
+			}
+			if = {
+				limit = {
+					exists = event_target:f93_ralis_subject
+					NOT = { exists = event_target:f93_ralis_liberator }
+					event_target:f93_ralis_subject = {
+						count_owned_fleet = {
+							count < fleet_limit_defence
+							limit = { has_fleet_flag = ralis_fleet_defense }
+						}
+					}
+				}
+				f93_create_ralis_subject_fleet_defense = yes
+			}
+			event_target:f93_ralis_subject = {
+				set_variable = { which = fleet_limit_attack value = value:ralis_vassel_ship_limit }
+				multiply_variable = { which = fleet_limit value = 1 }
+			}
 			if = {
 				limit = {
 					has_global_flag = f93_ralis_crisis_event0101_happened
@@ -260,22 +283,7 @@ country_event = {
 					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
-							count < fleet_limit
-							limit = { has_fleet_flag = ralis_fleet_defense }
-						}
-					}
-				}
-				f93_create_ralis_subject_fleet_defense = yes
-			}
-			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 1 }
-			if = {
-				limit = {
-					exists = event_target:f93_ralis_subject
-					NOT = { exists = event_target:f93_ralis_liberator }
-					event_target:f93_ralis_subject = {
-						count_owned_fleet = {
-							count < fleet_limit
+							count < fleet_limit_attack
 							limit = { has_fleet_flag = ralis_fleet_attack }
 						}
 					}
@@ -283,20 +291,20 @@ country_event = {
 				f93_create_ralis_subject_fleet_attack = yes 
 			}
 		}
-		#hard
+	#hard
 		if = {
 			limit = {
 				has_global_flag = f82_button_3_3_on
 			}
 			get_galaxy_setup_value = {
-				which = crisis_strength_cale_variable
+				which = crisis_strength_scale_variable
 				setting = crisis_strength_scale
 				scale_by = 1
 			}
 			#this value buffs their fleet cap
 			add_modifier = {
 				modifier = f93_ralis_difficulty_buff
-				mult = crisis_strength_cale_variable
+				mult = crisis_strength_scale_variable
 			}
 			#this value slows the crisis down along the galactic crossing
 			add_modifier = {
@@ -318,10 +326,9 @@ country_event = {
 				}
 				f93_spawn_ralis_defense_platform = yes
 			}
-			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 1.5 }
 			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit value = root.fleet_limit }
+				set_variable = { which = fleet_limit_defence value = value:ralis_vassel_ship_limit }
+				multiply_variable = { which = fleet_limit_defence value = 1.25 }
 			}
 			if = {
 				limit = {
@@ -329,17 +336,16 @@ country_event = {
 					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
-							count < fleet_limit
+							count < fleet_limit_defence
 							limit = { has_fleet_flag = ralis_fleet_defense }
 						}
 					}
 				}
 				f93_create_ralis_subject_fleet_defense = yes
 			}
-			set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			multiply_variable = { which = fleet_limit value = 2 }
 			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit value = root.fleet_limit }
+				set_variable = { which = fleet_limit_attack value = value:ralis_vassel_ship_limit }
+				multiply_variable = { which = fleet_limit value = 2 }
 			}
 			if = {
 				limit = {
@@ -348,14 +354,13 @@ country_event = {
 					NOT = { exists = event_target:f93_ralis_liberator }
 					event_target:f93_ralis_subject = {
 						count_owned_fleet = {
-							count < fleet_limit
+							count < fleet_limit_attack
 							limit = { has_fleet_flag = ralis_fleet_attack }
 						}
 					}
 				}
 				f93_create_ralis_subject_fleet_attack = yes 
 			}
-			
 		}
 	}
 }
