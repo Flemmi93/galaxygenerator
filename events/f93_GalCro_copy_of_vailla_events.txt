@@ -10,6 +10,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		#log_error = "GalCro copy event 1 / Game Start.71 on [GetDate] by [Root.GetName]"
 		assign_governor_effect = yes
 		every_owned_leader = {
 			limit = {
@@ -69,6 +70,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		#log_error = "GalCro copy event 2 / Game Start.72 on [GetDate] by [Root.GetName]"
 		# Add Minister of Defense Position
 		if = {
 			limit = {

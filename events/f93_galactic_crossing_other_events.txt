@@ -20,6 +20,7 @@ ship_event = {
 		solar_system = { has_star_flag = f93_ancient_relay_system }
 	}
 	immediate = {
+		#log_error = "GalCro other event 1 on [GetDate] by [Root.GetName]"
 		FromFrom = { set_country_flag = has_seen_f93_oe_event1 }
 	}
 	option = {
@@ -50,6 +51,7 @@ ship_event = {
 		}
 	}
 	immediate = {
+		#log_error = "GalCro other event 2 on [GetDate] by [Root.GetName]"
 		owner = { set_country_flag = has_seen_f93_oe_event2 }
 	}
 	option = {
@@ -74,7 +76,10 @@ ship_event = {
 		}
 		owner = { NOT = { has_country_flag = f93_seen_ralisgate_bypass } }
 	}
-	immediate = { owner = { set_country_flag = f93_seen_ralisgate_bypass } }
+	immediate = {
+		#log_error = "GalCro other event 3 on [GetDate] by [Root.GetName]"
+		owner = { set_country_flag = f93_seen_ralisgate_bypass }
+	}
 	option = {
 		name = f93_oe_event.3.a
 	}
@@ -124,6 +129,7 @@ planet_event = {
 		solar_system = { any_system_megastructure = { is_megastructure_type = dandelion_relay } }
 	}
 	immediate = {
+		#log_error = "GalCro other event 4001 on [GetDate] by [Root.GetName]"
 		add_modifier = {
 			modifier = f93_galactic_crossing_planet
 		}
@@ -151,6 +157,9 @@ planet_event = {
 				has_modifier = f93_galactic_crossing_buff_diplomats
 			}
 		}
+	}
+	immediate = {
+		#log_error = "GalCro other event 5 on [GetDate] by [Root.GetName]"
 	}
 	option = {
 		name = f93_oe_event.5.a
@@ -185,6 +194,7 @@ country_event = {
 	}
 
 	immediate = {
+		#log_error = "GalCro other event 6 on [GetDate] by [Root.GetName]"
 		add_modifier = {
 			modifier = f93_country_is_connected
 		}
@@ -214,6 +224,7 @@ country_event = {
 	}
 
 	immediate = {
+		#log_error = "GalCro other event 7 on [GetDate] by [Root.GetName]"
 		remove_modifier = f93_country_is_connected
 	}
 
@@ -230,7 +241,10 @@ country_event = {
 	picture = GFX_evt_f93_galactic_crossing_map
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = f93_seen_oe_event8 } }
-	immediate = { set_country_flag = f93_seen_oe_event8 }
+	immediate = { 
+		#log_error = "GalCro other event 8 on [GetDate] by [Root.GetName]"
+		set_country_flag = f93_seen_oe_event8
+	}
 	option = {
 		name = f93_oe_event.8.a
 	}
@@ -247,7 +261,10 @@ country_event = {
 	picture = GFX_evt_f93_galactic_crossing_map
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = f93_seen_oe_event9 } }
-	immediate = { set_country_flag = f93_seen_oe_event9 }
+	immediate = {
+		#log_error = "GalCro other event 9 on [GetDate] by [Root.GetName]"
+		set_country_flag = f93_seen_oe_event9
+	}
 	option = {
 		name = f93_oe_event.9.a
 	}
@@ -268,7 +285,10 @@ country_event = {
 	picture = GFX_evt_weather_manipulators
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = f93_seen_oe_event10 } }
-	immediate = { set_country_flag = f93_seen_oe_event10 }
+	immediate = {
+		#log_error = "GalCro other event 10 on [GetDate] by [Root.GetName]"
+		set_country_flag = f93_seen_oe_event10
+	}
 
 	option = {
 		name = f93_oe_event.10.a
@@ -294,7 +314,10 @@ country_event = {
 	picture = GFX_evt_tradestation_interior
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = f93_seen_oe_event11 } }
-	immediate = { set_country_flag = f93_seen_oe_event11 }
+	immediate = {
+		#log_error = "GalCro other event 11 on [GetDate] by [Root.GetName]"
+		set_country_flag = f93_seen_oe_event11
+	}
 	option = {
 		name = f93_oe_event.12.a
 	}
@@ -307,7 +330,10 @@ country_event = {
 	picture = GFX_evt_announcement
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = f93_seen_oe_event12 } }
-	immediate = { set_country_flag = f93_seen_oe_event12 }
+	immediate = {
+		#log_error = "GalCro other event 12 on [GetDate] by [Root.GetName]"
+		set_country_flag = f93_seen_oe_event12
+	}
 	option = {
 		name = f93_oe_event.12.b
 	}
@@ -320,7 +346,10 @@ country_event = {
 	picture = GFX_evt_cyberization_1
 	is_triggered_only = yes
 	trigger = { NOT = { has_country_flag = f93_seen_oe_event13 } }
-	immediate = { set_country_flag = f93_seen_oe_event13 }
+	immediate = {
+		#log_error = "GalCro other event 13 on [GetDate] by [Root.GetName]"
+		set_country_flag = f93_seen_oe_event13
+	}
 	option = {
 		name = f93_oe_event.12.c
 	}
@@ -349,6 +378,7 @@ country_event = {
 		}
 	}
 	immediate = {
+		#log_error = "GalCro other event 15 on [GetDate] by [Root.GetName]"
 		ordered_owned_leader = {
 			limit = { leader_class = commander }
 			position = 0
@@ -384,6 +414,7 @@ ship_event = {
 		}
 	}
 	immediate = {
+		#log_error = "GalCro other event 17 on [GetDate] by [Root.GetName]"
 		owner = {
 			random_owned_leader = {
 				limit = {

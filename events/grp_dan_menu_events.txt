@@ -12,6 +12,7 @@ country_event = {
 	}
 
 	immediate = {
+		#log_error = "Menu event 0 on [GetDate] by [Root.GetName]"
 		f93_set_galaxy_size = yes
 		set_global_flag = f82_button_3_2_on
 		set_country_flag = host_country_flag
@@ -37,7 +38,9 @@ country_event = {
 	trigger = {
 		is_ai = no
 	}
-
+	immediate = {
+		#log_error = "Menu event 1 on [GetDate] by [Root.GetName]"
+	}
 	option = {
 		name = OK
 	}
@@ -51,6 +54,9 @@ country_event = {
 	desc = "grp_dan_menu_evt.2.desc"
 	picture = GFX_evt_alien_hieroglyphics
 	is_triggered_only = yes
+	immediate = {
+		#log_error = "Menu event 2 on [GetDate] by [Root.GetName]"
+	}
 	option = {
 		name = OK
 	}

@@ -408,3 +408,4 @@
  f93_galactic_crossing.99.k: "All Fleets in shrouded regions"
  f93_galactic_crossing.99.l: "The Shrouded Region Crisis"
  f93_galactic_crossing.99.m: "Crisis Fleets in Combat"
+ f93_debug_print_date: "Line below happend on ingame date [GetDate]"

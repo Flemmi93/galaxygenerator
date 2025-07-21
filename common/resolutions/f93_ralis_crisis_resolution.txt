@@ -41,29 +41,34 @@ f93_ralis_plan_resolution = {
 	effect = {
 		every_country = { country_event = { id = f93_ralis_crisis_event.0601 } }
 		hidden_effect = {
+			event_target:f93_ralis_planet = {
+				set_planet_flag = f93_galactic_community_claim
+			}
 			event_target:f93_ralis_country = {
 				every_system_within_border = {
 					set_star_flag = f93_belonged_to_ralis
 				}
-				event_target:f93_ralis_planet = {
-					set_planet_flag = f93_galactic_community_claim
-				}
 				country_event = { id = f93_ralis_crisis_event.0006 }
+				country_event = { id = f93_ralis_crisis_event.00062 days = 360 }
 			}
-			country_event = { id = f93_ralis_crisis_event.00062 days = 360 }
-			every_country = { country_event = { id = f93_ralis_crisis_event.0603 } }
 			set_global_flag = f93_community_claim_made
+			every_country = { country_event = { id = f93_ralis_crisis_event.0603 } }
 		}
 	}
 	
 	fail_effects = {
 		every_country = { country_event = { id = f93_ralis_crisis_event.0602 } }
 		hidden_effect = {
-			capital_scope = {
+			event_target:f93_ralis_planet = {
 				set_planet_flag = f93_galactic_community_claim_faild
 			}
-			country_event = { id = f93_ralis_crisis_event.00062 days = 360 }
-			country_event = { id = f93_ralis_crisis_event.0006 }
+			event_target:f93_ralis_country = {
+				every_system_within_border = {
+					set_star_flag = f93_belonged_to_ralis
+				}
+				country_event = { id = f93_ralis_crisis_event.0006 }
+				country_event = { id = f93_ralis_crisis_event.00062 days = 360 }
+			}
 			set_global_flag = f93_community_claim_never_made
 		}
 	}

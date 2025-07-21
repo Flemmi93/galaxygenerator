@@ -137,6 +137,7 @@ f93_create_ralis_vassal_country = {
 			}
 			set_variable = { which = fleet_limit value = 1 }
 			f93_set_ralis_designs = yes
+			country_event = { id = f93_ralis_crisis_event.0001 days = 1 }
 		}
 	}
 }

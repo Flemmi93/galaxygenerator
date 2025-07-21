@@ -12,8 +12,8 @@ system_event = {
 			is_same_value = ROOT
 		}
 	}
-
 	immediate = {
+		#log_error = "GalCro event 1 on [GetDate] by [Root.GetName]"
 		event_target:system_highway_start = {
 			highway_create_system = yes
 		}
@@ -28,6 +28,7 @@ country_event = {
 	fire_only_once = yes
 	hide_window = yes
 	immediate = {
+		#log_error = "GalCro event 2 on [GetDate] by [Root.GetName]"
 		every_country = {
 			country_event = { id = f93_galactic_crossing.8 days = 5 }
 		}
@@ -146,6 +147,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		#log_error = "GalCro event 3 on [GetDate] by [Root.GetName]"
 		every_system = {
 			limit = {
 				distance_to_core_percent > 0.30
@@ -252,6 +254,7 @@ country_event = {
 	is_triggered_only = yes
 	fire_only_once = yes
 	immediate = {
+		#log_error = "GalCro event 7 on [GetDate] by [Root.GetName]"
 		if = {
 			limit = {
 				NOT = { has_global_flag = f82_button_2_2_off }
@@ -402,6 +405,7 @@ country_event = {
 		is_ai = no
 	}
 	immediate = {
+		#log_error = "GalCro event 8 on [GetDate] by [Root.GetName]"
 		export_trigger_value_to_variable = {
 			trigger = count_system
 			parameters = { limit = { has_star_flag = f93_shroud_region_flag } }
@@ -433,6 +437,7 @@ country_event = {
 		is_country_type = default
 	}
 	immediate = {
+		# #log_error = "GalCro event 9 on [GetDate] by [Root.GetName]"
 		every_system_within_border = {
 			remove_star_flag = f93_crossing_capital_route_flag
 		}
@@ -505,6 +510,7 @@ country_event = {
 	}
 
 	immediate = {
+		# #log_error = "GalCro event 901 on [GetDate] by [Root.GetName]"
 		remove_modifier = f93_megastructure_build_speed_mult
 		if = {
 			limit = {
@@ -573,6 +579,7 @@ country_event = {
 	fire_only_once = yes
 
 	immediate = {
+		#log_error = "GalCro event 10 on [GetDate] by [Root.GetName]"
 		while = {
 			count = 5
 			random_system = {
@@ -599,6 +606,7 @@ country_event = {
 		exists = capital_scope
 	}
 	immediate = {
+		#log_error = "GalCro event 11 on [GetDate] by [Root.GetName]"
 		add_research_option = tech_wormhole_stabilization
 		add_tech_progress = { #create a small event chain to obtain this tech early on.
 			tech = tech_wormhole_stabilization
@@ -691,6 +699,7 @@ country_event = {
 	}
 
 	immediate = {
+		#log_error = "GalCro event 14 on [GetDate] by [Root.GetName]"
 		random_playable_country = {
 			limit = {
 				NOT = { has_communications = root }
@@ -708,6 +717,7 @@ event = {
 	is_triggered_only = yes
 	trigger = { NOT = { has_global_flag = f82_button_2_1_off } }
 	immediate = {
+		# #log_error = "GalCro event 15 on [GetDate] by [Root.owner.GetName]"
 		random_system = {
 			limit = {
 				f93_system_has_ancient_relay = no
@@ -755,6 +765,9 @@ country_event = {
 	title = f93_galactic_crossing.99.name
 	desc = f93_galactic_crossing.99.desc
 	picture = GFX_evt_star_chart
+	immediate = {
+		#log_error = "GalCro event 99 debug"
+		}
 	option = {
 		name = OK
 	}

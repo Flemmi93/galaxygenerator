@@ -6,6 +6,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		#log_error = "Nebula art event 50 on [GetDate] by [Root.GetName]"
 		every_system = {
 			limit = { is_inside_nebula = yes }
 			nebula_cloaking_effect = yes
