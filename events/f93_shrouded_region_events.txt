@@ -145,7 +145,6 @@ system_event = { #creating ralis cluster
 			has_star_flag = f93_potential_ralis_spawn
 			has_star_flag = f93_shroud_core_core_flag # remove this in a future version
 		}
-
 	}
 	immediate = {
 		#log_error = "shroud event 4 on [GetDate] by [Root.GetName]"
