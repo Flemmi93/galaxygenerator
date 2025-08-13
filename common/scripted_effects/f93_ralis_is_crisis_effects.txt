@@ -76,7 +76,6 @@ create_species = {
 				}
 			}
 			f93_set_ralis_designs = yes
-			set_variable = { which = f93_fleet_size value = value:ralis_vassel_ship_limit }
 		}
 	}
 	create_colony = {

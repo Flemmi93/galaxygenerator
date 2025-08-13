@@ -6,7 +6,7 @@ on_yearly_pulse_country = {
 	events = {
 		f93_galactic_crossing.9
 		f93_galactic_crossing.14
-		f93_ralis_crisis_event.0400
+		# f93_ralis_crisis_event.0400
 		
 	}
 }
@@ -22,6 +22,7 @@ on_monthly_pulse_country = {
 		# f93_ralis_crisis_event.1300
 		f93_ralis_diffculty.2
 		f93_ralis_diffculty.3
+		f93_ralis_diffculty.4
 		f93_oe_event.6
 		f93_oe_event.7
 	}

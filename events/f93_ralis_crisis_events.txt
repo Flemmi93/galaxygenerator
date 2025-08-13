@@ -196,6 +196,12 @@ country_event = {
 					star = { save_event_target_as = f93_ralis_target }
 				}
 				f93_create_ralis_subject_fleet_attack_galcro = yes
+				last_created_fleet = {
+					while = {
+						count = 15
+						f93_add_random_ship = yes
+					}
+				}
 			}
 		}
 	}
@@ -496,10 +502,6 @@ country_event = {
 					}
 				}
 			}
-			# event_target:f93_ralis_subject = {
-			# 	set_variable = { which = fleet_limit value = value:ralis_vassel_ship_limit }
-			# 	multiply_variable = { which = fleet_limit value = 1 }
-			# }
 			random_list = {
 				25 = {
 					# set_name = "AGHIB"

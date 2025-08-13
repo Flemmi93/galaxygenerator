@@ -57,9 +57,7 @@ f93_spawn_ralis_defense_platform = {
 }
 #Fleet 1
 f93_create_ralis_fleet = {
-	# change_variable = { which = f93_fleet_size value = 0.25 }
 	random_system_within_border = {
-		limit = { is_capital_system = no }
 		star = {
 			f93_create_fleet_1 = yes
 			last_created_fleet = {
@@ -210,15 +208,165 @@ f93_create_ralis_subject_fleet_defense = {
 # 	}
 # }
 
+f93_add_random_ship = {
+	random_list = {
+		1 = { f93_add_ships_corvette = yes }
+		1 = { f93_add_ships_frigate = yes }
+		1 = { f93_add_ships_destroyer = yes }
+		1 = { f93_add_ships_cruiser = yes }
+		1 = { f93_add_ships_battleship = yes }
+	}
+}
+f93_add_ships_corvette = {
+	random_list = {
+		1 = {
+			create_ship = {
+				name = random
+				design = NAME_ralis_corvette_brawl
+			}
+			change_variable = { which = num_ships_original value = 1 }
+		}
+		1 = {
+			create_ship = {
+				name = random
+				design = NAME_ralis_corvette_picket
+			}
+			change_variable = { which = num_ships_original value = 1 }
+		}
+		3 = {
+			modifier = {
+				factor = 1.5
+				has_global_flag = f82_button_3_1_on
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = f82_button_3_3_on
+			}
+		}
+	}
+}
+f93_add_ships_frigate = {
+	random_list = {
+		1 = {
+			create_ship = {
+				name = random
+				design = NAME_ralis_frigate_torpedo
+			}
+			modifier = {
+				factor = 0.25
+				has_global_flag = f82_button_3_1_on
+			}
+			modifier = {
+				factor = 0.5
+				has_global_flag = f82_button_3_2_on
+			}
+			change_variable = { which = num_ships_original value = 1 }
+		}
+		1 = {
+			create_ship = {
+				name = random
+				design = NAME_ralis_frigate_energy
+			}
+			change_variable = { which = num_ships_original value = 1 }
+		}
+		4 = {
+			modifier = {
+				factor = 1.25
+				has_global_flag = f82_button_3_1_on
+			}
+			modifier = {
+				factor = 0.5
+				has_global_flag = f82_button_3_3_on
+			}
+		}
+	}
+}
+f93_add_ships_destroyer = {
+	random_list = {
+		1 = {
+			create_ship = {
+				name = random
+				design = NAME_ralis_destroyer_line
+			}
+			change_variable = { which = num_ships_original value = 1 }
+		}
+		1 = {
+			create_ship = {
+				name = random
+				design = NAME_ralis_destroyer_arty
+			}
+			change_variable = { which = num_ships_original value = 1 }
+		}
+		5 = {
+			modifier = {
+				factor = 1.75
+				has_global_flag = f82_button_3_1_on
+			}
+			modifier = {
+				factor = 0.25
+				has_global_flag = f82_button_3_3_on
+			}
+		}
+	}
+}
+f93_add_ships_cruiser = {
+	random_list = {
+		1 = {
+			create_ship = {
+				name = random
+				design = NAME_ralis_cruiser_carrier
+			}
+		change_variable = { which = num_ships_original value = 1 }
+		}
+		6 = {
+			modifier = {
+				factor = 0
+				count_controlled_ship = {
+					count > 15
+					limit = { is_ship_size = cruiser }
+				}
+			}
+		}
+	}	
+}
+f93_add_ships_battleship = {
+	random_list = {
+		1 = {
+			create_ship = {
+				name = random
+				design = NAME_ralis_battleship_carrier
+			}
+		change_variable = { which = num_ships_original value = 1 }
+		}
+		1 = {
+			modifier = {
+				factor = 2
+				has_global_flag = f82_button_3_1_on
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = f82_button_3_3_on
+			}
+		}
+		7 = {
+			modifier = {
+				factor = 0
+				count_controlled_ship = {
+					count > 8
+					limit = { is_ship_size = battleship }
+				}
+			}
+		}
+	}
+}
 f93_create_fleet_1 = {
 	create_fleet = {
 		settings = {
-			can_upgrade = yes
+			can_upgrade = no
 			can_change_composition = no
 			can_change_leader = yes	
 		}
 		effect = {
-			set_variable = { which = num_ships_original value = 1 }
 			set_variable = { which = halfway_passed_midgame value = value:halfway_to_mid_game_year }
 			multiply_variable = { which = halfway_passed_midgame value = -1 }
 			set_variable = { which = quarterway_passed_midgame value = halfway_passed_midgame }
@@ -227,162 +375,33 @@ f93_create_fleet_1 = {
 			set_owner = event_target:f93_ralis_country
 			set_timed_fleet_flag = { flag = recently_made days = 1080 }
 			while = {
-				count = value:ralis_vassel_ship_limit
+				count = value:f93_ralis_fleet_size
 				while = {
 					count = 3 #number of possible corvettes
-					random_list = {
-						1 = {
-							create_ship = {
-								name = random
-								design = NAME_ralis_corvette_brawl
-							}
-							change_variable = { which = num_ships_original value = 1 }
-						}
-						1 = {
-							create_ship = {
-								name = random
-								design = NAME_ralis_corvette_picket
-							}
-							change_variable = { which = num_ships_original value = 1 }
-						}
-						3 = {
-							modifier = {
-								factor = 1.5
-								has_global_flag = f82_button_3_1_on
-							}
-							modifier = {
-								factor = 0
-								has_global_flag = f82_button_3_3_on
-							}
-						}
-					}
+					f93_add_ships_corvette = yes
 				}
 				while = {
 					count = 3 #number of possible frigates
-					random_list = {
-						1 = {
-							create_ship = {
-								name = random
-								design = NAME_ralis_frigate_torpedo
-							}
-							modifier = {
-								factor = 0.25
-								has_global_flag = f82_button_3_1_on
-							}
-							modifier = {
-								factor = 0.5
-								has_global_flag = f82_button_3_2_on
-							}
-							change_variable = { which = num_ships_original value = 1 }
-						}
-						1 = {
-							create_ship = {
-								name = random
-								design = NAME_ralis_frigate_energy
-							}
-							change_variable = { which = num_ships_original value = 1 }
-						}
-						4 = {
-							modifier = {
-								factor = 1.25
-								has_global_flag = f82_button_3_1_on
-							}
-							modifier = {
-								factor = 0.5
-								has_global_flag = f82_button_3_3_on
-							}
-						}
-					}
+					f93_add_ships_frigate = yes
 				}
 				while = {
 					count = 2 #number of possible destroyers
-					random_list = {
-						1 = {
-							create_ship = {
-								name = random
-								design = NAME_ralis_destroyer_line
-							}
-							change_variable = { which = num_ships_original value = 1 }
-						}
-						1 = {
-							create_ship = {
-								name = random
-								design = NAME_ralis_destroyer_arty
-							}
-							change_variable = { which = num_ships_original value = 1 }
-						}
-						2 = {
-							modifier = {
-								factor = 1.75
-								has_global_flag = f82_button_3_1_on
-							}
-							modifier = {
-								factor = 0.25
-								has_global_flag = f82_button_3_3_on
-							}
-						}
-					}
+					f93_add_ships_destroyer = yes
 				}
 				if = {
 					while = {
 						count = 2 #number of possible cruiser
-						random_list = {
-							1 = {
-								create_ship = {
-									name = random
-									design = NAME_ralis_cruiser_carrier
-								}
-							change_variable = { which = num_ships_original value = 1 }
-							}
-							10 = {
-								modifier = {
-									factor = 0
-									count_controlled_ship = {
-										count > 15
-										limit = { is_ship_size = cruiser }
-									}
-								}
-							}
-						}
+						f93_add_ships_cruiser = yes
 					}
 				}
 				if = {
 					limit = { mid_game_years_passed >= quarterway_passed_midgame }
 					while = {
 						count = 2 #number of possible battleship
-						random_list = {
-							1 = {
-								create_ship = {
-									name = random
-									design = NAME_ralis_battleship_carrier
-								}
-							change_variable = { which = num_ships_original value = 1 }
-							}
-							1 = {
-								modifier = {
-									factor = 2
-									has_global_flag = f82_button_3_1_on
-								}
-								modifier = {
-									factor = 0
-									has_global_flag = f82_button_3_3_on
-								}
-							}
-							10 = {
-								modifier = {
-									factor = 0
-									count_controlled_ship = {
-										count > 8
-										limit = { is_ship_size = battleship }
-									}
-								}
-							}
-						}
+						f93_add_ships_battleship = yes
 					}
 				}
 			}
-			set_variable = { which = num_ships_original_halfed value = num_ships_original }
-			divide_variable = { which = num_ships_original_halfed value = 2 }
 		}
 	}
 }

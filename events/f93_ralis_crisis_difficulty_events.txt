@@ -8,10 +8,17 @@ country_event = {
 	trigger = {
 		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
-		used_naval_capacity_percent < 1
+		used_naval_capacity_percent < 0.75
 	}
 	immediate = {
 		f93_create_ralis_fleet = yes
+		every_owned_fleet = {
+			limit = { is_civilian = no fleet_power < value:f93_excpected_fleet_power }
+			while = {
+				count = 10
+				f93_add_random_ship = yes
+			}
+		}
 		country_event = { id = f93_ralis_diffculty.1 days = 1 }
 	}
 }
@@ -31,6 +38,7 @@ country_event = {
 		event_target:f93_ralis_subject = {
 			every_owned_fleet = {
 				limit = {
+					is_civilian = no
 					NOR = {
 						# has_fleet_flag = f93_recently_moved
 						has_fleet_flag = ralis_fleet_defense
@@ -172,7 +180,14 @@ country_event = {
 					flag = f93_recent_reinforcments
 					days = 500
 				}
-				f93_create_ralis_fleet = yes
+				if = {
+					limit = {
+						count_owned_fleet = {
+							count < value:ralis_fleet
+						}
+					}
+					f93_create_ralis_fleet = yes
+				}
 			}
 			every_owned_starbase = {
 				limit = {
@@ -180,41 +195,6 @@ country_event = {
 					used_defense_platform_capacity_percent < 0.5
 				}
 				f93_spawn_ralis_defense_platform = yes
-			}
-			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit_defence value = value:ralis_vassel_ship_limit }
-				multiply_variable = { which = fleet_limit_defence value = 0.25 }
-			}
-			if = {
-				limit = {
-					exists = event_target:f93_ralis_subject
-					NOT = { exists = event_target:f93_ralis_liberator }
-					event_target:f93_ralis_subject = {
-						count_owned_fleet = {
-							count < fleet_limit_defence
-							limit = { has_fleet_flag = ralis_fleet_defense }
-						}
-					}
-				}
-				f93_create_ralis_subject_fleet_defense = yes
-			}
-			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit_attack value = value:ralis_vassel_ship_limit }
-				multiply_variable = { which = fleet_limit value = 0.5 }
-			}
-			if = {
-				limit = {
-					has_global_flag = f93_ralis_crisis_event0101_happened
-					exists = event_target:f93_ralis_subject
-					NOT = { exists = event_target:f93_ralis_liberator }
-					event_target:f93_ralis_subject = {
-						count_owned_fleet = {
-							count < fleet_limit_attack
-							limit = { has_fleet_flag = ralis_fleet_attack }
-						}
-					}
-				}
-				f93_create_ralis_subject_fleet_attack = yes 
 			}
 		}
 	#default
@@ -244,9 +224,23 @@ country_event = {
 				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
-					days = 375
+					days = 360
 				}
-				f93_create_ralis_fleet = yes
+				if = {
+					limit = {
+						count_owned_fleet = {
+							count < value:ralis_fleet
+						}
+					}
+					f93_create_ralis_fleet = yes
+				}
+				every_owned_fleet = {
+					limit = { is_civilian = no fleet_power < value:f93_excpected_fleet_power }
+					while = {
+						count = 5
+						f93_add_random_ship = yes
+					}
+				}
 			}
 			every_owned_starbase = {
 				limit = {
@@ -254,41 +248,6 @@ country_event = {
 					used_defense_platform_capacity_percent < 1
 				}
 				f93_spawn_ralis_defense_platform = yes
-			}
-			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit_defence value = value:ralis_vassel_ship_limit }
-				multiply_variable = { which = fleet_limit_defence value = 0.75 }
-			}
-			if = {
-				limit = {
-					exists = event_target:f93_ralis_subject
-					NOT = { exists = event_target:f93_ralis_liberator }
-					event_target:f93_ralis_subject = {
-						count_owned_fleet = {
-							count < fleet_limit_defence
-							limit = { has_fleet_flag = ralis_fleet_defense }
-						}
-					}
-				}
-				f93_create_ralis_subject_fleet_defense = yes
-			}
-			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit_attack value = value:ralis_vassel_ship_limit }
-				multiply_variable = { which = fleet_limit value = 1 }
-			}
-			if = {
-				limit = {
-					has_global_flag = f93_ralis_crisis_event0101_happened
-					exists = event_target:f93_ralis_subject
-					NOT = { exists = event_target:f93_ralis_liberator }
-					event_target:f93_ralis_subject = {
-						count_owned_fleet = {
-							count < fleet_limit_attack
-							limit = { has_fleet_flag = ralis_fleet_attack }
-						}
-					}
-				}
-				f93_create_ralis_subject_fleet_attack = yes 
 			}
 		}
 	#hard
@@ -312,12 +271,31 @@ country_event = {
 				mult = 0.3
 			}
 			if = {
-				limit = { is_country_type = f93_shrouded_region_crisis used_naval_capacity_percent < 0.95 NOT = { has_country_flag = f93_recent_reinforcments } }
+				limit = {
+					is_country_type = f93_shrouded_region_crisis
+					used_naval_capacity_percent < 1.25
+					NOT = { has_country_flag = f93_recent_reinforcments }
+					NOT = { exists = event_target:f93_ralis_liberator }
+				}
 				set_timed_country_flag = {
 					flag = f93_recent_reinforcments
 					days = 250
 				}
-				f93_create_ralis_fleet = yes
+				if = {
+					limit = {
+						count_owned_fleet = {
+							count < value:ralis_fleet
+						}
+					}
+					f93_create_ralis_fleet = yes
+				}
+				every_owned_fleet = {
+					limit = { is_civilian = no fleet_power < value:f93_excpected_fleet_power }
+					while = {
+						count = 5
+						f93_add_random_ship = yes
+					}
+				}
 			}
 			every_owned_starbase = {
 				limit = {
@@ -326,40 +304,46 @@ country_event = {
 				}
 				f93_spawn_ralis_defense_platform = yes
 			}
-			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit_defence value = value:ralis_vassel_ship_limit }
-				multiply_variable = { which = fleet_limit_defence value = 1.25 }
-			}
-			if = {
-				limit = {
-					exists = event_target:f93_ralis_subject
-					NOT = { exists = event_target:f93_ralis_liberator }
-					event_target:f93_ralis_subject = {
-						count_owned_fleet = {
-							count < fleet_limit_defence
-							limit = { has_fleet_flag = ralis_fleet_defense }
-						}
-					}
+		}
+	}
+}
+#New Fleet Spawn Event, difficulty relevant data is set in the values
+country_event = {
+	id = f93_ralis_diffculty.4
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		exists = event_target:f93_ralis_country
+		exists = event_target:f93_ralis_subject
+		is_same_value = event_target:f93_ralis_subject
+	}
+	immediate = {
+		if = {
+			limit = {
+				NOT = { exists = event_target:f93_ralis_liberator }
+				count_owned_fleet = {
+					count < value:fleet_limit_defense
+					limit = { has_fleet_flag = value:ralis_fleet_defense }
 				}
-				f93_create_ralis_subject_fleet_defense = yes
 			}
-			event_target:f93_ralis_subject = {
-				set_variable = { which = fleet_limit_attack value = value:ralis_vassel_ship_limit }
-				multiply_variable = { which = fleet_limit value = 2 }
-			}
-			if = {
-				limit = {
-					has_global_flag = f93_ralis_crisis_event0101_happened
-					exists = event_target:f93_ralis_subject
-					NOT = { exists = event_target:f93_ralis_liberator }
-					event_target:f93_ralis_subject = {
-						count_owned_fleet = {
-							count < fleet_limit_attack
-							limit = { has_fleet_flag = ralis_fleet_attack }
-						}
-					}
-				}
-				f93_create_ralis_subject_fleet_attack = yes 
+			f93_create_ralis_subject_fleet_defense = yes
+		}
+		# if = {
+		# 	limit = {
+		# 		has_global_flag = f93_ralis_crisis_event0101_happened
+		# 		NOT = { exists = event_target:f93_ralis_liberator }
+		# 		count_owned_fleet = {
+		# 			count < value:ralis_fleet_attack
+		# 			limit = { has_fleet_flag = value:ralis_fleet_attack }
+		# 		}
+		# 	}
+		# 	f93_create_ralis_subject_fleet_attack = yes 
+		# }
+		every_owned_fleet = {
+			limit = { is_civilian = no fleet_power < value:f93_excpected_fleet_power }
+			while = {
+				count = 5
+				f93_add_random_ship = yes
 			}
 		}
 	}

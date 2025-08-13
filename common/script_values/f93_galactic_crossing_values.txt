@@ -56,7 +56,7 @@
 
 
 
-ralis_vassel_ship_limit = {
+f93_ralis_fleet_size = {
 	base = 1
 	complex_trigger_modifier = {
 		trigger = check_galaxy_setup_value
@@ -64,7 +64,15 @@ ralis_vassel_ship_limit = {
 			setting = num_empires
 		}
 		mode = add
-		mult = 1
+		mult = 0.8
+	}
+	complex_trigger_modifier = {
+		trigger = count_system
+		parameters = {
+			limit = { exists = space_owner space_owner = { is_same_value = event_target:f93_ralis_country } }
+		}
+		mode = add
+		mult = 0.25
 	}
 	complex_trigger_modifier = {
 		trigger = count_system
@@ -78,6 +86,113 @@ ralis_vassel_ship_limit = {
 		trigger = years_passed
 		mode = mult
 		mult = 0.01
+	}
+	modifier = { #easy
+		has_global_flag = f82_button_3_1_on
+		multiply = 0.25
+	}
+	modifier = { #default
+		has_global_flag = f82_button_3_3_on
+		multiply = 1
+	}
+	modifier = { #hard
+		has_global_flag = f82_button_3_3_on
+		multiply = 4
+	}
+}
+#Subject Fleets, Send out randomly to random colonies
+ralis_fleet_attack = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = years_passed
+		mode = add
+		mult = 0.05 #every 20 years would increase base by 1
+	}
+	modifier = { #easy
+		has_global_flag = f82_button_3_1_on
+		multiply = 0.75
+	}
+	modifier = { #default
+		has_global_flag = f82_button_3_3_on
+		multiply = 1
+	}
+	modifier = { #hard
+		has_global_flag = f82_button_3_3_on
+		multiply = 3
+	}
+	round = yes
+}
+#subject defensive fleets, hang out around Ralis
+fleet_limit_defense = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = years_passed
+		mode = add
+		mult = 0.02 #every 50 years would increase base by 1
+	}
+	modifier = { #easy
+		has_global_flag = f82_button_3_1_on
+		multiply = 0.4
+	}
+	modifier = { #default
+		has_global_flag = f82_button_3_3_on
+		multiply = 1
+	}
+	modifier = { #hard
+		has_global_flag = f82_button_3_3_on
+		multiply = 3
+	}
+	round = yes
+}
+#Fleets the Primary Ralis Country has
+ralis_fleet = {
+	base = 1
+	complex_trigger_modifier = {
+		trigger = years_passed
+		mode = add
+		mult = 0.02 #every 50 years would increase base by 1
+	}
+	modifier = { #easy
+		has_global_flag = f82_button_3_1_on
+		multiply = 0.4
+	}
+	modifier = { #default
+		has_global_flag = f82_button_3_3_on
+		multiply = 1
+	}
+	modifier = { #hard
+		has_global_flag = f82_button_3_3_on
+		multiply = 3
+	}
+	round = yes
+}
+
+f93_excpected_fleet_power = {
+	base = 10000
+	complex_trigger_modifier = {
+		trigger = years_passed
+		mode = add
+		mult = 100 #every 100 years would increase base by 10000
+	}
+	modifier = { #easy
+		has_global_flag = f82_button_3_1_on
+		multiply = 0.3
+	}
+	modifier = { #default
+		has_global_flag = f82_button_3_3_on
+		multiply = 1
+	}
+	modifier = { #hard
+		has_global_flag = f82_button_3_3_on
+		multiply = 2.5
+	}
+	complex_trigger_modifier = {
+		trigger = check_galaxy_setup_value
+		parameters = {
+			setting = crisis_strength_scale
+		}
+		mode = mult
+		mult = 1
 	}
 }
 
