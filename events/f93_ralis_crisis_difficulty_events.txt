@@ -1,25 +1,21 @@
 namespace = f93_ralis_diffculty
-#Max out ralis fleets
-# effect event_target:f93_ralis_country = { country_event = { id = f93_ralis_diffculty.1 } }
-country_event = {
+#Fleet Reinforcment Event
+fleet_event = {
 	id = f93_ralis_diffculty.1
 	hide_window = yes
 	is_triggered_only = yes
 	trigger = {
-		exists = event_target:f93_ralis_country
-		is_same_value = event_target:f93_ralis_country
-		used_naval_capacity_percent < 0.75
+		fleet_power < value:f93_expected_fleet_power 
 	}
 	immediate = {
-		f93_create_ralis_fleet = yes
-		every_owned_fleet = {
-			limit = { is_civilian = no fleet_power < value:f93_excpected_fleet_power }
-			while = {
-				count = 10
-				f93_add_random_ship = yes
-			}
-		}
-		country_event = { id = f93_ralis_diffculty.1 days = 1 }
+		f93_add_random_ship = yes
+		# if = {
+		# 	limit = { not = { has_fleet_flag = f93_recent_reinforcments } }
+		# 	set_timed_fleet_flag = { flag = f93_recent_reinforcments days = 120 }
+		# 	fleet_event = {	id = f93_ralis_diffculty.1 days = 1 }
+		# 	fleet_event = {	id = f93_ralis_diffculty.1 days = 2 }
+		# 	fleet_event = {	id = f93_ralis_diffculty.1 days = 3 }
+		# }
 	}
 }
 #moves ralis vassal fleets around
@@ -183,10 +179,14 @@ country_event = {
 				if = {
 					limit = {
 						count_owned_fleet = {
-							count < value:ralis_fleet
+							count < value:f93_ralis_fleet_limit
 						}
 					}
 					f93_create_ralis_fleet = yes
+				}
+				every_owned_fleet = {
+					limit = { is_civilian = no is_in_combat = no fleet_power < value:f93_expected_fleet_power }
+					fleet_event = {	id = f93_ralis_diffculty.1 }
 				}
 			}
 			every_owned_starbase = {
@@ -195,6 +195,18 @@ country_event = {
 					used_defense_platform_capacity_percent < 0.5
 				}
 				f93_spawn_ralis_defense_platform = yes
+			}
+			event_target:f93_ralis_subject = { set_variable = { which = defense_fleet_limit value = 1 } }
+			every_playable_country = { # 1 def fleet per 12 playable empires
+				event_target:f93_ralis_subject = { change_variable = { which = defense_fleet_limit value = 0.08 } }
+			}
+			event_target:f93_ralis_subject = { set_variable = { which = attack_fleet_limit value = 1 } }
+			every_playable_country = { # 1 attac fleet per 6 playable empires
+				event_target:f93_ralis_subject = { change_variable = { which = attack_fleet_limit value = 0.167 } }
+			}
+			event_target:f93_ralis_subject = { 
+				round_variable = defense_fleet_limit
+				round_variable = attack_fleet_limit
 			}
 		}
 	#default
@@ -229,17 +241,14 @@ country_event = {
 				if = {
 					limit = {
 						count_owned_fleet = {
-							count < value:ralis_fleet
+							count < value:f93_ralis_fleet_limit
 						}
 					}
 					f93_create_ralis_fleet = yes
 				}
 				every_owned_fleet = {
-					limit = { is_civilian = no fleet_power < value:f93_excpected_fleet_power }
-					while = {
-						count = 5
-						f93_add_random_ship = yes
-					}
+					limit = { is_civilian = no is_in_combat = no fleet_power < value:f93_expected_fleet_power }
+					fleet_event = {	id = f93_ralis_diffculty.1 }
 				}
 			}
 			every_owned_starbase = {
@@ -248,6 +257,18 @@ country_event = {
 					used_defense_platform_capacity_percent < 1
 				}
 				f93_spawn_ralis_defense_platform = yes
+			}
+			event_target:f93_ralis_subject = { set_variable = { which = defense_fleet_limit value = 0 } }
+			every_playable_country = { # 1 def fleet per 8 playable empires
+				event_target:f93_ralis_subject = { change_variable = { which = defense_fleet_limit value = 0.125 } }
+			}
+			event_target:f93_ralis_subject = { set_variable = { which = attack_fleet_limit value = 0 } }
+			every_playable_country = { # 1 attack fleet per 4 playable empires
+				event_target:f93_ralis_subject = { change_variable = { which = attack_fleet_limit value = 0.25 } }
+			}
+			event_target:f93_ralis_subject = { 
+				round_variable = defense_fleet_limit
+				round_variable = attack_fleet_limit
 			}
 		}
 	#hard
@@ -284,17 +305,14 @@ country_event = {
 				if = {
 					limit = {
 						count_owned_fleet = {
-							count < value:ralis_fleet
+							count < value:f93_ralis_fleet_limit
 						}
 					}
 					f93_create_ralis_fleet = yes
 				}
 				every_owned_fleet = {
-					limit = { is_civilian = no fleet_power < value:f93_excpected_fleet_power }
-					while = {
-						count = 5
-						f93_add_random_ship = yes
-					}
+					limit = { is_civilian = no is_in_combat = no fleet_power < value:f93_expected_fleet_power }
+					fleet_event = {	id = f93_ralis_diffculty.1 }
 				}
 			}
 			every_owned_starbase = {
@@ -303,6 +321,18 @@ country_event = {
 					used_defense_platform_capacity_percent < 1.5
 				}
 				f93_spawn_ralis_defense_platform = yes
+			}
+			event_target:f93_ralis_subject = { set_variable = { which = defense_fleet_limit value = 0 } }
+			every_playable_country = { # 1 def fleet per 4 playable empires
+				event_target:f93_ralis_subject = { change_variable = { which = defense_fleet_limit value = 0.25 } }
+			}
+			event_target:f93_ralis_subject = { set_variable = { which = attack_fleet_limit value = 0 } }
+			every_playable_country = { # 1 attack fleet per 2 playable empires
+				event_target:f93_ralis_subject = { change_variable = { which = attack_fleet_limit value = 0.5 } }
+			}
+			event_target:f93_ralis_subject = { 
+				round_variable = defense_fleet_limit
+				round_variable = attack_fleet_limit
 			}
 		}
 	}
@@ -322,29 +352,26 @@ country_event = {
 			limit = {
 				NOT = { exists = event_target:f93_ralis_liberator }
 				count_owned_fleet = {
-					count < value:fleet_limit_defense
+					count < defense_fleet_limit
 					limit = { has_fleet_flag = value:ralis_fleet_defense }
 				}
 			}
 			f93_create_ralis_subject_fleet_defense = yes
 		}
-		# if = {
-		# 	limit = {
-		# 		has_global_flag = f93_ralis_crisis_event0101_happened
-		# 		NOT = { exists = event_target:f93_ralis_liberator }
-		# 		count_owned_fleet = {
-		# 			count < value:ralis_fleet_attack
-		# 			limit = { has_fleet_flag = value:ralis_fleet_attack }
-		# 		}
-		# 	}
-		# 	f93_create_ralis_subject_fleet_attack = yes 
-		# }
-		every_owned_fleet = {
-			limit = { is_civilian = no fleet_power < value:f93_excpected_fleet_power }
-			while = {
-				count = 5
-				f93_add_random_ship = yes
+		if = {
+			limit = {
+				has_global_flag = f93_ralis_crisis_event0101_happened
+				NOT = { exists = event_target:f93_ralis_liberator }
+				count_owned_fleet = {
+					count < attack_fleet_limit
+					limit = { has_fleet_flag = value:ralis_fleet_attack }
+				}
 			}
+			f93_create_ralis_subject_fleet_attack = yes 
+		}
+		every_owned_fleet = {
+			limit = { is_in_combat = no is_civilian = no }
+			fleet_event = { id = f93_ralis_diffculty.1 }
 		}
 	}
 }

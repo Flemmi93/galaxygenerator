@@ -95,7 +95,10 @@ country_event = {
 					mult = 30000
 				}
 				every_playable_country = { prev = { set_closed_borders = { who = prev status = no } } }
-				country_event = { id = f93_ralis_diffculty.1 days = 5 }
+				while = {
+					count = 3
+					f93_create_ralis_fleet = yes
+				}
 				add_tradition = tr_supremacy_adopt
 				add_tradition = tr_supremacy_fleet_logistical_corps
 				add_tradition = tr_supremacy_master_shipwrights
@@ -198,7 +201,7 @@ country_event = {
 				f93_create_ralis_subject_fleet_attack_galcro = yes
 				last_created_fleet = {
 					while = {
-						count = 15
+						limit = { fleet_power < value:f93_expected_fleet_power }
 						f93_add_random_ship = yes
 					}
 				}
@@ -503,23 +506,33 @@ country_event = {
 				}
 			}
 			random_list = {
-				25 = {
+				13 = {
 					# set_name = "AGHIB"
 					#destroys a system and spawns a in a ralis fleet to guard it
 					system_event = { id = f93_ralis_crisis_event.0103 }
 					random_system_planet = {
 						save_event_target_as = f93_ralis_target
 					}
-					if = {
-						limit = {
-							event_target:f93_ralis_subject = {
-								count_owned_fleet = {
-									count < fleet_limit
-									limit = { has_fleet_flag = ralis_fleet_defense }
-								}
-							}
+					f93_create_ralis_subject_fleet = yes
+					last_created_fleet = {
+						set_fleet_flag = ralis_fleet_gal_cro_occupier
+						set_location = {
+							target = event_target:f93_ralis_target
+							angle = random
+							distance = 300
 						}
-						f93_create_ralis_subject_fleet = yes
+						auto_move_to_planet = {
+							target = event_target:f93_ralis_target
+							clear_auto_move_on_arrival = yes
+						}
+					}
+				}
+				12 = {
+					# set_name = "AGHIB"
+					#destroys a system and spawns NO ralis fleet to guard it
+					system_event = { id = f93_ralis_crisis_event.0103 }
+					random_system_planet = {
+						save_event_target_as = f93_ralis_target
 					}
 					last_created_fleet = {
 						set_fleet_flag = ralis_fleet_gal_cro_occupier
@@ -881,9 +894,16 @@ country_event = {
 		#log_error = "Crisis event 0400 on [GetDate] by [Root.GetName]"
 		every_playable_country = {
 			country_event = { id = f93_ralis_crisis_event.0401 days = 370 }
-			capital_scope = {
-				save_event_target_as = f93_ralis_target
-				f93_create_ralis_subject_fleet_attack = yes
+			#Spawn an Attack fleet vor 1/3 of Empires
+			random_list = {
+				1 = {
+					capital_scope = {
+						save_event_target_as = f93_ralis_target
+						f93_create_ralis_subject_fleet_attack = yes
+					}
+					event_target:f93_ralis_subject = { change_variable = { which = attack_fleet_limit value = 1 } }
+				}
+				2 = {}
 			}
 		}
 	}

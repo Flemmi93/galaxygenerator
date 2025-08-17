@@ -130,11 +130,12 @@ f93_create_ralis_vassal_country = {
 		ethos = { ethic = ethic_fanatic_xenophobe ethic = ethic_militarist }
 		effect = {
 			save_global_event_target_as = f93_ralis_subject
+			set_variable = { which = attack_fleet_limit value = 0 }
+			set_variable = { which = defense_fleet_limit value = 0 }
 			establish_communications = event_target:f93_ralis_country
 			set_subject_of = {
 				who = event_target:f93_ralis_country
 			}
-			set_variable = { which = fleet_limit value = 1 }
 			f93_set_ralis_designs = yes
 			country_event = { id = f93_ralis_crisis_event.0001 days = 1 }
 		}
