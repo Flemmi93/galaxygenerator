@@ -172,13 +172,6 @@ country_event = {
 					}
 				}
 			}
-			
-			get_galaxy_setup_value = {
-				which = crisis_strength_scale_variable
-				setting = crisis_strength_scale
-				scale_by = 1
-			}
-			change_variable = { which = crisis_strength_scale_variable value = 10 }
 			every_system = {
 				limit = {
 					OR = {
@@ -192,7 +185,7 @@ country_event = {
 				set_star_flag = f93_ralis_wont_go_here
 			}
 			while = {
-				count = crisis_strength_scale_variable
+				count = value:ralis_fleet_attack
 				random_system = {
 					limit = { f93_system_has_ancient_relay = yes NOR = { has_star_flag = f93_recently_visist has_star_flag = f93_ralis_wont_go_here } }
 					set_timed_star_flag = { flag = f93_recently_visist days = 720 }

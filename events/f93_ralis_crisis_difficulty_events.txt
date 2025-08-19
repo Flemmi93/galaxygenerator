@@ -147,19 +147,22 @@ country_event = {
 
 		remove_modifier = f93_ralis_difficulty_debuff
 		remove_modifier = f93_ralis_difficulty_buff
+		remove_modifier = f93_ship_power_mult
+		#This Section is for Buffs, new buffs should scale with crissi strength and the difficulty setting. see scriped Values for how power_buff behaves
+		add_modifier = {
+			modifier = f93_ship_power_mult
+			mult = value:f93_ralis_power_buff
+		}
+		event_target:f93_ralis_subject = {
+			add_modifier = {
+				modifier = f93_ship_power_mult
+				mult = value:f93_ralis_power_buff
+			}
+		}
 	#easy
 		if = {
 			limit = {
 				has_global_flag = f82_button_3_1_on
-			}
-			get_galaxy_setup_value = {
-				which = crisis_strength_scale_variable
-				setting = crisis_strength_scale
-				scale_by = 0.05
-			}
-			add_modifier = {
-				modifier = f93_ralis_difficulty_buff
-				mult = crisis_strength_scale_variable
 			}
 			add_modifier = {
 				modifier = f93_ralis_difficulty_debuff
@@ -214,15 +217,6 @@ country_event = {
 			limit = {
 				has_global_flag = f82_button_3_2_on
 			}
-			get_galaxy_setup_value = {
-				which = crisis_strength_scale_variable
-				setting = crisis_strength_scale
-				scale_by = 0.34
-			}
-			add_modifier = {
-				modifier = f93_ralis_difficulty_buff
-				mult = crisis_strength_scale_variable
-			}
 			add_modifier = {
 				modifier = f93_ralis_difficulty_debuff
 				mult = 0.4
@@ -275,16 +269,6 @@ country_event = {
 		if = {
 			limit = {
 				has_global_flag = f82_button_3_3_on
-			}
-			get_galaxy_setup_value = {
-				which = crisis_strength_scale_variable
-				setting = crisis_strength_scale
-				scale_by = 1
-			}
-			#this value buffs their fleet cap
-			add_modifier = {
-				modifier = f93_ralis_difficulty_buff
-				mult = crisis_strength_scale_variable
 			}
 			#this value slows the crisis down along the galactic crossing
 			add_modifier = {

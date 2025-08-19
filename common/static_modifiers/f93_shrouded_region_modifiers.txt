@@ -97,6 +97,14 @@ f93_ship_fire_rate_mult = {
 	ship_fire_rate_mult = 1
 }
 
+f93_ship_power_mult = {
+	ship_fire_rate_mult = 0.2
+	ship_hull_mult = 0.2
+	ship_armor_mult = 0.2
+	ship_shield_mult = 0.2
+	ship_weapon_range_mult = 0.2
+}
+
 f93_pre_midgame_stabalisation = {
 	country_ruler_minerals_produces_add = 1
 	# country_ruler_energy_produces_add = 1

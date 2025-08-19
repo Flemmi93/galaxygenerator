@@ -150,27 +150,6 @@ f93_expected_fleet_power = {
 		mode = add
 		mult = 100 #every 100 years would increase base by 10000
 	}
-	#Difficulty Setting
-	modifier = { #easy
-		has_global_flag = f82_button_3_1_on
-		multiply = 0.3
-	}
-	modifier = { #default
-		has_global_flag = f82_button_3_3_on
-		multiply = 1
-	}
-	modifier = { #hard
-		has_global_flag = f82_button_3_3_on
-		multiply = 2.5
-	}
-	complex_trigger_modifier = { #Crisis Strength
-		trigger = check_galaxy_setup_value
-		parameters = {
-			setting = crisis_strength_scale
-		}
-		mode = mult
-		mult = 1
-	}
 	#Factors for Various Fleet Types
 	modifier = {
 		has_fleet_flag = ralis_fleet_gal_cro_occupier
@@ -194,6 +173,30 @@ f93_expected_fleet_power = {
 	}
 }
 
+f93_ralis_power_buff = {
+	base = 1
+	complex_trigger_modifier = { #Crisis Strength
+		trigger = check_galaxy_setup_value
+		parameters = {
+			setting = crisis_strength_scale
+		}
+		mode = mult
+		mult = 1
+	}
+	#Difficulty Setting
+	modifier = { #easy
+		has_global_flag = f82_button_3_1_on
+		multiply = 0.3
+	}
+	modifier = { #default
+		has_global_flag = f82_button_3_3_on
+		multiply = 1
+	}
+	modifier = { #hard
+		has_global_flag = f82_button_3_3_on
+		multiply = 2.5
+	}
+}
 mid_game_day = {
 	base = 1
 	complex_trigger_modifier = {
