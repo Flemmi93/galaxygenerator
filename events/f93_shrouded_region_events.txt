@@ -151,6 +151,7 @@ system_event = { #creating ralis cluster
 		save_global_event_target_as = f93_ralis_system
 		set_star_flag = f93_ralis_system
 		set_star_flag = f93_ralis_empire_cluster
+		set_star_flag = sealed_system
 		# set_star_flag = changed
 		every_system_planet = {
 			limit = { is_star = no }
@@ -208,6 +209,7 @@ system_event = { #creating ralis cluster
 		every_system = {
 			limit = { has_star_flag = f93_current_cluster }
 			set_star_flag = f93_ralis_empire_cluster
+			set_star_flag = sealed_system
 			remove_star_flag = f93_current_cluster
 			every_system_megastructure = {
 				remove_megastructure = this

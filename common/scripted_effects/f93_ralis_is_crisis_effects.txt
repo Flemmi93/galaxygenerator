@@ -1,6 +1,6 @@
 # target a valid planet with this
 f93_create_ralis_country = {
-create_species = {
+	create_species = {
 		name = esear_NAME
 		plural = esear_NAME_plural
 		class = AVI

@@ -8,7 +8,7 @@
 # 	system_event = { id = f93_ralis_crisis_event.0103 }
 # }
 # The Example above would destroy a random system except those that are protected by this trigger
-# since it will only choose a random system that is ok to be destryoed.
+# since it will only choose a random system that is ok to be destroyed.
 
 
 #I can add star and planet flags to this without any issue, if you want any flag added to this

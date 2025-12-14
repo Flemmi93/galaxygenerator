@@ -397,8 +397,8 @@ country_event = {
 		}
 	}
 }
-#this event is a backup in case a player does not have nemesis or something else malfuctions
-#lor for example adds nemesis exaxtly after the resolution.
+#this event is a backup in case a player does not have nemesis or something else malfunctions
+#lor for example adds nemesis exactly after the resolution.
 country_event = {
 	id = f93_ralis_crisis_event.00062
 	hide_window = yes
@@ -436,6 +436,10 @@ country_event = {
 	immediate = {
 		#log_error = "Crisis event 00064 on [GetDate] by [Root.GetName]"
 		set_global_flag = f93_shroud_gate_active
+		every_system = {
+			limit = { has_star_flag = f93_ralis_empire_cluster }
+			remove_star_flag = sealed_system
+		}
 	}
 }
 
@@ -540,7 +544,7 @@ country_event = {
 						}
 					}
 				}
-				100 = {}
+				75 = {}
 			}
 		}
 	}
@@ -568,7 +572,7 @@ system_event = {
 		# 		}
 		# 	}
 		# }
-		# the following replaces destroy_star_system only bolowing up planets, leaving fleets
+		# the following replaces destroy_star_system only blowing up planets, leaving fleets
 		set_star_flag = star_cracked
 		set_star_class = sc_black_hole
 		every_system_ambient_object = {
@@ -789,22 +793,25 @@ country_event = {
 			}
 			set_global_flag = f93_ralis_crisis_event0201_happened
 			event_target:f93_to_be_killed_by_ralis = {
-				every_system_within_border = {
-					limit = { f93_ok_to_be_destroyed = no }
-					random_list = {
-						2 = {
-							modifier = {
-								factor = 0.25
-								NOT = { any_neighbor_system = { f93_system_has_ancient_relay = yes } }
+				# every_system_within_border = {
+				# 	limit = { f93_ok_to_be_destroyed = no any_system_planet = { is_colony = yes } }
+				# 	# destroy_star_system = yes
+				# 	# system_event = { id = f93_ralis_crisis_event.0103 }
+				# 	# every_system_planet = { reroll_deposits = yes }
+				# }
+				while = {
+					limit = { any_owned_planet = { exists = this } }
+					random_owned_planet = {
+						solar_system = {
+							destroy_star_system = yes
+							every_system_planet = {
+								limit = { is_star = yes }
+								reroll_deposits = yes
 							}
-							# destroy_star_system = yes
-							system_event = { id = f93_ralis_crisis_event.0103 }
-							every_system_planet = { reroll_deposits = yes }
 						}
 					}
-					
 				}
-				destroy_country = yes
+				# destroy_country = yes
 			}
 			event_target:f93_ralis_country = {
 				if = {
@@ -825,8 +832,8 @@ country_event = {
 
 	option = {
 		name = f93_ralis_crisis_event.0201.a
-		country_event = { id = f93_ralis_crisis_event.0301 days = 180 }
 	}
+	after = { country_event = { id = f93_ralis_crisis_event.0301 days = 180 } }
 }
 
 #Receding of the Abyss
@@ -945,6 +952,20 @@ country_event = {
 		hidden_effect = {
 			set_country_flag = f93_ralis_crisis_event_5_vote_a
 		}
+		trigger = { any_country = { is_proposing_resolution = f93_ralis_plan_resolution } }
+	}
+	option = {
+		name = f93_ralis_crisis_event.0501.a
+		custom_tooltip = f93_ralis_crisis_event.0501.c_desc
+		hidden_effect = {
+			set_country_flag = f93_ralis_crisis_event_5_vote_a
+			propose_resolution = {
+				resolution = f93_ralis_plan_resolution
+				target = event_target:f93_ralis_country
+			}
+		}
+		allow = { NOR = { is_proposing_resolution = any } }
+		trigger = { NOT = { any_country = { is_proposing_resolution = f93_ralis_plan_resolution } } }
 	}
 	option = {
 		name = f93_ralis_crisis_event.0501.b
@@ -2373,7 +2394,7 @@ system_event = {
 					is_galactic_community_member = yes
 				}
 			}
-			space_owner =  { save_event_target_as = system_receiver }
+			space_owner = { save_event_target_as = system_receiver }
 		}
 		starbase = { set_owner = event_target:system_receiver }
 		every_system_colony = { set_owner = event_target:system_receiver }
