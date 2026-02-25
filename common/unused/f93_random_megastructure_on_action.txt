@@ -1,0 +1,11 @@
+generate_shrouded_megastructure = {
+	random_events = {
+		250 = 0
+		100 = f93_shrouded.1
+		10 = f93_shrouded.2
+		10 = f93_shrouded.3
+		3 = f93_shrouded.4
+		8 = f93_shrouded.5
+		1 = f93_shrouded.6
+	}
+}

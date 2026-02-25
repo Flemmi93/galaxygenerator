@@ -1,0 +1,5 @@
+#To add modded megastructures go to on_action/f93_random_megastructure_action.txt and add new entries in the random event section.+
+# You can make a new file for your mod to add entries, the game adds all lists together in on_action
+f93_add_random_megastrcutre = {
+	fire_on_action = { on_action = generate_shrouded_megastructure }
+}

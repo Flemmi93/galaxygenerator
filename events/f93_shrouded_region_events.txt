@@ -63,15 +63,16 @@ system_event = {
 		set_star_flag = f93_shroud_core_flag
 		system_event = { id = f93_shroud.3 }
 		# system_event = { id = f93_shroud.4 days = 1 }
-		random_list = {
-			250 = {}
-			100 = { if = { limit = { has_megacorp = yes is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
-			10 = { if = { limit = { has_federations_dlc = yes } spawn_megastructure = { type = mega_shipyard_ruined } } }
-			10 = { if = { limit = { has_megacorp = yes } spawn_megastructure = { type = mega_art_installation_ruined } } }
-			3 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = dyson_sphere_ruined planet = star } } }
-			8 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = think_tank_ruined } } }
-			1 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = spy_orb_ruined } } }
-		}
+		f93_add_random_megastrcutre = yes
+		# random_list = {
+		# 	250 = {}
+		# 	100 = { if = { limit = { has_megacorp = yes is_star_class = sc_black_hole } spawn_megastructure = { type = matter_decompressor_ruined } } }
+		# 	10 = { if = { limit = { has_federations_dlc = yes } spawn_megastructure = { type = mega_shipyard_ruined } } }
+		# 	10 = { if = { limit = { has_megacorp = yes } spawn_megastructure = { type = mega_art_installation_ruined } } }
+		# 	3 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = dyson_sphere_ruined planet = star } } }
+		# 	8 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = think_tank_ruined } } }
+		# 	1 = { if = { limit = { has_utopia = yes } spawn_megastructure = { type = spy_orb_ruined } } }
+		# }
 	}
 
 }

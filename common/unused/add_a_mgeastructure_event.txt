@@ -1,0 +1,7 @@
+system_event = {
+	id = f93_shrouded.$id$
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = { spawn_megastructure = { type = $megastructure$ } }
+
+}

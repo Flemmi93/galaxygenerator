@@ -21,6 +21,7 @@ f93_ok_to_be_destroyed = {
 				has_modifier = holy_planet
 				has_planet_flag = earth
 				has_planet_flag = earth_nuked
+				any_archaeological_site = { exists = this }
 				#special system init systems we intent to protect
 				has_planet_flag = star_seddom
 				
