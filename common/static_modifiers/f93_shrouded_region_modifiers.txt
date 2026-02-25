@@ -102,7 +102,7 @@ f93_ship_power_mult = {
 	ship_hull_mult = 0.2
 	ship_armor_mult = 0.2
 	ship_shield_mult = 0.2
-	ship_weapon_range_mult = 0.2
+	# ship_weapon_range_mult = 0.2 # disabled due to ships flying outside of legal zones with too high range
 }
 
 f93_pre_midgame_stabalisation = {

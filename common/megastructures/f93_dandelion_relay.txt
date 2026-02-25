@@ -1,4 +1,4 @@
-dandelion_relay = { # copy of the hyper relay, to name it "ancient relay" hylerlane connection is compatible
+dandelion_relay = { # copy of the hyper relay, to name it "ancient relay" hyperlane connection is compatible
 	entity = "humanoid_01_hyper_relay_entity"
 	construction_entity = "humanoid_01_hyper_relay_entity"
 	portrait = "GFX_megastructure_hyper_relay_background"
@@ -20,7 +20,7 @@ dandelion_relay = { # copy of the hyper relay, to name it "ancient relay" hylerl
 	bypass_type = relay_bypass
 }
 
-dandelion_relay_star = { # copy of the hyper relay, to name it "ancient relay" hylerlane connection is compatible
+dandelion_relay_star = { # copy of the hyper relay, to name it "ancient relay" hyperlane connection is compatible
 	entity = "humanoid_01_hyper_relay_entity"
 	construction_entity = "humanoid_01_hyper_relay_entity"
 	portrait = "GFX_megastructure_hyper_relay_background"

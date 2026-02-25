@@ -45,7 +45,7 @@ country_event = {
 					}
 					highway_connect_relay_only = yes
 					save_global_event_target_as = system_highway_start
-					set_star_flag = enigmatic_cache_system # dirty trick to stop crash from ctd when spawning in enigmatic cach at midgame
+					set_star_flag = enigmatic_cache_system # dirty trick to stop crash from ctd when spawning in enigmatic cache at midgame
 				}
 			}
 			#Should someone play with 0 fallen empires, this would generate random GalCro Endpoints
@@ -247,7 +247,7 @@ country_event = {
 # 		}
 # 	}
 # }
-
+# this event empties systems and places ancient relays in them, requires overlord DLC
 country_event = {
 	id = f93_galactic_crossing.7
 	hide_window = yes

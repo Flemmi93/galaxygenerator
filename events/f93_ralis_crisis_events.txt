@@ -354,7 +354,7 @@ country_event = {
 		}
 	}
 }
-#this event will slowly progress the egine, each stage taking 10 years +2-5 years cooldown
+#this event will slowly progress the engine, each stage taking 10 years +2-5 years cooldown
 country_event = {
 	id = f93_ralis_crisis_event.00063
 	hide_window = yes
@@ -413,7 +413,11 @@ country_event = {
 	immediate = {
 		#log_error = "Crisis event 00062 on [GetDate] by [Root.GetName]"
 		#Activates the Shrouded Hyperlanes
-		country_event = { id = f93_ralis_crisis_event.00064 }
+		set_global_flag = f93_shroud_gate_active
+		every_system = {
+			limit = { has_star_flag = f93_ralis_empire_cluster }
+			remove_star_flag = sealed_system
+		}
 		if = {
 			limit = {
 				has_nemesis = yes
@@ -424,21 +428,6 @@ country_event = {
 		else = {
 			save_event_target_as = new_galactic_threat
 			f93_threat_war_effect = yes
-		}
-	}
-}
-#Activates the Shrouded Hyperlanes (ralisgate bypass)
-country_event = {
-	id = f93_ralis_crisis_event.00064
-	hide_window = yes
-	is_triggered_only = yes
-	fire_only_once = yes
-	immediate = {
-		#log_error = "Crisis event 00064 on [GetDate] by [Root.GetName]"
-		set_global_flag = f93_shroud_gate_active
-		every_system = {
-			limit = { has_star_flag = f93_ralis_empire_cluster }
-			remove_star_flag = sealed_system
 		}
 	}
 }
@@ -453,7 +442,9 @@ country_event = {
 	show_sound = event_screams
 	
 	is_triggered_only = yes
-
+	trigger = {
+		exists = event_target:f93_ralis_country
+	}
 	immediate = {
 		#log_error = "Crisis event 0101 on [GetDate] by [Root.GetName]"
 		#observer_event = { id = f93_ralis_observer_event.0101 }
@@ -1288,6 +1279,8 @@ country_event = {
 		name = f93_ralis_crisis_event.0801.a
 	}
 }
+# debug effect to trigger the even 0802, needs to be fired form empire overview window. (F1)
+# effect event_target:f93_ralis_planet = { planet_event = { id = f93_ralis_crisis_event.0802 from = root fromfrom = event_target:f93_ralis_country } } event_target:f93_ralis_country = { every_owned_megastructure = { limit = { OR = { is_megastructure_type = crisis_sphere_0 is_megastructure_type = crisis_sphere_1 is_megastructure_type = crisis_sphere_2 is_megastructure_type = crisis_sphere_3 is_megastructure_type = crisis_sphere_4 } } remove_megastructure = this } }
 
 # This = Planet scope
 # From = Country scope (new owner)

@@ -295,6 +295,31 @@ f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = {
 	every_system = { remove_star_flag = f93_current_cluster }
 }
 
+f93_connect_current_system_with_GalCro_within_20_steps_back_up = {
+	solar_system = {
+		random_system = {
+			limit = {
+				NOT = { exists = owner }
+				f93_system_winthin_20_steps_of_galcro = yes
+				# has_natural_wormhole = no
+			}
+			prev = {
+				spawn_natural_wormhole = {
+					bypass_type = wormhole
+					random_pos = yes
+					orbit_angle = 360
+				}
+			}
+			spawn_natural_wormhole = {
+				bypass_type = wormhole
+				random_pos = yes
+				orbit_angle = 360
+			}
+			link_wormholes = prev
+		}
+	}
+}
+
 f93_connect_SPECIFIC_system_with_GalCro_within_20_steps_and_generate_cluster = {
 	set_star_flag = f93_shrouded_cluster
 	f93_random_cluster_generator = yes

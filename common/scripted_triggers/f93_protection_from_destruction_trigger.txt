@@ -1,8 +1,8 @@
-# This Trigger is specificly to prevent OUR mod's syste mdestruction event from triggering on a system
+# This Trigger is specifically to prevent OUR mod's system  destruction event from triggering on a system
 # this destruction even is f93_ralis_crisis_event.0103 It is occasionally edited but all calls
 # for this event should include this trigger.
 # Use it as follows
-# Exampl:
+# Example:
 # random_system = {
 # 	limit = { f93_ok_to_be_destroyed = yes }
 # 	system_event = { id = f93_ralis_crisis_event.0103 }
@@ -50,6 +50,8 @@ f93_ok_to_be_destroyed = {
 		has_star_flag = hostile_system
 		has_star_flag = unique_system
 		has_star_flag = voidworms_system
+		has_star_flag = solarpunk_system_01
+		has_star_flag = solarpunk_system_02
 		#Exlcluding a bunch of mods, feel free to add your own or request me to add it.
 		has_star_flag = jupitwo_system
 		has_star_flag = pouchkinn_system
