@@ -1,0 +1,12 @@
+# System Event
+generate_shrouded_megastructure = {
+	random_events = {
+		250 = 0
+		100 = f93_shrouded_matter_decompressor_event.1
+		10 = f93_shrouded_mega_shipyard_ruined_event.1
+		10 = f93_shrouded_mega_art_installation_event.1
+		3 = f93_shrouded_dyson_sphere_ruined_event.1
+		8 = f93_shrouded_think_tank_ruined_event.1
+		1 = f93_shrouded_spy_orb_ruined_event.1
+	}
+}

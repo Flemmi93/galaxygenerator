@@ -1,0 +1,35 @@
+inline_script = {
+	script = f93_shrouded_megastructures/add_a_mgeastructure_event
+	# trigger = { has_megacorp = yes is_star_class = sc_black_hole }
+	megastructure = matter_decompressor_ruined
+}
+inline_script = {
+	script = f93_shrouded_megastructures/add_a_mgeastructure_event
+	# trigger = { has_utopia = yes }
+	megastructure = spy_orb_ruined
+}
+inline_script = {
+	script = f93_shrouded_megastructures/add_a_mgeastructure_event
+	# trigger = { has_utopia = yes }
+	megastructure = think_tank_ruined
+}
+inline_script = {
+	script = f93_shrouded_megastructures/add_a_mgeastructure_event
+	# trigger = { has_federations_dlc = yes }
+	megastructure = mega_shipyard_ruined
+}
+inline_script = {
+	script = f93_shrouded_megastructures/add_a_mgeastructure_event
+	# trigger = { has_utopia = yes }
+	megastructure = dyson_sphere_ruined planet = star
+}
+inline_script = {
+	script = f93_shrouded_megastructures/add_a_mgeastructure_event
+	# trigger = { has_megacorp = yes }
+	megastructure = mega_art_installation_ruined
+}
+inline_script = {
+	script = f93_shrouded_megastructures/add_a_mgeastructure_event
+	# trigger = { has_federations_dlc = yes }
+	megastructure = mega_shipyard_ruined
+}
