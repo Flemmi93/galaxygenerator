@@ -382,7 +382,7 @@ country_event = {
 		ordered_owned_leader = {
 			limit = { leader_class = commander }
 			position = 0
-			order_by = level
+			order_by = trigger:has_base_skill 
 			save_event_target_as = f93_evt_com_target
 		}
 	}

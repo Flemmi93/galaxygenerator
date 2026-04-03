@@ -28,8 +28,3 @@ inline_script = {
 	# trigger = { has_megacorp = yes }
 	megastructure = mega_art_installation_ruined
 }
-inline_script = {
-	script = f93_shrouded_megastructures/add_a_mgeastructure_event
-	# trigger = { has_federations_dlc = yes }
-	megastructure = mega_shipyard_ruined
-}
