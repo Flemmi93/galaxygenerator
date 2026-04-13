@@ -111,9 +111,9 @@ f93_gc_1_2_onoff = {
 ##############
 # Button 1_3 #
 ##############
+#turn off the Crisis sphere timer
 f93_gc_1_3_on = {
 	potential = {
-		always = no
 		NOT = { has_global_flag = f82_button_1_3_off }
 	}
 	allow = {}
@@ -121,7 +121,6 @@ f93_gc_1_3_on = {
 }
 f93_gc_1_3_off = {
 	potential = {
-		always = no
 		has_global_flag = f82_button_1_3_off
 	}
 	allow = {}
@@ -129,7 +128,6 @@ f93_gc_1_3_off = {
 }
 f93_gc_1_3_onoff = {
 	potential = {
-		always = no
 	}
 	allow = {}
 	effect = {

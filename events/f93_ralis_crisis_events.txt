@@ -306,7 +306,7 @@ country_event = {
 			# set_country_flag = crisis_sphere_revealed
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_4 }
-				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_4 }
+				complete_special_project = { type = CRISIS_SPECIAL_PROJECT_4 }
 				if = {
 					limit = { is_at_war = no }
 					declare_crisis_effect = yes
@@ -323,7 +323,7 @@ country_event = {
 			}
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_3 }
-				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_3 }
+				complete_special_project = { type = CRISIS_SPECIAL_PROJECT_3 }
 				country_event = { id = crisis.4155 }
 				add_event_chain_counter = {
 					event_chain = "become_the_crisis_chain"
@@ -333,7 +333,7 @@ country_event = {
 			}
 			if = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_2 }
-				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_2 }
+				complete_special_project = { type = CRISIS_SPECIAL_PROJECT_2 }
 				country_event = { id = crisis.4150 }
 				add_event_chain_counter = {
 					event_chain = "become_the_crisis_chain"
@@ -343,7 +343,7 @@ country_event = {
 			}
 			else = {
 				limit = { has_special_project = CRISIS_SPECIAL_PROJECT_1 }
-				complete_special_project = { type =CRISIS_SPECIAL_PROJECT_1 }
+				complete_special_project = { type = CRISIS_SPECIAL_PROJECT_1 }
 				country_event = { id = crisis.4145 }
 				add_event_chain_counter = {
 					event_chain = "become_the_crisis_chain"
@@ -361,6 +361,7 @@ country_event = {
 	is_triggered_only = yes
 
 	trigger = {
+		NOT = { has_global_flag = f82_button_1_3_on }
 		exists = event_target:f93_ralis_country
 		is_same_value = event_target:f93_ralis_country
 		is_at_war = yes
@@ -368,6 +369,7 @@ country_event = {
 	}
 
 	immediate = {
+		# set_timed_country_flag = { flag = f82_button_1_3_on_ralis_flag time = 3600 }
 		#log_error = "Crisis event 00063 on [GetDate] by [Root.GetName]"
 		set_country_flag = crisis_sphere_revealed
 		if = {
