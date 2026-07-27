@@ -1,0 +1,51 @@
+entity = {
+	name = "coz_zro_donwpour_entity"
+	locator = { name = "core" position = { -2 0 0 } rotation = { 0 90 -90 } }
+	
+	scale = 70
+	erosion_out = 3
+	attach = { core = "extra_dimensional_cracks_entity" }
+	# attach = { core = "extra_dimensional_lights_entity" }
+	attach = { core = "extra_dimensional_color_entity" }
+	# attach = { core = "extra_dimensional_stars_entity" }
+	default_state = "idle"
+	
+	state = { 		name = "idle"  state_time = 20 looping = yes
+		}
+	cull_radius = 20000
+
+}
+entity = {
+	name = "coz_zro_donwpour_entity_back"
+	locator = { name = "core" position = { 2 0 0 } rotation = { 0 -90 90 } }
+	
+	scale = 70
+	erosion_out = 3
+	attach = { core = "extra_dimensional_cracks_entity" }
+	# attach = { core = "extra_dimensional_lights_entity" }
+	attach = { core = "extra_dimensional_color_entity" }
+	# attach = { core = "extra_dimensional_stars_entity" }
+	default_state = "idle"
+	
+	state = { 		name = "idle"  state_time = 20 looping = yes
+		}
+	cull_radius = 20000
+
+}
+entity = {
+	name = "coz_zro_donwpour_entity_flat"
+	locator = { name = "core" position = { 0 0 0 } rotation = { 0 0 0 } }
+	
+	scale = 70
+	erosion_out = 3
+	attach = { core = "extra_dimensional_cracks_entity" }
+	attach = { core = "extra_dimensional_lights_entity" }
+	attach = { core = "extra_dimensional_color_entity" }
+	attach = { core = "extra_dimensional_stars_entity" }
+	default_state = "idle"
+	
+	state = { 		name = "idle"  state_time = 20 looping = yes
+		}
+	cull_radius = 20000
+
+}
