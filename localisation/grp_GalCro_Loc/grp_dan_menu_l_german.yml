@@ -3,7 +3,7 @@
  grp_dan_menu_evt.1.name: ""
  grp_dan_menu_evt.1.desc: ""
  f82_open_menu: "Shrouded Region Mod Menu"
- grp_dan_button.1: "Storymode"
+ grp_dan_button.1: "Crisis"
  grp_dan_button.2: "Galactic Crossing"
  grp_dan_button.3: "Crisis Difficulty"
  grp_dan_button.4: "Option 4"
@@ -21,7 +21,7 @@
 
 #Story Settings
 # Future Content: Set specific Ending to trigger at midgame 
- grp_dan_menubutton_1.1: "Storymode"
+ grp_dan_menubutton_1.1: "Crisis"
  grp_dan_menubutton_1.2: "Unfair Events can hit Player"
  grp_dan_menubutton_1.3: "Ralis' Crisis sphere"
  grp_dan_menubutton_1.4: "1_4"
@@ -60,3 +60,5 @@
  f82_button_2_1_off: "§HGalactic Crossing off§!"
  f93_game_start_menu_done: "§HGame has already been started§!"
  f93_mid_game_done: "§HMigame has already been started§!"
+
+ story_is_bugged: "§RWe haven't had time to update the Crisis yet, leaving us to deactivate it for multiple reasons.§!"

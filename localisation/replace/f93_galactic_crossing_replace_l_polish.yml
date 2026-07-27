@@ -1,0 +1,5 @@
+﻿l_polish:
+# vanilla overwerite
+ enclave.4200.desc:0 "The finished Shroud Beacon has lifted the Veil and carved a Tunnel into the Shroud itself. The psionic energy that the Beacon projects onto the passage keeps it stable to cross, though it doesn't project into the Shroud directly. It cannot tame the wild whims of the Shroud, for our ships have to fend for themselves against whatever they might cross paths with."
+ sm_shroud_beacon_desc:0 "A psionic marvel of technology that opens passages between points in space by linking them through a tunnel network within the Shroud itself. Only immense psionic power can hold these Shroud Tunnels open.\nThough the Beacon can be dismantled, but the tear carved into the veil remains."
+ origin.5625.a.desc:0 "A psionic marvel of technology that opens passages between points in space by linking them through a tunnel network within the Shroud itself. Only immense psionic power can hold these Shroud Tunnels open.\nThe Beacon can be dismantled, but the tear carved into the veil remains."

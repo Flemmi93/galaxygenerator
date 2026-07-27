@@ -66,4 +66,120 @@ spriteTypes = {
 		masking_texture = "gfx/interface/situation_log/event_mask.dds"
 		alwaystransparent = yes
 	}
+	spriteType = {
+		name = "GFX_evt_imperial_strider"
+		texturefile = "gfx/event_pictures/f93_imperial_strider.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_r_imperial_strider"
+		texturefile = "gfx/interface/icons/relic/relict_imperial_strider.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_children_of_zro"
+		texturefile = "gfx/event_pictures/f93_origin_zro_strider.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_liege"
+		texturefile = "gfx/event_pictures/f93_liege.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_zro_drifter"
+		texturefile = "gfx/event_pictures/f93_zro_quotas.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_superport"
+		texturefile = "gfx/event_pictures/f93_superport.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_untouchbable"
+		texturefile = "gfx/event_pictures/f93_untouchbable.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_flow_of_zro"
+		texturefile = "gfx/event_pictures/f93_flow_of_zro.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_holy_homeworld"
+		texturefile = "gfx/event_pictures/f93_holy_homeworld.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_evt_f93_zro_final"
+		texturefile = "gfx/event_pictures/f93_zro_final.dds"
+		masking_texture = "gfx/interface/situation_log/event_mask.dds"
+		alwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_ship_part_f93_zro_drive_1"
+		texturefile = "gfx/interface/icons/technologies/tech_f93_zro_drive_1.dds"
+	}
+	spriteType = {
+		name = "GFX_ship_part_f93_zro_drive_2"
+		texturefile = "gfx/interface/icons/technologies/tech_f93_zro_drive_2.dds"
+	}
+	spriteType = {
+		name = "GFX_text_zro_drifter"
+		texturefile = "gfx/interface/icons/jobs/job_f93_zro_drifter.dds"
+	}
+	spriteType = {
+		name = "GFX_text_f93_zro_drifter"
+		texturefile = "gfx/interface/icons/jobs/job_f93_zro_drifter.dds"
+	}
+	spriteType = {
+		name = "GFX_text_f93_zro_drifter_big"
+		texturefile = "gfx/interface/icons/jobs/job_f93_zro_drifter_big.dds"
+	}
+	spriteType = {
+		name = "GFX_icon_f93_zro_quotar"
+		texturefile = "gfx/interface/icons/situations/f93_zro_quotas.dds"
+	}
+	spriteType = {
+		name = "GFX_situation_stage_frame_yellow"
+		texturefile = "gfx/interface/icons/situations/situation_severity_level_frame_yellow.dds"
+	}
+	spriteType = {
+		name = "GFX_situation_stage_jump_strider"
+		texturefile = "gfx/interface/icons/situations/situation_jump_strider.dds"
+	}
+	spriteType = {
+		name = "GFX_situation_stage_zro_final"
+		texturefile = "gfx/interface/icons/situations/f93_situation_zro_final_stage.dds"
+	}
+	spriteType = {
+		name = "GFX_icon_job_zro_knight"
+		texturefile = "gfx/interface/icons/jobs/job_f93_zro_knight.dds"
+	}
+	spriteType = {
+		name = "GFX_situation_pre_ftl_trade"
+		texturefile = "gfx/interface/icons/situations/f93_situation_pre_ftl_trade.dds"
+	}
+	spriteType = {
+		name = "GFX_situation_societal_enlightenment"
+		texturefile = "gfx/interface/icons/situations/f93_situation_societal_enlightenment.dds"
+	}
+	spriteType = {
+		name = "GFX_army_paladin"
+		texturefile = "gfx/interface/icons/army/f93_paladin_army.dds"
+	}
+	spriteType = {
+		name = "GFX_f93_councilor_liege"
+		texturefile = "gfx/interface/icons/civics/f93_councilor_liege.dds"
+	}
 }
