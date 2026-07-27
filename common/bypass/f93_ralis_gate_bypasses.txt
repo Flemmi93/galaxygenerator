@@ -54,6 +54,22 @@ ralisgate = {
 	ftl_bypass_effect = "gateway_ftl_bypass_effect_entity"
 	can_bypass_be_locked = yes
 
+	scripted_connection = {
+
+		# defines endpoints that can only reach the "nexus"
+		node = {
+			# system scope
+			has_star_flag = f93_ralisgate
+			NOT = { has_star_flag = sealed_system }
+		}
+
+		# defines endpoint(s) that can reach all "nodes" (but not other nexuses)
+		nexus = {
+			# system scope
+			has_star_flag = f93_raliscluster1
+		}
+	}
+	
 	country_can_use = {
 		hidden_trigger = {
 			NOT = { is_country_type = fallen_empire }
@@ -71,19 +87,4 @@ ralisgate = {
 		custom_tooltip = ralisgate_locked_desc
 	}
 
-	scripted_connection = {
-
-		# defines endpoints that can only reach the "nexus"
-		node = {
-			# system scope
-			has_star_flag = f93_ralisgate
-			NOT = { has_star_flag = sealed_system }
-		}
-
-		# defines endpoint(s) that can reach all "nodes" (but not other nexuses)
-		nexus = {
-			# system scope
-			has_star_flag = f93_raliscluster1
-		}
-	}
 }

@@ -58,7 +58,7 @@ f93_gc_1_1_off = {
 }
 f93_gc_1_1_onoff = {
 	potential = {}
-	allow = { NOT = { has_global_flag = f93_mid_game_done } }
+	allow = { NOT = { has_global_flag = f93_mid_game_done } custom_tooltip = { fail_text = story_is_bugged always = no } }
 	effect = {
 		if = {
 			limit = {
@@ -88,7 +88,7 @@ f93_gc_1_2_off = {
 	potential = {
 		NOT = { has_global_flag = f82_button_1_2_on }
 	}
-	allow = {}
+	allow = { custom_tooltip = { fail_text = story_is_bugged always = no } }
 	effect = {}
 }
 f93_gc_1_2_onoff = {
@@ -123,7 +123,7 @@ f93_gc_1_3_off = {
 	potential = {
 		has_global_flag = f82_button_1_3_off
 	}
-	allow = {}
+	allow = { custom_tooltip = { fail_text = story_is_bugged always = no } }
 	effect = {}
 }
 f93_gc_1_3_onoff = {

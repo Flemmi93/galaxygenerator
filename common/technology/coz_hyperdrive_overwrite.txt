@@ -1,0 +1,50 @@
+tech_hyper_drive_1 = {
+	cost = @tier0cost3
+	area = physics
+	tier = 0
+	category = { particles }
+	start_tech = yes
+
+	is_reverse_engineerable = no
+
+	prereqfor_desc = {
+		hide_prereq_for_desc = component
+		custom = {
+			title = "TECH_UNLOCK_HYPERDRIVE_1_TITLE"
+			desc = "TECH_UNLOCK_HYPERDRIVE_1_DESC"
+		}
+	}
+
+	technology_swap = {
+		name = tech_bio_hyper_drive_1
+		inherit_icon = no
+		inherit_effects = no
+		trigger = {
+			country_uses_bio_ships = yes
+		}
+		prereqfor_desc = {
+			custom = {
+				title = "TECH_UNLOCK_BIO_HYPERDRIVE_1_TITLE"
+				desc = "TECH_UNLOCK_BIO_HYPERDRIVE_1_DESC"
+			}
+		}
+		weight = {
+			factor = 5
+		}
+	}
+
+	weight_modifier = {
+		factor = 1000
+	}
+
+	ai_weight = {
+		weight = 10000
+	}
+	potential = {
+		is_children_of_zro_empire = no
+	}
+	starting_potential = {
+		is_eager_explorer_empire = no
+		# is_children_of_zro_empire = no
+	}
+}

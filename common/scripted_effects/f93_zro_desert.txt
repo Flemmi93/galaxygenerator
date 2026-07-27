@@ -1,0 +1,66 @@
+f93_make_zro_desert = {
+	if = {
+		limit = { has_global_flag = planetarydiversity }
+		remove_pd_modifier = yes
+	}
+	if = {
+		limit = { NOT = { has_climate = dry } }
+		change_pc = pc_desert
+	}
+	set_variable = { which = sr_zro value = 0 }
+	clear_planet_modifiers = yes
+	prevent_anomaly = yes
+	set_planet_entity = {
+		entity = "zro_desert_planet_01_entity"
+		atmosphere_color = hsv { 0.23 0.35 0.63 } # hsv(232.5, 34.78%, 63.14%)
+		picture = pc_zro_desert
+	}
+	set_name = "Rhelea"
+	add_modifier = { modifier = f93_zro_downpour }
+	set_planet_size = 17
+	while = {
+		count = 5
+		add_deposit = d_searing_desert
+		remove_deposit = d_arid_highlands
+	}
+	add_deposit = d_tempestous_mountain
+	add_deposit = d_forgiving_tundra
+	add_deposit = d_mineral_fields
+	add_blocker = { type = d_city_ruins }
+	add_blocker = { type = d_decrepit_dwellings }
+	add_blocker = { type = d_quicksand_basin }
+	add_blocker = { type = d_deep_sinkhole }
+	add_blocker = { type = d_mountain_range }
+	solar_system = { set_star_flag = shroud_tunnel_nexus }
+	set_planet_flag = pd_ignore
+	set_planet_flag = coz_zro_desert_planet
+	
+	# set_planet_flag = coz_ambient_object_spawned
+	# create_ambient_object = {
+	# 	type = "coz_zro_downpour"
+	# 	location = this
+	# 	use_3d_location = yes
+	# 	entity_offset = { min = 3 max = 3 }
+	# 	entity_offset_angle = { min = -90 max = -90 }
+	# 	entity_offset_height = { min = 0 max = 0 }
+	# 	scale = 0.005
+	# }
+	# create_ambient_object = {
+	# 	type = "coz_zro_donwpour_back"
+	# 	location = this
+	# 	use_3d_location = yes
+	# 	entity_offset = { min = 3 max = 3 }
+	# 	entity_offset_angle = { min = -90 max = -90 }
+	# 	entity_offset_height = { min = 0 max = 0 }
+	# 	scale = 0.005
+	# }
+	# create_ambient_object = {
+	# 	type = "coz_zro_donwpour_flat"
+	# 	location = this
+	# 	use_3d_location = yes
+	# 	entity_offset = { min = 0 max = 0 }
+	# 	entity_offset_angle = { min = -90 max = -90 }
+	# 	entity_offset_height = { min = -3.5 max = -3.5 }
+	# 	scale = 0.012
+	# }
+}

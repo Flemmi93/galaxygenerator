@@ -20,7 +20,7 @@ safe_highway_start_end = {
 		has_star_flag = empire_cluster
 		# any_neighbor_system = { exists = owner }
 		closest_system = {
-			limit = { exists = owner }
+			exists = owner
 			max_steps = 3
 		}
 	}
@@ -42,16 +42,28 @@ is_shrouded_ai = {
 	}
 	capital_scope = {
 		f93_system_winthin_20_steps_of_galcro = no
+		has_star_flag = f93_isolated_capital_system
 	}
 }
 is_shrouded_player = {
 	is_ai = no
 	capital_scope = {
-		f93_system_winthin_20_steps_of_galcro = no
+		# f93_system_winthin_20_steps_of_galcro = no
+		# NEW ISOLATION DETECTION
+		any_system = {
+			distance = {
+				source = prev
+				type = hyperlane
+				max_jumps = 30
+			}
+			OR = {
+				has_star_flag = normal_region
+				f93_system_has_ancient_relay = yes
+			}
+			exists = this
+		}
 	}
 }
-
-
 f93_is_close_to_highway = {
 	OR = {
 		any_system_within_border = { f93_system_has_ancient_relay = yes }
@@ -62,7 +74,7 @@ f93_is_close_to_highway = {
 }
 f93_system_winthin_20_steps_of_galcro = {
 	closest_system = {
-		limit = { f93_system_has_ancient_relay = yes }
+		f93_system_has_ancient_relay = yes
 		max_steps = 20
 		exists = this
 	}
@@ -85,7 +97,7 @@ f93_country_is_connected_to_gal_crossing = {
 			AND = {
 				has_megastructure = hyper_relay
 				closest_system = {
-					limit = { f93_system_has_ancient_relay = yes }
+					f93_system_has_ancient_relay = yes
 					max_steps = 1
 					use_bypasses = yes
 				}
@@ -105,7 +117,10 @@ invalid_shrouded_system = {
 		has_star_flag = cohesive_system	
 	}
 }
-
+is_shrouded_region_system = {
+	has_star_flag = f93_new_shrouded_region
+	has_star_flag = f93_shroud_region_flag
+}
 f93_is_in_a_cluster = {
 	OR = {
 		has_star_flag = f93_shrouded_cluster

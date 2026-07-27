@@ -1,0 +1,86 @@
+
+### HYPER DRIVES
+utility_component_template = {
+	key = "f93_zro_drive_1"
+	size = small
+	icon = "GFX_ship_part_f93_zro_drive_1"
+	icon_frame = 1
+	power = -10
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 15
+			sr_zro = 5
+		}
+		upkeep = {
+			sr_zro = 0.5
+		}
+	}
+	ftl = yes
+
+	ship_modifier = {
+		ship_disengage_opportunities_add = 1
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+
+	potential = {
+		is_eager_explorer_ship = no
+		from = {
+			country_uses_bio_ships = no
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = no
+	}
+	prerequisites = { "tech_f93_zro_drive_1" }
+	component_set = "ftl_components"
+	upgrades_to = "f93_zro_drive_2"
+}
+
+utility_component_template = {
+	key = "f93_zro_drive_2"
+	size = small
+	icon = "GFX_ship_part_f93_zro_drive_2"
+	icon_frame = 1
+	power = -30
+	resources = {
+		category = ship_components
+		cost = {
+			alloys = 30
+			sr_zro = 10
+		}
+		upkeep = {
+			sr_zro = 0.5
+		}
+	}
+
+	potential = {
+		ship_uses_jump_drives = yes
+		from = {
+			country_uses_bio_ships = no
+		}
+	}
+
+	show_tech_unlock_if = {
+		country_uses_bio_ships = no
+	}
+
+	ftl = yes
+	jumpdrive = yes
+	ship_modifier = {
+		ship_disengage_opportunities_add = 1
+		ship_ftl_jumpdrive_range_mult = -0.65
+		ship_jumpdrive_cooldown_mult = -0.4
+	}
+
+	ai_weight = {
+		weight = 4
+	}
+
+	prerequisites = { "tech_f93_zro_drive_2" }
+	component_set = "ftl_components"
+}

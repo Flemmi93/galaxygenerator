@@ -1,0 +1,451 @@
+namespace = utopia
+# Success
+country_event = {
+	trigger = {
+		OR = {
+			is_children_of_zro_empire = no
+			has_tech_option = tech_psi_jump_drive_1
+			has_technology = tech_psi_jump_drive_1
+		}
+	}
+	id = utopia.3161
+	title = "utopia.3161.name"
+	desc = "utopia.3161.desc"
+	diplomatic = yes
+	diplomatic_title = utopia.3000.name
+	force_open = yes
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = shroud_diplomacy_engaged
+		set_country_flag = shroud_vision_7
+	}
+
+	after = {
+		hidden_effect = {
+			remove_country_flag = shroud_diplomacy_engaged
+		}
+	}
+
+	option = {
+		name = "exit.shroud"
+		if = {
+			limit = {
+				NOR = {
+					has_technology = tech_psi_jump_drive_1
+					has_tech_option = tech_psi_jump_drive_1
+				}
+			}
+			add_research_option = tech_psi_jump_drive_1
+			if = {
+				limit = {
+					has_country_flag = delving_ritual
+				}
+				add_tech_progress = {
+					tech = tech_psi_jump_drive_1
+					progress = 0.5
+				}
+				remove_country_flag = delving_ritual
+			}
+		}
+		default_hide_option = yes
+	}
+}
+namespace = fircon
+# Jaunting: success
+country_event = {
+	trigger = {
+		OR = {
+			is_children_of_zro_empire = no
+			has_tech_option = tech_psi_jump_drive_1
+			has_technology = tech_psi_jump_drive_1
+		}
+	}
+	id = fircon.1243
+	title = "fircon.1243.name"
+	desc = {
+		trigger = {
+			if = {
+				limit = {
+					is_robot_empire = no
+					is_gestalt = no
+				}
+				text = fircon.1242.desc.base.organic_non_gestalt
+			}
+			else_if = {
+				limit = {
+					is_robot_empire = yes
+					is_gestalt = no
+				}
+				text = fircon.1242.desc.base.machine_non_gestalt
+			}
+			else_if = {
+				limit = {
+					is_robot_empire = no
+					is_gestalt = yes
+				}
+				text = fircon.1242.desc.base.organic_gestalt
+			}
+			else = {
+				text = fircon.1242.desc.base.machine_gestalt
+			}
+			text = newline
+			if = {
+				limit = { has_technology = tech_psi_jump_drive_1 }
+				text = fircon.1243.drive.desc
+			}
+			else = {
+				text = fircon.1243.nodrive.desc
+			}
+		}
+	}
+	picture = GFX_evt_ship_travel
+	show_sound = event_mystic_reveal
+	location = from
+	is_triggered_only = yes
+
+	option = {
+		name = EXCELLENT
+		if = {
+			limit = { has_technology = tech_psi_jump_drive_1 }
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+		}
+		else = {
+			add_tech_progress = {
+				tech = tech_psi_jump_drive_1
+				progress = 0.20
+			}
+		}
+	}
+}
+namespace = shroud
+# The End of the Cycle
+country_event = {
+	id = shroud.4135
+	title = shroud.4135.title
+	diplomatic_title = shroud.3.diplo_title
+	desc = shroud.4135.desc
+
+	is_triggered_only = yes
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = shroud1
+		room = shroud_room
+	}
+
+	show_sound = {
+		trigger = { is_robot_empire = yes }
+		sound = event_psionic_robot
+	}
+	show_sound = {
+		trigger = { is_robot_empire = no }
+		sound = event_psionic
+	}
+
+	immediate = {
+		set_patron_first_contact_state = { patron = end_of_the_cycle state = in_progress }
+	}
+
+	option = {
+		name = shroud.4135.a
+		custom_tooltip = shroud.4135.a.tt
+		accept_end_of_the_cycle = yes
+		hidden_effect = {
+			give_eotc_psionic_component_tech_insight = { TECH = tech_psionic_bombers }
+			give_eotc_psionic_component_tech_insight = { TECH = tech_psionic_lightning }
+			give_eotc_psionic_component_tech_insight = { TECH = tech_psionic_disruptor }
+			give_eotc_psionic_component_tech_insight = { TECH = tech_zro_launcher }
+			give_eotc_psionic_component_tech_insight = { TECH = tech_psionic_shield }
+			give_eotc_psionic_component_tech_insight = { TECH = tech_precognition_interface }
+			if = {
+				limit = {
+					OR = {
+						is_children_of_zro_empire = no
+						has_technology = tech_psi_jump_drive_1
+						has_tech_option = tech_psi_jump_drive_1
+					}
+				}
+			give_eotc_psionic_component_tech_insight = { TECH = tech_psi_jump_drive_1 }
+			}
+			country_event = { id = shroud.4715 } # utopia.3310
+		}
+		ai_chance = {
+			modifier = {
+				factor = 0
+				NOT = { is_country_type = default }
+			}
+		}
+	}
+	option = {
+		name = {
+			trigger = { NOT = { has_country_flag = forging_our_own_path } }
+			text = shroud.4135.b
+		}
+		name = {
+			trigger = { has_country_flag = forging_our_own_path }
+			text = shroud.4135.b.forging_our_own_path
+		}
+		custom_tooltip = shroud.reject_covenant.tt
+		default_hide_option = yes
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier5researchreward
+			min = @tier5researchmin
+			max = @tier5researchmax
+		}
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier5researchreward
+			min = @tier5researchmin
+			max = @tier5researchmax
+		}
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = @tier5researchreward
+			min = @tier5researchmin
+			max = @tier5researchmax
+		}
+		add_monthly_resource_mult = {
+			resource = sr_zro
+			value = @tier5materialreward
+			min = @tier5materialmin
+			max = @tier5materialmax
+		}
+		hidden_effect = {
+			refuse_covenant = {
+				patron = end_of_the_cycle
+				reset_attunement = yes
+			}
+			every_owned_leader = {
+				limit = { has_trait = leader_trait_disciple_of_the_end }
+				root = {
+					country_event = {
+						id = shroud.12155
+						days = 1
+						scopes = { from = prev }
+					}
+				}
+			}
+			remove_global_flag = end_of_the_cycle_rolled
+		}
+		ai_chance = {
+			modifier = {
+				factor = 0
+				is_country_type = default # Default AIs should always accept EotC when given the chance
+			}
+		}
+	}
+
+	after = {
+		remove_country_flag = contacting_great_patron
+	}
+}
+namespace = astral_rift
+astral_rift_event = {
+	id = astral_rift.3060
+	title = astral_rift.3060.name
+	desc = astral_rift.3060.desc
+	picture = GFX_evt_astral_rift_siege_on_paradise_grunur
+	show_sound = ap_rift_event_30_military_alien_march
+	difficulty = @astral_rift_transition_difficulty
+	astral_rift = yes
+
+	is_triggered_only = yes
+
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_dragon_armor
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_crystal_armor_2
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_dark_matter_propulsion
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_nanite_repair_system
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_nanite_autocannon
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_nanite_flak_batteries
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_strike_craft_skrand
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_combat_computers_3
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_combat_computers_autonomous
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_dark_matter_power_core
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_jump_drive_1
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_extradimensional_weapon_1
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_quantum_catapult
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_scourge_missile_1
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_swarm_strike_craft_1
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_precognition_interface
+	}
+	# inline_script = {
+	# 	script = astral_rift/3060_tech_option
+	# 	TECH = tech_psi_jump_drive_1
+	# }
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_psionic_barrier
+	}
+	inline_script = {
+		script = astral_rift/3060_tech_option
+		TECH = tech_psionic_shield
+	}
+	option = {
+		name = astral_rift.3060.b
+		set_next_astral_rift_event = { id = astral_rift.3075 }
+
+		ai_chance = {
+			inline_script = astral_rift/rift_difficulty_ai_weight
+		}
+	}
+	option = {
+		name = astral_rift.3060.c
+		hidden_effect = {
+			add_stage_modifier = { modifier = astral_rift_difficulty_increase_1 }
+		}
+		set_next_astral_rift_event = { id = astral_rift.3095 }
+
+		ai_chance = {
+			inline_script = astral_rift/rift_difficulty_ai_weight
+		}
+	}
+
+	after = {
+		explorer = {
+			astral_thread_small_reward = yes
+		}
+	}
+}
+
+astral_rift_event = {
+	id = astral_rift.3055
+	title = astral_rift.3055.name
+	desc = {
+		trigger = {
+			switch = {
+				trigger = has_astral_rift_flag
+				description_robotic = { text = astral_rift.3055.desc.mechanical }
+				description_organic = { text = astral_rift.3055.desc.organic }
+				description_lithoid = { text = astral_rift.3055.desc.lithoid }
+				default = { text = astral_rift.3055.desc.default }
+			}
+		}
+	}
+	picture = GFX_evt_astral_rift_siege_on_paradise_grunur
+	show_sound = ap_rift_event_30_military_alien_march
+	difficulty = @astral_rift_easy_plus_difficulty
+	astral_rift = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = astral_rift.3055.a
+		trigger = {
+			explorer = {
+				OR = {
+					has_event_chain = baol_chain
+					has_completed_event_chain = baol_chain
+				}
+			}
+		}
+		explorer = {
+			switch = {
+				trigger = has_technology
+				tech_dragon_armor = { prev = { set_astral_rift_flag = picked_tech_dragon_armor } }
+				tech_crystal_armor_2 = { prev = { set_astral_rift_flag = picked_tech_crystal_armor_2 } }
+				tech_dark_matter_propulsion = { prev = { set_astral_rift_flag = picked_tech_dark_matter_propulsion } }
+				tech_nanite_repair_system = { prev = { set_astral_rift_flag = picked_tech_nanite_repair_system } }
+				tech_nanite_autocannon = { prev = { set_astral_rift_flag = picked_tech_nanite_autocannon } }
+				tech_nanite_flak_batteries = { prev = { set_astral_rift_flag = picked_tech_nanite_flak_batteries } }
+				tech_strike_craft_skrand = { prev = { set_astral_rift_flag = picked_tech_strike_craft_skrand } }
+				tech_combat_computers_3 = { prev = { set_astral_rift_flag = picked_tech_combat_computers_3 } }
+				tech_combat_computers_autonomous = { prev = { set_astral_rift_flag = picked_tech_combat_computers_autonomous } }
+				tech_dark_matter_power_core = { prev = { set_astral_rift_flag = picked_tech_dark_matter_power_core } }
+				tech_jump_drive_1 = { prev = { set_astral_rift_flag = picked_tech_jump_drive_1 } }
+				tech_extradimensional_weapon_1 = { prev = { set_astral_rift_flag = picked_tech_extradimensional_weapon_1 } }
+				tech_quantum_catapult = { prev = { set_astral_rift_flag = picked_tech_quantum_catapult } }
+				tech_scourge_missile_1 = { prev = { set_astral_rift_flag = picked_tech_scourge_missile_1 } }
+				tech_swarm_strike_craft_1 = { prev = { set_astral_rift_flag = picked_tech_swarm_strike_craft_1 } }
+				tech_precognition_interface = { prev = { set_astral_rift_flag = picked_tech_precognition_interface } }
+				# tech_psi_jump_drive_1 = { prev = { set_astral_rift_flag = picked_tech_psi_jump_drive_1 } }
+				tech_psionic_barrier = { prev = { set_astral_rift_flag = picked_tech_psionic_barrier } }
+				tech_psionic_shield = { prev = { set_astral_rift_flag = picked_tech_psionic_shield } }
+			}
+		}
+		set_next_astral_rift_event = { id = astral_rift.3060 }
+	}
+	option = {
+		name = astral_rift.3055.b
+		trigger = {
+			explorer = {
+				NOR = {
+					has_event_chain = baol_chain
+					has_completed_event_chain = baol_chain
+				}
+			}
+		}
+		set_next_astral_rift_event = { id = astral_rift.3065 }
+	}
+
+	after = {
+		explorer = {
+			if = {
+				limit = {
+					is_robot_empire = no
+					is_gestalt = no
+				}
+				add_resource = { unity = -50 }
+			}
+			astral_thread_small_reward = yes
+		}
+	}
+}

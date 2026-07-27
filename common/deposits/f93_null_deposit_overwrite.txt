@@ -1,0 +1,21 @@
+d_null_deposit = {
+	is_null = yes
+
+	potential = {
+		is_primary_star = no
+		NOR = {
+			is_planet_class = pc_ringworld_habitable_damaged
+			is_planet_class = pc_ringworld_tech_damaged
+		}
+	}
+
+	drop_weight = {
+		weight = 100
+		modifier = {
+			factor = 0.5
+			solar_system = {
+				is_shrouded_region_system = yes
+			}
+		}
+	}
+}

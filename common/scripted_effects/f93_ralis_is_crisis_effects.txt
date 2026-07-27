@@ -29,11 +29,7 @@ f93_create_ralis_country = {
 		}
 		ethos = { ethic = ethic_fanatic_xenophobe ethic = ethic_militarist }
 		effect = {
-			if = {
-				limit = { has_utopia = yes }
-				force_add_civic = civic_fanatic_purifiers
-			}
-			else = { force_add_civic = civic_imperial_cult }
+			force_add_civic = civic_fanatic_purifiers
 			save_global_event_target_as = f93_ralis_country
 			set_country_flag = ralis_country_flag
 			set_country_flag = galcom_form_nay
@@ -82,11 +78,11 @@ f93_create_ralis_country = {
 		owner = last_created_country
 		species = last_created_species
 	}
-	create_pop = {
+	create_pop_group = {
 		species = root.owner.species
 		ethos = last_created_country
 	}
-	create_pop = {
+	create_pop_group = {
 		species = root.owner.species
 		ethos = last_created_country
 	}
@@ -142,9 +138,11 @@ f93_create_ralis_vassal_country = {
 	}
 }
 f93_create_ralis_planet = {
-	save_global_event_target_as = f93_ralis_planet
+	carrier = {
+		save_global_event_target_as = f93_ralis_planet
+		clear_blockers = yes
+	}
 	remove_all_buildings = yes
-	clear_blockers = yes
 	add_building = f93_building_crisis_capital
 	add_building = building_hydroponics_farm
 	add_building = building_fortress
@@ -167,11 +165,9 @@ f93_create_ralis_planet = {
 		zone_slot = 2
 		replace = yes
 	}
-	while = {
-		count = 150
-		create_pop = {
-			species = root.owner.species
-		}
+	create_pop_group = {
+		species = root.owner.species
+		size = 1500
 	}
 }
 
@@ -203,11 +199,9 @@ f93_create_galcom_admin_planet = {
 		zone_slot = 2
 		replace = yes
 	}
-	while = {
-		count = 5
-		create_pop = {
-			species = ower.species
-		}
+	create_pop_group = {
+		species = ower.species
+		size = 500
 	}
 }
 
@@ -358,7 +352,7 @@ f93_give_conquest_to_ralis_admin = {
 		set_star_flag = f93_promised_to_ralis_admin
 		if = {
 			limit = { any_system_planet = { is_colony = yes } NOT = { any_ship_in_system = { is_ship_size = enclave_station } } }
-			random_system_colony = {
+			random_system_planet = {
 				f93_create_community_admin_station_above_planet = yes
 			}
 		}
@@ -402,7 +396,7 @@ f93_first_handover_to_ralis_admin = {
 			has_star_flag = f93_ralis_took_it_from_someone
 		}
 		starbase = { set_owner = event_target:f93_community_ralis_admin_country }
-		every_system_colony = { set_owner = event_target:f93_community_ralis_admin_country }
+		every_system_planet = { set_owner = event_target:f93_community_ralis_admin_country }
 	}
 }
 
@@ -492,7 +486,7 @@ f93_ralis_admin_returns_a_system = {
 					save_event_target_as = system_receiver
 					event_target:f93_return_system = {
 						starbase = { set_owner = event_target:system_receiver }
-						every_system_colony = {
+						every_system_planet = {
 							set_owner = event_target:system_receiver
 							planet_event = { id = f93_ralis_crisis_event.1302 days = 1 }
 						}
@@ -503,7 +497,7 @@ f93_ralis_admin_returns_a_system = {
 			10 = {
 				event_target:f93_return_system = {
 					starbase = { set_owner = event_target:f93_ralis_liberator }
-					every_system_colony = { set_owner = event_target:f93_ralis_liberator planet_event = { id = f93_ralis_crisis_event.1302 days = 1 } }
+					every_system_planet = { set_owner = event_target:f93_ralis_liberator planet_event = { id = f93_ralis_crisis_event.1302 days = 1 } }
 					remove_star_flag = f93_ralis_took_it_from_someone
 				}
 			}
@@ -536,7 +530,7 @@ f93_ralis_admin_returns_a_system = {
 						add_to_galactic_community = yes
 					}
 				}
-				every_system_colony = {
+				every_system_planet = {
 					set_owner = last_created_country
 					f93_create_galcom_admin_planet = yes
 				}
@@ -546,7 +540,7 @@ f93_ralis_admin_returns_a_system = {
 						has_star_flag = f93_ralis_took_it_from_someone
 					}
 					starbase = { set_owner = last_created_country }
-					every_system_colony = { set_owner = last_created_country }
+					every_system_planet = { set_owner = last_created_country }
 					remove_star_flag = f93_ralis_took_it_from_someone
 				}
 				every_country = {

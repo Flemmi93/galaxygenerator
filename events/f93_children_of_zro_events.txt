@@ -1,0 +1,437 @@
+namespace = f93_cozro
+# game start event, adjusts some aspects
+country_event = {
+	id = f93_cozro.0
+	is_triggered_only = yes
+	hide_window = yes
+	fire_only_once = yes
+	trigger = {
+		has_origin = children_of_the_zro
+	}
+	immediate = {
+		every_galaxy_planet = {
+			limit = {
+				NOT = { has_planet_flag = coz_zro_desert_planet }
+				OR = {
+					has_modifier = f93_zro_downpour
+					has_deposit = f93_expanded_drifter_operations
+					has_deposit = f93_drifter_existance
+					has_deposit = f93_north_superport
+					has_deposit = d_anti_shroudstone_auro
+				}
+			}
+			remove_modifier = f93_zro_downpour
+			remove_deposit = f93_expanded_drifter_operations
+			remove_deposit = f93_drifter_existance
+			remove_deposit = f93_north_superport
+			remove_deposit = d_anti_shroudstone_auro
+		}
+		country_event = { id = f93_cozro.1 days = 100 random = 40 }
+		closest_system = {
+			limit = { any_system_planet = { is_colonizable = yes } }
+			random_system_planet = {
+				limit = { is_colonizable = yes }
+				f93_make_zro_desert = yes
+			}
+		}
+		capital_scope = {
+			add_deposit = f93_d_bleeding_zro
+		}
+		give_technology = {
+			tech = tech_f93_zro_drive_1
+		}
+		add_modifier = { modifier = f93_hyperspace_nightmares }
+		add_modifier = { modifier = f93_mod_zro_must_flow }
+		set_country_flag = shroudwalker_enclave_bought_shroud_beacon
+		set_country_flag = instrument_leader_found
+		if = {
+			limit = { NOT = { is_variable_set = coz_paladin_army_cap } }
+			set_variable = { which = coz_paladin_army_cap value = @paladin_army_cap }
+		}
+	}
+}
+
+country_event = {
+	id = f93_cozro.1
+	is_triggered_only = yes
+	title = f93_cozro.1.name
+	desc = f93_cozro.1.desc
+	picture = GFX_evt_imperial_strider
+	immediate = {
+		save_global_event_target_as = owner_of_imperial_strider
+		set_variable = { which = sb_amount value = 0 }
+		set_variable = { which = sb_cap value = @initial_shroud_beacons }
+		# add_tech_progress = {
+		# 	tech = tech_wormhole_stabilization
+		# 	progress = 0
+		# }
+	}
+	option = {
+		name = f93_cozro.1.a
+		add_relic = f93_imperial_strider
+		if = {
+			limit = { NOR = { has_technology = tech_wormhole_stabilization has_tech_option = tech_wormhole_stabilization } }
+			add_research_option = tech_wormhole_stabilization
+		}
+		add_resource = { sr_zro = 100 rare_crystals = 50 alloys = 500 }
+		hidden_effect = { add_modifier = { modifier = "relic_activation_cooldown" days = 1 } }
+	}
+}
+country_event = {
+	id = f93_cozro.2
+	is_triggered_only = yes
+	title = f93_cozro.2.name
+	desc = f93_cozro.2.desc
+	picture = GFX_evt_imperial_strider
+	option = {
+		name = f93_cozro.2.a
+		add_resource = {
+			sr_dark_matter = 1 rare_crystals = 1 mult = 25
+		}
+	}
+}
+# The Liege / 4000 Zroo, unlocks Castle building
+planet_event = {
+	id = f93_cozro.3
+	is_triggered_only = yes
+	title = f93_cozro.3.name
+	desc = f93_cozro.3.desc
+	picture = GFX_evt_f93_liege
+	trigger = {
+		has_modifier = f93_zro_downpour
+	}
+	immediate = {
+		set_planet_flag = f93_paladin_unlocked
+	}
+	option = {
+		name = f93_cozro.3.a
+		custom_tooltip = f93_cozro.3.a_desc
+	}
+}
+# Shroud Jumps / 8000 Zro / unlocks new FTL
+planet_event = {
+	id = f93_cozro.4
+	is_triggered_only = yes
+	title = f93_cozro.4.name
+	desc = f93_cozro.4.desc
+	picture = GFX_evt_imperial_strider
+	option = {
+		name = f93_cozro.4.a
+		owner = {
+			give_technology = {
+				tech = tech_f93_zro_drive_2
+			}
+		}
+	}
+}
+#check to see if feudal society needs to be buffed, or if zro deposits need to be countered
+country_event = {
+	id = f93_cozro.5
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		has_origin = children_of_the_zro
+	}
+	immediate = {
+		coz_upkeep_faker = yes
+		if = {
+			limit = {
+				has_civic = civic_feudal_realm
+				
+			}
+			add_modifier = {
+				modifier = f93_feudal_society_buff
+				mult = 0.01
+			}
+		}
+		else = {
+			remove_modifier = f93_feudal_society_buff
+		}
+		every_owned_planet = {
+			limit = { NOT = { has_modifier = f93_zro_downpour } }
+			set_variable = { which = zro_deposits value = value:f93_zro_deposit_count }
+			subtract_variable = { which = zro_deposits value = value:f93_anti_zro_deposit_count }
+			if = { limit = { check_variable = { which = zro_deposits value = 0 } } }
+			else_if = {
+				limit = { check_variable = { which = zro_deposits value > 0 } }
+				add_deposit = d_anti_shroudstone_auro
+			}
+			else_if = {
+				limit = { check_variable = { which = zro_deposits value < 0 } }
+				remove_deposit = d_anti_shroudstone_auro
+			}
+		}
+		# Save compatibility maker for v 1.6.1
+		owner = {
+			if = {
+				limit = { NOT = { is_variable_set = coz_paladin_army_cap } }
+				set_variable = { which = coz_paladin_army_cap value = @paladin_army_cap }
+				every_owned_army = {
+					limit = { army_type = f93_paladin_army }
+					prev = { change_variable = { which = coz_paladin_army value = 1 } }
+				}
+			}
+			change_variable = { which = coz_paladin_army_cap value = 10 }
+		}
+	}
+}
+# Zro Drifter / 0 Zro / colony founding
+carrier_event = {
+	id = f93_cozro.6
+	is_triggered_only = yes
+	title = f93_cozro.6.name
+	desc = f93_cozro.6.desc
+	picture = GFX_evt_f93_zro_drifter
+	fire_only_once = yes
+	trigger = {
+		is_scope_type = planet
+		has_modifier = f93_zro_downpour
+	}
+	option = {
+		name = f93_cozro.6.a
+		owner = {
+			start_situation = {
+				type = f93_zro_quotas
+				target = prev
+			}
+		}
+		add_deposit = f93_drifter_existance
+		hidden_effect = { add_building = f93_zro_knight_fort_0 }
+		# custom_tooltip = f93_cozro.6.a_effect
+	}
+}
+# superport / 2000 Zro / unlocks expanding drifter operations
+planet_event = {
+	id = f93_cozro.7
+	is_triggered_only = yes
+	title = f93_cozro.7.name
+	desc = f93_cozro.7.desc
+	picture = GFX_evt_f93_superport
+	trigger = {
+		has_modifier = f93_zro_downpour
+	}
+	option = {
+		name = f93_cozro.7.a
+		add_deposit = f93_north_superport
+		custom_tooltip = f93_expand_drift_unlock_effect
+		set_planet_flag = f93_expand_drift_unlock
+	}
+}
+# # The Untouchable / 7500 Zro
+# planet_event = {
+# 	id = f93_cozro.8
+# 	is_triggered_only = yes
+# 	title = f93_cozro.8.name
+# 	desc = f93_cozro.8.desc
+# 	picture = GFX_evt_f93_untouchbable
+# 	trigger = {
+# 		has_modifier = f93_zro_downpour
+# 	}
+# 	option = {
+# 		name = f93_cozro.8.a
+# 	}
+# }
+
+# The Weight of Zro / 12000 Zro
+planet_event = {
+	id = f93_cozro.9
+	is_triggered_only = yes
+	title = f93_cozro.9.name
+	desc = f93_cozro.9.desc
+	picture = GFX_evt_enclave_overlord
+	trigger = {
+		has_modifier = f93_zro_downpour
+	}
+	immediate = {
+		owner = {
+			if = {
+				limit = { NOT = { is_variable_set = coz_paladin_army_cap } }
+				set_variable = { which = coz_paladin_army_cap value = @paladin_army_cap }
+				every_owned_planet = {
+					limit = { any_planet_army = { army_type = f93_paladin_army } }
+					prev = { change_variable = { which = coz_paladin_army value = 1 } }
+				}
+			}
+		}
+	}
+	option = {
+		name = f93_cozro.9.a
+		custom_tooltip = f93_coz_liege_effect
+		planet_event = { id = f93_cozro.10 }
+	}
+	option = {
+		name = f93_cozro.9.b
+		planet_event = { id = f93_cozro.11 }
+		tooltip = {
+			owner = {
+				capital_scope = {
+					add_modifier = {
+						modifier = f93_coz_sanctified
+					}
+				}
+				change_variable = { which = coz_paladin_army_cap value = 10 }
+			}
+		}
+	}
+}
+# Elevate the Liege / A leash (on the liege)
+planet_event = {
+	id = f93_cozro.10
+	is_triggered_only = yes
+	title = f93_cozro.10.name
+	desc = f93_cozro.10.desc
+	picture = GFX_evt_f93_liege
+	trigger = {
+		has_modifier = f93_zro_downpour
+	}
+	option = {
+		name = f93_cozro.10.a
+		custom_tooltip = f93_cozro.10.effect
+		hidden_effect = {
+			owner = { set_country_flag = f93_coz_councilor_liege_unlocked }
+		}
+	}
+}
+# one Revelation
+planet_event = {
+	id = f93_cozro.11
+	is_triggered_only = yes
+	title = f93_cozro.11.name
+	desc = f93_cozro.11.desc
+	picture = GFX_evt_f93_holy_homeworld
+	trigger = {
+		has_modifier = f93_zro_downpour
+	}
+	option = {
+		name = f93_cozro.11.a
+		owner = {
+			home_planet = {
+				hidden_effect = {
+					owner = {
+						if = {
+							limit = { NOT = { is_variable_set = coz_paladin_army_cap } }
+							set_variable = { which = coz_paladin_army_cap value = @paladin_army_cap }
+							every_owned_army = {
+								limit = { army_type = f93_paladin_army }
+								prev = { change_variable = { which = coz_paladin_army value = 1 } }
+							}
+						}
+						change_variable = { which = coz_paladin_army_cap value = 10 }
+					}
+					add_modifier = {
+						modifier = f93_coz_sanctified
+					}
+					create_ambient_object = {
+						type = consecrated_planet_stage_1_object
+						location = this
+
+						use_3d_location = yes
+						entity_scale_to_size = yes
+					}
+				}
+			}
+		}
+		custom_tooltip = f93_cozro.11.effect
+	}
+}
+# the flickering tunnel / 15k Zro
+planet_event = {
+	id = f93_cozro.12
+	is_triggered_only = yes
+	title = f93_cozro.12.name
+	desc = f93_cozro.12.desc
+	picture = GFX_evt_f93_zro_final
+	trigger = {
+		has_modifier = f93_zro_downpour
+	}
+	option = {
+		name = f93_cozro.12.a
+		custom_tooltip = f93_cozro.12.a_effect
+		hidden_effect = {
+			remove_modifier = f93_zro_downpour
+			add_modifier = { modifier = f93_zro_downpour_2 }
+		}
+	}
+	option = {
+		name = f93_cozro.12.b
+		custom_tooltip = f93_cozro.12.b_effect
+		planet_event = { id = f93_cozro.13 }
+		allow = {
+			OR = {
+				has_megacorp = yes
+				has_grand_archive_dlc = yes
+				has_ancrel = yes
+			}
+		}
+	}
+	option = {
+		name = f93_cozro.12.c
+		custom_tooltip = f93_cozro.12.c_effect
+		allow = {
+			always = no
+		}
+	}
+}
+planet_event = {
+	id = f93_cozro.13
+	is_triggered_only = yes
+	title = f93_cozro.13.name
+	desc = f93_cozro.13.desc
+	picture = GFX_evt_f93_zro_final
+	trigger = {
+		has_modifier = f93_zro_downpour
+	}
+	option = {
+		name = f93_cozro.13.a
+		allow = {
+			has_ancrel = yes
+		}
+		owner = {
+			give_technology = {
+				tech = tech_secrets_zroni
+			}
+		}
+	}
+	option = {
+		name = f93_cozro.13.b
+		custom_tooltip = f93_cozro.13.b_desc
+		allow = {
+			has_megacorp = yes
+		}
+		hidden_effect = {
+			owner = {
+				add_relic = r_galatron
+			}
+		}
+	}
+	option = {
+		name = f93_cozro.13.c
+		custom_tooltip = f93_cozro.13.c_desc
+		allow = {
+			has_grand_archive_dlc = yes
+		}
+		hidden_effect = {	
+			owner = {
+				add_relic = r_entangled_relay
+			}
+		}
+	}
+}
+
+# De-increment variable for counting imperial legion armies
+country_event = {
+	id = f93_cozro.14
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = { army_type = f93_paladin_army }
+	}
+
+	immediate = {
+		change_variable = {
+			which = coz_paladin_army
+			value = -1
+		}
+	}
+}

@@ -30,6 +30,7 @@ country_event = {
 	immediate = {
 		#log_error = "GalCro event 2 on [GetDate] by [Root.GetName]"
 		every_country = {
+			# Informing the Player about the Results
 			country_event = { id = f93_galactic_crossing.8 days = 5 }
 		}
 		hidden_effect = {
@@ -147,6 +148,7 @@ country_event = {
 	is_triggered_only = yes
 
 	immediate = {
+		f93_mark_highway_systems = yes
 		#log_error = "GalCro event 3 on [GetDate] by [Root.GetName]"
 		every_system = {
 			limit = {
@@ -154,6 +156,7 @@ country_event = {
 				NOR = {
 					exists = owner
 					any_neighbor_system = { has_star_flag = empire_cluster }
+					any_neighbor_system = { exists = owner owner = { is_country_type = dormant_marauders } }
 					any_system = {
 						f93_system_has_ancient_relay = yes
 						distance = {
@@ -162,6 +165,14 @@ country_event = {
 							type = hyperlane
 						}
 					}
+					# any_system = {
+					# 	has_star_flag = normal_region
+					# 	distance = {
+					# 		source = prev
+					# 		max_jumps = 8
+					# 		type = hyperlane
+					# 	}
+					# }
 					has_star_flag = chosen_system
 					has_star_flag = crisis_spawn_exclude
 					has_star_flag = lcluster
@@ -190,7 +201,7 @@ country_event = {
 				limit = {
 					f93_system_has_ancient_relay = no
 					closest_system = {
-						limit = { f93_system_has_ancient_relay = yes }
+						f93_system_has_ancient_relay = yes
 						max_steps = 5
 						exists = this
 					}
@@ -277,7 +288,7 @@ country_event = {
 						f93_ok_to_be_destroyed = yes
 						NOR = {
 							exists = space_owner
-							any_system_colony = { exists = this }
+							any_system_planet_colony = { exists = this }
 							has_star_flag = empire_cluster
 							any_fleet_in_system = { exists = this }
 							any_system_megastructure = {
@@ -296,77 +307,87 @@ country_event = {
 			}
 		}
 		every_country = {
-			limit = {
-				controlled_systems > 0
-				OR = {
-					# num_pops > 0 
-					is_country_type = dormant_marauders
-					is_country_type = default
-				}
-				NOR = {
-					any_system_within_border = {
-						f93_system_winthin_20_steps_of_galcro = yes
-					}
-					has_country_flag = chosen_empire
-				}
-			}
-			random_system_within_border = {
-				closest_system = {
-					min_steps = 2
-					if = {
-						limit = {
-							any_system = {
-								NOT = { exists = owner }
-								f93_system_has_ancient_relay = yes
-								has_natural_wormhole = no
+			save_event_target_as = current_country
+			limit = { exists = capital_scope OR = { is_country_type = dormant_marauders is_country_type = default } }
+			capital_scope = { solar_system = { save_event_target_as = current_source } }
+			if = {
+				limit = {
+					NOR = {
+						any_system = {
+							# NEW ISOLATION DETECTION
+							distance = {
+								source = event_target:current_source
+								type = hyperlane
+								max_jumps = 30
 							}
+							has_star_flag = normal_region
 						}
-						random_system = {
+						has_country_flag = chosen_empire
+					}
+				}
+				capital_scope = {
+					closest_system = {
+						limit = { NOT = { exists = owner } }
+						min_steps = 2
+						if = {
 							limit = {
-								NOT = { exists = owner }
-								f93_system_has_ancient_relay = yes
-								has_natural_wormhole = no
+								any_system = {
+									NOT = { exists = owner }
+									f93_system_has_ancient_relay = yes
+									has_natural_wormhole = no
+								}
 							}
-							prev = {
+							random_system = {
+								limit = {
+									NOT = { exists = owner }
+									f93_system_has_ancient_relay = yes
+									has_natural_wormhole = no
+								}
+								prev = {
+									set_star_flag = Womrhole_maker_10
+									spawn_natural_wormhole = {
+										bypass_type = wormhole
+										random_pos = yes
+										orbit_angle = 360
+									}
+								}
+								set_star_flag = Womrhole_maker_11
 								spawn_natural_wormhole = {
 									bypass_type = wormhole
 									random_pos = yes
 									orbit_angle = 360
 								}
+								link_wormholes = prev
 							}
-							spawn_natural_wormhole = {
-								bypass_type = wormhole
-								random_pos = yes
-								orbit_angle = 360
-							}
-							link_wormholes = prev
 						}
-					}
-					else = {
-						random_system = {
-							limit = {
-								NOT = { exists = owner }
-								f93_system_winthin_20_steps_of_galcro = yes
-								has_natural_wormhole = no
-							}
-							prev = {
+						else = {
+							random_system = {
+								limit = {
+									NOT = { exists = owner }
+									f93_system_winthin_20_steps_of_galcro = yes
+									has_natural_wormhole = no
+								}
+								prev = {
+									set_star_flag = Womrhole_maker_12
+									spawn_natural_wormhole = {
+										bypass_type = wormhole
+										random_pos = yes
+										orbit_angle = 360
+									}
+								}
+								set_star_flag = Womrhole_maker_13
 								spawn_natural_wormhole = {
 									bypass_type = wormhole
 									random_pos = yes
 									orbit_angle = 360
 								}
+								link_wormholes = prev
 							}
-							spawn_natural_wormhole = {
-								bypass_type = wormhole
-								random_pos = yes
-								orbit_angle = 360
-							}
-							link_wormholes = prev
 						}
 					}
-				}
-				owner = {
-					country_event = { id = f93_galactic_crossing.11 }
+					owner = {
+						country_event = { id = f93_galactic_crossing.11 }
+					}
 				}
 			}
 		}
@@ -607,7 +628,10 @@ country_event = {
 	}
 	immediate = {
 		#log_error = "GalCro event 11 on [GetDate] by [Root.GetName]"
-		add_research_option = tech_wormhole_stabilization
+		if = {
+			limit = { NOR = { has_technology = tech_wormhole_stabilization has_tech_option = tech_wormhole_stabilization } }
+			add_research_option = tech_wormhole_stabilization
+		}
 		add_tech_progress = { #create a small event chain to obtain this tech early on.
 			tech = tech_wormhole_stabilization
 			progress = 0.75
@@ -630,11 +654,15 @@ country_event = {
 						}
 					}
 					spawn_habitat_effect = {
+						HABITAT_OWNER = root
+						TARGET_PLANET = event_target:target_planet
 						DISTANCE = 19.798
 					}
 				}
 				else = {
 					spawn_habitat_effect = {
+						HABITAT_OWNER = root
+						TARGET_PLANET = event_target:target_planet
 						DISTANCE = 9.899
 					}
 				}

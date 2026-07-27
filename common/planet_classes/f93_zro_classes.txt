@@ -1,0 +1,95 @@
+# Star glow from sun is set under atmosphere in	00_planet_classes
+# Star surface is set in worldgfx file for each star
+# Effects are set in particle effect for each star
+# New planets also need planet tiles (game/gfx/interface/icons/tile_backgrounds)
+# New planets need surface background (game/gfx/portraits/environments)
+
+### EXAMPLE:
+#pc_tropical = {
+#	entity = "gaia_planet"
+#	entity_scale = 8.0
+#
+#	picture = pc_tropical	# Use tropical portrait art instead of gaia
+#
+#	atmosphere_color		= hsv { 0.58	0.3 0.7 }
+#	atmosphere_intensity	= 1.0
+#	atmosphere_width		= 0.5
+#
+#	city_color_lut = "gfx/portraits/misc/colorcorrection_neutral.tga"
+#
+#	min_distance_from_sun = 60
+#	max_distance_from_sun = 80
+#	spawn_odds = 10
+#
+#
+#	extra_orbit_size = 0
+#	extra_planet_count = 0
+#
+#	chance_of_ring = 0.2
+#
+#	planet_size = { min = @habitable_planet_min_size max = @habitable_planet_max_size }
+#	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+#
+#	colonizable = yes
+#	colonization_tech = { "tech_tropical_colonization@1" }
+#	district_set = <string>		# Use any string here, for use in the uses_district_set trigger for easy compatibility
+#	initial = yes # Default is no, only specified for planets available as starting classes for custom species
+#	potential = { host_has_dlc = "Infernals Species Pack" } # Trigger for the planet class to spawn, no scope check
+#
+#	uses_alternative_skies_for_moons = yes				# Will set planet background for moon
+#	uses_alternative_skies_if_has_orbital_ring = yes	# Will set planet background if has orbital ring, Default is no.
+#
+#	space_monster_target = yes	# Country types with space monster AI will wander to this planet type if set to yes
+#
+#	is_artificial_planet = yes	# Will make sure that modifiers for non artificial planets are not added, e.g. max districts
+#	inherit_country_building_modifiers = yes/no # default = yes; Can be used to block all other additions of max building and district modifiers except the planet class specific ones.
+#}
+###
+
+####################
+# Habitable Planets
+####################
+
+# Dry
+pc_zro_desert = {
+	entity = "zro_desert_planet"
+	icon = GFX_planet_type_desert
+	icon_large = GFX_planet_type_desert_big
+	picture = pc_zro_desert
+	potential = {
+		always = no
+	}
+	climate = "dry"
+	auto_trait_prio = {
+		trait_auto_dry_preference
+	}
+
+	entity_scale = @planet_standard_scale
+
+	atmosphere_color		= hsv { 0.63 0.35 0.63 }
+	atmosphere_intensity	= 2.0
+	atmosphere_width		= 0.5
+
+	min_distance_from_sun = @habitable_min_distance
+	max_distance_from_sun = @habitable_max_distance
+	spawn_odds = @habitable_spawn_odds
+
+	city_color_lut = "gfx/portraits/misc/colorcorrection_desert.dds"
+
+	extra_orbit_size = 0
+	extra_planet_count = 0
+
+	chance_of_ring = 0
+
+	planet_size = { min = 17 max = 17 }
+	moon_size = { min = @habitable_moon_min_size max = @habitable_moon_max_size }
+
+	production_spawn_chance = 0
+
+	colonizable = yes
+	district_set = standard
+	uses_alternative_skies_for_moons = no
+	uses_alternative_skies_if_has_orbital_ring = no
+
+	carry_cap_per_free_district = @carry_cap_normal
+}

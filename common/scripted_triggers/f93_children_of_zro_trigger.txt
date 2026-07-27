@@ -1,0 +1,5 @@
+is_children_of_zro_empire =  {
+	OR = {
+		has_origin = children_of_the_zro
+	}
+}

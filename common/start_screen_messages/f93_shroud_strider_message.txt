@@ -1,0 +1,9 @@
+# Origin children_of_the_zro
+part = {
+	location = 0
+	localization = "START_SCREEN_PART_ONE_children_of_the_zro"
+	
+	trigger = {
+		has_origin = children_of_the_zro
+	}
+}

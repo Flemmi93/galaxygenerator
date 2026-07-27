@@ -1,0 +1,33 @@
+namespace = f93_waystation_saver
+# Fired when a Waystation is constructed
+# this = galactic object/solar system
+# from = waystation owner
+# fromfrom = waystation starbase
+system_event = {
+	id = f93_waystation_saver.0
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = {
+		spawn_planet = {
+			name = " "
+			class = pc_asteroid
+			orbit_location = yes
+			orbit_distance_offset = 0
+			orbit_angle_offset = 0
+			size = 1
+		}
+		random_system_planet = {
+			add_deposit = d_energy_1
+			carrier_event = { id = f93_waystation_saver.1 days = 30 }
+		}
+	}
+}
+
+carrier_event = {
+	id = f93_waystation_saver.1
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		remove_planet = yes
+	}
+}

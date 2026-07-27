@@ -1,0 +1,214 @@
+f93_zro_drifter = {
+	category = worker
+	swappable_data = {
+		default = {
+			condition_string = WORKER_JOB_TRIGGER
+			building_icon = building_energy_grid
+		}
+	}
+
+	tags = { energy }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			is_gestalt = no
+		}
+	}
+
+	resources = {
+		category = planet_technician
+		produces = {
+			trigger = {
+				carrier = {
+					has_modifier = f93_zro_downpour
+				}
+			}
+			sr_zro = 0.4
+			unity = 2
+		}
+		upkeep = {
+			trigger = {
+				carrier = {
+					has_modifier = f93_zro_downpour
+				}
+			}
+			trade = 4
+			energy = 0
+		}
+	}
+	triggered_planet_modifier = {
+		potential = {
+			has_modifier = f93_zro_downpour
+		}
+		pop_f93_zro_knight_bonus_workforce_mult = 0.02
+	}
+	# weight = {
+	# 	weight = @worker_job_weight
+	# 	mult = value:job_weights_modifier|JOB|technician|RESOURCE|energy|
+	# 	modifier = {
+	# 		factor = 100
+	# 		OR = {
+	# 			is_non_sapient_robot = yes
+	# 			is_shackled_robot = yes
+	# 		}
+	# 		can_take_servant_job = no
+	# 		can_fill_specialist_job_trigger = no
+	# 	}
+	# 	modifier = {
+	# 		factor = 8
+	# 		is_enslaved = yes
+	# 		can_take_servant_job = no
+	# 		OR = {
+	# 			has_trait = trait_syncretic_proles
+	# 			has_trait = trait_robot_superconductive
+	# 			has_trait = trait_ingenious
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 2
+	# 		OR = {
+	# 			is_non_sapient_robot = yes
+	# 			is_shackled_robot = yes
+	# 		}
+	# 		can_take_servant_job = no
+	# 	}
+	# 	modifier = {
+	# 		factor = 0.25
+	# 		can_take_servant_job = yes
+	# 	}
+	# 	# low income modifier
+	# 	modifier = {
+	# 		factor = 3
+	# 		exists = planet
+	# 		planet = {
+	# 			has_available_jobs = f93_zro_drifter
+	# 		}
+	# 		exists = owner
+	# 		owner = {
+	# 			has_monthly_income = {
+	# 				resource = energy
+	# 				value > 10
+	# 			}
+	# 		}
+	# 	}
+	# 	modifier = {
+	# 		factor = 5
+	# 		has_trait = trait_cyborg_creed_of_labor
+	# 	}
+	# }
+
+	inline_script = "jobs/automodding_priority_energy"
+
+	# promotion = {
+	# 	time = @standard_promotion_time
+	# 	effect = {
+	# 		pop_amount_change_category = {
+	# 			CATEGORY = worker
+	# 			AMOUNT = local_pop_amount
+	# 		}
+	# 	}
+	# }
+}
+
+f93_zro_knight = {
+	category = ruler
+
+	swappable_data = {
+		default = {
+			condition_string = RULER_JOB_TRIGGER
+			building_icon = f93_lieges_castle
+		}
+	}
+
+	tags = { research minor_artifacts soldier }
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_enslaved = no
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_ruler_job
+	possible = {
+		hidden_trigger = { exists = owner }
+		owner = {
+			has_origin = children_of_the_zro
+		}
+		planet = {
+			OR = {
+				has_building = f93_zro_knight_fort_0
+				has_building = f93_zro_knight_fort_1
+				has_building = f93_zro_knight_fort_2
+				has_building = f93_lieges_castle
+			}
+		}
+	}
+
+	resources = {
+		category = planet_politicians
+		produces = {
+			trigger = { exists = owner }
+			engineering_research = 6
+			minor_artifacts = 2.5
+		}
+		produces = {
+			trigger = { has_building = f93_zro_knight_fort_1 }
+			engineering_research = @paladin_fort_1_engi
+		}
+		produces = {
+			trigger = { has_building = f93_zro_knight_fort_2 }
+			engineering_research = @paladin_fort_2_engi
+		}
+		produces = {
+			trigger = { has_building = f93_lieges_castle }
+			engineering_research = @paladin_fort_3_engi
+		}
+		produces = {
+			trigger = { owner = { is_capitalist = yes } }
+			trade = @paladin_trade_buff
+		}
+		upkeep = {
+			alloys = 2.5
+			energy = 5
+			sr_zro = 0.5
+		}
+	}
+
+	country_modifier = {
+		country_naval_cap_add = 30
+	}
+	planet_modifier = {
+		planet_stability_add = 1
+	}
+	weight = {
+		weight = 100
+	}
+	# weight = {
+	# 	weight = @high_prio_specialist_job_weight
+	# 	mult = value:job_weights_modifier|JOB|politician|RESOURCE|unity|
+	# 	mult = value:job_weights_research_modifier|JOB|experiment_engineer|
+	# }
+
+	inline_script = "jobs/automodding_priority_charisma"
+
+	# promotion = {
+	# 	time = @standard_promotion_time
+	# 	effect = {
+	# 		pop_amount_change_category = {
+	# 			CATEGORY = ruler
+	# 			AMOUNT = local_pop_amount
+	# 		}
+	# 	}
+	# }
+}

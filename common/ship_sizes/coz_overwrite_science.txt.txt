@@ -1,0 +1,159 @@
+#reloadable with 'reload stats'
+# This file is where you start when you want to configure something new, then go to sections
+
+####################
+# NOTE FOR MODDERS #
+####################
+# modifier = { } For non-starbase ships, only takes the following modifiers:
+#	hull, shield & armor add/mult and regen add perc/static
+#	evasion add/mult
+#	speed/base speed mult
+#	weapon damage mult
+#	upkeep mult
+#	For other modifiers, use ship_modifier = { }
+# use_shipnames_from = other_size # allows a ship size to use names from another size
+# icon = ship_size_military_1
+		#ship_size_military_1 is default. The following sprite keys are generated from it:
+			#GFX_text_<key>
+			#GFX_<key>
+			#GFX_<key>_top
+			#GFX_<key>_top_damaged
+# icon_frame: now only used for starbases. Value of 2 or more means it shows up on the galaxy map, 1-5 denote which icon it uses on starbase sprite sheets (e.g. gfx/interface/icons/starbase_ship_sizes.dds)
+# ai_ship_data = {					#For determining how many ships the AI wants. Ships it can't recruit (i.e. missing tech prereqs or fails potential_country or possible_country) are pre-filtered out.
+# 	fraction = { }					#As standard, base, modifier = { factor }, etc. The AI will want this divided by the total fraction it is able to recruit. Note: it is the fraction of the naval cap, so the final value is divided by size_multiplier
+#									#Note: if the fraction is > 0, the following lines will not be applied
+#	min = 1							#Sets a minimum absolute number the country will aim to have
+#	system_mult/planet_mult = 0.1	#Adds this amount for each system/planet the country owns. I.e. min + ( num planets * planet_mult ) + ( num systems * system_mult )
+#	max = 5							#Sets a maximum absolute number the country will aim to have. Note that it will still want only the minimum unless you define a system_mult or planet_mult
+#}
+# ship_roles = { name1 name2 } # Show up as selectable roles in the ship designer
+# never_lost = <yes/no> # Removes the chance for the ship size to instantly get killed by emergency ftl. It can still be killed by the random Emergency FTL damage effect.
+# triggered_ship_roles = { { name = test1 trigger = {} } { name = test1 trigger = {} } } # List of triggered ship roles, show up in the ship designer when the trigger is true, executes on country scope
+# evaluation_resource = food # strategic resource to evaluate the cost of a ship design associated with this size
+							 # default is energy
+							 # this is used to determine if a ship design is more advanced than another:
+							 #  the one that costs more is considered an upgrade compared to the cheaper one
+#
+# is_bio_ship = yes					# this indicates that this ship uses bioship mechanic
+# is_entropy_conduit = yes			# this indicates that this ship is a type of entropy conduit ship used in the galactic hyperthermia crisis
+# upgrades_to = mauler_stage_2		# the next stage of the bioship growth
+#
+# bioship_growth_progress_required  = 150	# for bioships: growth threshold at which the ship will grow into its next stage
+#                                 			# for hero ships that are NOT bioships: if > 0 this activates the manual growth interface. threshold at which the manual growth is enabled
+#
+# is_hero_ship = yes		 # If yes, ship can't be merged or disbanded, and has a special UI that splits its potential orders into two bars
+#							 # If its combat computer allows it to unlock from combat, it also exposes its actions during combat in the combat view
+#							 # default: no
+#
+# hero_ship_fleet_background = "GFX_fleet_view_behemoth_stage_4"	# Name of sprite to use as a background for Fleet UI for single-ship hero-ship fleets.
+#																	# default: empty (uses default background)
+#
+# custom_state_loc_prefix = "STATUS_LOC_KEY_PREFIX" # for single-ship fleets with a single hero ship, if not empty this activates the status bar on the fleet UI
+#													# the status bar consists of two scripted localization driven strings (scope: selected fleet)
+#													# the localization keys for those two strings result from appending to this prefix "_title" or "_value"
+#													# (in this example, "STATUS_LOC_KEY_PREFIX_title" and "STATUS_LOC_KEY_PREFIX_value")
+#
+# on_click_sound = "sound_clip_name"	# Sound clip to play when selecting a single fleet that contains exclusively a single ship of this size
+# family_name = "bioship_family"		# root for the name used to described the whole set (so "mauler" for bantam mauler, absolute mauler, etc). This is also used to localize the variant (ie mauler_cap, mauler_pluralized, etc) through localization
+# growth_stage_descriptor = "ship_growth_stage_1"	# localization for the growth stage of the current ship size (so "bantam", "absolute", etc.)
+
+
+####################
+
+############
+# STANDARD #
+############
+science = {
+	max_speed = @speed_very_fast
+	acceleration = 0.3
+	rotation_speed = 0.2
+	max_hitpoints = @science_hp
+	modifier = {
+		ship_evasion_add = @science_evasion
+	}
+	ship_modifier = {
+		ship_hyperlane_range_add = 1
+	}
+	size_multiplier = 1
+	map_counter_icon = ship_counter_4
+	icon = ship_size_science
+	fleet_slot_size = 1
+	section_slots = { "mid" = { locator = "part1" } }
+	num_target_locators = 0
+	is_space_station = no
+	base_buildtime = @science_build_time
+
+	combat_disengage_chance = 2.0
+
+	enable_default_design = yes	#if yes, countries will have an auto-generated design at start
+	enable_3dview_in_ship_browser = yes #if yes, ship design will have a 3d view in the ship browser
+	is_designable = no
+	components_add_to_cost = no
+	prerequisites = { "tech_space_exploration" }
+	is_civilian = yes
+	class = shipclass_science_ship
+	construction_type = { starbase_shipyard starbase_beastport }
+	required_component_set = "power_core"
+	required_component_set = "ftl_components"
+	required_component_set = "thruster_components"
+	required_component_set = "sensor_components"
+	required_component_set = "science_cloaking_components"
+	valid_target_aggressive_stance = no
+	auto_upgrade = yes
+
+	resources = {
+		category = ships
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = no
+				}
+			}
+			alloys = @science_ship_cost
+		}
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			alloys = @science_ship_cost
+			mult = 0.5
+		}
+		cost = {
+			trigger = {
+				from = {
+					country_uses_bio_ships = yes
+				}
+			}
+			food = @science_ship_cost
+			mult = @halved_alloy_to_food_cost_ratio
+		}
+		upkeep = {
+			energy = @science_upkeep_energy
+			alloys = @science_upkeep_alloys
+		}
+	}
+
+	potential_country = {
+		is_mercenary = no
+		NOT = { is_country_type = mindwarden_enclave }
+		OR = {
+			has_technology = tech_f93_zro_drive_1
+			has_technology = tech_f93_zro_drive_2
+			has_technology = tech_hyper_drive_1
+			has_technology = tech_hyper_drive_2
+			has_technology = tech_hyper_drive_3
+			has_technology = tech_jump_drive_1
+			has_technology = tech_psi_jump_drive_1
+		}
+	}
+
+	available_to_everyone = yes
+
+	ai_ship_data = {
+		min = value:desired_science_ships
+		system_mult = value:desired_science_ships_system_mult
+		max = value:max_science_ships
+	}
+}

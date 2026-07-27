@@ -1,10 +1,33 @@
+## for mod compatibility
 @dandelion_galaxy_mod = 1
+
+
 @step_size = 31 #max length of a galactic crossing route
 @steps = 30 #limit on how long a trade route can be
 @Union_state_politics_cooldown = 30
 
-#the size of shrouded regions nebulae mostly graphical but too large loks bad
+#the size of shrouded regions nebulae mostly graphical but too large looks bad
 @f93_nebulae_radiuis = 75
 
 #the larger this is the less shrouded region there is, dont go above 19, or other events will break due to limits set in them
 @galactic_crossing_outskirts = 10
+
+#Balance for Children of Zro
+@paladin_trade_buff = 9
+@initial_shroud_beacons = 3
+@freudal_society_civic_buff = 20
+@bleeding_zro_production = 6
+@paladin_fort_1_engi = 2
+@paladin_fort_2_engi = 3
+@paladin_fort_3_engi = 5
+@sr_zro_upkeep_elite = 0.75
+@sr_zro_upkeep_specialist = 0.05
+@sr_zro_upkeep_workers = 0.03
+@nightmares_windup_debuff = 19
+@nightmares_relay_windup_debuff = -15
+@nightmares_travel_speed = -0.97
+@liege_upkeep_effect = 1
+@liege_upkeep_effect_percent = -0.01 # needs to be -1/100 of value above
+@liege_new_job_effect = 25 # per level
+@paladin_army_cap = 5
+@dummy_SR = 0

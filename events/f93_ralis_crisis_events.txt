@@ -369,7 +369,6 @@ country_event = {
 	}
 
 	immediate = {
-		# set_timed_country_flag = { flag = f82_button_1_3_on_ralis_flag time = 3600 }
 		#log_error = "Crisis event 00063 on [GetDate] by [Root.GetName]"
 		set_country_flag = crisis_sphere_revealed
 		if = {
@@ -557,7 +556,7 @@ system_event = {
 		# set_name = "DESTROYED"
 		# if = {
 		# 	limit = { exists = space_owner space_owner = { is_country_type = default } }
-		# 	every_system_colony = {
+		# 	every_system_planet = {
 		# 		every_owned_pop_group = {	
 		# 			limit = { is_valid_refugee_pop = yes }
 		# 			save_event_target_as = refugee_pop #Must be saved for refugee_pop_effect to work
@@ -1123,7 +1122,7 @@ country_event = {
 # 				2 = { 
 # 					# due to ai missmanagment and no fun factor, disabled for now
 # 					# setting occupation does not work due to wargoal
-# 					# every_system_colony = { set_owner = event_target:f93_ralis_country }
+# 					# every_system_planet = { set_owner = event_target:f93_ralis_country }
 # 				}
 # 			}
 # 		}
@@ -2043,7 +2042,7 @@ country_event = {
 								if = {
 									limit = { has_star_flag = f93_ralis_took_it_from@prev }
 									starbase = { set_owner = prevprev }
-									every_system_colony = { set_owner = prevprev }
+									every_system_planet = { set_owner = prevprev }
 									remove_star_flag = f93_ralis_took_it_from_someone
 								}
 							}
@@ -2176,7 +2175,7 @@ country_event = {
 						save_event_target_as = system_receiver
 						event_target:f93_return_system = {
 							starbase = { set_owner = event_target:system_receiver }
-							every_system_colony = {
+							every_system_planet = {
 								set_owner = event_target:system_receiver
 								planet_event = { id = f93_ralis_crisis_event.1302 days = 1 }
 							}
@@ -2187,7 +2186,7 @@ country_event = {
 				10 = {
 					event_target:f93_return_system = {
 						starbase = { set_owner = event_target:f93_ralis_liberator }
-						every_system_colony = { set_owner = event_target:f93_ralis_liberator planet_event = { id = f93_ralis_crisis_event.1302 days = 1 } }
+						every_system_planet = { set_owner = event_target:f93_ralis_liberator planet_event = { id = f93_ralis_crisis_event.1302 days = 1 } }
 						remove_star_flag = f93_ralis_took_it_from_someone
 					}
 				}
@@ -2220,7 +2219,7 @@ country_event = {
 							add_to_galactic_community = yes
 						}
 					}
-					every_system_colony = {
+					every_system_planet = {
 						set_owner = last_created_country
 						f93_create_galcom_admin_planet = yes
 					}
@@ -2230,7 +2229,7 @@ country_event = {
 							has_star_flag = f93_ralis_took_it_from_someone
 						}
 						starbase = { set_owner = last_created_country }
-						every_system_colony = { set_owner = last_created_country }
+						every_system_planet = { set_owner = last_created_country }
 						remove_star_flag = f93_ralis_took_it_from_someone
 					}
 					every_country = {
@@ -2392,7 +2391,7 @@ system_event = {
 			space_owner = { save_event_target_as = system_receiver }
 		}
 		starbase = { set_owner = event_target:system_receiver }
-		every_system_colony = { set_owner = event_target:system_receiver }
+		every_system_planet = { set_owner = event_target:system_receiver }
 	}
 }
 

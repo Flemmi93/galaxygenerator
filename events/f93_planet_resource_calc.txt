@@ -1,0 +1,89 @@
+namespace = planet_resource
+event = {
+	id = planet_resource.99
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		every_country = {
+			every_planet_within_border = {
+				limit = { is_colony = yes }
+				planet_event = { id = planet_resource.1 }
+			}
+		}
+	}
+}
+# keep this simple for easy of patches for more resources
+planet_event = {
+	id = planet_resource.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# check scripted effects for more details
+		calc_resource_production = { resource = energy ACCURACY = 1 }
+		calc_resource_production = { resource = minerals ACCURACY = 1 }
+		calc_resource_production = { resource = food ACCURACY = 1 }
+		calc_resource_production = { resource = physics_research ACCURACY = 1 }
+		calc_resource_production = { resource = society_research ACCURACY = 1 }
+		calc_resource_production = { resource = engineering_research ACCURACY = 1 }
+		calc_resource_production = { resource = unity ACCURACY = 1 }
+		calc_resource_production = { resource = trade ACCURACY = 1 }
+		calc_resource_production = { resource = consumer_goods ACCURACY = 1 }
+		calc_resource_production = { resource = alloys ACCURACY = 1 }
+		calc_resource_production = { resource = volatile_motes ACCURACY = 1 }
+		calc_resource_production = { resource = exotic_gases ACCURACY = 1 }
+		calc_resource_production = { resource = rare_crystals ACCURACY = 1 }
+		calc_resource_production = { resource = sr_living_metal ACCURACY = 1 }
+		calc_resource_production = { resource = sr_zro ACCURACY = 1 }
+		calc_resource_production = { resource = sr_dark_matter ACCURACY = 1 }
+		calc_resource_production = { resource = nanites ACCURACY = 1 }
+		calc_resource_production = { resource = minor_artifacts ACCURACY = 1 }
+
+		clear_variable = high
+		clear_variable = mid
+		clear_variable = low_plus_x
+		clear_variable = low
+		clear_variable = counter
+	}
+}
+country_event = {
+	id = planet_resource.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_situation = {
+			has_situation_flag = f93_zro_calc
+		}
+	}
+	immediate = {
+		every_planet_within_border = {
+			limit = { has_planet_flag = f93_zro_calc }
+			owner = {
+				# while = {
+					# count = 1 # prev.sr_zro
+					random_situation = {
+						limit  = { has_situation_flag = f93_zro_calc }
+						add_situation_progress = prevprev.sr_zro
+					}
+				# }		
+			}
+		planet_event = { id = planet_resource.3 }
+		}
+	}
+}
+planet_event = {
+	id = planet_resource.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# check scripted effects for more details
+		calc_resource_production = { resource = sr_zro ACCURACY = 1 }
+		clear_variable = high
+		clear_variable = mid
+		clear_variable = low_plus_x
+		clear_variable = low
+		clear_variable = counter
+	}
+}

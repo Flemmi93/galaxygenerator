@@ -19,6 +19,8 @@ country_event = {
 		country_event = {
 			id = grp_dan_menu_evt.1
 		}
+		
+			set_global_flag = f82_button_1_1_off # turns the story mode off temporarily
 	}
 }
 

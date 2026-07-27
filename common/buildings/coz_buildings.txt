@@ -1,0 +1,150 @@
+# Initial Paladin Building, so it is visible on the planet
+f93_zro_knight_fort_0 = {
+	base_buildtime = 1000
+	category = army
+	can_demolish = no
+	empire_limit = 1
+	potential = {
+		has_modifier = f93_zro_downpour
+	}
+	building_sets = {
+		urban
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 100
+		}
+		upkeep = {
+			energy = 2
+		}
+	}
+	planet_modifier = {
+		job_f93_zro_knight_add = 15
+	}
+	additional_ai_weight = 100
+	upgrades = {
+		"f93_zro_knight_fort_1"
+	}
+}
+# First real Paladin building with conversion effect
+f93_zro_knight_fort_1 = {
+	base_buildtime = 360
+	category = army
+	can_build = no
+	allow = {
+		has_upgraded_capital = yes
+	}
+	building_sets = {
+		urban
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			minerals = 800
+		}
+		upkeep = {
+			energy = 4
+		}
+	}
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		custom_tooltip = f93_lieges_castle_effect
+		job_politician_add = -0.75
+		job_f93_zro_knight_add = 0.75
+		mult = value:count_owned_politician_job
+	}
+
+	planet_modifier = {
+		job_politician_add = 150
+	}
+	custom_tooltip = f93_zro_knight_fort_1_effect
+	additional_ai_weight = 100
+	upgrades = {
+		"f93_zro_knight_fort_2"
+	}
+}
+# Upgraded Paladin building
+f93_zro_knight_fort_2 = {
+	base_buildtime = 720
+	category = army
+	can_build = no
+	building_sets = {
+		urban
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = 500
+		}
+		upkeep = {
+			energy = 7
+		}
+	}
+	allow = {
+		count_owned_workforce = {
+			count >= 1500
+			limit = { has_job_type = f93_zro_drifter }
+		}
+	}
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		custom_tooltip = f93_lieges_castle_effect
+		job_politician_add = -0.75
+		job_f93_zro_knight_add = 0.75
+		mult = value:count_owned_politician_job
+	}
+
+	planet_modifier = {
+		job_politician_add = 300
+	}
+	custom_tooltip = f93_zro_knight_fort_2_effect
+	additional_ai_weight = 100
+	upgrades = {
+		"f93_lieges_castle"
+	}
+}
+# Lieges Castle unlocked by Situation
+f93_lieges_castle = {
+	base_buildtime = 1080
+	category = army
+	can_build = no
+	building_sets = {
+		urban
+	}
+	potential = {
+		carrier = { has_planet_flag = f93_paladin_unlocked }
+	}
+	allow = {
+		count_owned_workforce = {
+			count >= 2000
+			limit = { has_job_type = f93_zro_drifter }
+		}
+	}
+	resources = {
+		category = planet_buildings
+		cost = {
+			alloys = 1500
+		}
+		upkeep = {
+			energy = 10
+		}
+	}
+	triggered_planet_modifier = {
+		potential = { owner = { any_owned_leader = { is_councilor_type = f93_coz_liege } } }
+		job_f93_zro_knight_add = @liege_new_job_effect
+		mult = value:councilor_level|TYPE|f93_coz_liege|
+	}
+	triggered_planet_modifier = {
+		potential = { always = yes }
+		# custom_tooltip = f93_lieges_castle_effect
+		job_politician_add = -0.75
+		job_f93_zro_knight_add = 0.75
+		mult = value:count_owned_politician_job
+	}
+	planet_modifier = {
+		job_politician_add = 600
+	}
+	custom_tooltip = f93_lieges_castle_effect
+	additional_ai_weight = 100
+}

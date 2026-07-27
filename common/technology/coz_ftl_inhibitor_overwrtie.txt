@@ -1,0 +1,30 @@
+
+# ##################
+# Debuff auras
+# ##################
+
+tech_ftl_inhibitor = {
+	area = physics
+	cost = @tier2cost1
+	tier = 2
+	category = { particles }
+	prerequisites = { OR = { "tech_f93_zro_drive_1" "tech_hyper_drive_1" } }
+	weight = @tier2weight1
+
+	feature_flags = {
+		planetary_ftl_inhibitor
+	}
+
+	weight_modifier = {
+		factor = 4 #FTL inhibitor is very important
+		modifier = {
+			factor = 1.25
+			has_tradition = tr_unyielding_adopt
+		}
+
+	}
+
+	ai_weight = {
+
+	}
+}

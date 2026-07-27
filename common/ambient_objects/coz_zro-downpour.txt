@@ -1,0 +1,20 @@
+# copied from
+# Extradimensionals Portal
+ambient_object = {
+	name = "coz_zro_downpour"
+	entity = "coz_zro_donwpour_entity"
+	selectable = no
+	show_name = no
+}
+ambient_object = {
+	name = "coz_zro_donwpour_back"
+	entity = "coz_zro_donwpour_entity_back"
+	selectable = no
+	show_name = no
+}
+ambient_object = {
+	name = "coz_zro_donwpour_flat"
+	entity = "coz_zro_donwpour_entity_flat"
+	selectable = no
+	show_name = no
+}

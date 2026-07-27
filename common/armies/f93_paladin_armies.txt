@@ -1,0 +1,50 @@
+# Paladin Army
+f93_paladin_army = {
+	damage = 6
+	health = 12
+	has_morale = no
+	morale_damage = 2.0
+	collateral_damage = 0.5
+	war_exhaustion = 1.0
+	time = 360
+	icon = GFX_army_paladin
+	has_species = yes
+
+	resources = {
+		category = armies
+		cost = {
+			alloys = 100
+			sr_zro = 100
+		}
+		upkeep = {
+			sr_zro = 0.1
+		}
+	}
+
+	potential_country = {
+		any_owned_colony = {
+			has_building = f93_lieges_castle
+		}
+	}
+
+	allow = {
+		owner = {
+			check_variable = {
+				which = coz_paladin_army
+				value < coz_paladin_army_cap
+			}
+		}
+	}
+
+	on_queued = {
+		owner = { change_variable = { which = coz_paladin_army value = 1 } }
+	}
+	
+	on_unqueued = {
+		owner = { change_variable = { which = coz_paladin_army value = -1 } }
+	}
+
+	ai_weight = {
+		base = 500
+	}
+}

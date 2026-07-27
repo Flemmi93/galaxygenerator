@@ -7,8 +7,9 @@ f93_set_galaxy_size = {
 	# if = { limit = { galaxy_size = huge } set_variable = { which = f93_gal_size value = 6 } }
 	# else = {
 		export_trigger_value_to_variable = {
-			trigger = count_system
-			variable = f93_num_systems
+			trigger = num_galaxy_systems
+			variable = stream_ratio
+			rounded = yes
 		}
 		set_variable = { which = f93_gal_size value = f93_num_systems }
 		divide_variable = { which = f93_gal_size value = 160 }
@@ -69,21 +70,7 @@ highway_connect = {
 	}
 	save_global_event_target_as = old_highway_system
 }
-
-# spawn_highway_system = {	
-# 	set_spawn_system_batch = begin
-# 	spawn_system = {
-# 		min_distance = 20
-# 		max_distance = 25
-# 		initializer = random
-# 		hyperlane = yes
-# 		is_discovered = no
-# 		direction = rimwards
-# 		effect = { save_global_event_target_as = new_highway_system highway_connect = yes }
-# 	}
-# 	set_spawn_system_batch = end
-# }
-
+# This will connect 2 Chosen points in the galaxy with a Hyper Relay string.
 highway_create_system = {
 	if = {
 		limit = {

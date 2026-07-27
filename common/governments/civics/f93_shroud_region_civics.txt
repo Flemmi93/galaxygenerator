@@ -1,0 +1,88 @@
+children_of_the_zro = {
+	is_origin = yes
+	playable = {
+		has_overlord_dlc = yes
+	}
+	icon = gfx/interface/icons/origins/children_of_zro.dds
+	picture = GFX_evt_children_of_zro
+	room = shroud_strider_room
+	traits = {
+		trait = trait_latent_psionic
+	}
+	# starting_colony = pc_desert
+	# habitability_preference = pc_desert
+	description = children_of_the_zro_effect
+	possible = {
+		species_archetype = { NOT = { value = MACHINE } }
+		authority = {
+			OR = {
+				text = civic_tooltip_dic_imp
+				value = auth_dictatorial
+				value = auth_imperial
+			}
+		}
+		ethics = {
+			OR = {
+				text = civic_tooltip_spiritualist
+				value = ethic_spiritualist
+				value = ethic_fanatic_spiritualist
+			}
+		}
+		civics = {
+			NOR = {
+				value = civic_reanimated_armies
+				value = civic_tankbound
+				value = civic_dystopian_society
+			}
+			NOR = {
+				text = civic_tooltip_not_eager_explorers
+				value = civic_eager_explorers
+				value = civic_privatized_exploration
+				value = civic_hive_stargazers
+			}
+			NOR = {
+				text = civic_tooltip_not_hyperspace_specialty
+				value = civic_hyperspace_specialty
+				value = civic_corporate_hyperspace_specialty
+				value = civic_hive_hyperspace_specialty
+			}
+			NOR = {
+				text = civic_tooltip_not_guided
+				value = civic_guided_sapience
+				value = civic_corporate_guided_sapience
+				value = civic_hive_guided_sapience
+			}
+			NOR = {
+				text = civic_tooltip_not_guardian
+				value = civic_sovereign_guardianship
+				value = civic_corporate_sovereign_guardianship
+				value = civic_hive_sovereign_guardianship
+			}
+			NOR = {
+				text = civic_tooltip_not_beastmasters
+				value = civic_beastmasters
+				value = civic_hive_beastmasters
+				value = civic_corporate_beastmasters
+			}
+			NOR = {
+				text = civic_tooltip_not_genocidal
+				value = civic_hive_devouring_swarm
+				value = civic_fanatic_purifiers
+				value = civic_scorched_earth
+				value = civic_hive_scorched_earth
+			}
+			NOR = {
+				text = civic_tooltip_not_natural_design
+				value = civic_natural_design
+				value = civic_hive_natural_design
+			}
+		}
+	}
+	flags = { custom_start_screen }
+	modifier = {
+		ship_anomaly_generation_chance_mult = 0.25
+		pop_cat_worker_bonus_workforce_mult = 0.05
+		leader_lifespan_add = 30
+	}
+	
+}

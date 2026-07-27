@@ -1,0 +1,203 @@
+@f93_shroud_size = 5
+@f93_crossing_size = 5
+enact_new_shrouded_region = {
+	# create_new_gal_crossing = yes
+	create_new_gal_network = yes
+	expand_crossing_region_around_gal_crossing = yes
+	f93_set_shrouded_region_core = yes
+}
+# Mak Shrouded Region map
+f93_set_shrouded_region_core = {
+	while = {
+		count = @f93_shroud_size
+		random_system = {
+			limit = {
+				is_rim_system = yes
+				f93_system_has_ancient_relay = no
+				has_star_flag = empire_cluster
+				NOT = {
+					any_system = {
+						has_star_flag = f93_new_shrouded_region
+						f93_system_has_ancient_relay = yes
+						distance = {
+							source = prev
+							type = hyperlane
+							min_jumps = 1
+							max_jumps = 5
+						}
+					}
+				}
+			}
+			set_star_flag = f93_new_shrouded_region
+			# set_name = "SHROUDED"
+		}
+	}
+	while = {
+		count = @f93_crossing_size
+		random_system = {
+			limit = {
+				f93_system_has_ancient_relay = yes
+				is_rim_system = no
+				NOT = {
+					any_system = {
+						has_star_flag = f93_new_crossing_region
+						distance = {
+							source = prev
+							type = hyperlane
+							min_jumps = 1
+							max_jumps = 5
+						}
+					}
+				}
+			}
+			set_star_flag = f93_new_crossing_region
+			# set_name = "CROSSING"
+		}
+	}
+	while = {
+		limit = {
+			any_system = {
+				any_system = { has_hyperlane_to = prev }
+				NOR = {
+					# has_star_flag = lcluster
+					has_star_flag = f93_new_shrouded_region
+					has_star_flag = f93_new_crossing_region
+				}
+			}
+		}
+		every_system = {
+			limit = {
+				has_star_flag = f93_new_shrouded_region
+			}
+			every_neighbor_system = {
+				limit = {
+					NOR = {
+						has_star_flag = f93_new_shrouded_region
+						has_star_flag = f93_new_crossing_region
+					}
+				}
+				set_star_flag = f93_new_shrouded_region
+				# set_name = "SHROUDED"
+			}
+		}
+		every_system = {
+			limit = {
+				has_star_flag = f93_new_crossing_region
+			}
+			every_neighbor_system = {
+				limit = {
+					NOR = {
+						has_star_flag = f93_new_shrouded_region
+						has_star_flag = f93_new_crossing_region
+					}
+				}
+				set_star_flag = f93_new_crossing_region
+				# set_name = "CROSSING"
+			}
+		}
+	}
+	every_system = {
+		limit = { has_star_flag = f93_new_shrouded_region NOT = { has_star_flag = empire_cluster } }
+		every_system = {
+			limit = { has_hyperlane_to = prev NOT = { has_star_flag = empire_cluster } }
+			remove_hyperlane = { from = prev to = this }
+		}
+	}
+}
+
+create_new_gal_crossing = {
+	# This will connect 2 Chosen points in the galaxy with a Hyper Relay string.
+	random_system = {
+		limit = { f93_valid_gal_crossing_endpoint = yes }
+		save_global_event_target_as = new_highway_start
+		save_global_event_target_as = new_highway_current
+		set_name = "START"
+		f93_spawn_ancient_relay = yes
+	}
+	random_system = {
+		limit = { f93_valid_gal_crossing_endpoint = yes NOT = { is_same_value = event_target:new_highway_start } }
+		save_global_event_target_as = new_highway_end
+		set_name = "END"
+		f93_spawn_ancient_relay = yes
+	}
+	while = {
+		limit = { NOT = { event_target:new_highway_end = { any_neighbor_system = { f93_system_has_ancient_relay = yes } } }  }
+		event_target:new_highway_end = {
+			closest_system = {
+				limit = {
+					f93_system_has_ancient_relay = no
+					distance = {
+						source = event_target:new_highway_current
+						max_jumps = 1
+						type = hyperlane
+					}
+				}
+				f93_spawn_ancient_relay = yes
+				set_star_flag = f93_new_crossing_region
+				save_global_event_target_as = new_highway_current
+			}
+		}
+	}
+}
+
+expand_crossing_region_around_gal_crossing = {
+	every_system = {
+		limit = { f93_system_has_ancient_relay = yes }
+		every_neighbor_system = {
+			limit = { NOT = { has_star_flag = f93_new_crossing_region } }
+			set_star_flag = f93_new_crossing_region
+			every_neighbor_system = {
+				limit = { NOT = { has_star_flag = f93_new_crossing_region } }
+				set_star_flag = f93_new_crossing_region
+				every_neighbor_system = {
+					limit = { NOT = { has_star_flag = f93_new_crossing_region } }
+					set_star_flag = f93_new_crossing_region
+				}
+			}
+		}
+	}
+}
+
+create_new_gal_network = {
+	# This will connect 2 Chosen points in the galaxy with a Hyper Relay string.
+	# exists = event_target:system_highway_start
+	# exists = event_target:system_highway_end
+	while = {
+		limit = {
+			any_system = {
+				f93_valid_gal_crossing_endpoint = yes
+				NOT = { has_star_flag = f93_ancient_relay_system }
+			}
+		}
+		random_system = {
+			limit = { f93_valid_gal_crossing_endpoint = yes f93_system_has_ancient_relay = yes }
+			save_global_event_target_as = new_highway_start
+			save_global_event_target_as = new_highway_current
+			f93_spawn_ancient_relay = yes
+		}
+		random_system = {
+			limit = { f93_valid_gal_crossing_endpoint = yes f93_system_has_ancient_relay = no }
+			save_global_event_target_as = new_highway_end
+			# set_name = "END"
+			f93_spawn_ancient_relay = yes
+		}
+		while = {
+			limit = { NOT = { event_target:new_highway_end = { any_neighbor_system = { f93_system_has_ancient_relay = yes } } }  }
+			event_target:new_highway_end = {
+				closest_system = {
+					limit = {
+						f93_system_has_ancient_relay = no
+						distance = {
+							source = event_target:new_highway_current
+							max_jumps = 1
+							type = hyperlane
+						}
+					}
+					f93_spawn_ancient_relay = yes
+					set_star_flag = f93_new_crossing_region
+					save_global_event_target_as = new_highway_current
+				}
+			}
+		}
+	}
+}

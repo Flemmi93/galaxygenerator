@@ -1,0 +1,3 @@
+coz_upkeep_faker = {
+	remove_modifier = coz_fake_zro_upkeep_1
+}

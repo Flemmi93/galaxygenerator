@@ -1,0 +1,141 @@
+shroud_beacon = {
+	icon = "GFX_starbase_shroud_beacon"
+	construction_days = 720
+
+	potential = {
+		exists = owner
+		OR = {
+			owner = { has_relic = f93_imperial_strider }
+			owner = {
+				is_homicidal = no
+				has_country_flag = shroudwalker_enclave_diplomacy_engaged
+				has_country_flag = shroudwalker_enclave_bought_shroud_beacon
+			}
+		}
+		is_normal_starbase = yes
+		is_space_citadel = no
+	}
+
+	possible = {
+		custom_tooltip = {
+			fail_text = "requires_starport"
+			has_starbase_size >= starbase_starport
+		}
+		custom_tooltip = {
+			fail_text = "requires_not_shroudwalker_system"
+			solar_system = {
+				NOR = {
+					has_star_flag = shroudwalker_enclave_system
+					any_fleet_in_system = {
+						exists = owner
+						owner = { has_country_flag = shroudwalker_enclave_country }
+					}
+				}
+			}
+		}
+		custom_tooltip = {
+			fail_text = "requires_no_bypass"
+			solar_system = {
+				if = {
+					limit = {
+						NOT = { has_star_flag = spawned_shroud_tunnel }
+					}
+					has_natural_wormhole = no
+				}
+			}
+		}
+		if = {
+			limit = { NOT = { owner = { has_relic = f93_imperial_strider } } }
+			custom_tooltip = {
+				fail_text = "limit_one_shroud_tunnel"
+				OR = {
+					owner = {
+						NOT = {
+							any_system_within_border = {
+								OR = {
+									has_star_flag = spawned_shroud_tunnel
+									starbase = { has_starbase_building = shroud_beacon }
+								}
+							}
+						}
+					}
+					AND = {
+						solar_system = { has_star_flag = spawned_shroud_tunnel }
+						NOT = { has_starbase_building = shroud_beacon }
+					}
+				}
+			}
+			custom_tooltip = {
+				fail_text = "requires_shroudwalker_agreement"
+				OR = {
+					AND = {
+						exists = event_target:shroudwalker_enclave_country
+						event_target:shroudwalker_enclave_country = {
+							has_country_flag = shroud_beacon@root.owner
+						}
+					}
+					owner = { has_country_flag = shroud_beacon }
+				}
+			}
+		}
+		else = {
+			custom_tooltip = f93_imperial_strider_cap_desc
+			owner = {
+				check_variable = {
+					which = sb_amount
+					value < sb_cap
+				}
+			}
+		}
+	}
+
+	resources = {
+		category = starbase_buildings
+		cost = {
+			alloys = 500
+			rare_crystals = 25
+		}
+		upkeep = {
+			energy = 3
+			sr_zro = 0.5
+		}
+	}
+
+	ai_weight = {
+		weight = 50
+		#Don't build nextdoor to the Shroudwalkers
+		modifier = {
+			factor = 0
+			solar_system = {
+				any_neighbor_system = {
+					any_fleet_in_system = {
+						exists = owner
+						owner = { has_country_flag = shroudwalker_enclave_country }
+					}
+				}
+			}
+		}
+	}
+
+	on_finished = {
+		hidden_effect = { event_target:owner_of_imperial_strider = { change_variable = { which = sb_amount value = 1 } } }
+		if = {
+			limit = {
+				solar_system = { NOT = { has_star_flag = spawned_shroud_tunnel } }
+			}
+			shroudwalker_enclave_starbase_create_shroud_tunnel = yes
+		}
+		fleet.owner = {
+			country_event = { id = enclave.4200 }
+			country_event = { id = origin.5625 }
+			country_event = { id = timeline.60	 } # Origin Event Shroud Tunnel Built
+		}
+	}
+
+	on_destroyed = {
+		hidden_effect = { event_target:owner_of_imperial_strider = { change_variable = { which = sb_amount value = -1 } } }
+		fleet.owner = {
+			country_event = { id = enclave.6015 }
+		}
+	}
+}

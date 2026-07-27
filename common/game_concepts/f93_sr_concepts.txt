@@ -1,0 +1,24 @@
+concept_children_of_the_zro = {
+	tooltip_override = concept_children_of_the_zro_effect
+}
+concept_shroud_world = {}
+concept_zro_downpour = {
+	tooltip_override = concept_zro_downpour_effect
+}
+concept_zro_drifter = {}
+concept_expanded_drifter_operations = {}
+concept_expand_drifter_operations = {}
+concept_hyperspace_nightmares = {}
+concept_hyperspace_nightmares_alt = {}
+concept_zro_must_flow = {
+	tooltip_override = concept_zro_must_flow_effect
+}
+concept_f93_madness = {}
+concept_f93_origin_children_zro_tips = {}
+concept_bleeding_zro = {}
+concept_shroud_strider = {}
+concept_light_speed = {}
+concept_light_speed_2 = {}
+concept_zroni_storm_caster = {}
+concept_galatron = {}
+concept_entangled_relay = {}

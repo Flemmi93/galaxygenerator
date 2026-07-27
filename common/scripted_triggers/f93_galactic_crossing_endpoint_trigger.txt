@@ -39,5 +39,5 @@ f93_valid_gal_crossing_endpoint = {
 		has_star_flag = f93_used_in_case_of_really_big_galaxy 
 		has_star_flag = f93_used_in_case_of_0_less_FE
 	}
-	NOT = { has_star_flag = f93_INVALID_gal_crossing_endpoint_flag }
+	NOT = { has_star_flag = f93_valid_gal_crossing_endpoint_flag }
 }

@@ -1,0 +1,71 @@
+count_owned_politician_job = {
+	complex_trigger_modifier = {
+		trigger = count_owned_workforce
+		parameters = {
+			limit = {
+				OR = {
+					has_job_type = f93_zro_knight
+					has_job_type = politician
+				}
+			}
+		}
+		mode = add
+	}
+	round = yes
+}
+
+num_jobs_with_energy_tag = {
+	complex_trigger_modifier = {
+		trigger = total_workforce_with_job_tag
+		trigger_scope = planet
+		parameters = {
+			tags = { energy }
+		}
+		mode = add
+	}
+}
+count_owned_technician_job = {
+	complex_trigger_modifier = {
+		trigger = count_owned_workforce
+		parameters = {
+			limit = {
+				OR = {
+					has_job_type = f93_zro_drifter
+					has_job_type = technician
+				}
+			}
+		}
+		mode = add
+	}
+	round = yes
+}
+f93_zro_deposit_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger_scope = planet
+		trigger = count_deposits
+		parameters = {
+			type = d_shroudstone
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger_scope = planet
+		trigger = count_deposits
+		parameters = {
+			type = d_aura_blocker
+		}
+		mode = add
+	}
+}
+f93_anti_zro_deposit_count = {
+	base = 0
+	complex_trigger_modifier = {
+		trigger_scope = planet
+		trigger = count_deposits
+		parameters = {
+			type = d_anti_shroudstone_auro
+		}
+		mode = add
+	}
+}

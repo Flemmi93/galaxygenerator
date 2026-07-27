@@ -51,3 +51,35 @@
 # 		}
 # 	}
 # }
+# Vanilla Overwrite
+
+tech_f93_zro_drive_1 = {
+	area = physics
+	tier = 0
+	category = { particles }
+	start_tech = yes
+	ai_update_type = all
+	is_reverse_engineerable = no
+	is_rare = yes
+	potential = {
+		is_children_of_zro_empire = yes
+	}
+	starting_potential = {
+		is_children_of_zro_empire = yes
+	}
+}
+tech_f93_zro_drive_2 = {
+	area = physics
+	tier = 4
+	category = { particles }
+	ai_update_type = all
+	is_reverse_engineerable = no
+	is_rare = yes
+	
+	feature_flags = {
+		jump_method
+	}
+	potential = {
+		is_children_of_zro_empire = yes
+	}
+}

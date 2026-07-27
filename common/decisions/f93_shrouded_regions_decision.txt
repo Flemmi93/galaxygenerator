@@ -148,3 +148,22 @@ f93_lock_the_ralisgate = {
 		}
 	}
 }
+f93_expand_drifter_operations = {
+	owned_planets_only = yes
+	potential = {
+		has_modifier = f93_zro_downpour
+		has_planet_flag = f93_expand_drift_unlock
+	}
+	resources = {
+		category = decisions
+		cost = {
+			influence = 500
+			minor_artifacts = 750
+			trade = 10000
+		}
+	}
+	
+	effect = {
+		add_deposit = f93_expanded_drifter_operations
+	}
+}

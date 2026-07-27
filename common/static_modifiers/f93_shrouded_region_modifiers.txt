@@ -25,7 +25,7 @@ f93_ralis_true_liberator = {
 f93_ralis_country_buff = { #decrepit
 	planet_crime_add = -1000
 	country_hostile_claim_influence_cost_mult = 100
-	pop_demotion_time_mult = -1
+	# pop_demotion_time_mult = -1
 	country_base_food_produces_add = 1000
 	country_resource_max_energy_add = 75000
 	country_resource_max_minerals_add = 75000
@@ -134,4 +134,42 @@ f93_job_creating_modifier = {
 	job_farmer_per_pop = 0.075
 	job_miner_per_pop = 0.075
 	job_soldier_per_pop = 0.005
+}
+f93_mod_zro_must_flow = {
+	pop_category_rulers_sr_zro_upkeep_add = @sr_zro_upkeep_elite
+	pop_category_specialists_sr_zro_upkeep_add = @sr_zro_upkeep_specialist
+	pop_category_workers_sr_zro_upkeep_add = @sr_zro_upkeep_workers
+}
+f93_zro_downpour = {
+	icon = gfx/interface/icons/modifiers/pm_zro_downpour.dds
+	# pop_environment_tolerance = -0.3
+	habitability_floor_add = 0.7
+	planet_stability_add = -15
+}
+f93_zro_downpour_2 = {
+	icon = gfx/interface/icons/modifiers/pm_zro_downpour.dds
+	# pop_environment_tolerance = -0.3
+	habitability_floor_add = 0.7
+	planet_stability_add = -15
+	country_base_sr_zro_produces_add = 10
+}
+f93_hyperspace_nightmares = {
+	icon = gfx/interface/icons/modifiers/mod_black_hole.dds
+	# custom_tooltip = f93_hyperspace_nightmares_effect
+	ship_windup_mult = @nightmares_windup_debuff
+	ship_interstellar_speed_mult = @nightmares_travel_speed
+	relay_bypass_empire_windup_mult = @nightmares_relay_windup_debuff
+}
+f93_feudal_society_buff = {
+	# icon = gfx/interface/icons/modifiers/mod_black_hole.dds
+	country_naval_capacity_contribution_from_subjects_mult = @freudal_society_civic_buff
+}
+f93_ship_interstellar_speed_mult = {
+	ship_interstellar_speed_mult = 1
+}
+f93_coz_sanctified = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_consecrated_worlds.dds"
+	icon_frame = 2
+	planet_max_districts_add = 6
+	diplo_weight_mult = 0.4
 }

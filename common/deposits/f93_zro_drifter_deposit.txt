@@ -1,0 +1,59 @@
+f93_expanded_drifter_operations = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	triggered_planet_modifier = {
+		potential = {
+			exists = owner
+			# owner = { is_children_of_zro_empire = yes }
+		}
+		job_f93_zro_drifter_add = 500
+		
+	}
+	country_modifier = {
+		country_base_alloys_produces_add = -30
+	}
+	drop_weight = { base = 0 }
+}
+f93_d_bleeding_zro = {
+	icon = d_surreal_visions
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	country_modifier = {
+		country_base_sr_zro_produces_add = 6
+	}
+	drop_weight = { base = 0 }
+}
+f93_drifter_existance = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	triggered_planet_modifier = {
+		job_technician_add = -0.95
+		job_f93_zro_drifter_add = 0.95
+		mult = value:count_owned_technician_job
+	}
+	planet_modifier = {
+		district_generator_max_add = 15
+	}
+	drop_weight = { base = 0 }
+}
+f93_north_superport = {
+	is_for_colonizable = yes
+	category = deposit_cat_rare
+	triggered_planet_modifier = {
+		potential = { exists = owner }
+		job_soldier_add = 250
+		pop_bonus_workforce_mult = 0.05
+	}
+	drop_weight = { base = 0 }
+}
+d_anti_shroudstone_auro = {
+	icon = d_monument
+	is_for_colonizable = yes
+	resources = {
+		category = deposit_blockers_natural
+		produces = {
+			sr_zro = -1
+		}
+	}
+	drop_weight = { base = 0 }
+}

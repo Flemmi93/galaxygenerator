@@ -204,6 +204,7 @@ f93_random_cluster_generator = {
 	}
 }
 f93_place_shroud_gate_node = {
+	set_star_flag = Womrhole_maker_1
 	spawn_natural_wormhole = {
 		bypass_type = ralisgate
 		random_pos = yes
@@ -213,6 +214,7 @@ f93_place_shroud_gate_node = {
 	set_star_flag = f93_got_shroud_nexus_node
 }
 f93_place_shroud_gate_nexus = {
+	set_star_flag = Womrhole_maker_2
 	spawn_natural_wormhole = {
 		bypass_type = ralisgate
 		random_pos = yes
@@ -226,6 +228,7 @@ f93_place_shroud_gate_node_and_cluster = {
 	f93_random_cluster_generator = yes
 	random_system = {
 		limit = { has_star_flag = f93_current_cluster }
+	set_star_flag = Womrhole_maker_3
 		spawn_natural_wormhole = {
 			bypass_type = ralisgate
 			random_pos = yes
@@ -265,7 +268,6 @@ f93_place_shroud_hyperlane_in_isolated_wormhole_region = {
 		}
 	}
 }
-
 f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = {
 	set_star_flag = f93_shrouded_cluster
 	f93_random_cluster_generator = yes
@@ -274,16 +276,19 @@ f93_connect_system_with_GalCro_within_20_steps_and_generate_cluster = {
 		random_system = {
 			limit = {
 				NOT = { exists = owner }
-				f93_system_winthin_20_steps_of_galcro = yes
+				# f93_system_winthin_20_steps_of_galcro = yes
 				has_natural_wormhole = no
+				has_star_flag = normal_region
 			}
 			prev = {
+				set_star_flag = Womrhole_maker_4
 				spawn_natural_wormhole = {
 					bypass_type = wormhole
 					random_pos = yes
 					orbit_angle = 360
 				}
 			}
+			set_star_flag = Womrhole_maker_5
 			spawn_natural_wormhole = {
 				bypass_type = wormhole
 				random_pos = yes
@@ -301,15 +306,17 @@ f93_connect_current_system_with_GalCro_within_20_steps_back_up = {
 			limit = {
 				NOT = { exists = owner }
 				f93_system_winthin_20_steps_of_galcro = yes
-				# has_natural_wormhole = no
+				has_natural_wormhole = no
 			}
 			prev = {
+				set_star_flag = Womrhole_maker_6
 				spawn_natural_wormhole = {
 					bypass_type = wormhole
 					random_pos = yes
 					orbit_angle = 360
 				}
 			}
+			set_star_flag = Womrhole_maker_7
 			spawn_natural_wormhole = {
 				bypass_type = wormhole
 				random_pos = yes
@@ -327,12 +334,14 @@ f93_connect_SPECIFIC_system_with_GalCro_within_20_steps_and_generate_cluster = {
 		limit = { has_star_flag = f93_current_cluster }
 		event_target:connection_origin = {
 			prev = {
+				set_star_flag = Womrhole_maker_8
 				spawn_natural_wormhole = {
 					bypass_type = wormhole
 					random_pos = yes
 					orbit_angle = 360
 				}
 			}
+			set_star_flag = Womrhole_maker_9
 			spawn_natural_wormhole = {
 				bypass_type = wormhole
 				random_pos = yes
@@ -342,4 +351,79 @@ f93_connect_SPECIFIC_system_with_GalCro_within_20_steps_and_generate_cluster = {
 		}
 	}
 	every_system = { remove_star_flag = f93_current_cluster }
+}
+
+f93_mark_highway_systems = {
+	every_system = {
+		limit = {
+			f93_system_has_ancient_relay = yes
+		}
+		set_star_flag = normal_region
+		every_neighbor_system = {
+			limit = {
+				NOT = { has_star_flag = normal_region }
+			}
+			set_star_flag = normal_region
+			every_neighbor_system = {
+				limit = {
+					NOT = { has_star_flag = normal_region }
+				}
+				set_star_flag = normal_region
+				every_neighbor_system = {
+					limit = {
+						NOT = { has_star_flag = normal_region }
+					}
+					set_star_flag = normal_region
+					every_neighbor_system = {
+						limit = {
+							NOT = { has_star_flag = normal_region }
+						}
+						set_star_flag = normal_region
+						every_neighbor_system = {
+							limit = {
+								NOT = { has_star_flag = normal_region }
+							}
+							set_star_flag = normal_region
+							every_neighbor_system = {
+								limit = {
+									NOT = { has_star_flag = normal_region }
+								}
+								set_star_flag = normal_region
+								every_neighbor_system = {
+									limit = {
+										NOT = { has_star_flag = normal_region }
+									}
+									set_star_flag = normal_region
+									every_neighbor_system = {
+										limit = {
+											NOT = { has_star_flag = normal_region }
+										}
+										set_star_flag = normal_region
+										every_neighbor_system = {
+											limit = {
+												NOT = { has_star_flag = normal_region }
+											}
+											set_star_flag = normal_region
+											every_neighbor_system = {
+												limit = {
+													NOT = { has_star_flag = normal_region }
+												}
+												set_star_flag = normal_region
+												every_neighbor_system = {
+													limit = {
+														NOT = { has_star_flag = normal_region }
+													}
+													set_star_flag = normal_region
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
